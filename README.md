@@ -1,5 +1,7 @@
 # homepage-nuxtjs
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/knit-pk/homepage-nuxtjs.svg)](https://greenkeeper.io/)
+
 > Nuxt.js project
 
 ## Build Setup
