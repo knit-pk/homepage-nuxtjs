@@ -20,11 +20,18 @@ module.exports = {
   /*
   ** Build configuration
   */
+  router: {
+    middleware: ['isMobile']
+  },
+  css: [
+    '~/assets/reset.css',
+    '~/node_modules/normalize.css/normalize.css'
+  ],
   build: {
     /*
     ** Run ESLint on save
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
       if (ctx.dev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
