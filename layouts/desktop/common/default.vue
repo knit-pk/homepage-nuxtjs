@@ -2,24 +2,52 @@
   <div id='#nuxt-app'>
     <knit-menu/>
     <!-- Render content from content-type -->
-    <div class="mainContentWrapper">
-      <slot/>
+    <div class="main-content-wrapper">
+      <article class="main-content-wrapper__main-content">
+        <slot/>
+      </article>
     </div>
     <knit-footer/>
   </div>
 </template>
+
 <script>
-import KnitMenu from '~/components/desktop/KnitMenu.vue';
-import KnitFooter from '~/components/desktop/KnitFooter.vue';
+import KnitMenu from '~/components/desktop/KnitMenu.vue'
+import KnitFooter from '~/components/desktop/KnitFooter.vue'
 export default {
   components: {
     KnitMenu,
     KnitFooter
   }
-};
+}
 </script>
-<style>
-.mainContentWrapper {
-  margin-top: 100px;
+
+<style lang="scss">
+@import "assets/scss/_imports.scss";
+.main-content-wrapper{
+  top: 0;
+  padding: 40px 0;
+  width: 100%;
+  background-color: $knit-main-content-wrapper-bg-color;
+  .main-content-wrapper__main-content {
+    min-height: 800px;
+    margin-top: 211px;
+    background-color: $knit-main-content-bg-color;
+    transition: all 0.2s linear;
+  }
+}
+@media (min-width: $desktop-width) {
+  .main-content-wrapper {
+    .main-content-wrapper__main-content{
+      margin-top: 231px;
+    }
+  }
+}
+@media (min-width: $desktop-large-width) {
+  .main-content-wrapper {
+    .main-content-wrapper__main-content{
+      margin-top: 331px;
+    }
+  }
 }
 </style>

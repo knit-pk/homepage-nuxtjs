@@ -3,8 +3,7 @@
 
 <script>
 export default {
-  components: {
-  },
+  components: { },
   layout: ({ isMobile }) => isMobile ? 'mobile/content-types/mainpage' : 'desktop/content-types/mainpage'
-};
+}
 </script>

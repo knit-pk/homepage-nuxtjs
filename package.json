@@ -7,17 +7,21 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
+    "build:nuxt": "cd node_modules/nuxt && npm install && npm build",
+    "build:nuxt:yarn": "cd node_modules/nuxt && yarn install && yarn build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "test": "jest tests/"
+    "test": "jest tests/",
+    "format-on-save": "watch \"npm run lint -- --fix\" -d -p \"/node_modules/\""
   },
   "dependencies": {
+    "axios": "^0.16.2",
+    "lodash": "^4.17.4",
     "node-sass": "^4.5.3",
     "normalize.css": "^7.0.0",
-    "nuxt": "^1.0.0-rc11",
-    "sass-loader": "^6.0.6",
-    "vue-template-compiler": "^2.5.2"
+    "nuxt": "nuxt/nuxt.js#dev",
+    "sass-loader": "^6.0.6"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
@@ -30,6 +34,7 @@
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "jest": "^21.2.1"
+    "jest": "^21.2.1",
+    "watch": "^1.0.2"
   }
 }
