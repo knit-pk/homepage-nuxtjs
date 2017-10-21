@@ -1,33 +1,33 @@
 <template>
-  <header class="knit-menu" :class="{'knit-menu--high': isHighMenu, 'knit-menu--low': !isHighMenu}">
-    <div class="knit-menu__logotype-wrapper">
-      <h1 class="knit-menu__heading">
-        <a class="knit-menu__link" href="/">
-          <img class="knit-menu__image" src="knit-logotype.svg" alt="KNIT Homepage">
+  <header class="knit-header" :class="{'knit-header--high': isHighMenu, 'knit-header--low': !isHighMenu}">
+    <div class="knit-header__logotype-wrapper">
+      <h1 class="knit-header__heading">
+        <a class="knit-header__link" href="/">
+          <img class="knit-header__image" src="knit-logotype.svg" alt="KNIT Homepage">
         </a>
       </h1>
     </div>
-    <div class="knit-menu__menu-block-wrapper">
-      <div class="knit-menu__organization">
-        <h2 class="knit-menu__name">Koło Naukowe IT</h2>
-        <span class="knit-menu__caption">Cracow University of Technology students IT organization</span>
+    <div class="knit-header__menu-block-wrapper">
+      <div class="knit-header__organization">
+        <h2 class="knit-header__name">Koło Naukowe IT</h2>
+        <span class="knit-header__caption">Cracow University of Technology students IT organization</span>
       </div>
-      <nav class="knit-menu__nav">
-        <ul class="knit-menu__nav-list">
-          <li class="knit-menu__nav-item">
-            <a class="knit-menu__nav-link" href="/">Strona główna</a>
+      <nav class="knit-header__nav">
+        <ul class="knit-header__nav-list">
+          <li class="knit-header__nav-item">
+            <a class="knit-header__nav-link" href="/">Strona główna</a>
           </li>
-          <li class="knit-menu__nav-item">
-            <a class="knit-menu__nav-link" href="/">Zarząd</a>
+          <li class="knit-header__nav-item">
+            <a class="knit-header__nav-link" href="/">Zarząd</a>
           </li>
-          <li class="knit-menu__nav-item">
-            <a class="knit-menu__nav-link" href="/">Statut</a>
+          <li class="knit-header__nav-item">
+            <a class="knit-header__nav-link" href="/">Statut</a>
           </li>
-          <li class="knit-menu__nav-item">
-            <a class="knit-menu__nav-link" href="/">O nas</a>
+          <li class="knit-header__nav-item">
+            <a class="knit-header__nav-link" href="/">O nas</a>
           </li>
-          <li class="knit-menu__nav-item">
-            <a class="knit-menu__nav-link" href="/">Zaloguj się</a>
+          <li class="knit-header__nav-item">
+            <a class="knit-header__nav-link" href="/">Zaloguj się</a>
           </li>
         </ul>
       </nav>
@@ -82,10 +82,10 @@ export default {
   top: 0;
   position: fixed;
   width: 100%;
-  background-color: $knit-menu-bg-color;
+  background-color: $knit-header-bg-color;
   display: flex;
   z-index: 9999;
-  border-bottom: 0.5px solid $knit-menu-border-color;
+  border-bottom: 0.5px solid $knit-header-border-color;
   &__heading {
     margin: 0;
   }
@@ -112,12 +112,12 @@ export default {
     white-space: nowrap;
     text-transform: uppercase;
     text-decoration: none;
-    color: $knit-menu-links-color;
+    color: $knit-header-links-color;
     &:hover {
-      border-bottom: 1px solid $knit-menu-links-hover-color;
+      border-bottom: 1px solid $knit-header-links-hover-color;
     }
     &:active {
-      color: $knit-menu-links-color-active;
+      color: $knit-header-links-color-active;
     }
   }
   &--low {

@@ -1,6 +1,6 @@
 <template>
   <div id='#nuxt-app'>
-    <knit-menu/>
+    <knit-header/>
     <!-- Render content from content-type -->
     <div class="main-content-wrapper">
       <article class="main-content-wrapper__main-content">
@@ -12,11 +12,11 @@
 </template>
 
 <script>
-import KnitMenu from '~/components/desktop/KnitMenu.vue'
+import KnitHeader from '~/components/desktop/KnitHeader.vue'
 import KnitFooter from '~/components/desktop/KnitFooter.vue'
 export default {
   components: {
-    KnitMenu,
+    KnitHeader,
     KnitFooter
   }
 }
