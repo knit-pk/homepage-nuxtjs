@@ -77,7 +77,8 @@ export default {
 <style lang='scss'>
 @import "assets/scss/_imports.scss";
 // @TODO: Some animation for KnitMenu (bad UX)
-.knit-menu {
+.knit-header {
+  $p: &;
   top: 0;
   position: fixed;
   width: 100%;
@@ -120,18 +121,18 @@ export default {
     }
   }
   &--low {
-    .knit-menu__logotype-wrapper {
+    #{$p}__logotype-wrapper {
       flex: 1;
       padding: 5px 20px;
     }
-    .knit-menu__image {
+    #{$p}__image {
       width: 50px;
       height: 50px;
     }
-    .knit-menu__menu-block-wrapper {
+    #{$p}__menu-block-wrapper {
       margin: auto 0;
     }
-    .knit-menu__nav-item {
+    #{$p}__nav-item {
       padding: 5px 5px;
     }
   }
@@ -139,79 +140,85 @@ export default {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    .knit-menu__logotype-wrapper {
+    #{$p}__logotype-wrapper {
       transition: none;
       margin: 30px 0;
     }
-    .knit-menu__name {
+    #{$p}__name {
       display: block;
     }
-    .knit-menu__nav-list {
+    #{$p}__nav-list {
       padding-bottom: 10px;
     }
   }
 }
 
 @media (min-width: $desktop-width) {
-  .knit-menu--high {
-    flex-direction: row;
-    .knit-menu__logotype-wrapper {
-      flex: 1;
-    }
-    .knit-menu__image {
-      float: right;
-      height: 150px;
-      width: 150px;
-    }
-    .knit-menu__menu-block-wrapper {
-      flex: 1;
-      margin: 30px 20px;
-      padding: 20px 20px 0 30px;
-    }
-    .knit-menu__organization {
-      display: initial;
-    }
-    .knit-menu__name {
-      font-size: 2rem;
-      padding: 0;
-    }
-    .knit-menu__caption {
-      font-size: 1rem;
-    }
-    .knit-menu__nav {
-      margin-top: 20px;
-    }
-    .knit-menu__nav-item {
-      padding: 5px 20px 15px 0;
-    }
-    .knit-menu__nav-link {
-      margin: 0;
-      font-size: 1.25rem;
+  .knit-header {
+    $p: &;
+    &--high {
+      flex-direction: row;
+      #{$p}__logotype-wrapper {
+        flex: 1;
+      }
+      #{$p}__image {
+        float: right;
+        height: 150px;
+        width: 150px;
+      }
+      #{$p}__menu-block-wrapper {
+        flex: 1;
+        margin: 30px 20px;
+        padding: 20px 20px 0 30px;
+      }
+      #{$p}__organization {
+        display: initial;
+      }
+      #{$p}__name {
+        font-size: 2rem;
+        padding: 0;
+      }
+      #{$p}__caption {
+        font-size: 1rem;
+      }
+      #{$p}__nav {
+        margin-top: 20px;
+      }
+      #{$p}__nav-item {
+        padding: 5px 20px 15px 0;
+      }
+      #{$p}__nav-link {
+        margin: 0;
+        font-size: 1.25rem;
+      }
     }
   }
 }
 
 @media (min-width: $desktop-large-width) {
-  .knit-menu--high {
-    .knit-menu__menu-block-wrapper {
-      margin: 60px 20px;
-    }
-    .knit-menu__image {
-      height: 250px;
-      width: 250px;
-    }
-    .knit-menu__caption {
-      font-size: 1.25rem;
-      margin: 0px 0px 30px 4px;
-    }
-    .knit-menu__name {
-      font-size: 2.5rem;
-    }
-    .knit-menu__nav {
-      margin-top: 50px;
-    }
-    .knit-menu__nav-link {
-      font-size: 1.5rem;
+  .knit-header {
+    $p: &;
+    &--high {
+      #{$p}__menu-block-wrapper {
+        margin: 60px 20px;
+      }
+      #{$p}__image {
+        height: 250px;
+        width: 250px;
+      }
+      #{$p}__caption {
+        font-size: 1.25rem;
+        margin: 0px 0px 30px 4px;
+      }
+      #{$p}__name {
+        font-size: 2.5rem;
+      }
+      #{$p}__nav {
+        margin-top: 50px;
+      }
+      #{$p}__nav-link {
+        font-size: 1.5rem;
+      }
     }
   }
 }

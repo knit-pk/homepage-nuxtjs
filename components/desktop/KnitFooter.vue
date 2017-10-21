@@ -23,13 +23,13 @@ export default {
   height: 61px;
   width: 100%;
   position: relative;
-  .knit-footer__copyrights-wrapper {
+  &__copyrights-wrapper {
     position: absolute;
     bottom: 4px;
     right: 0;
     left: 0;
   }
-  .knit-footer__copyrights {
+  &__copyrights {
     display: block;
     text-align: center;
     font-size: 0.8em;

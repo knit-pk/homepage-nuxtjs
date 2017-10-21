@@ -24,13 +24,13 @@ export default {
 
 <style lang="scss">
 @import "assets/scss/_imports.scss";
-.main-content-wrapper{
+.main-content-wrapper {
   top: 0;
   padding: 40px 0;
   width: 100%;
+  min-height: 100%;
   background-color: $knit-main-content-wrapper-bg-color;
-  .main-content-wrapper__main-content {
-    min-height: 800px;
+  &__main-content {
     margin-top: 211px;
     background-color: $knit-main-content-bg-color;
     transition: all 0.2s linear;
@@ -38,14 +38,14 @@ export default {
 }
 @media (min-width: $desktop-width) {
   .main-content-wrapper {
-    .main-content-wrapper__main-content{
+    &__main-content{
       margin-top: 231px;
     }
   }
 }
 @media (min-width: $desktop-large-width) {
   .main-content-wrapper {
-    .main-content-wrapper__main-content{
+    &__main-content{
       margin-top: 331px;
     }
   }
