@@ -1,3 +1,3 @@
 test('tests should work', () => {
-  expect('tests').toBe('tests');
-});
+  expect('tests').toBe('tests')
+})

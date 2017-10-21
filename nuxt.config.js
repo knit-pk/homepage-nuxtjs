@@ -20,7 +20,15 @@ module.exports = {
   /*
   ** Build configuration
   */
+  router: {
+    middleware: ['isMobile']
+  },
+  css: [
+    '~/assets/scss/reset.scss',
+    '~/node_modules/normalize.css/normalize.css'
+  ],
   build: {
+    vendor: ['~/config/http-common.js'],
     /*
     ** Run ESLint on save
     */
@@ -31,8 +39,8 @@ module.exports = {
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules)/
-        });
+        })
       }
     }
   }
-};
+}
