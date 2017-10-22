@@ -38,14 +38,14 @@ export default {
 }
 @media (min-width: $desktop-width) {
   .main-content-wrapper {
-    &__main-content{
+    &__main-content {
       margin-top: 231px;
     }
   }
 }
 @media (min-width: $desktop-large-width) {
   .main-content-wrapper {
-    &__main-content{
+    &__main-content {
       margin-top: 331px;
     }
   }
