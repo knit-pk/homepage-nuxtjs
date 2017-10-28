@@ -1,30 +1,16 @@
 <template>
   <default-layout>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
-    <h1>Lorem ipsum</h1>
+    <knit-article-list/>
   </default-layout>
 </template>
 
 <script>
 import DefaultLayout from '~/layouts/desktop/common/default.vue'
+import KnitArticleList from '~/components/desktop/KnitArticleList.vue'
 export default {
   components: {
-    DefaultLayout
+    DefaultLayout,
+    KnitArticleList
   }
 }
 </script>

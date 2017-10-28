@@ -1,4 +1,5 @@
 module.exports = {
+  env: require('dotenv').config().parsed,
   /*
   ** Headers of the page
   */
@@ -17,6 +18,7 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+  plugins: ['~/plugins/http-common.js'],
   /*
   ** Build configuration
   */
@@ -28,7 +30,6 @@ module.exports = {
     '~/node_modules/normalize.css/normalize.css'
   ],
   build: {
-    vendor: ['~/config/http-common.js'],
     /*
     ** Run ESLint on save
     */
