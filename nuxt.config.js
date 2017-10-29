@@ -2,6 +2,7 @@ const nodeExternals = require('webpack-node-externals')
 const resolve = (dir) => require('path').join(__dirname, dir)
 
 module.exports = {
+  env: require('dotenv').config().parsed,
   /*
   ** Headers of the page
   */
@@ -20,6 +21,7 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+  plugins: ['~/plugins/http-common.js'],
   /*
   ** Build configuration
   */
@@ -31,7 +33,6 @@ module.exports = {
     '~/node_modules/normalize.css/normalize.css'
   ],
   build: {
-    vendor: ['~/config/http-common.js'],
     babel: {
       plugins: [
         ['transform-imports', {
