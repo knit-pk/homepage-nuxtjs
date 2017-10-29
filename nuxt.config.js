@@ -1,3 +1,6 @@
+const nodeExternals = require('webpack-node-externals')
+const resolve = (dir) => require('path').join(__dirname, dir)
+
 module.exports = {
   env: require('dotenv').config().parsed,
   /*
@@ -23,13 +26,24 @@ module.exports = {
   ** Build configuration
   */
   router: {
-    middleware: ['isMobile']
+    middleware: ['is-mobile']
   },
   css: [
     '~/assets/scss/reset.scss',
     '~/node_modules/normalize.css/normalize.css'
   ],
   build: {
+    babel: {
+      plugins: [
+        ['transform-imports', {
+          'vuetify': {
+            // eslint-disable-next-line
+            'transform': 'vuetify/es5/components/${member}',
+            'preventFullImport': true
+          }
+        }]
+      ]
+    },
     /*
     ** Run ESLint on save
     */
@@ -42,6 +56,25 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+
+      if (ctx.isServer) {
+        config.externals = [
+          nodeExternals({
+            whitelist: [/^vuetify/]
+          })
+        ]
+      }
+
+      config.module.rules.forEach(rule => {
+        if (rule.test.toString() === '/\\.styl(us)?$/') {
+          rule.use.push({
+            loader: 'vuetify-loader',
+            options: {
+              theme: resolve('./assets/vuetify-styles/theme.styl')
+            }
+          })
+        }
+      })
     }
   }
 }
