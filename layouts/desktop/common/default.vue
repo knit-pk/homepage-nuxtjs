@@ -28,10 +28,10 @@ export default {
   top: 0;
   padding: 40px 0;
   width: 100%;
-  min-height: 100%;
   background-color: $knit-main-content-wrapper-bg-color;
   &__main-content {
-    margin-top: 211px;
+    height: calc(100vh - 100px);
+    margin-top: 195.5px;
     background-color: $knit-main-content-bg-color;
     transition: all 0.2s linear;
   }
@@ -39,14 +39,15 @@ export default {
 @media (min-width: $desktop-width) {
   .main-content-wrapper {
     &__main-content{
-      margin-top: 231px;
+      margin-top: 210.5px;
     }
   }
 }
 @media (min-width: $desktop-large-width) {
   .main-content-wrapper {
     &__main-content{
-      margin-top: 331px;
+      margin: 316.5px auto 0;
+      width: 90%;
     }
   }
 }
