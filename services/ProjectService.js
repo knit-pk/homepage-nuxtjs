@@ -1,8 +1,7 @@
 import AbstractService from '~/services/AbstractService.js'
 
-export default class ProjectService extends AbstractService {
+class ProjectService extends AbstractService {
   costructor () {
-    super()
     this.path = '/projects'
   }
   getProjects (query = '', config = {}) {
@@ -24,3 +23,6 @@ export default class ProjectService extends AbstractService {
     return this.http.delete(this.paramCompose(this.path, id), options)
   }
 }
+
+const projectServiceInstance = new ProjectService()
+export default projectServiceInstance

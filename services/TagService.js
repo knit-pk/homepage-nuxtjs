@@ -1,8 +1,7 @@
 import AbstractService from '~/services/AbstractService.js'
 
-export default class TagService extends AbstractService {
+class TagService extends AbstractService {
   costructor () {
-    super()
     this.path = '/tags'
   }
   getTags (query = '', config = {}) {
@@ -24,3 +23,6 @@ export default class TagService extends AbstractService {
     return this.http.delete(this.paramCompose(this.path, id), options)
   }
 }
+
+const tagServiceInstance = new TagService()
+export default tagServiceInstance

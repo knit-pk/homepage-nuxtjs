@@ -4,7 +4,7 @@ import AbstractService from '../../services/AbstractService.js'
 let AbstractServiceInstance
 
 test.before('init AbstractServiceInstance', t => {
-  AbstractServiceInstance = new AbstractService({ http: { get (string) { console.log(string) } } })
+  AbstractServiceInstance = new AbstractService()
 })
 
 test('AbstractService should be function', t => {

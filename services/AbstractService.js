@@ -1,6 +1,8 @@
+import http from '../plugins/http-common.js'
+
 export default class AbstractService {
-  constructor (http) {
-    this.http = http
+  get http () {
+    return http
   }
   paramCompose (path = '', param = '') {
     return `${path}${(param && `/${param}`)}`

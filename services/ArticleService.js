@@ -1,8 +1,7 @@
 import AbstractService from '~/services/AbstractService.js'
 
-export default class ArticleService extends AbstractService {
+class ArticleService extends AbstractService {
   costructor () {
-    super()
     this.path = '/articles'
   }
   getArticles (query = '', config = {}) {
@@ -33,3 +32,6 @@ export default class ArticleService extends AbstractService {
     return this.http.delete(this.paramCompose(this.path, id), options)
   }
 }
+
+const articleServiceInstance = new ArticleService()
+export default articleServiceInstance

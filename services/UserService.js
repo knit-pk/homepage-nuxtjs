@@ -1,8 +1,7 @@
 import AbstractService from '~/services/AbstractService.js'
 
-export default class UserService extends AbstractService {
+class UserService extends AbstractService {
   costructor () {
-    super()
     this.path = '/users'
   }
   getUsers (query = '', config = {}) {
@@ -21,3 +20,6 @@ export default class UserService extends AbstractService {
     return this.http.delete(this.paramCompose(this.path, id), options)
   }
 }
+
+const userServiceInstance = new UserService()
+export default userServiceInstance
