@@ -4,14 +4,12 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    'jest/globals': true,
     es6: true
   },
-  extends: ['standard', 'plugin:jest/recommended'],
+  extends: ['standard'],
   // required to lint *.vue files
   plugins: [
-    'html',
-    'jest'
+    'html'
   ],
   // add your custom rules here
   rules: {
