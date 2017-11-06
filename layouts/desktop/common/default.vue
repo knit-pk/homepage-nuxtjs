@@ -36,14 +36,14 @@ export default {
     transition: all 0.2s linear;
   }
 }
-@media (min-width: $desktop-width) {
+@media (min-width: $screen-lg) {
   .main-content-wrapper {
     &__main-content{
       margin-top: 231px;
     }
   }
 }
-@media (min-width: $desktop-large-width) {
+@media (min-width: $screen-xl) {
   .main-content-wrapper {
     &__main-content{
       margin-top: 331px;

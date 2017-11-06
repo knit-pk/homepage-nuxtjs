@@ -153,7 +153,7 @@ export default {
   }
 }
 
-@media (min-width: $desktop-width) {
+@media (min-width: $screen-lg) {
   .knit-header {
     $p: &;
     &--high {
@@ -195,7 +195,7 @@ export default {
   }
 }
 
-@media (min-width: $desktop-large-width) {
+@media (min-width: $screen-xl) {
   .knit-header {
     $p: &;
     &--high {
