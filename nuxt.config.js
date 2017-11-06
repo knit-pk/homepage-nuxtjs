@@ -23,13 +23,14 @@ module.exports = {
   ** Build configuration
   */
   router: {
-    middleware: ['isMobile']
+    middleware: ['is-mobile']
   },
   css: [
     '~/assets/scss/reset.scss',
     '~/node_modules/normalize.css/normalize.css'
   ],
   build: {
+    vendor: ['axios', 'lodash', 'qs'],
     /*
     ** Run ESLint on save
     */

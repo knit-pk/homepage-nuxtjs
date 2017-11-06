@@ -14,6 +14,7 @@
 <script>
 import KnitHeader from '~/components/desktop/KnitHeader.vue'
 import KnitFooter from '~/components/desktop/KnitFooter.vue'
+
 export default {
   components: {
     KnitHeader,
