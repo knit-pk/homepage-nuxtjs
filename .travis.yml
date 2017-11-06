@@ -3,6 +3,7 @@ node_js:
   - "8"
 before_install:
   - npm install -g greenkeeper-lockfile@1
+  - yarn global add greenkeeper-lockfile@1
 before_script:
   - greenkeeper-lockfile-update
 script:
@@ -10,5 +11,4 @@ script:
   - npm run lint
   - npm run build:nuxt
   - npm run build
-before_script: greenkeeper-lockfile-update
 after_script: greenkeeper-lockfile-upload
