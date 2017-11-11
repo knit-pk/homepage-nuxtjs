@@ -1,8 +1,12 @@
 {
   "name": "homepage-nuxtjs",
-  "version": "1.0.0",
-  "description": "Nuxt.js project",
-  "author": "FieryCod k911",
+  "version": "0.1.0",
+  "description": "KNIT Homepage - SPA, SSR, Nuxtjs",
+  "homepage": "http://knit.pk.edu.pl",
+  "author": {
+    "name": "KNIT Web Team",
+    "url": "https://github.com/orgs/knit-pk/teams/knit-web-team/members"
+  },
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -16,14 +20,14 @@
     "format-on-save": "watch \"npm run lint -- --fix\" -d -p \"/node_modules/\""
   },
   "dependencies": {
-    "nuxt": "nuxt/nuxt.js#dev",
-    "axios": "^0.16.2",
+    "axios": "^0.17.0",
     "dotenv": "^4.0.0",
+    "lodash": "^4.17.4",
     "node-sass": "^4.5.3",
     "normalize.css": "^7.0.0",
-    "sass-loader": "^6.0.6",
-    "lodash": "^4.17.4",
-    "qs": "^6.5.1"
+    "nuxt": "nuxt/nuxt.js#dev",
+    "qs": "^6.5.1",
+    "sass-loader": "^6.0.6"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
