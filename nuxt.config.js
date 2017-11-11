@@ -11,7 +11,8 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Open+Sans:300,400&amp;subset=latin-ext' }
     ]
   },
   /*
@@ -27,7 +28,8 @@ module.exports = {
   },
   css: [
     '~/assets/scss/reset.scss',
-    '~/node_modules/normalize.css/normalize.css'
+    '~/node_modules/normalize.css/normalize.css',
+    '~/static/fonts/flaticon/flaticon.css'
   ],
   build: {
     vendor: ['axios', 'lodash', 'qs'],
