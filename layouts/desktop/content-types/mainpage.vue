@@ -13,7 +13,7 @@
       <aside class="aside-right">
         <knit-important-widget/>
         <knit-meetup-calendar/>
-        <knit-project-list/>
+        <knit-projects-widget/>
       </aside>
     </div>
   </default-layout>
@@ -25,7 +25,7 @@ import KnitArticleList from '~/components/desktop/KnitArticleList.vue'
 import KnitJobOfferList from '~/components/desktop/KnitJobOfferList.vue'
 import KnitActionLinks from '~/components/desktop/KnitActionLinks.vue'
 import KnitMeetupCalendar from '~/components/desktop/KnitMeetupCalendar.vue'
-import KnitProjectList from '~/components/desktop/KnitProjectList.vue'
+import KnitProjectsWidget from '~/components/desktop/KnitProjectsWidget.vue'
 import KnitImportantWidget from '~/components/desktop/KnitImportantWidget.vue'
 
 export default {
@@ -35,8 +35,8 @@ export default {
     KnitJobOfferList,
     KnitActionLinks,
     KnitMeetupCalendar,
-    KnitProjectList,
-    KnitImportantWidget
+    KnitImportantWidget,
+    KnitProjectsWidget
   }
 }
 </script>
