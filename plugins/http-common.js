@@ -1,9 +1,9 @@
 import axios from 'axios'
 import Vue from 'vue'
-import {API_HOST, API_PATH} from '~/config/api'
+import {API_HOST} from '~/config/api'
 
 const http = axios.create({
-  baseURL: `${API_HOST}${API_PATH}`
+  baseURL: API_HOST
 })
 
 Vue.prototype.$http = http

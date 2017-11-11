@@ -3,7 +3,7 @@
     <h1>Article List</h1>
 
     <div v-if="loading" class="alert alert-info">Loading...</div>
-    <div v-if="deletedItem" class="alert alert-success">{{ deletedItem['@id'] }} deleted.</div>
+    <!-- <div v-if="deletedItem" class="alert alert-success">{{ deletedItem['@id'] }} deleted.</div> -->
     <div v-if="error" class="alert alert-danger">{{ error }}</div>
 
     <span v-if="view">
@@ -95,7 +95,7 @@
 
   export default {
     computed: mapGetters({
-      deletedItem: 'article/del/deleted',
+      // deletedItem: 'article/del/deleted',
       error: 'article/list/error',
       items: 'article/list/items',
       loading: 'article/list/loading',

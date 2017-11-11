@@ -1,4 +1,6 @@
-import fetch from '~/services/KnitApi/fetch'
+import RestClient from '~/services/KnitApi/RestClient'
+import {API_HOST} from '~/config/api'
+import axios from 'axios'
 import {
   ARTICLE_LIST_ERROR,
   ARTICLE_LIST_LOADING,
@@ -6,6 +8,8 @@ import {
   ARTICLE_LIST_VIEW,
   ARTICLE_LIST_SUCCESS
 } from './mutation-types'
+
+const client = new RestClient(axios, API_HOST)
 
 export const state = () => ({
   loading: false,
@@ -41,12 +45,15 @@ export const actions = {
   getItems ({ commit }, page = '/articles') {
     commit(loading(true))
 
-    fetch(page)
-      .then(response => response.json())
-      .then(data => {
+    client.getCollection('articles', 0, 10)
+      .then(response => {
+        console.debug(response)
+        return response
+      })
+      .then(response => {
         commit(loading(false))
-        commit(success(data['hydra:member']))
-        commit(view(data['hydra:view']))
+        commit(success(response.data['hydra:member']))
+        commit(view(response.data['hydra:view']))
       })
       .catch(e => {
         commit(loading(false))
