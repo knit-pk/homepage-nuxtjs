@@ -24,13 +24,18 @@
 </template>
 
 <script>
-
+export default {
+  data () {
+    return {}
+  }
+}
 </script>
 
 <style lang="scss">
 @import "assets/scss/_imports.scss";
 
 .navbar {
+  $p: &;
   background-color: $knit-navbar-bg-color;
   height: 50px;
   margin-top: 50px;
@@ -39,26 +44,36 @@
   padding-right: 15%;
   font-size: 15px;
   font-weight: 300;
-
   &__list {
     list-style: none;
     display: flex;
   }
-
   &__list-item {
     display: flex;
   }
-
   &__list-link {
     padding: 0 15px;
     display: flex;
     align-items: center;
     color: $knit-navbar-links-color;
     text-decoration: none;
-
     &:hover,
     &:focus {
       background-color: $knit-navbar-links-hover-bg-color;
+    }
+  }
+
+  &.navbar--footy {
+    justify-content: center;
+    padding: 0;
+    margin-top: 25px;
+    #{$p}__list-link {
+      border-bottom: 1px solid transparent;
+      color: $knit-footer-text-color;
+      &:hover, &:focus {
+        background-color: transparent;
+        border-bottom: 1px solid white;
+      }
     }
   }
 }
