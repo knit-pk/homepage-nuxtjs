@@ -27,8 +27,8 @@ module.exports = {
     middleware: ['is-mobile']
   },
   css: [
-    '~/assets/scss/reset.scss',
     '~/node_modules/normalize.css/normalize.css',
+    '~/assets/scss/main.scss',
     '~/static/fonts/flaticon/flaticon.css'
   ],
   build: {

@@ -29,5 +29,7 @@ export default {
 
 body {
   background-color: $knit-background-color;
+  font-family: $knit-default-font-family;
+  color: $knit-primary-text-color;
 }
 </style>
