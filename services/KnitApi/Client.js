@@ -46,6 +46,8 @@ export default class Client {
    *
    * @param {string} name collection name
    * @param {*} options
+   *
+   * @return {Promise}
    */
   getCollection (name, options) {
     return this.request('get', `${this.entrypoint}/${name}`, options)
@@ -58,6 +60,8 @@ export default class Client {
    * @param {number} page
    * @param {number} limit
    * @param {*} options
+   *
+   * @return {Promise}
    */
   getPage (name, page = 1, limit = 10, options = {}) {
     options.params.page = page
