@@ -31,7 +31,7 @@ export default class RequestOptions {
   }
 
   hasHeader (name) {
-    return typeof this.headers.name !== 'undefined'
+    return typeof this.headers[name] !== 'undefined'
   }
 
   getHeaders () {
