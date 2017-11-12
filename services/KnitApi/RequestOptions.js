@@ -2,9 +2,7 @@ import Qs from 'qs'
 
 export default class RequestOptions {
   constructor (options = {}) {
-    this.useToken = !!options.useToken || false
     this.params = options.params || {}
-    this.selections = options.selections || {}
     this.headers = options.headers || {}
   }
 
@@ -13,23 +11,19 @@ export default class RequestOptions {
   }
 
   addQuerySelection (name, value) {
-    if (!Array.isArray(this.selections.name)) {
-      this.selections.name = [value]
+    if (!Array.isArray(this.params[name])) {
+      this.params[name] = [value]
     } else {
-      this.selections.push(value)
+      this.params[name].push(value)
     }
   }
 
-  useToken () {
-    return false
-  }
-
   hasQuery () {
-    return Object.keys(this.params).length > 0 // || Object.keys(this.selections).length > 0
+    return Object.keys(this.params).length > 0
   }
 
   getQuery () {
-    return Qs.stringify(this.params)
+    return Qs.stringify(this.params, { arrayFormat: 'brackets' })
   }
 
   setHeader (name, value) {

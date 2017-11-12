@@ -1,6 +1,7 @@
-import RestClient from '~/services/KnitApi/RestClient'
+import Client from '~/services/KnitApi/Client'
 import {API_HOST} from '~/config/api'
 import axios from 'axios'
+
 import {
   ARTICLE_LIST_ERROR,
   ARTICLE_LIST_LOADING,
@@ -9,13 +10,16 @@ import {
   ARTICLE_LIST_SUCCESS
 } from './mutation-types'
 
-const client = new RestClient(axios, API_HOST)
+const client = new Client(axios, API_HOST, { mimetype: 'application/ld+json' })
 
 export const state = () => ({
   loading: false,
   error: '',
   items: [],
-  view: []
+  view: [],
+  page: 1,
+  perPage: 3,
+  totalItems: 0
 })
 
 function error (error) {
@@ -26,39 +30,44 @@ function loading (loading) {
   return { type: ARTICLE_LIST_LOADING, loading }
 }
 
-function success (items) {
-  return { type: ARTICLE_LIST_SUCCESS, items }
+function success (items, page, totalItems) {
+  return { type: ARTICLE_LIST_SUCCESS, items, page, totalItems }
 }
 
-function view (items) {
-  return { type: ARTICLE_LIST_VIEW, items }
+function view (view) {
+  return { type: ARTICLE_LIST_VIEW, view }
 }
 
 export const getters = {
   error: state => state.error,
   items: state => state.items,
   loading: state => state.loading,
-  view: state => state.view
+  view: state => state.view,
+  page: state => state.page,
+  perPage: state => state.perPage,
+  totalItems: state => state.totalItems
 }
 
 export const actions = {
-  getItems ({ commit }, page = '/articles') {
+  getItems ({ commit, state }, page = 1) {
     commit(loading(true))
 
-    client.getCollection('articles', 0, 10)
-      .then(response => {
-        console.debug(response)
-        return response
-      })
-      .then(response => {
-        commit(loading(false))
-        commit(success(response.data['hydra:member']))
-        commit(view(response.data['hydra:view']))
-      })
-      .catch(e => {
-        commit(loading(false))
-        commit(error(e.message))
-      })
+    return client.getPage('articles', page, state.perPage, {
+      params: {
+        group: ['UserReadLess', 'TagRead', 'CategoryRead']
+      }
+    }).then(response => {
+      console.debug(`Get articles`)
+      console.debug(response)
+      return response
+    }).then(response => {
+      commit(loading(false))
+      commit(success(response.data['hydra:member'], page, response.data['hydra:totalItems']))
+      commit(view(response.data['hydra:view']))
+    }).catch(e => {
+      commit(loading(false))
+      commit(error(e.message))
+    })
   }
 }
 
@@ -67,13 +76,17 @@ export const mutations = {
     state.error = payload.error
   },
   [ARTICLE_LIST_LOADING] (state, payload) {
-    state.loading = payload.loading
+    if ((state.loading = payload.loading) === true) {
+      state.error = ''
+    }
   },
   [ARTICLE_LIST_VIEW] (state, payload) {
-    state.view = payload.items
+    state.view = payload.view
   },
   [ARTICLE_LIST_SUCCESS] (state, payload) {
     state.items = payload.items
+    state.page = payload.page
+    state.totalItems = payload.totalItems
   },
   [ARTICLE_LIST_RESET] (state) {
     state.items = []

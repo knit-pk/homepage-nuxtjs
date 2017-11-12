@@ -2,12 +2,11 @@ import AccessTokenExpiredException from './errors/AccessTokenExpiredException'
 // import RequiredAttributeNotFoundException from './errors/RequiredAttributeNotFoundException'
 import RequestOptions from './RequestOptions'
 
-const jsonLdMimeType = 'application/ld+json'
-
-export default class RestClient {
+export default class Client {
   constructor (httpClient, entrypoint, options = {}) {
     this.httpClient = httpClient
     this.entrypoint = entrypoint
+    this.mimetype = options.mimetype || 'application/json'
 
     if (typeof options.token !== 'undefined') {
       this.token = options.token
@@ -58,35 +57,32 @@ export default class RestClient {
     return this.token
   }
 
-  getCollection (name, offset = 0, limit = 10, options = new RequestOptions()) {
-    options.addQueryParam('offset', offset)
-    options.addQueryParam('limit', 10)
+  get (uri, options = {}) {
+    const requestOptions = (options instanceof RequestOptions) ? options : new RequestOptions(options)
 
-    if (!options.hasHeader('Accept')) {
-      options.setHeader('Accept', jsonLdMimeType)
+    if (!requestOptions.hasHeader('Accept')) {
+      requestOptions.setHeader('Accept', this.mimetype)
     }
 
-    // const headers = options.useToken() ? { 'Authorization': `Bearer ${this.getAccessToken()}` } : {}
-
-    let uri = `${this.entrypoint}/${name}`
-
-    if (options.hasQuery()) {
-      uri = `${uri}?${options.getQuery()}`
+    if (requestOptions.hasQuery()) {
+      uri = `${uri}?${requestOptions.getQuery()}`
     }
 
     return this.httpClient.get(uri, {
-      headers: options.getHeaders()
+      headers: requestOptions.getHeaders()
     })
   }
 
-  // getItem (name, id, options = new RequestOptions()) {
-  //   const headers = options.useToken() ? { 'Authorization': `Bearer ${this.getAccessToken()}` } : {}
-  //   const query = options.count() > 0 ? `?${options.stringify()}` : ''
+  getPage (name, page = 1, limit = 10, options = {}) {
+    options.params.page = page
+    options.params.limit = limit
 
-  //   return this.httpClient.get(`${this.entrypoint}/${name}/${id}${query}`, {
-  //     headers
-  //   })
-  // }
+    return this.get(`${this.entrypoint}/${name}`, options)
+  }
+
+  getItem (name, id, options = {}) {
+    return this.get(`${this.entrypoint}/${name}/${id}`, options)
+  }
 
   // createItem (name, item, options = new RequestOptions()) {
   //   const headers = options.useToken() ? { 'Authorization': `Bearer ${this.getAccessToken()}` } : {}
