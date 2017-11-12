@@ -57,20 +57,20 @@
         </thead>
         <tbody>
           <tr v-for="item in items">
-            <td><router-link v-if="item" :to="{name: 'articles-id', params: { id: item['id'] }}">{{ item['@id'] }}</router-link></td>
-            <td><router-link v-if="item" :to="{name: 'articles-id', params: { id: item['id'] }}">{{ item['code'] }}</router-link></td>
-            <td><router-link v-if="item" :to="{name: 'articles-id', params: { id: item['id'] }}">{{ item['title'] }}</router-link></td>
-            <td><router-link v-if="item" :to="{name: 'articles-id', params: { id: item['id'] }}">{{ item['content'] }}</router-link></td>
-            <td><router-link v-if="item" :to="{name: 'articles-id', params: { id: item['id'] }}">{{ item['category'] }}</router-link></td>
-            <td><router-link v-if="item" :to="{name: 'articles-id', params: { id: item['id'] }}">{{ item['tags'] }}</router-link></td>
-            <td><router-link v-if="item" :to="{name: 'articles-id', params: { id: item['id'] }}">{{ item['description'] }}</router-link></td>
-            <td><router-link v-if="item" :to="{name: 'articles-id', params: { id: item['id'] }}">{{ item['author'] }}</router-link></td>
-            <td><router-link v-if="item" :to="{name: 'articles-id', params: { id: item['id'] }}">{{ item['publishedAt'] }}</router-link></td>
-            <td><router-link v-if="item" :to="{name: 'articles-id', params: { id: item['id'] }}">{{ item['published'] }}</router-link></td>
-            <td><router-link v-if="item" :to="{name: 'articles-id', params: { id: item['id'] }}">{{ item['createdAt'] }}</router-link></td>
-            <td><router-link v-if="item" :to="{name: 'articles-id', params: { id: item['id'] }}">{{ item['updatedAt'] }}</router-link></td>
+            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['@id'] }}</router-link></td>
+            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['code'] }}</router-link></td>
+            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['title'] }}</router-link></td>
+            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['content'] }}</router-link></td>
+            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['category'] }}</router-link></td>
+            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['tags'] }}</router-link></td>
+            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['description'] }}</router-link></td>
+            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['author'] }}</router-link></td>
+            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['publishedAt'] }}</router-link></td>
+            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['published'] }}</router-link></td>
+            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['createdAt'] }}</router-link></td>
+            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['updatedAt'] }}</router-link></td>
             <td>
-              <router-link :to="{name: 'articles-id', params: { id: item['@id'] }}">
+              <router-link :to="{name: 'articles-slug', params: { slug: item['code'] }}">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"/>
                 <span class="sr-only">Show</span>
               </router-link>

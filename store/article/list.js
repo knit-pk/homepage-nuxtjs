@@ -1,6 +1,4 @@
-import Client from '~/services/KnitApi/Client'
-import {API_HOST} from '~/config/api'
-import axios from 'axios'
+import { KnitApiClient } from '~/services'
 
 import {
   ARTICLE_LIST_ERROR,
@@ -9,8 +7,6 @@ import {
   ARTICLE_LIST_VIEW,
   ARTICLE_LIST_SUCCESS
 } from './mutation-types'
-
-const client = new Client(axios, API_HOST, { mimetype: 'application/ld+json' })
 
 export const state = () => ({
   loading: false,
@@ -52,7 +48,7 @@ export const actions = {
   getItems ({ commit, state }, page = 1) {
     commit(loading(true))
 
-    return client.getPage('articles', page, state.perPage, {
+    return KnitApiClient.getPage('articles', page, state.perPage, {
       params: {
         group: ['UserReadLess', 'TagRead', 'CategoryRead']
       }

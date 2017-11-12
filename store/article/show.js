@@ -1,6 +1,4 @@
-import Client from '~/services/KnitApi/Client'
-import {API_HOST} from '~/config/api'
-import axios from 'axios'
+import { KnitApiClient } from '~/services'
 
 import {
   ARTICLE_SHOW_ERROR,
@@ -8,8 +6,6 @@ import {
   ARTICLE_SHOW_RETRIEVED_SUCCESS,
   ARTICLE_SHOW_RESET
 } from './mutation-types'
-
-const client = new Client(axios, API_HOST, { mimetype: 'application/ld+json' })
 
 export const state = () => ({
   loading: false,
@@ -40,16 +36,31 @@ export const getters = {
 }
 
 export const actions = {
-  retrieve ({ commit }, id) {
+  retrieveById ({ commit }, id) {
     commit(loading(true))
 
-    return client.getItem('articles', id).then(response => {
+    return KnitApiClient.getItem('articles', id).then(response => {
       console.debug(`Get article id: ${id}`)
       console.debug(response)
       return response
     }).then(response => {
       commit(loading(false))
       commit(retrieved(response.data))
+    }).catch(e => {
+      commit(loading(false))
+      commit(error(e.message))
+    })
+  },
+  retrieveByCode ({ commit }, code) {
+    commit(loading(true))
+
+    return KnitApiClient.getCollection('articles', { params: { code } }).then(response => {
+      console.debug(`Get article by code: ${code}`)
+      console.debug(response)
+      return response.data['hydra:member'][0]
+    }).then(item => {
+      commit(loading(false))
+      commit(retrieved(item))
     }).catch(e => {
       commit(loading(false))
       commit(error(e.message))

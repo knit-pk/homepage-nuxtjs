@@ -9,6 +9,7 @@
   },
   "private": true,
   "scripts": {
+    "postinstall": "cp .env.example .env",
     "dev": "nuxt",
     "build": "nuxt build",
     "build:nuxt": "cd node_modules/nuxt && npm install && npm build",

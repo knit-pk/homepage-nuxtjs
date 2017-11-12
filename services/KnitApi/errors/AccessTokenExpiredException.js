@@ -1,3 +1,5 @@
 export default class AccessTokenExpiredException extends Error {
-  // todo
+  constructor () {
+    super('Access token has either expired or has not been set.')
+  }
 }

@@ -1,63 +1,27 @@
-import AccessTokenExpiredException from './errors/AccessTokenExpiredException'
+
 // import RequiredAttributeNotFoundException from './errors/RequiredAttributeNotFoundException'
 import RequestOptions from './RequestOptions'
+import RestrictedMethodException from './errors/RestrictedMethodException'
+
+const ALLOWED_METHODS = [
+  'GET',
+  'OPTIONS'
+]
 
 export default class Client {
-  constructor (httpClient, entrypoint, options = {}) {
+  constructor (httpClient, options = {}) {
     this.httpClient = httpClient
-    this.entrypoint = entrypoint
+    this.entrypoint = options.entrypoint || 'localhost'
     this.mimetype = options.mimetype || 'application/json'
-
-    if (typeof options.token !== 'undefined') {
-      this.token = options.token
-      // else try to load from localStorage
-    }
-
-    if (typeof options.refreshToken !== 'undefined') {
-      this.refreshToken = options.refreshToken
-      // else try to load from localStorage
-    }
-
-    if (typeof options.tokenExpiresAt !== 'undefined') {
-      this.tokenExpiresAt = options.tokenExpiresAt
-      // else try to load from localStorage
-    }
   }
 
-  hasTokenExpired () {
-    return typeof this.token === 'undefined' || typeof this.tokenExpiresAt === 'undefined' // || time() > this.tokenExpiresAt
-  }
-
-  // authorize (credentials) {
-  //   this.httpClient.post(`${this.entrypoint}/token`, {
-  //     formData: credentials
-  //   }).then({response})
-  //   // ..some logic to set returned token to local storage, get expired at time, save refresh token etc.
-  //   // preferably it would be another class that would handle Token actions, but it could be in this client for now
-  // }
-
-  // refreshToken (refreshToken) {
-  //   // check if refresh token exists..
-
-  //   this.httpClient.post(`${this.entrypoint}/token/refresh`, {
-  //     body: {
-  //       refreshToken
-  //     }
-  //   }).then({response})
-  //   // ..some logic to set returned token to local storage, get expired at time, save refresh token etc.
-  //   // preferably it would be another class that would handle Token actions, but it could be in this client for now
-  // }
-
-  getAccessToken () {
-    if (this.hasTokenExpired()) {
-      throw new AccessTokenExpiredException()
-      // or implement refreshToken
+  // private || shall not be used directly
+  request (method, uri, options = {}) {
+    // Check if method is allowed
+    if (ALLOWED_METHODS.indexOf(method.toUpperCase()) === -1) {
+      throw new RestrictedMethodException(method, ALLOWED_METHODS)
     }
 
-    return this.token
-  }
-
-  get (uri, options = {}) {
     const requestOptions = (options instanceof RequestOptions) ? options : new RequestOptions(options)
 
     if (!requestOptions.hasHeader('Accept')) {
@@ -68,22 +32,54 @@ export default class Client {
       uri = `${uri}?${requestOptions.getQuery()}`
     }
 
-    return this.httpClient.get(uri, {
+    const requestConfig = {
+      method,
+      url: uri,
       headers: requestOptions.getHeaders()
-    })
+    }
+
+    return this.httpClient.request(requestConfig)
   }
 
+  /**
+   * Gets collection
+   *
+   * @param {string} name collection name
+   * @param {*} options
+   */
+  getCollection (name, options) {
+    return this.request('get', `${this.entrypoint}/${name}`, options)
+  }
+
+  /**
+   * Gets single page of items
+   *
+   * @param {string} name collection name
+   * @param {number} page
+   * @param {number} limit
+   * @param {*} options
+   */
   getPage (name, page = 1, limit = 10, options = {}) {
     options.params.page = page
     options.params.limit = limit
 
-    return this.get(`${this.entrypoint}/${name}`, options)
+    return this.getCollection(name, options)
   }
 
+  /**
+   * Gets single item by it's id
+   *
+   * @param {string} name collection name
+   * @param {number} id item id
+   * @param {*} options
+   *
+   * @return {Promise}
+   */
   getItem (name, id, options = {}) {
     return this.get(`${this.entrypoint}/${name}/${id}`, options)
   }
 
+  // TODO:
   // createItem (name, item, options = new RequestOptions()) {
   //   const headers = options.useToken() ? { 'Authorization': `Bearer ${this.getAccessToken()}` } : {}
   //   const query = options.count() > 0 ? `?${options.stringify()}` : ''
