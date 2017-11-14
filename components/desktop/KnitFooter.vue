@@ -42,45 +42,53 @@ export default {
 
 .knit-footer {
   height: 280px;
-  background-color: $knit-footer-bg-color;
+  background-color: $footer-bg-color;
+
   &__link {
     display: block;
     width: 100%;
     padding-top: 35px;
   }
+
   &__logo {
     margin: 0 auto;
     display: block;
     height: 65px;
   }
+
   &__caption {
     display: block;
     width: 100%;
     margin: 30px 0 auto;
     text-align: center;
     font-size: 0.75rem;
-    color: $knit-footer-text-color;
+    color: $footer-text-color;
   }
+
   &__socialbox {
     margin-top: 40px;
     height: 50px;
-    background-color: $knit-footer-down-bg-color;
+    background-color: $footer-down-bg-color;
     width: 100%;
   }
+
   &__socialbox-list {
     display: flex;
     padding-top: 20px;
     justify-content: center;
     list-style: none;
   }
+
   &__socialbox-item {
     padding: 0 15px;
     opacity: 0.5;
+
     &:hover,
     &:focus {
       opacity: 1;
     }
   }
+
   &__socialbox-link {
     color: white;
     margin: auto 0;

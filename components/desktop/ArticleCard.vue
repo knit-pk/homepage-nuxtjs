@@ -92,9 +92,9 @@ export default {
   background-color: #fff;
   // height: 420px;
   box-sizing: border-box;
-  flex-basis: calc(33.333% - #{$knit-default-gutters-width});
-  border-radius: $knit-default-blocks-border-radius;
-  color: $knit-secondary-text-color;
+  flex-basis: calc(33.333% - #{$default-gutters-width});
+  border-radius: $default-blocks-border-radius;
+  color: $secondary-text-color;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -138,12 +138,12 @@ export default {
     display: flex;
     align-items: flex-end;
     text-decoration: none;
-    color: $knit-secondary-text-color;
+    color: $secondary-text-color;
 
     &:hover,
     &:focus {
       .article-card__author-name {
-        // color: $knit-primary-text-color;
+        // color: $primary-text-color;
         text-decoration: underline
       }
     }
@@ -175,7 +175,7 @@ export default {
   &__footer {
     display: flex;
     justify-content: space-between;
-    background-color: $knit-article-card-footer-bg-color;
+    background-color: $article-card-footer-bg-color;
     margin-top: auto;
     padding: 15px 20px;
     font-size: 13px;
@@ -193,18 +193,18 @@ export default {
   }
 
   &__like-button {
-    color: $knit-article-card-text-color;
+    color: $article-card-text-color;
     text-decoration: none;
 
     &:hover, &:focus {
-      color: $knit-article-card-like-button-hover-color;
+      color: $article-card-like-button-hover-color;
     }
 
     &--liked {
-      color: $knit-article-card-like-button-liked-color;
+      color: $article-card-like-button-liked-color;
 
       &:hover, &:focus {
-         color: $knit-article-card-like-button-liked-hover-color;
+         color: $article-card-like-button-liked-hover-color;
       }
     }
   }

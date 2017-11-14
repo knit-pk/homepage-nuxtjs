@@ -11,13 +11,13 @@
 @import "variables/default.scss";
 
 // *** Components ***
-@import "variables/components/knit-header.scss";
-@import "variables/components/knit-navbar.scss";
+@import "variables/components/projects-widget.scss";
+@import "variables/components/article-card.scss";
 @import "variables/components/knit-footer.scss";
-@import "variables/components/knit-article-card.scss";
-@import "variables/components/knit-projects-widget.scss";
+@import "variables/components/knit-header.scss";
+@import "variables/components/navbar.scss";
 
 
 // *** Partials ***
-@import "variables/components/partials/knit-important-widget-item.scss";
-@import "variables/components/partials/knit-projects-widget-item.scss"
+@import "variables/components/partials/projects-widget-item.scss";
+@import "variables/components/partials/alert-widget-item.scss";

@@ -11,7 +11,7 @@
   background-color: #fff;
   height: 330px;
   box-sizing: border-box;
-  flex-basis: calc(50% - #{$knit-default-gutters-width / 2});
-  margin-right: $knit-default-gutters-width / 2;
+  flex-basis: calc(50% - #{$default-gutters-width / 2});
+  margin-right: $default-gutters-width / 2;
 }
 </style>

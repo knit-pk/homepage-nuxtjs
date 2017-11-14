@@ -10,7 +10,7 @@
 .meetup-calendar {
   background-color: #fff;
   height: 500px;
-  margin-bottom: $knit-default-gutters-width;
+  margin-bottom: $default-gutters-width;
 }
 </style>
 

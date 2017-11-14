@@ -1,7 +1,7 @@
 <template>
-  <section class="article-list article-list--big-main-post">
+  <section class="article-card-list article-card-list--big-main-post">
     <h2 class="visualy-hidden">Artykuły KNIT</h2>
-    <knit-article-card v-for="(article, index) in articles" :key="index"
+    <article-card v-for="(article, index) in articles" :key="index"
                        :title="article.title"
                        :author="article.author"
                        :content="article.content"
@@ -9,13 +9,12 @@
                        :author-avatar-url="article.authorAvatarUrl"
                        :published-at="article.publishedAt"
                        :likes="article.likes"
-                       :comments="article.comments"
-                       />
+                       :comments="article.comments"/>
   </section>
 </template>
 
 <script>
-import KnitArticleCard from '~/components/desktop/KnitArticleCard.vue'
+import ArticleCard from '~/components/desktop/ArticleCard.vue'
 
 export default {
   data () {
@@ -75,7 +74,7 @@ export default {
     }
   },
   components: {
-    KnitArticleCard
+    ArticleCard
   }
 }
 </script>
@@ -83,18 +82,18 @@ export default {
 <style lang="scss">
 @import "assets/scss/_imports.scss";
 
-.article-list {
+.article-card-list {
   display: flex;
   flex-wrap: wrap;
 
   .article-card {
-    margin: 0 $knit-default-gutters-width $knit-default-gutters-width 0;
+    margin: 0 $default-gutters-width $default-gutters-width 0;
   }
 
   &--big-main-post {
     .article-card {
       &:first-of-type {
-        flex-basis: calc(66.666% - #{$knit-default-gutters-width});
+        flex-basis: calc(66.666% - #{$default-gutters-width});
         position: relative;
         justify-content: flex-end;
 
@@ -143,7 +142,7 @@ export default {
           color: #fff;
 
           &:hover, &:focus {
-            color: $knit-article-card-like-button-hover-color;
+            color: $article-card-like-button-hover-color;
           }
         }
       }
