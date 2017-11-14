@@ -11,6 +11,7 @@
         </aside>
       </div>
       <aside class="aside-right">
+        <knit-important-widget/>
         <knit-meetup-calendar/>
         <knit-project-list/>
       </aside>
@@ -25,6 +26,7 @@ import KnitJobOfferList from '~/components/desktop/KnitJobOfferList.vue'
 import KnitActionLinks from '~/components/desktop/KnitActionLinks.vue'
 import KnitMeetupCalendar from '~/components/desktop/KnitMeetupCalendar.vue'
 import KnitProjectList from '~/components/desktop/KnitProjectList.vue'
+import KnitImportantWidget from '~/components/desktop/KnitImportantWidget.vue'
 
 export default {
   components: {
@@ -33,7 +35,8 @@ export default {
     KnitJobOfferList,
     KnitActionLinks,
     KnitMeetupCalendar,
-    KnitProjectList
+    KnitProjectList,
+    KnitImportantWidget
   }
 }
 </script>
