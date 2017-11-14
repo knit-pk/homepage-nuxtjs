@@ -3,40 +3,40 @@
     <div class="mainpage">
       <div class="leftside-wrapper">
         <main class="main-content">
-          <knit-article-list/>
+          <article-card-list/>
         </main>
         <aside class="aside-down">
-          <knit-job-offer-list/>
-          <knit-action-links/>
+          <job-offer-list/>
+          <action-links/>
         </aside>
       </div>
       <aside class="aside-right">
-        <knit-important-widget/>
-        <knit-meetup-calendar/>
-        <knit-projects-widget/>
+        <alert-widget/>
+        <meetup-calendar-widget/>
+        <projects-widget/>
       </aside>
     </div>
   </default-layout>
 </template>
 
 <script>
+import MeetupCalendarWidget from '~/components/desktop/MeetupCalendarWidget.vue'
+import ArticleCardList from '~/components/desktop/ArticleCardList.vue'
+import ProjectsWidget from '~/components/desktop/ProjectsWidget.vue'
 import DefaultLayout from '~/layouts/desktop/common/default.vue'
-import KnitArticleList from '~/components/desktop/KnitArticleList.vue'
-import KnitJobOfferList from '~/components/desktop/KnitJobOfferList.vue'
-import KnitActionLinks from '~/components/desktop/KnitActionLinks.vue'
-import KnitMeetupCalendar from '~/components/desktop/KnitMeetupCalendar.vue'
-import KnitProjectsWidget from '~/components/desktop/KnitProjectsWidget.vue'
-import KnitImportantWidget from '~/components/desktop/KnitImportantWidget.vue'
+import JobOfferList from '~/components/desktop/JobOfferList.vue'
+import AlertWidget from '~/components/desktop/AlertWidget.vue'
+import ActionLinks from '~/components/desktop/ActionLinks.vue'
 
 export default {
   components: {
+    MeetupCalendarWidget,
+    ArticleCardList,
+    ProjectsWidget,
     DefaultLayout,
-    KnitArticleList,
-    KnitJobOfferList,
-    KnitActionLinks,
-    KnitMeetupCalendar,
-    KnitImportantWidget,
-    KnitProjectsWidget
+    JobOfferList,
+    AlertWidget,
+    ActionLinks
   }
 }
 </script>
@@ -47,7 +47,7 @@ export default {
 .mainpage {
   display: flex;
   flex-wrap: wrap;
-  padding: $knit-default-gutters-width;
+  padding: $default-gutters-width;
 }
 
 .leftside-wrapper {
@@ -57,12 +57,12 @@ export default {
 .aside-right {
   flex: 1;
   margin: 0;
-  margin-left: $knit-default-gutters-width;
+  margin-left: $default-gutters-width;
 }
 
 .aside-down {
   flex-basis: 100%;
-  margin-right: $knit-default-gutters-width;
+  margin-right: $default-gutters-width;
   display: flex;
 }
 </style>

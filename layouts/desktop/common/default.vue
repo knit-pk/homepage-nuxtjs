@@ -28,8 +28,8 @@ export default {
 @import "assets/scss/_imports.scss";
 
 body {
-  background-color: $knit-background-color;
-  font-family: $knit-default-font-family;
-  color: $knit-primary-text-color;
+  background-color: $background-color;
+  font-family: $default-font-family;
+  color: $primary-text-color;
 }
 </style>

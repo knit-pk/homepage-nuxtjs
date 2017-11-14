@@ -12,7 +12,7 @@
 @import "assets/scss/_imports.scss";
 
 .knit-header {
-  background-color: $knit-header-bg-color;
+  background-color: $header-bg-color;
   height: 50px;
   position: fixed;
   top: 0;
