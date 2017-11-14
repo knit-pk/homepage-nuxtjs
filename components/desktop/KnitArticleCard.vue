@@ -1,18 +1,225 @@
 <template>
   <article class="article-card">
-    Card
+    <a href="/" class="article-card__thumbnail-link">
+      <img :src="thumbnailUrl" class="article-card__thumbnail" alt="">
+    </a>
+    <header class="article-card__header">
+      <a href="/" class="article-card__title-link">
+        <h3 class="article-card__title">{{ title }}</h3>
+      </a>
+      <a href="/" class="article-card__author-link">
+        <span class="article-card__author-name">{{ author }}</span>
+      </a>
+      <a href="#" class="article-card__author-avatar-link">
+        <img :src="authorAvatarUrl" class="article-card__author-avatar" :alt="author">
+      </a>
+    </header>
+    <p class="article-card__content">{{ content }}</p>
+    <footer class="article-card__footer">
+      <time :datetime="publishedAt">{{ formatDateToLocalString(publishedAt) }}</time>
+      <ul class="article-card__stats" aria-label="Statystyki">
+        <li class="article-card__stats-group">
+          <a @click.prevent.stop="handleLikeClick" :class="{ ['article-card__like-button--liked']: isLiked }" href="#" role="button" class="article-card__like-button" title="Lubię to!" aria-label="Polub post">
+            <span class="flaticon-like article-card__stat-icon" aria-hidden="true"></span>
+            <span class="visualy-hidden">Polubienia</span>
+            <span>{{ likes }}</span>
+          </a>
+        </li>
+        <li class="article-card__stats-group">
+          <span class="flaticon-chat article-card__stat-icon article-card__comment-icon" title="Komentarze" aria-hidden="true"></span>
+          <span class="visualy-hidden">Komentarze</span>
+          <span>{{ comments }}</span>
+        </li>
+      </ul>
+    </footer>
   </article>
 </template>
+
+<script>
+import templateHelper from '~/helpers/templateHelper.js'
+// @TODO: Make elipsis overflow in article card contend
+
+export default {
+  data () {
+    return {
+      isLiked: false
+    }
+  },
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    content: {
+      type: String,
+      required: true
+    },
+    author: {
+      type: String,
+      required: true
+    },
+    thumbnailUrl: String,
+    authorAvatarUrl: String,
+    publishedAt: {
+      type: String,
+      required: true
+    },
+    likes: {
+      type: Number,
+      required: true
+    },
+    comments: {
+      type: Number,
+      required: true
+    }
+  },
+  methods: {
+    handleLikeClick () {
+      this.isLiked = !this.isLiked
+      // @TODO: Fix focus problem on button click
+      // @TODO: Send handling request to the server
+    }
+
+  },
+  mixins: [ templateHelper ]
+}
+</script>
 
 <style lang="scss">
 @import "assets/scss/_imports.scss";
 
 .article-card {
   background-color: #fff;
-  height: 420px;
+  // height: 420px;
   box-sizing: border-box;
-  margin: 0 $knit-default-gutters-width $knit-default-gutters-width 0;
   flex-basis: calc(33.333% - #{$knit-default-gutters-width});
+  border-radius: $knit-default-blocks-border-radius;
+  color: $knit-secondary-text-color;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+
+  &__thumbnail-link {
+    display: block;
+  }
+
+  &__thumbnail {
+    @include img-fluid;
+    vertical-align: middle;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    margin-top: -30px;
+  }
+
+  &__title-link {
+    text-decoration: none;
+    margin: 13px 0;
+    color: $gray-50;
+    order: 3;
+  }
+
+  &__title {
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  &__author-link {
+    order: 2;
+    display: flex;
+    align-items: flex-end;
+    text-decoration: none;
+    color: $knit-secondary-text-color;
+
+    &:hover,
+    &:focus {
+      .article-card__author-name {
+        // color: $knit-primary-text-color;
+        text-decoration: underline
+      }
+    }
+  }
+
+  &__author-avatar-link {
+    order: 1;
+    display: inline-block;
+    border-radius: 50%;
+  }
+
+  &__author-avatar {
+    width: 52px;
+    height: 52px;
+    display: block;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin-right: 5px;
+    object-fit: cover;
+  }
+
+  &__content {
+    padding: 0 20px 15px 20px;
+    font-weight: 300;
+    font-size: 14px;
+    color: #888888;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: $knit-article-card-footer-bg-color;
+    margin-top: auto;
+    padding: 15px 20px;
+    font-size: 13px;
+  }
+
+  &__stats {
+    display: flex;
+    list-style: none;
+  }
+
+  &__stats-group {
+    display: flex;
+    margin-left: 13px;
+    align-items: center;
+  }
+
+  &__like-button {
+    color: $knit-article-card-text-color;
+    text-decoration: none;
+
+    &:hover, &:focus {
+      color: $knit-article-card-like-button-hover-color;
+    }
+
+    &--liked {
+      color: $knit-article-card-like-button-liked-color;
+
+      &:hover, &:focus {
+         color: $knit-article-card-like-button-liked-hover-color;
+      }
+    }
+  }
+
+  &__stat-icon {
+    margin-right: 2px;
+
+    &:before {
+      font-size: 14px;
+    }
+  }
+
+  &__comment-icon {
+    position: relative;
+    top: 2px;
+  }
 }
 </style>
-
