@@ -1,9 +1,4 @@
-import axios from 'axios'
 import Vue from 'vue'
+import { KnitApiClient } from '~/services'
 
-const http = axios.create({
-  baseURL: process.env.BASE_URL
-})
-
-Vue.prototype.$http = http
-export default http
+Vue.prototype.$KnitApiClient = KnitApiClient

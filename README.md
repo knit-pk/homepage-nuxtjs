@@ -7,11 +7,17 @@
 ## Build Setup
 
 ``` bash
+# create own .env file
+$ cp .env.example .env
+
 # install dependencies
 $ npm install # Or yarn install
 
 # serve with hot reload at localhost:3000
 $ npm run dev
+
+# build nuxt
+$ npm build:nuxt
 
 # build for production and launch server
 $ npm run build
