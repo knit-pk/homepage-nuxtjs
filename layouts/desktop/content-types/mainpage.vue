@@ -6,7 +6,7 @@
           <article-card-list/>
         </main>
         <aside class="aside-down">
-          <job-offer-list/>
+          <job-offers-widget/>
           <action-links/>
         </aside>
       </div>
@@ -21,10 +21,10 @@
 
 <script>
 import MeetupCalendarWidget from '~/components/desktop/MeetupCalendarWidget.vue'
+import JobOffersWidget from '~/components/desktop/JobOffersWidget.vue'
 import ArticleCardList from '~/components/desktop/ArticleCardList.vue'
 import ProjectsWidget from '~/components/desktop/ProjectsWidget.vue'
 import DefaultLayout from '~/layouts/desktop/common/default.vue'
-import JobOfferList from '~/components/desktop/JobOfferList.vue'
 import AlertWidget from '~/components/desktop/AlertWidget.vue'
 import ActionLinks from '~/components/desktop/ActionLinks.vue'
 
@@ -34,7 +34,7 @@ export default {
     ArticleCardList,
     ProjectsWidget,
     DefaultLayout,
-    JobOfferList,
+    JobOffersWidget,
     AlertWidget,
     ActionLinks
   }
