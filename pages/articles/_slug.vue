@@ -1,10 +1,14 @@
 <template>
+  <article-show/>
 </template>
 
 <script>
+import ArticleShow from '~/components/article/Show.vue'
+
 export default {
-  components: { },
-  layout: ({ isMobile }) => isMobile ? 'mobile/content-types/articles/show' : 'desktop/content-types/articles/show',
+  components: {
+    ArticleShow
+  },
   fetch ({ store, params }) {
     return store.dispatch('article/show/retrieveByCode', params.slug)
   }

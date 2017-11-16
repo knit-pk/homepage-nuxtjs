@@ -3,8 +3,8 @@
     <knit-header/>
     <knit-navbar/>
 
-    <!-- Render content from content-type -->
-    <slot/>
+    <!-- Render page from pages -->
+    <nuxt/>
 
     <knit-footer/>
   </div>
