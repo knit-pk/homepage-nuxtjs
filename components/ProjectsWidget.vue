@@ -16,7 +16,8 @@
 </template>
 
 <script>
-import ProjectsWidgetItem from '~/components/desktop/partials/ProjectsWidgetItem'
+import ProjectsWidgetItem from '~/components/partials/ProjectsWidgetItem.vue'
+
 export default {
   data () {
     return {

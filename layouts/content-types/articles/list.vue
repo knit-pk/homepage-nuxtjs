@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ArticleList from '~/components/desktop/article/List.vue'
+import ArticleList from '~/components/article/List.vue'
 
 export default {
   components: {

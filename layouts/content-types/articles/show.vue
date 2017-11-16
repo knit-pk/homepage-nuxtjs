@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ArticleShow from '~/components/desktop/article/Show.vue'
+import ArticleShow from '~/components/article/Show.vue'
 
 export default {
   components: {

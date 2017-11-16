@@ -20,13 +20,13 @@
 </template>
 
 <script>
-import MeetupCalendarWidget from '~/components/desktop/MeetupCalendarWidget.vue'
-import ArticleCardList from '~/components/desktop/ArticleCardList.vue'
-import ProjectsWidget from '~/components/desktop/ProjectsWidget.vue'
-import DefaultLayout from '~/layouts/desktop/common/default.vue'
-import JobOfferList from '~/components/desktop/JobOfferList.vue'
-import AlertWidget from '~/components/desktop/AlertWidget.vue'
-import ActionLinks from '~/components/desktop/ActionLinks.vue'
+import MeetupCalendarWidget from '~/components/MeetupCalendarWidget.vue'
+import ArticleCardList from '~/components/ArticleCardList.vue'
+import ProjectsWidget from '~/components/ProjectsWidget.vue'
+import DefaultLayout from '~/layouts/common/default.vue'
+import JobOfferList from '~/components/JobOfferList.vue'
+import AlertWidget from '~/components/AlertWidget.vue'
+import ActionLinks from '~/components/ActionLinks.vue'
 
 export default {
   components: {

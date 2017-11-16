@@ -23,13 +23,11 @@ module.exports = {
   /*
   ** Build configuration
   */
-  router: {
-    middleware: ['is-mobile']
-  },
+  router: {},
   css: [
     '~/node_modules/normalize.css/normalize.css',
-    '~/assets/scss/main.scss',
-    '~/static/fonts/flaticon/flaticon.css'
+    '~/static/fonts/flaticon/flaticon.css',
+    '~/assets/scss/main.scss'
   ],
   build: {
     vendor: ['axios', 'lodash', 'qs'],

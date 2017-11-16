@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import KnitNavbar from '~/components/desktop/KnitNavbar.vue'
+import KnitNavbar from '~/components/KnitNavbar.vue'
 
 export default {
   data () {
