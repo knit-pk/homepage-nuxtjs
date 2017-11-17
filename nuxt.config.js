@@ -26,9 +26,7 @@ module.exports = {
   /*
   ** Build configuration
   */
-  router: {
-    middleware: ['is-mobile']
-  },
+  router: {},
   css: [
     '~/node_modules/normalize.css/normalize.css',
     '~/assets/bootstrap/custom.scss',

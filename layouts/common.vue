@@ -3,17 +3,17 @@
     <knit-header/>
     <knit-navbar/>
 
-    <!-- Render content from content-type -->
-    <slot/>
+    <!-- Render page from pages -->
+    <nuxt/>
 
     <knit-footer/>
   </div>
 </template>
 
 <script>
-import KnitHeader from '~/components/desktop/KnitHeader.vue'
-import KnitNavbar from '~/components/desktop/KnitNavbar.vue'
-import KnitFooter from '~/components/desktop/KnitFooter.vue'
+import KnitHeader from '~/components/KnitHeader.vue'
+import KnitNavbar from '~/components/KnitNavbar.vue'
+import KnitFooter from '~/components/KnitFooter.vue'
 
 export default {
   components: {
