@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import ArticleCard from '~/components/desktop/ArticleCard.vue'
+import ArticleCard from '~/components/ArticleCard.vue'
 
 export default {
   data () {
