@@ -20,14 +20,18 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
   plugins: ['~/plugins/http-common.js'],
+  modules: [
+    ['bootstrap-vue/nuxt', { css: false }]
+  ],
   /*
   ** Build configuration
   */
   router: {},
   css: [
     '~/node_modules/normalize.css/normalize.css',
-    '~/static/fonts/flaticon/flaticon.css',
-    '~/assets/scss/main.scss'
+    '~/assets/bootstrap/custom.scss',
+    '~/assets/scss/main.scss',
+    '~/static/fonts/flaticon/flaticon.css'
   ],
   build: {
     vendor: ['axios', 'lodash', 'qs'],
