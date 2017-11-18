@@ -5,7 +5,7 @@
         <article-card-list/>
       </main>
       <aside class="aside-down">
-        <job-offer-list/>
+        <job-offers-widget v-prevent-parent-scroll/>
         <action-links/>
       </aside>
     </div>
@@ -18,20 +18,20 @@
 </template>
 
 <script>
+import MeetupCalendarWidget from '~/components/MeetupCalendarWidget.vue'
 import ArticleCardList from '~/components/ArticleCardList.vue'
-import JobOfferList from '~/components/JobOfferList.vue'
+import ProjectsWidget from '~/components/ProjectsWidget.vue'
+import JobOffersWidget from '~/components/JobOffersWidget.vue'
 import ActionLinks from '~/components/ActionLinks.vue'
 import AlertWidget from '~/components/AlertWidget.vue'
-import MeetupCalendarWidget from '~/components/MeetupCalendarWidget.vue'
-import ProjectsWidget from '~/components/ProjectsWidget.vue'
 
 export default {
   layout: 'common',
   components: {
     MeetupCalendarWidget,
+    JobOffersWidget,
     ArticleCardList,
     ProjectsWidget,
-    JobOfferList,
     AlertWidget,
     ActionLinks
   }

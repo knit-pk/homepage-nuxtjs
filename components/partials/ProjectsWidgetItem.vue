@@ -1,8 +1,7 @@
-
 <template>
-  <div class="projects-widget-item">
+  <div class="projects-widget-item widget-item">
     <div class="projects-widget-item__top-section">
-      <img v-if="isUrl(logo)" :href="logo" alt="" class="projects-widget-item__project-logo"/>
+      <img v-if="isUrl(logo)" :src="logo" alt="" class="projects-widget-item__project-logo"/>
       <div v-else :class="['projects-widget-item__project-logo', 'projects-widget-item__project-logo-star', `projects-widget-item__project-logo${defaultCssPostfix(this.logo, '--green')}`, 'flaticon-star']"/>
       <h3 class="projects-widget-item__title"> {{ title }} </h3>
     </div>
@@ -11,14 +10,14 @@
         <div class="projects-widget-item__list-item" v-if="isNotEmpty(tags)">
           <dt class="projects-widget-item__list-item-term" title="Technologie">
             <span class="flaticon-curly-brackets projects-widget-item__list-item-logo" aria-hidden="true"></span>
-            <span class="visualy-hidden">Technologie</span>
+            <span class="visualy-hidden"> Technologie </span>
           </dt>
           <dd class="projects-widget-item__list-item-definition"> {{ arrayToStringList(tags) }} </dd>
         </div>
         <div class="projects-widget-item__list-item" v-if="maxTeamSize">
           <dt class="projects-widget-item__list-item-term" title="Liczba kolaboratorów">
             <span class="flaticon-user projects-widget-item__list-item-logo" aria-hidden="true"></span>
-            <span class="visualy-hidden">Liczba kolaboratorów</span>
+            <span class="visualy-hidden"> Liczba kolaboratorów </span>
           </dt>
           <dd class="projects-widget-item__list-item-definition">
              Max: {{ maxTeamSize }}, Aktualnie: {{ !currentTeamSize ? 0 : currentTeamSize }}
@@ -27,7 +26,7 @@
         <div class="projects-widget-item__list-item" v-if="isNotEmpty(url)">
           <dt class="projects-widget-item__list-item-term" title="Repozytorium">
             <span class="flaticon-github-logo projects-widget-item__list-item-logo" aria-hidden="true"></span>
-            <span class="visualy-hidden">Repozytorium</span>
+            <span class="visualy-hidden"> Repozytorium </span>
           </dt>
           <dd class="projects-widget-item__list-item-definition">
             <a :href="url" class="projects-widget-item__list-item-link"> {{ url }} </a>
@@ -35,6 +34,7 @@
         </div>
       </dl>
     </div>
+
   </div>
 </template>
 
@@ -44,8 +44,33 @@ export default {
   data () {
     return {}
   },
-  props: ['tags', 'title', 'url', 'maxTeamSize', 'currentTeamSize', 'logo'],
-  mixins: [templateHelper]
+  props: {
+    tags: {
+      default: [],
+      type: Array
+    },
+    title: {
+      default: '',
+      type: String
+    },
+    url: {
+      default: '',
+      type: String
+    },
+    maxTeamSize: {
+      default: 10,
+      type: Number
+    },
+    currentTeamSize: {
+      default: 1,
+      type: Number
+    },
+    logo: {
+      default: 'teal',
+      type: String
+    }
+  },
+  mixins: [ templateHelper ]
 }
 </script>
 
@@ -53,14 +78,11 @@ export default {
 @import "assets/scss/imports.scss";
 
 .projects-widget-item {
-  margin-top: -1px;
-  border-top: 1px solid $projects-widget-item-border-color;
   border-bottom: 1px solid $projects-widget-item-border-color;
   padding-bottom: 15px;
 
   &:hover {
     background-color: $projects-widget-item-hover-bg-color;
-    cursor: pointer;
   }
 
   &__top-section {
@@ -98,8 +120,8 @@ export default {
       color: $projects-widget-item-project-star-color;
       position: absolute;
       font-size: 1.5rem;
-      top: 10px;
-      left: 10px;
+      top: 9px;
+      left: 11px;
     }
   }
 

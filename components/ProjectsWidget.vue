@@ -62,18 +62,6 @@ export default {
 .projects-widget {
   background-color: $projects-widget-bg-color;
 
-  &__title {
-    font-size: .99rem;
-    padding: 15px 10px;
-    font-weight: normal;
-  }
-
-  &__title-icon {
-    &:before {
-      font-size: 1.4rem;
-    }
-  }
-
   &__see-more {
     text-align: center;
     display: block;
