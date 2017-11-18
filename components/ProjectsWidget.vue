@@ -1,10 +1,7 @@
 
 <template>
   <section class="projects-widget">
-    <h2 class="projects-widget__title">
-    <span class="projects-widget__title-icon flaticon-code-fork" aria-hidden="true"></span>
-      Projekty do których możesz dołączyć
-    </h2>
+    <widget-title :title="title" :widgetClass="widgetClass" :widgetIconClass="widgetIconClass"/>
     <div v-for="(item, index) of items" class="projects-widget__projects-wrapper" :key="index">
       <projects-widget-item :title="item.title" :maxTeamSize="item.maxTeamSize"
         :currentTeamSize="item.currentTeamSize" :url="item.url" :tags="item.tags" :logo="item.logo"/>
@@ -17,10 +14,14 @@
 
 <script>
 import ProjectsWidgetItem from '~/components/partials/ProjectsWidgetItem.vue'
+import WidgetTitle from '~/components/partials/WidgetTitle.vue'
 
 export default {
   data () {
     return {
+      title: 'Projekty do których możesz dołączyć',
+      widgetClass: 'projects-widget',
+      widgetIconClass: 'flaticon-code-fork',
       items: [
         {
           title: 'homepage-nuxtjs',
@@ -49,7 +50,8 @@ export default {
     }
   },
   components: {
-    ProjectsWidgetItem
+    ProjectsWidgetItem,
+    WidgetTitle
   }
 }
 </script>
