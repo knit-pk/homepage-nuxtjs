@@ -1,14 +1,16 @@
 <template>
   <section :class="['job-offers-widget', { 'job-offers-widget--scrollable': isScrollable }]">
     <widget-title :title="title" :widgetClass="widgetClass" :widgetIconClass="widgetIconClass">
-      <b-badge pill variant="info" class="job-offers-widget__badge default-badge"> {{ itemsLength }} </b-badge>
+      <b-badge pill variant="info" class="default-badge job-offers-widget__badge"> {{ itemsLength }} </b-badge>
     </widget-title>
-      <div class="job-offers-widget__scrollable-content">
+    <vue-scrollbar classes="job-offers-widget__scrollbar-wrapper">
+      <div class="job-offers-widget__content" v-prevent-parent-scroll>
         <job-offers-widget-item v-for="(item, index) of items" :key="index"
           :title="item.title" :employer="item.employer" :salaryBrackets="item.salaryBrackets"
-          :offerExpiration="item.offerExpiration" :currency="item.currency" :technology="item.technology"
+          :createdAt="item.createdAt" :currency="item.currency" :technology="item.technology"
           :employerWebpage="item.employerWebpage"/>
       </div>
+    </vue-scrollbar>
   </section>
 </template>
 
@@ -28,21 +30,21 @@ export default {
           title: 'full stack developer',
           employer: 'NetGuru',
           salaryBrackets: '3500 - 5000',
-          offerExpiration: 'Fri, 17 Nov 2017 22:04:29 GMT',
+          createdAt: 'Fri, 17 Nov 2017 22:04:29 GMT',
           currency: 'PLN',
           technology: 'javascript'
         },
         {
           title: 'python developer',
           employer: 'Ligo Headhunters',
-          offerExpiration: 'Fri, 19 Nov 2018 22:04:29 GMT',
+          createdAt: 'Fri, 19 Nov 2018 22:04:29 GMT',
           technology: 'python',
           employerWebpage: 'http://www.ligohr.pl/'
         },
         {
           title: 'junior software engineer',
           employer: 'Nokia',
-          offerExpiration: 'Fri, 25 Nov 2018 22:04:29 GMT',
+          createdAt: 'Fri, 25 Nov 2018 22:04:29 GMT',
           technology: 'cplusplus',
           employerWebpage: 'https://www.nokia.com/pl_pl'
         },
@@ -50,7 +52,7 @@ export default {
           title: 'junior java developer',
           employer: 'Global Logic',
           salaryBrackets: '2200 - 3000',
-          offerExpiration: 'Fri, 10 Nov 2018 22:04:29 GMT',
+          createdAt: 'Fri, 10 Nov 2018 22:04:29 GMT',
           currency: 'PLN',
           technology: 'java',
           employerWebpage: 'https://www.globallogic.com/pl/'
@@ -58,7 +60,7 @@ export default {
         {
           title: 'junior software engineer',
           employer: 'Nokia',
-          offerExpiration: 'Fri, 25 Nov 2018 22:04:29 GMT',
+          createdAt: 'Fri, 25 Nov 2018 22:04:29 GMT',
           technology: 'java',
           employerWebpage: 'https://www.nokia.com/pl_pl'
         }
@@ -83,13 +85,14 @@ export default {
 
 <style lang="scss">
 @import "assets/scss/_imports.scss";
+
 .job-offers-widget {
-  $p: &;
+  box-sizing: border-box;
   background-color: $job-offers-widget-bg-color;
   height: $job-offers-widget-height;
-  box-sizing: border-box;
   flex-basis: calc(50% - #{$default-gutters-width / 2});
   margin-right: $default-gutters-width / 2;
+  border-radius: $default-blocks-border-radius;
   overflow: hidden;
 
   &__title {
@@ -98,15 +101,18 @@ export default {
   }
 
   &__scrollbar-wrapper {
-    height: $job-offers-widget-height - $job-offers-widget-title-height;
+    max-height: $job-offers-widget-height - $job-offers-widget-title-height;
   }
 
-  &__scrollable-content {
+  &__content {
     background-color: $job-offers-widget-bg-color;
+    min-height: $job-offers-widget-height - $job-offers-widget-title-height;
   }
 
   &__badge {
     background-color: $job-offers-widget-badge-bg-color;
+    margin-left: 8px;
+    margin-top: 1px;
   }
 }
 </style>

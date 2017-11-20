@@ -1,25 +1,27 @@
 <template>
   <div class="job-offers-widget-item">
-    <a href="XDD">
-    <span :class="['job-offers-widget-item__technology-icon', devIconClass]" :aria-hidden="true"></span>
-    <div class="job-offers-widget-item__left-side">
-      <span class="job-offers-widget-item__offer-title job-offers-widget-item__left-side-element">
+    <a href="#" class="job-offers-widget-item__link"></a>
+    <div class="job-offers-widget-item__content">
+      <span :class="['job-offers-widget-item__technology-icon', devIconClass]" aria-hidden="true"></span>
+      <span class="visualy-hidden"> {{ technology }} </span>
+      <div class="job-offers-widget-item__left-side">
+        <span class="job-offers-widget-item__job-position">
           {{ upper(title) }}
-      </span>
-      <a v-if="employerWebpage" target="_blank" :href="employerWebpage" class="job-offers-widget-item__employer-name job-offers-widget-item__employer-link job-offers-widget-item__left-side-element">
-        {{ employerName }}
-      </a>
-      <span v-else class="job-offers-widget-item__employer-name job-offers-widget-item__left-side-element"> {{ employerName }} </span>
+        </span>
+        <a v-if="employerWebpage" target="_blank" :href="employerWebpage" class="job-offers-widget-item__employer-link">
+          {{ employerName }}
+        </a>
+        <span v-else class="job-offers-widget-item__employer-name"> {{ employerName }} </span>
+      </div>
+      <div class="job-offers-widget-item__right-side">
+        <span v-if="salaryBrackets" class="flaticon-money job-offers-widget-item__salary-brackets">
+          {{ salaryBracketsWithCurrency }}
+        </span>
+        <span class="job-offers-widget-item__creation-date">
+          {{ formatDateToLocalString(createdAt, 'pl', { month: 'short', day: '2-digit', year: 'numeric' }) }}
+        </span>
+      </div>
     </div>
-    <div class="job-offers-widget-item__right-side">
-      <span :class="['job-offers-widget-item__salary-brackets', 'job-offers-widget-item__right-side-element', { 'flaticon-money': salaryBrackets }]">
-        {{ salaryBracketsWithCurrency }}
-      </span>
-      <span class="job-offers-widget-item__offer-expiration job-offers-widget-item__right-side-element">
-        {{ formatDateToLocalString(offerExpiration, 'pl', { month: 'short', day: '2-digit', year: 'numeric' }) }}
-      </span>
-    </div>
-    </a>
   </div>
 </template>
 
@@ -42,7 +44,7 @@ export default {
     }
   },
   props: {
-    offerExpiration: {
+    createdAt: {
       default: '',
       type: String
     },
@@ -79,67 +81,92 @@ export default {
 @import "assets/scss/_imports.scss";
 
 .job-offers-widget-item {
-  a {
-    display: block;
-  }
-  display: flex;
-  align-items: center;
-  height: ($job-offers-widget-height - $job-offers-widget-title-height) / 4;
-  color: $primary-text-color;
-
-  &:hover {
-    background-color: $job-offers-widget-item-hover-bg-color;
-  }
+  position: relative;
+  font-weight: 300;
+  transition: background-color 0.15s ease-in-out;
 
   &:not(:last-child) {
     border-bottom: 1px solid $job-offers-widget-item-border-color;
   }
 
-  &__left-side, &__right-side {
+  &:hover {
+    background-color: $job-offers-widget-item-hover-bg-color;
+  }
+
+  &__link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &__content {
     display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  &__left-side-element {
-    margin-left: 15px;
-  }
-
-  &__right-side-element {
-    text-align: end;
-    margin-right: 30px;
-    height: 15px;
-  }
-
-  &__salary-brackets {
-    &:before {
-      color: $job-offers-widget-item-salary-brackets-text-color;
-    }
-  }
-
-  &__offer-expiration {
-    color: $job-offers-widget-item-offer-expiration-text-color;
-    font-size: 0.75rem;
-    align-self: flex-end;
-    margin-top: 15px;
-  }
-
-  &__employer-name {
-    font-size: 0.75rem;
-    margin-top: 5px;
-  }
-
-  &__employer-link {
-    color: $job-offers-widget-item-employer-link-hover-color;
+    align-items: center;
+    height: ($job-offers-widget-height - $job-offers-widget-title-height) / 4;
+    color: $primary-text-color;
+    padding: 0 15px;
   }
 
   &__technology-icon {
     font-size: 2.5rem;
-    margin-left: 15px;
   }
 
-  &__offer-title {
-    font-size: 0.85rem;
+  &__left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 6;
+    justify-content: space-between;
+    padding-left: 15px;
+  }
+
+  &__right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex: 4;
+    justify-content: space-between;
+    padding-right: 10px;
+    min-height: 36px;
+  }
+
+  &__job-position {
+    font-size: 0.9rem;
+  }
+
+  &__employer-link {
+    color: $job-offers-widget-item-employer-link-hover-color;
+    font-size: 0.75rem;
+    margin-top: 7px;
+    font-weight: 400;
+    z-index: 10;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+   &__employer-name {
+    font-size: 0.75rem;
+    margin-top: 7px;
+  }
+
+  &__salary-brackets {
+    font-size: 0.95rem;
+
+    &:before {
+      color: $job-offers-widget-item-salary-brackets-icon-color;
+      font-size: 0.95rem;
+    }
+  }
+
+  &__creation-date {
+    color: $job-offers-widget-item-creation-date-text-color;
+    font-size: 0.75rem;
+    margin-top: auto;
+    padding-top: 10px;
   }
 }
 </style>

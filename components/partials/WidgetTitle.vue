@@ -1,6 +1,6 @@
 <template>
-  <h2 :class="[`${widgetClass}__title`, 'widget-title']">
-    <span :class="[`${widgetClass}__title-icon`, 'widget-title__title-icon', widgetIconClass]" aria-hidden="true"></span>
+  <h2 :class="['widget-title', `${widgetClass}__title`]">
+    <span :class="[widgetIconClass, 'widget-title__title-icon', `${widgetClass}__title-icon`]" aria-hidden="true"></span>
     {{ title }}
     <slot></slot>
   </h2>
@@ -33,17 +33,20 @@ export default {
 
 .widget-title {
   position: relative;
-  font-size: .99rem;
-  padding: 15px 15px;
+  font-size: .96rem;
+  font-size: 15px;
+  padding: 15px;
   font-weight: normal;
   border-bottom: 1px solid $widget-title-border-color;
   display: flex;
   align-items: center;
+  font-weight: 300;
 
   &__title-icon {
     margin-right: 10px;
+
     &:before {
-      font-size: 1.4rem;
+      font-size: 1rem;
     }
   }
 }

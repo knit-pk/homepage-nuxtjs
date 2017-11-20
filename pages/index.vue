@@ -5,7 +5,7 @@
         <article-card-list/>
       </main>
       <aside class="aside-down">
-        <job-offers-widget v-prevent-parent-scroll/>
+        <job-offers-widget/>
         <action-links/>
       </aside>
     </div>
