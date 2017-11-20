@@ -1,25 +1,26 @@
 <template>
-  <div class="job-offers-widget-item">
-    <a href="XDD">
-    <span :class="['job-offers-widget-item__technology-icon', devIconClass]" :aria-hidden="true"></span>
-    <div class="job-offers-widget-item__left-side">
-      <span class="job-offers-widget-item__offer-title job-offers-widget-item__left-side-element">
-          {{ upper(title) }}
-      </span>
-      <a v-if="employerWebpage" target="_blank" :href="employerWebpage" class="job-offers-widget-item__employer-name job-offers-widget-item__employer-link job-offers-widget-item__left-side-element">
-        {{ employerName }}
-      </a>
-      <span v-else class="job-offers-widget-item__employer-name job-offers-widget-item__left-side-element"> {{ employerName }} </span>
+  <div class="job-offers-widget-item-TEST">
+    <a href="#" class="TEST-LINK"></a>
+    <div class="job-offers-widget-item">
+      <span :class="['job-offers-widget-item__technology-icon', devIconClass]" :aria-hidden="true"></span>
+      <div class="job-offers-widget-item__left-side">
+        <span class="job-offers-widget-item__offer-title job-offers-widget-item__left-side-element">
+            {{ upper(title) }}
+        </span>
+        <a v-if="employerWebpage" target="_blank" :href="employerWebpage" class="INNER-LINK job-offers-widget-item__employer-name job-offers-widget-item__employer-link job-offers-widget-item__left-side-element">
+          {{ employerName }}
+        </a>
+        <span v-else class="job-offers-widget-item__employer-name job-offers-widget-item__left-side-element"> {{ employerName }} </span>
+      </div>
+      <div class="job-offers-widget-item__right-side">
+        <span :class="['job-offers-widget-item__salary-brackets', 'job-offers-widget-item__right-side-element', { 'flaticon-money': salaryBrackets }]">
+          {{ salaryBracketsWithCurrency }}
+        </span>
+        <span class="job-offers-widget-item__offer-expiration job-offers-widget-item__right-side-element">
+          {{ formatDateToLocalString(offerExpiration, 'pl', { month: 'short', day: '2-digit', year: 'numeric' }) }}
+        </span>
+      </div>
     </div>
-    <div class="job-offers-widget-item__right-side">
-      <span :class="['job-offers-widget-item__salary-brackets', 'job-offers-widget-item__right-side-element', { 'flaticon-money': salaryBrackets }]">
-        {{ salaryBracketsWithCurrency }}
-      </span>
-      <span class="job-offers-widget-item__offer-expiration job-offers-widget-item__right-side-element">
-        {{ formatDateToLocalString(offerExpiration, 'pl', { month: 'short', day: '2-digit', year: 'numeric' }) }}
-      </span>
-    </div>
-    </a>
   </div>
 </template>
 
@@ -78,10 +79,31 @@ export default {
 <style lang="scss">
 @import "assets/scss/_imports.scss";
 
-.job-offers-widget-item {
-  a {
-    display: block;
+.job-offers-widget-item-TEST {
+  position: relative;
+
+  &:hover {
+    background-color: #ddd;
   }
+}
+
+.TEST-LINK {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.INNER-LINK {
+  z-index: 10;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.job-offers-widget-item {
   display: flex;
   align-items: center;
   height: ($job-offers-widget-height - $job-offers-widget-title-height) / 4;
