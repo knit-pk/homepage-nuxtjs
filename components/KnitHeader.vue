@@ -18,7 +18,7 @@
     <b-dropdown class="header-dropdown" right no-flip>
       <div slot="button-content" class="header-dropdown__profile-button">
         <img :src="user.avatarUrl" class="header-dropdown__avatar" alt="">
-        <span>{{ user.name }}</span>
+        <span class="header-dropdown__username">{{ user.name }}</span>
       </div>
       <b-dropdown-item href="#">If won't</b-dropdown-item>
       <b-dropdown-item href="#">be useful</b-dropdown-item>
@@ -70,8 +70,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 50px;
   padding: 0 20px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -166,6 +166,7 @@
     padding: 0 15px;
     outline: 0;
     color: $primary-text-color;
+    transition: background-color .15s ease-in-out, color .15s ease-in-out;
 
     &:hover {
       color: $knit-header-links-hover-text-color;
@@ -196,13 +197,24 @@
     font-size: 14px;
     font-family: $default-font-family;
   }
-
+  
+  &__username {
+    margin-right: 3px;
+  }
+  
   &__avatar {
     width: 32px;
     height: 32px;
     object-fit: cover;
     border-radius: 50%;
     margin-right: 10px;
+  }
+
+  &__arrow {
+    &:before {
+      font-size: 10px;
+      margin-left: 5px;
+    }
   }
 
   .dropdown-menu {

@@ -1,5 +1,6 @@
 @import "animations.scss";
 
+// *** resets ***
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +11,11 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
+// *** utilities ***
 .visualy-hidden {
   position: absolute;
   width: 1px;
@@ -21,6 +27,3 @@ h1, h2, h3, h4, h5, h6 {
   border: 0;
 }
 
-a {
-  text-decoration: none;
-}

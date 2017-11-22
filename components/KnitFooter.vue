@@ -5,22 +5,20 @@
     </a>
     <knit-navbar class="navbar--footy"/>
     <span class="knit-footer__caption"> 2017 &copy; Koło Naukowe IT Politechnika Krakowska </span>
-    <div class="knit-footer__socialbox">
-      <ul class="knit-footer__socialbox-list">
-        <li class="knit-footer__socialbox-item">
-          <a href="/" class="knit-footer__socialbox-link">
-            <span class="flaticon-github-logo" aria-hidden="true"></span>
-            Github
-          </a>
-        </li>
-        <li class="knit-footer__socialbox-item">
-          <a href="/" class="knit-footer__socialbox-link">
-            <span class="flaticon-facebook-logo" aria-hidden="true"></span>
-            Facebook
-          </a>
-        </li>
-      </ul>
-    </div>
+    <ul class="knit-footer__socialbox-list">
+      <li class="knit-footer__socialbox-item">
+        <a href="https://github.com/knit-pk" target="_blank" class="knit-footer__socialbox-link">
+          <span class="flaticon-github-logo knit-footer__socialbox-icon" aria-hidden="true"></span>
+          Github
+        </a>
+      </li>
+      <li class="knit-footer__socialbox-item">
+        <a href="https://www.facebook.com/wieik.knit" target="_blank" class="knit-footer__socialbox-link">
+          <span class="flaticon-facebook-logo knit-footer__socialbox-icon" aria-hidden="true"></span>
+          Facebook
+        </a>
+      </li>
+    </ul>
   </footer>
 </template>
 
@@ -41,13 +39,14 @@ export default {
 @import "assets/scss/_imports.scss";
 
 .knit-footer {
-  height: 280px;
   background-color: $footer-bg-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &__link {
     display: block;
-    width: 100%;
-    padding-top: 35px;
+    margin-top: 35px;
   }
 
   &__logo {
@@ -58,25 +57,22 @@ export default {
 
   &__caption {
     display: block;
-    width: 100%;
     margin: 30px 0 auto;
     text-align: center;
     font-size: 0.75rem;
     color: $footer-text-color;
   }
 
-  &__socialbox {
+  &__socialbox-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    display: flex;
+    align-items: center;
     margin-top: 40px;
     height: 50px;
     background-color: $footer-down-bg-color;
-    width: 100%;
-  }
-
-  &__socialbox-list {
-    display: flex;
-    padding-top: 20px;
-    justify-content: center;
-    list-style: none;
+    align-self: stretch; 
   }
 
   &__socialbox-item {
@@ -90,12 +86,15 @@ export default {
   }
 
   &__socialbox-link {
-    color: white;
-    margin: auto 0;
+    color: #ffffff;
     text-align: center;
-    justify-content: center;
-    line-height: 80%;
     font-size: 0.80rem;
+  }
+
+  &__socialbox-icon {
+    position: relative;
+    top: 2px;
+    margin-right: 3px;
   }
 }
 </style>
