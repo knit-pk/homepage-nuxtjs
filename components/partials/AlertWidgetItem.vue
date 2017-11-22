@@ -17,10 +17,7 @@ export default {
   },
   methods: {
     hideMessage (event) {
-      const widgetItem = event.target.parentNode
-      widgetItem.classList.add('fade-out')
-      // @TODO: Use template helper here + add some animation for display none
-      setTimeout(() => { this.show = false }, 700)
+      setTimeout(() => { this.show = false }, 100)
     }
   },
   props: ['message']
@@ -32,37 +29,41 @@ export default {
 
 .alert-widget-item {
   position: relative;
+  border: 1px solid $alert-widget-border-color;
+  border-radius: $default-blocks-border-radius;
+  margin-bottom: $default-gutters-width;
+  overflow: hidden;
 
   &__message-box {
-    padding: 20px;
-    font-size: .85rem;
+    padding: 16px 25px 16px 16px;
+    font-size: .86rem;
     font-weight: normal;
     color: $alert-widget-item-text-color;
     background-color: $alert-widget-item-bg-color;
-    margin-bottom: $default-gutters-width;
+    font-weight: 300;
   }
 
   &__message-decorator {
-    font-weight: 900;
+    font-weight: 600;
   }
 
   &__close-button {
-    top: 7px;
-    right: 7px;
+    top: 5px;
+    right: 5px;
     display: block;
     font-weight: 900;
+    font-size: 18px;
+    padding: 0 4px;
     position: absolute;
     border: none;
-    background-color: $alert-widget-item-bg-color;
-    color: $secondary-text-color;
+    background-color: transparent;
+    color: $alert-widget-button-close-color;
     cursor: pointer;
+    outline: 0;
 
-    &:focus,
-    &:active {
-      border: none;
-      background: none;
-      outline: none;
-      padding: 0;
+    &:hover,
+    &:focus {
+      color: $secondary-text-color;
     }
   }
 }

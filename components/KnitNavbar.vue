@@ -60,6 +60,7 @@ export default {
     align-items: center;
     color: $navbar-links-color;
     text-decoration: none;
+    transition: background-color 0.15s ease-in-out;
 
     &:hover,
     &:focus {
@@ -68,17 +69,18 @@ export default {
   }
 
   &.navbar--footy {
-    justify-content: center;
     padding: 0;
     margin-top: 25px;
 
     #{$p}__list-link {
-      border-bottom: 1px solid transparent;
       color: $footer-text-color;
+      padding: 0;
+      margin: 0 15px;
 
-      &:hover, &:focus {
+      &:hover, 
+      &:focus {
         background-color: transparent;
-        border-bottom: 1px solid white;
+        opacity: 0.5;
       }
     }
   }

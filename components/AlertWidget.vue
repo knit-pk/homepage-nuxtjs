@@ -1,8 +1,6 @@
 <template v-if="items">
   <div class="alert-widget">
-    <div class="alert-widget__item-block" v-for="(item, index) of items" :key="index">
-      <alert-widget-item :message="item.message"/>
-    </div>
+    <alert-widget-item v-for="(item, index) of items" :key="index" :message="item.message"/>
   </div>
 </template>
 
