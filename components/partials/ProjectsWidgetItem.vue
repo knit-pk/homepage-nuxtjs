@@ -5,36 +5,33 @@
       <div v-else :class="['projects-widget-item__project-logo', 'projects-widget-item__project-logo-star', `projects-widget-item__project-logo${defaultCssPostfix(this.logo, '--green')}`, 'flaticon-star']"/>
       <h3 class="projects-widget-item__title"> {{ title }} </h3>
     </div>
-    <div class="projects-widget-item__bottom-section">
-      <dl class="projects-widget-item__list" aria-label="Informacje o projekcie">
-        <div class="projects-widget-item__list-item" v-if="isNotEmpty(tags)">
-          <dt class="projects-widget-item__list-item-term" title="Technologie">
-            <span class="flaticon-curly-brackets projects-widget-item__list-item-logo" aria-hidden="true"></span>
-            <span class="visualy-hidden"> Technologie </span>
-          </dt>
-          <dd class="projects-widget-item__list-item-definition"> {{ arrayToStringList(tags) }} </dd>
-        </div>
-        <div class="projects-widget-item__list-item" v-if="maxTeamSize">
-          <dt class="projects-widget-item__list-item-term" title="Liczba kolaboratorów">
-            <span class="flaticon-user projects-widget-item__list-item-logo" aria-hidden="true"></span>
-            <span class="visualy-hidden"> Liczba kolaboratorów </span>
-          </dt>
-          <dd class="projects-widget-item__list-item-definition">
-             Max: {{ maxTeamSize }}, Aktualnie: {{ !currentTeamSize ? 0 : currentTeamSize }}
-          </dd>
-        </div>
-        <div class="projects-widget-item__list-item" v-if="isNotEmpty(url)">
-          <dt class="projects-widget-item__list-item-term" title="Repozytorium">
-            <span class="flaticon-github-logo projects-widget-item__list-item-logo" aria-hidden="true"></span>
-            <span class="visualy-hidden"> Repozytorium </span>
-          </dt>
-          <dd class="projects-widget-item__list-item-definition">
-            <a :href="url" class="projects-widget-item__list-item-link"> {{ url }} </a>
-          </dd>
-        </div>
-      </dl>
-    </div>
-
+    <dl class="projects-widget-item__list" aria-label="Informacje o projekcie">
+      <div class="projects-widget-item__list-item" v-if="isNotEmpty(tags)">
+        <dt class="projects-widget-item__list-item-term" title="Technologie">
+          <span class="flaticon-curly-brackets projects-widget-item__list-item-logo" aria-hidden="true"></span>
+          <span class="visualy-hidden">Technologie</span>
+        </dt>
+        <dd class="projects-widget-item__list-item-definition"> {{ arrayToStringList(tags) }} </dd>
+      </div>
+      <div class="projects-widget-item__list-item" v-if="maxTeamSize">
+        <dt class="projects-widget-item__list-item-term" title="Liczba kolaboratorów">
+          <span class="flaticon-user projects-widget-item__list-item-logo" aria-hidden="true"></span>
+          <span class="visualy-hidden">Liczba kolaboratorów</span>
+        </dt>
+        <dd class="projects-widget-item__list-item-definition">
+            Max: {{ maxTeamSize }}, Aktualnie: {{ !currentTeamSize ? 0 : currentTeamSize }}
+        </dd>
+      </div>
+      <div class="projects-widget-item__list-item" v-if="isNotEmpty(url)">
+        <dt class="projects-widget-item__list-item-term" title="Repozytorium">
+          <span class="flaticon-github-logo projects-widget-item__list-item-logo" aria-hidden="true"></span>
+          <span class="visualy-hidden">Repozytorium</span>
+        </dt>
+        <dd class="projects-widget-item__list-item-definition">
+          <a :href="url" class="projects-widget-item__list-item-link"> {{ url }} </a>
+        </dd>
+      </div>
+    </dl>
   </div>
 </template>
 
@@ -79,7 +76,7 @@ export default {
 
 .projects-widget-item {
   border-bottom: 1px solid $projects-widget-item-border-color;
-  padding-bottom: 15px;
+  padding: 15px;
 
   &:hover {
     background-color: $projects-widget-item-hover-bg-color;
@@ -87,13 +84,14 @@ export default {
 
   &__top-section {
     display: flex;
-    padding: 15px 0 10px 15px;
   }
 
   &__title {
     align-self: center;
     font-weight: normal;
     margin-left: 15px;
+    font-size: 1.3rem;
+    font-weight: 300;
   }
 
   &__project-logo {
@@ -128,29 +126,36 @@ export default {
   &__list {
     font-size: 0.75rem;
     list-style: none;
+    margin-top: 15px;
   }
 
   &__list-item {
-    padding: 5px 0 0 15px;
+    display: flex;
+
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
   }
 
   &__list-item-link {
     color: $projects-widget-item-link-color;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
   }
 
   &__list-item-definition {
-    display: inline;
-  }
-
-  &__list-item-term {
-    display: inline;
+    font-size: 0.85rem;
+    flex: 1;
   }
 
   &__list-item-logo {
-    padding-right: 5px;
+    padding-right: 10px;
 
     &:before {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
     }
   }
 }

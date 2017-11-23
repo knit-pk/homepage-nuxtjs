@@ -6,9 +6,7 @@
       <projects-widget-item :title="item.title" :maxTeamSize="item.maxTeamSize"
         :currentTeamSize="item.currentTeamSize" :url="item.url" :tags="item.tags" :logo="item.logo"/>
     </div>
-    <a class="projects-widget__see-more" href="/">
-      Zobacz więcej
-    </a>
+    <a class="projects-widget__see-more" href="/"> Zobacz więcej </a>
   </section>
 </template>
 
@@ -61,6 +59,7 @@ export default {
 
 .projects-widget {
   background-color: $projects-widget-bg-color;
+  border-radius: $default-blocks-border-radius;
 
   &__see-more {
     text-align: center;
@@ -69,8 +68,11 @@ export default {
     font-size: .75rem;
     color: $projects-widget-text-color;
 
-    &:active, &:focus {
+    &:hover, 
+    &:focus {
       color: $projects-widget-text-color;
+      background-color: $projects-widget-link-more-hover-color;
+      text-decoration: underline;
     }
   }
 }

@@ -76,7 +76,7 @@ export default {
   methods: {
     handleLikeClick () {
       this.isLiked = !this.isLiked
-      // @TODO: Fix focus problem on button click
+      document.activeElement.blur()
       // @TODO: Send handling request to the server
     }
 
@@ -109,7 +109,7 @@ export default {
     @include img-fluid;
     vertical-align: middle;
     width: 100%;
-    height: 220px;
+    height: 200px;
     object-fit: cover;
   }
 
@@ -118,7 +118,7 @@ export default {
     flex-direction: row;
     flex-wrap: wrap;
     padding: 0 20px;
-    margin-top: -30px;
+    margin-top: -26px;
   }
 
   &__title-link {
@@ -129,8 +129,8 @@ export default {
   }
 
   &__title {
-    font-weight: 400;
-    font-size: 20px;
+    font-weight: 300;
+    font-size: 21px;
   }
 
   &__author-link {
@@ -195,9 +195,12 @@ export default {
   &__like-button {
     color: $article-card-text-color;
     text-decoration: none;
+    transition: color 0.1s ease-in-out;
 
     &:hover, &:focus {
       color: $article-card-like-button-hover-color;
+    // color: $article-card-text-color;
+      
     }
 
     &--liked {
@@ -205,6 +208,8 @@ export default {
 
       &:hover, &:focus {
          color: $article-card-like-button-liked-hover-color;
+      // color: $article-card-like-button-liked-color;
+         
       }
     }
   }

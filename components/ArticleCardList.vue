@@ -104,12 +104,23 @@ export default {
           left: 0;
           right: 0;
           z-index: 1;
+
+          &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, rgba(90,45,140,0) 0%,rgba(15,15,15,1) 100%);
+          }
         }
 
         .article-card__thumbnail {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          position: relative;
         }
 
         .article-card__title-link {
@@ -143,6 +154,10 @@ export default {
 
           &:hover, &:focus {
             color: $article-card-like-button-hover-color;
+          }
+
+          &--liked {
+            color: darken($article-card-like-button-liked-color, 5%);
           }
         }
       }
