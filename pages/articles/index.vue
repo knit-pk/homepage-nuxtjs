@@ -10,7 +10,7 @@ export default {
     ArticleList
   },
   fetch ({ store, params }) {
-    return store.dispatch('article/list/getItems', store.state.article.list.page)
+    // return store.dispatch('article/list/getItems', store.state.article.list.page)
   }
 }
 </script>

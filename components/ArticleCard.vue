@@ -16,19 +16,19 @@
     </header>
     <p class="article-card__content">{{ content }}</p>
     <footer class="article-card__footer">
-      <time :datetime="publishedAt">{{ formatDateToLocalString(publishedAt) }}</time>
+      <time :datetime="time">{{ formatDateToLocalString(time) }}</time>
       <ul class="article-card__stats" aria-label="Statystyki">
         <li class="article-card__stats-group">
           <a @click.prevent.stop="handleLikeClick" :class="{ ['article-card__like-button--liked']: isLiked }" href="#" role="button" class="article-card__like-button" title="Lubię to!" aria-label="Polub post">
             <span class="flaticon-like article-card__stat-icon" aria-hidden="true"></span>
             <span class="visualy-hidden">Polubienia</span>
-            <span>{{ likes }}</span>
+            <span>{{ likesAmount }}</span>
           </a>
         </li>
         <li class="article-card__stats-group">
           <span class="flaticon-chat article-card__stat-icon article-card__comment-icon" title="Komentarze" aria-hidden="true"></span>
           <span class="visualy-hidden">Komentarze</span>
-          <span>{{ comments }}</span>
+          <span>{{ commentsAmmout }}</span>
         </li>
       </ul>
     </footer>
@@ -45,6 +45,17 @@ export default {
       isLiked: false
     }
   },
+  computed: {
+    likesAmount () {
+      return this.likes.length
+    },
+    commentsAmmout () {
+      return this.comments.length
+    },
+    time () {
+      return this.publishedAt || this.createdAt
+    }
+  },
   props: {
     title: {
       type: String,
@@ -58,19 +69,31 @@ export default {
       type: String,
       required: true
     },
-    thumbnailUrl: String,
-    authorAvatarUrl: String,
+    thumbnailUrl: {
+      type: String,
+      required: false, // @TODO: Mark as a required when API would be ready to handle it
+      default: '/temporary/card-photo-0.jpg'
+    },
+    authorAvatarUrl: {
+      type: String,
+      required: false, // @TODO: Mark as a required when API would be ready to handle it
+      default: '/temporary/article-author.png'
+    },
+    createdAt: {
+      type: String,
+      default: ''
+    },
     publishedAt: {
       type: String,
-      required: true
+      default: ''
     },
     likes: {
-      type: Number,
-      required: true
+      type: Array,
+      default: () => []
     },
     comments: {
-      type: Number,
-      required: true
+      type: Array,
+      default: () => []
     }
   },
   methods: {
@@ -129,6 +152,7 @@ export default {
   }
 
   &__title {
+    min-width: 200px;
     font-weight: 300;
     font-size: 21px;
   }
@@ -200,7 +224,7 @@ export default {
     &:hover, &:focus {
       color: $article-card-like-button-hover-color;
     // color: $article-card-text-color;
-      
+
     }
 
     &--liked {
@@ -209,7 +233,7 @@ export default {
       &:hover, &:focus {
          color: $article-card-like-button-liked-hover-color;
       // color: $article-card-like-button-liked-color;
-         
+
       }
     }
   }

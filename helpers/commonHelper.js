@@ -22,5 +22,9 @@ export default {
     const filteredProps = _.values(filteredPropsObject)
 
     return !_.isEmpty(filteredProps) && _.some(filteredProps, _.isEmpty)
+  },
+
+  removeFalsyProps (object = {}) {
+    return _.pickBy(object, _.identity)
   }
 }

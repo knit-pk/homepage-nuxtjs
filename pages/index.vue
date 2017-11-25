@@ -34,6 +34,9 @@ export default {
     ProjectsWidget,
     AlertWidget,
     ActionLinks
+  },
+  fetch ({ store, params }) {
+    return Promise.all([store.dispatch('article-card-list/getArticleCardList')])
   }
 }
 </script>
