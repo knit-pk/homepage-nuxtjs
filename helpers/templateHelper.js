@@ -13,18 +13,31 @@ export default {
     arrayToStringList (array = []) {
       return _.reduce(array, templateReducers.arrayToStrReducer)
     },
+
     trimString (string = '', length = 3) {
       return (length - 3) >= string.length ? string : `${string.slice(0, length - 3)}...`
     },
+
     isUrl (string = '') {
-      return !!string && _.some(urlIdentifiers, (urlIdentifier) => _.includes(string, urlIdentifier))
+      return _.isEmpty(string) && _.some(urlIdentifiers, urlIdentifier => _.includes(string, urlIdentifier))
     },
+
     defaultCssPostfix (vueProperty = '', postfix = '') {
       return vueProperty ? `--${vueProperty}` : postfix
     },
-    formatDateToLocalString (date, locale = 'pl', format = { month: 'long', day: '2-digit', year: 'numeric' }) {
-      return new Date(date).toLocaleString(locale, format)
+
+    formatDateToLocalString (date = new Date(), locale = 'pl', format = { month: 'long', day: '2-digit', year: 'numeric' }) {
+      if (typeof date === 'string') {
+        date = new Date(date)
+      }
+
+      return date.toLocaleString(locale, format)
     },
+    capitalize: _.capitalize,
+    upper: _.toUpper,
+    pick: _.pick,
+    flow: _.flow,
+    every: _.every,
     isEmpty: _.isEmpty,
     isNotEmpty: _.negate(_.isEmpty)
   }

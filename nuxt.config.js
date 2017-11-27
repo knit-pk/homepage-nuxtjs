@@ -10,8 +10,10 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
+    script: [],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&amp;subset=latin-ext' }
     ]
   },
@@ -19,7 +21,7 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
-  plugins: ['~/plugins/http-common.js'],
+  plugins: ['~/plugins/http-common.js', '~/plugins/prevent-scroll.js'],
   modules: [
     ['bootstrap-vue/nuxt', { css: false }]
   ],
@@ -29,12 +31,13 @@ module.exports = {
   router: {},
   css: [
     '~/node_modules/normalize.css/normalize.css',
+    '~/static/fonts/flaticon/flaticon.css',
+    '~/assets/scss/vue-scrollbar.scss',
     '~/assets/bootstrap/custom.scss',
-    '~/assets/scss/main.scss',
-    '~/static/fonts/flaticon/flaticon.css'
+    '~/assets/scss/main.scss'
   ],
   build: {
-    vendor: ['axios', 'lodash', 'qs'],
+    vendor: ['axios', 'lodash', 'qs', 'vue2-scrollbar'],
     /*
     ** Run ESLint on save
     */

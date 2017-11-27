@@ -61,18 +61,6 @@ export default {
   background-color: $projects-widget-bg-color;
   border-radius: $default-blocks-border-radius;
 
-  &__title {
-    font-size: .99rem;
-    padding: 15px 10px;
-    font-weight: normal;
-  }
-
-  &__title-icon {
-    &:before {
-      font-size: 1.4rem;
-    }
-  }
-
   &__see-more {
     text-align: center;
     display: block;

@@ -30,7 +30,9 @@
     "normalize.css": "^7.0.0",
     "nuxt": "nuxt/nuxt.js#dev",
     "qs": "^6.5.1",
-    "sass-loader": "^6.0.6"
+    "sass-loader": "^6.0.6",
+    "vue-prevent-parent-scroll": "^1.0.5",
+    "vue2-scrollbar": "0.0.3"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
