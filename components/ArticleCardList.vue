@@ -1,34 +1,41 @@
 <template>
   <section class="article-card-list article-card-list--big-main-post">
     <h2 class="visualy-hidden">Artykuły KNIT</h2>
-    <article-card v-for="(article, index) in articles" :key="index"
+    <article-card v-for="(article, index) in cardsArticles" :key="index"
                        :title="article.title"
                        :author="article.author.username"
                        :content="article.content"
-                       :thumbnail-url="article.thumbnailUrl"
-                       :author-avatar-url="article.author.avatarUrl"
+                       :thumbnail="article.image"
+                       :author-avatar="article.author.authorAvatar"
                        :published-at="article.publishedAt"
                        :created-at="article.createdAt"
                        :likes="article.likes"
-                       :comments="article.comments"/>
+                       :comments="article.comments"
+                       :slug="article.code"/>
   </section>
 </template>
 
 <script>
-import ArticleCard from '~/components/ArticleCard.vue'
-import { mapState } from 'vuex'
+import ArticleCard from '~/components/ArticleCard'
+import _ from 'lodash'
+import { mapGetters } from 'vuex'
 
-const storePath = 'article-card-list'
+const storePath = 'articles/list'
 
 export default {
   data () {
-    return { }
+    return {}
   },
   computed: {
-    ...mapState({
-      articles: state => state[storePath].articles,
-      loading: state => state[storePath].loading,
-      error: state => state[storePath].error
+    cardsArticles () {
+      return _.slice(this.articles, 0, 5)
+    },
+    ...mapGetters({
+      articles: `${storePath}/articles`,
+      loading: `${storePath}/loading`,
+      status: `${storePath}/status`,
+      limit: `${storePath}/limit`,
+      error: `${storePath}/error`
     })
   },
   components: {
@@ -50,6 +57,10 @@ export default {
 
   &--big-main-post {
     .article-card {
+      &__title-link {
+        width: 100%;
+      }
+
       &:first-of-type {
         flex-basis: calc(66.666% - #{$default-gutters-width});
         position: relative;
@@ -74,9 +85,6 @@ export default {
           }
         }
 
-        .article-card__title {
-          min-width: 500px;
-        }
 
         .article-card__thumbnail {
           width: 100%;

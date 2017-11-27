@@ -1,8 +1,8 @@
 <template>
   <article class="article-card">
-    <a href="/" class="article-card__thumbnail-link">
-      <img :src="thumbnailUrl" class="article-card__thumbnail" alt="">
-    </a>
+    <router-link class="article-card__thumbnail-link" :to="{name: 'articles-slug', params: { slug }}">
+      <img :src="thumbnail" class="article-card__thumbnail" alt="">
+    </router-link>
     <header class="article-card__header">
       <a href="/" class="article-card__title-link">
         <h3 class="article-card__title">{{ title }}</h3>
@@ -11,7 +11,7 @@
         <span class="article-card__author-name">{{ author }}</span>
       </a>
       <a href="#" class="article-card__author-avatar-link">
-        <img :src="authorAvatarUrl" class="article-card__author-avatar" :alt="author">
+        <img :src="authorAvatar" class="article-card__author-avatar" :alt="author">
       </a>
     </header>
     <p class="article-card__content">{{ content }}</p>
@@ -36,9 +36,10 @@
 </template>
 
 <script>
-import templateHelper from '~/helpers/templateHelper.js'
-// @TODO: Make elipsis overflow in article card contend
+import templateHelper from '~/helpers/templateHelper'
+import articleSchema from '~/schemes/article'
 
+// @TODO: Make elipsis overflow in article card content
 export default {
   data () {
     return {
@@ -56,46 +57,7 @@ export default {
       return this.publishedAt || this.createdAt
     }
   },
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    content: {
-      type: String,
-      required: true
-    },
-    author: {
-      type: String,
-      required: true
-    },
-    thumbnailUrl: {
-      type: String,
-      required: false, // @TODO: Mark as a required when API would be ready to handle it
-      default: '/temporary/card-photo-0.jpg'
-    },
-    authorAvatarUrl: {
-      type: String,
-      required: false, // @TODO: Mark as a required when API would be ready to handle it
-      default: '/temporary/article-author.png'
-    },
-    createdAt: {
-      type: String,
-      default: ''
-    },
-    publishedAt: {
-      type: String,
-      default: ''
-    },
-    likes: {
-      type: Array,
-      default: () => []
-    },
-    comments: {
-      type: Array,
-      default: () => []
-    }
-  },
+  props: articleSchema.props,
   methods: {
     handleLikeClick () {
       this.isLiked = !this.isLiked

@@ -6,32 +6,12 @@
     <!-- <div v-if="deletedItem" class="alert alert-success">{{ deletedItem['@id'] }} deleted.</div> -->
     <div v-if="error" class="alert alert-danger">{{ error }}</div>
 
-    <span v-if="view">
-      <button
-        type="button"
-        class="btn btn-basic btn-sm"
-        @click="getPage(1)"
-        :disabled="page <= 1"
-      >First</button>
-      &nbsp;
-      <button
-        type="button"
-        class="btn btn-basic btn-sm"
-        @click="getPage(page - 1)"
-        :disabled="page <= 1"
-      >Previous</button>
-      &nbsp;
+    <span v-if="pagesMap">
       <button
         type="button" class="btn btn-basic btn-sm"
-        @click="getPage(page + 1)"
+        @click="getPage({ page: page+1 })"
         :disabled="totalItems <= page*perPage"
       >Next</button>
-      &nbsp;
-      <button
-        type="button" class="btn btn-basic btn-sm"
-        @click="getPage(Math.ceil(totalItems/perPage))"
-        :disabled="totalItems <= page*perPage"
-      >Last</button>
       &nbsp;
     </span>
 
@@ -56,7 +36,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in items">
+          <tr v-for="(item, index) in articles" :key="index">
             <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['@id'] }}</router-link></td>
             <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['code'] }}</router-link></td>
             <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['title'] }}</router-link></td>
@@ -67,8 +47,8 @@
             <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['author'] }}</router-link></td>
             <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['publishedAt'] }}</router-link></td>
             <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['published'] }}</router-link></td>
-            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['createdAt'] }}</router-link></td>
             <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['updatedAt'] }}</router-link></td>
+            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['createdAt'] }}</router-link></td>
             <td>
               <router-link :to="{name: 'articles-slug', params: { slug: item['code'] }}">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"/>
@@ -83,23 +63,22 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
-  export default {
-    computed: mapGetters({
-      error: 'article/list/error',
-      items: 'article/list/items',
-      loading: 'article/list/loading',
-      view: 'article/list/view',
-      page: 'article/list/page',
-      perPage: 'article/list/perPage',
-      totalItems: 'article/list/totalItems'
-    }),
-    methods: mapActions({
-      getPage: 'article/list/getItems'
-    }),
-    created () {
-      // this.$store.dispatch('article/list/getItems')
-    }
-  }
+const storePath = 'articles/list'
+
+export default {
+  computed: mapGetters({
+    totalItems: `${storePath}/totalItems`,
+    pagesMap: `${storePath}/pagesMap`,
+    articles: `${storePath}/articles`,
+    loading: `${storePath}/loading`,
+    perPage: `${storePath}/limit`,
+    error: `${storePath}/error`,
+    page: `${storePath}/page`
+  }),
+  methods: mapActions({
+    getPage: `${storePath}/getArticleList`
+  })
+}
 </script>

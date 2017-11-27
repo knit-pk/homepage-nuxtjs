@@ -3,7 +3,7 @@
     <knit-header/>
     <knit-navbar/>
 
-    <!-- Render page from pages -->
+    <!-- Render content from pages -->
     <nuxt/>
 
     <knit-footer/>

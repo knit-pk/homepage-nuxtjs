@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import MeetupCalendarWidget from '~/components/MeetupCalendarWidget.vue'
-import ArticleCardList from '~/components/ArticleCardList.vue'
-import ProjectsWidget from '~/components/ProjectsWidget.vue'
-import JobOffersWidget from '~/components/JobOffersWidget.vue'
-import ActionLinks from '~/components/ActionLinks.vue'
-import AlertWidget from '~/components/AlertWidget.vue'
+import MeetupCalendarWidget from '~/components/MeetupCalendarWidget'
+import JobOffersWidget from '~/components/JobOffersWidget'
+import ArticleCardList from '~/components/ArticleCardList'
+import ProjectsWidget from '~/components/ProjectsWidget'
+import ActionLinks from '~/components/ActionLinks'
+import AlertWidget from '~/components/AlertWidget'
 
 export default {
   layout: 'common',
@@ -36,7 +36,8 @@ export default {
     ActionLinks
   },
   fetch ({ store, params }) {
-    return Promise.all([store.dispatch('article-card-list/getArticleCardList')])
+    // Retrieves cards from API
+    return Promise.all([ store.dispatch('articles/list/getArticleList', { page: 1 }) ])
   }
 }
 </script>
