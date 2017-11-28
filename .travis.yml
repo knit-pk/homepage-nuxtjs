@@ -1,14 +1,14 @@
 language: node_js
 node_js:
-  - "8"
-# before_install:
-  # - npm install -g greenkeeper-lockfile@1
-  # - yarn global add greenkeeper-lockfile@1
-# before_script:
-  # - greenkeeper-lockfile-update
+  - "9"
+before_install:
+  - npm install -g greenkeeper-lockfile@1
+  - yarn global add greenkeeper-lockfile@1
+before_script:
+  - greenkeeper-lockfile-update
 script:
   - npm run test
   - npm run lint
-  # - npm run build:nuxt
+  # - npm run build:nuxt no needed for now, nuxt comes as built one package
   - npm run build
-# after_script: greenkeeper-lockfile-upload
+after_script: greenkeeper-lockfile-upload
