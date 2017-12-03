@@ -1,77 +1,42 @@
 <template>
   <section class="article-card-list article-card-list--big-main-post">
     <h2 class="visualy-hidden">Artykuły KNIT</h2>
-    <article-card v-for="(article, index) in articles" :key="index"
+    <article-card v-for="(article, index) in cardsArticles" :key="index"
                        :title="article.title"
-                       :author="article.author"
+                       :author="article.author.username"
                        :content="article.content"
-                       :thumbnail-url="article.thumbnailUrl"
-                       :author-avatar-url="article.authorAvatarUrl"
+                       :thumbnail="article.image"
+                       :author-avatar="article.author.authorAvatar"
                        :published-at="article.publishedAt"
+                       :created-at="article.createdAt"
                        :likes="article.likes"
-                       :comments="article.comments"/>
+                       :comments="article.comments"
+                       :slug="article.code"/>
   </section>
 </template>
 
 <script>
-import ArticleCard from '~/components/ArticleCard.vue'
+import ArticleCard from '~/components/ArticleCard'
+import _ from 'lodash'
+import { mapGetters } from 'vuex'
+
+const storePath = 'articles/list'
 
 export default {
   data () {
-    return {
-      articles: [
-        {
-          title: 'Rozpoczęła się rejestracja na Mocarne Warsztaty!',
-          author: 'Grzegorz Nowakowski',
-          content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam perspiciatis voluptatibus beatae quam, doloribus minus!',
-          thumbnailUrl: '/temporary/card-photo-0.jpg',
-          authorAvatarUrl: '/temporary/article-author.png',
-          publishedAt: '2017-10-25T15:19:21+00:00',
-          likes: 18,
-          comments: 15
-        },
-        {
-          title: 'Staże letnie w firmie Sabre',
-          author: 'Grzegorz Nowakowski',
-          content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam perspiciatis voluptatibus beatae quam, doloribus minus!',
-          thumbnailUrl: '/temporary/card-photo-1.jpg',
-          authorAvatarUrl: '/temporary/article-author.png',
-          publishedAt: '2017-10-14T15:19:21+00:00',
-          likes: 4,
-          comments: 16
-        },
-        {
-          title: 'Podsumowanie semestru letniego i rozpoczęcie zimowego',
-          author: 'Karol Wójcik',
-          content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam perspiciatis voluptatibus beatae quam, doloribus minus!',
-          thumbnailUrl: '/temporary/card-photo-2.png',
-          authorAvatarUrl: '/temporary/article-author.png',
-          publishedAt: '2017-09-22T15:19:21+00:00',
-          likes: 2,
-          comments: 0
-        },
-        {
-          title: 'Rekrutacja do programu Super Informatyk 2',
-          author: 'Konrad Obal',
-          content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam perspiciatis voluptatibus beatae quam, doloribus minus!',
-          thumbnailUrl: '/temporary/card-photo-3.jpg',
-          authorAvatarUrl: '/temporary/article-author.png',
-          publishedAt: '2017-08-03T15:19:21+00:00',
-          likes: 8,
-          comments: 1
-        },
-        {
-          title: 'Wykład o systemie kontroli wersji Git',
-          author: 'Dominik Źrebiec',
-          content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam perspiciatis voluptatibus beatae quam, doloribus minus!',
-          thumbnailUrl: '/temporary/card-photo-4.jpg',
-          authorAvatarUrl: '/temporary/article-author.png',
-          publishedAt: '2017-07-15T15:19:21+00:00',
-          likes: 5,
-          comments: 11
-        }
-      ]
-    }
+    return {}
+  },
+  computed: {
+    cardsArticles () {
+      return _.slice(this.articles, 0, 5)
+    },
+    ...mapGetters({
+      articles: `${storePath}/articles`,
+      loading: `${storePath}/loading`,
+      status: `${storePath}/status`,
+      limit: `${storePath}/limit`,
+      error: `${storePath}/error`
+    })
   },
   components: {
     ArticleCard
@@ -92,6 +57,10 @@ export default {
 
   &--big-main-post {
     .article-card {
+      &__title-link {
+        width: 100%;
+      }
+
       &:first-of-type {
         flex-basis: calc(66.666% - #{$default-gutters-width});
         position: relative;
@@ -115,6 +84,7 @@ export default {
             background: linear-gradient(to bottom, rgba(90,45,140,0) 0%,rgba(15,15,15,1) 100%);
           }
         }
+
 
         .article-card__thumbnail {
           width: 100%;

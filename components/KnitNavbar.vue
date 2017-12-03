@@ -2,7 +2,7 @@
   <nav class="navbar">
     <ul class="navbar__list">
       <li class="navbar__list-item">
-        <a href="/" class="navbar__list-link">Strona główna</a>
+        <router-link :to="{ path: '/'}" class="navbar__list-link"> Strona Główna </router-link>
       </li>
       <li class="navbar__list-item">
         <a href="/" class="navbar__list-link">O nas</a>
@@ -18,6 +18,9 @@
       </li>
       <li class="navbar__list-item">
         <a href="/" class="navbar__list-link">Kontakt</a>
+      </li>
+      <li class="navbar__list-item">
+        <router-link :to="{ name: 'articles'}" class="navbar__list-link"> Artykuły </router-link>
       </li>
     </ul>
   </nav>
@@ -77,7 +80,7 @@ export default {
       padding: 0;
       margin: 0 15px;
 
-      &:hover, 
+      &:hover,
       &:focus {
         background-color: transparent;
         opacity: 0.5;

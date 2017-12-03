@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import KnitNavbar from '~/components/KnitNavbar.vue'
+import KnitNavbar from '~/components/KnitNavbar'
 
 export default {
   data () {
@@ -72,7 +72,7 @@ export default {
     margin-top: 40px;
     height: 50px;
     background-color: $footer-down-bg-color;
-    align-self: stretch; 
+    align-self: stretch;
   }
 
   &__socialbox-item {

@@ -1,8 +1,8 @@
 <template>
   <article class="article-card">
-    <a href="/" class="article-card__thumbnail-link">
-      <img :src="thumbnailUrl" class="article-card__thumbnail" alt="">
-    </a>
+    <router-link class="article-card__thumbnail-link" :to="{name: 'articles-slug', params: { slug }}">
+      <img :src="thumbnail" class="article-card__thumbnail" alt="">
+    </router-link>
     <header class="article-card__header">
       <a href="/" class="article-card__title-link">
         <h3 class="article-card__title">{{ title }}</h3>
@@ -11,24 +11,24 @@
         <span class="article-card__author-name">{{ author }}</span>
       </a>
       <a href="#" class="article-card__author-avatar-link">
-        <img :src="authorAvatarUrl" class="article-card__author-avatar" :alt="author">
+        <img :src="authorAvatar" class="article-card__author-avatar" :alt="author">
       </a>
     </header>
     <p class="article-card__content">{{ content }}</p>
     <footer class="article-card__footer">
-      <time :datetime="publishedAt">{{ formatDateToLocalString(publishedAt) }}</time>
+      <time :datetime="time">{{ formatDateToLocalString(time) }}</time>
       <ul class="article-card__stats" aria-label="Statystyki">
         <li class="article-card__stats-group">
           <a @click.prevent.stop="handleLikeClick" :class="{ ['article-card__like-button--liked']: isLiked }" href="#" role="button" class="article-card__like-button" title="Lubię to!" aria-label="Polub post">
             <span class="flaticon-like article-card__stat-icon" aria-hidden="true"></span>
             <span class="visualy-hidden">Polubienia</span>
-            <span>{{ likes }}</span>
+            <span>{{ likesAmount }}</span>
           </a>
         </li>
         <li class="article-card__stats-group">
           <span class="flaticon-chat article-card__stat-icon article-card__comment-icon" title="Komentarze" aria-hidden="true"></span>
           <span class="visualy-hidden">Komentarze</span>
-          <span>{{ comments }}</span>
+          <span>{{ commentsAmmout }}</span>
         </li>
       </ul>
     </footer>
@@ -36,43 +36,28 @@
 </template>
 
 <script>
-import templateHelper from '~/helpers/templateHelper.js'
-// @TODO: Make elipsis overflow in article card contend
+import templateHelper from '~/helpers/templateHelper'
+import articleSchema from '~/schemes/article'
 
+// @TODO: Make elipsis overflow in article card content
 export default {
   data () {
     return {
       isLiked: false
     }
   },
-  props: {
-    title: {
-      type: String,
-      required: true
+  computed: {
+    likesAmount () {
+      return this.likes.length
     },
-    content: {
-      type: String,
-      required: true
+    commentsAmmout () {
+      return this.comments.length
     },
-    author: {
-      type: String,
-      required: true
-    },
-    thumbnailUrl: String,
-    authorAvatarUrl: String,
-    publishedAt: {
-      type: String,
-      required: true
-    },
-    likes: {
-      type: Number,
-      required: true
-    },
-    comments: {
-      type: Number,
-      required: true
+    time () {
+      return this.publishedAt || this.createdAt
     }
   },
+  props: articleSchema.props,
   methods: {
     handleLikeClick () {
       this.isLiked = !this.isLiked
@@ -129,6 +114,7 @@ export default {
   }
 
   &__title {
+    min-width: 200px;
     font-weight: 300;
     font-size: 21px;
   }
@@ -200,7 +186,7 @@ export default {
     &:hover, &:focus {
       color: $article-card-like-button-hover-color;
     // color: $article-card-text-color;
-      
+
     }
 
     &--liked {
@@ -209,7 +195,7 @@ export default {
       &:hover, &:focus {
          color: $article-card-like-button-liked-hover-color;
       // color: $article-card-like-button-liked-color;
-         
+
       }
     }
   }

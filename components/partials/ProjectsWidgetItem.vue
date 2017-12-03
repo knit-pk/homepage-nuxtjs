@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import templateHelper from '~/helpers/templateHelper.js'
+import templateHelper from '~/helpers/templateHelper'
 export default {
   data () {
     return {}

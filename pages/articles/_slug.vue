@@ -1,16 +1,40 @@
 <template>
-  <article-show/>
+  <article-detail :title="article.title"
+                  :author="article.author.username"
+                  :content="article.content"
+                  :thumbnail-url="article.image"
+                  :author-avatar-url="article.author.avatarUrl"
+                  :published-at="article.publishedAt"
+                  :created-at="article.createdAt"
+                  :likes="article.likes"
+                  :comments="article.comments"
+                  :slug="article.code"/>
 </template>
 
 <script>
-import ArticleShow from '~/components/article/Show.vue'
+import ArticleDetail from '~/components/ArticleDetail.vue'
+import { mapGetters } from 'vuex'
+
+const storePath = 'articles/item'
 
 export default {
+  layout: 'common',
   components: {
-    ArticleShow
+    ArticleDetail
+  },
+  computed: {
+    ...mapGetters({
+      loading: `${storePath}/loading`,
+      article: `${storePath}/article`,
+      status: `${storePath}/status`,
+      error: `${storePath}/error`
+    })
+  },
+  beforeDestroy () {
+    this.$store.dispatch(`${storePath}/resetArticle`)
   },
   fetch ({ store, params }) {
-    return store.dispatch('article/show/retrieveByCode', params.slug)
+    return Promise.all([ store.dispatch('articles/item/getArticle', params.slug) ])
   }
 }
 </script>

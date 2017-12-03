@@ -3,14 +3,15 @@
 </template>
 
 <script>
-import ArticleList from '~/components/article/List.vue'
+import ArticleList from '~/components/ArticleList'
 
 export default {
+  layout: 'common',
   components: {
     ArticleList
   },
   fetch ({ store, params }) {
-    return store.dispatch('article/list/getItems', store.state.article.list.page)
+    return store.dispatch('articles/list/getArticleList', { page: 1 })
   }
 }
 </script>
