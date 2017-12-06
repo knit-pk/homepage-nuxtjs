@@ -1,5 +1,7 @@
 .vscode
 .env
+app.js
+.env.mydevil
 
 # dependencies
 node_modules
