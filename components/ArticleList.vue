@@ -19,9 +19,7 @@
         <table class="table table-striped table-hover">
         <thead>
           <tr>
-            <th>Id</th>
-            <th>code</th>
-            <th>title</th>
+            <th>Title</th>
             <th>content</th>
             <th>category</th>
             <th>tags</th>
@@ -37,12 +35,14 @@
         </thead>
         <tbody>
           <tr v-for="(item, index) in articles" :key="index">
-            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['@id'] }}</router-link></td>
-            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['code'] }}</router-link></td>
             <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['title'] }}</router-link></td>
             <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['content'] }}</router-link></td>
             <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['category'] }}</router-link></td>
-            <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['tags'] }}</router-link></td>
+            <td>
+              <ul>
+                <li v-for="(tag, index) in item['tags']" :key="index">{{ tag['name'] }}</li>
+              </ul>
+            </td>
             <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['description'] }}</router-link></td>
             <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['author'] }}</router-link></td>
             <td><router-link v-if="item" :to="{name: 'articles-slug', params: { slug: item['code'] }}">{{ item['publishedAt'] }}</router-link></td>
