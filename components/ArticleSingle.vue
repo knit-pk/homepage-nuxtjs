@@ -1,8 +1,15 @@
 <template>
-<span>{{title}}</span>
+  <article class="article">
+    <article-content/>
+    <article-footer/>
+    <article-comments/>
+  </article>
 </template>
 
 <script>
+import ArticleContent from '~/components/partials/ArticleContent'
+import ArticleFooter from '~/components/partials/ArticleFooter'
+import ArticleComments from '~/components/ArticleComments'
 import templateHelper from '~/helpers/templateHelper'
 import articleSchema from '~/schemes/article'
 
@@ -23,6 +30,11 @@ export default {
       return this.publishedAt || this.createdAt
     }
   },
+  components: {
+    ArticleContent,
+    ArticleFooter,
+    ArticleComments
+  },
   props: articleSchema.props,
   methods: {
     handleLikeClick () {
@@ -37,5 +49,10 @@ export default {
 </script>
 
 <style lang="scss">
+@import "assets/scss/_imports.scss";
 
+.article {
+  margin-right: $default-gutters-width;
+  margin-left: 40px;
+}
 </style>

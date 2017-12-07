@@ -1,4 +1,4 @@
-@import "animations.scss";
+@import '_imports.scss';
 
 // *** resets ***
 * {
@@ -15,6 +15,36 @@ a {
   text-decoration: none;
 }
 
+// *** base ***
+.default-badge {
+  display: inline-block;
+  padding: 3px 9px;
+}
+
+.page {
+  display: flex;
+  flex-wrap: wrap;
+  padding: $default-gutters-width;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.leftside-wrapper {
+  flex: 1;
+}
+
+.aside-right {
+  flex-basis: 320px;
+  margin: 0;
+  margin-left: $default-gutters-width;
+}
+
+.aside-down {
+  flex-basis: 100%;
+  margin-right: $default-gutters-width;
+  display: flex;
+}
+
 // *** utilities ***
 .visualy-hidden {
   position: absolute;
@@ -25,13 +55,4 @@ a {
   overflow: hidden;
   clip: rect(0,0,0,0);
   border: 0;
-}
-
-.default-badge {
-  display: inline-block;
-  padding: 3px 9px;
-}
-
-a {
-  text-decoration: none;
 }
