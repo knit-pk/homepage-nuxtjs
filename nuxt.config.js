@@ -21,7 +21,11 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
-  plugins: ['~/plugins/http-common.js', '~/plugins/prevent-scroll.js'],
+  plugins: [
+    '~/plugins/http-common.js',
+    '~/plugins/prevent-scroll.js',
+    '~/plugins/vue-markdown.js'
+  ],
   modules: [
     ['@nuxtjs/axios', { credentials: false }],
     ['bootstrap-vue/nuxt', { css: false }]

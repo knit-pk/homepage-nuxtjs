@@ -1,18 +1,30 @@
 <template>
-  <article-detail :title="article.title"
-                  :author="article.author.username"
-                  :content="article.content"
-                  :thumbnail-url="article.image"
-                  :author-avatar-url="article.author.avatarUrl"
-                  :published-at="article.publishedAt"
-                  :created-at="article.createdAt"
-                  :likes="article.likes"
-                  :comments="article.comments"
-                  :slug="article.code"/>
+  <div class="page page--article">
+    <div class="leftside-wrapper">
+      <main class="main-content">
+        <article-single :title="article.title"
+                    :author="article.author.username"
+                    :content="article.content"
+                    :thumbnail-url="article.image"
+                    :author-avatar-url="article.author.avatarUrl"
+                    :published-at="article.publishedAt"
+                    :created-at="article.createdAt"
+                    :likes="article.likes"
+                    :comments="article.comments"
+                    :slug="article.code"/>
+      </main>
+    </div>
+    <aside class="aside-right">
+      <popular-articles-widget/>
+      <recommended-articles-widget/>
+    </aside>
+  </div>
 </template>
 
 <script>
-import ArticleDetail from '~/components/ArticleDetail.vue'
+import ArticleSingle from '~/components/ArticleSingle.vue'
+import PopularArticlesWidget from '~/components/PopularArticlesWidget.vue'
+import RecommendedArticlesWidget from '~/components/RecommendedArticlesWidget.vue'
 import { mapGetters } from 'vuex'
 
 const storePath = 'articles/item'
@@ -20,7 +32,9 @@ const storePath = 'articles/item'
 export default {
   layout: 'common',
   components: {
-    ArticleDetail
+    ArticleSingle,
+    PopularArticlesWidget,
+    RecommendedArticlesWidget
   },
   computed: {
     ...mapGetters({
@@ -38,3 +52,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .page {
+    &--article {
+      // max-width: 1200px;
+      // margin-left: 70px;
+      // margin: 0 auto;
+    }
+  }
+</style>
+

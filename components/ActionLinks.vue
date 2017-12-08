@@ -57,19 +57,20 @@ export default {
   align-content: space-between;
   overflow: hidden;
   position: relative;
-  font-size: 0.875rem;
+  font-size: 0.975rem;
+  font-weight: 300;
 
   &__link-item {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex-basis: calc(50% - #{$default-gutters-width / 2});
-    border-radius: 5px;
+    border-radius: $default-blocks-border-radius;
     max-width: 200px;
     max-height: 150px;
     min-width: calc(50% - #{$default-gutters-width / 2});
     min-height: calc(50% - #{$default-gutters-width / 2});
-    padding: 25px;
+    padding: 20px;
   }
 }
 </style>

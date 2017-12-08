@@ -23,6 +23,7 @@ export default {
 @import "assets/scss/_imports.scss";
 
 .action-link {
+  outline: 0; 
   $p: &;
 
   &__text {
@@ -39,6 +40,12 @@ export default {
 
   &--job-offer {
     background-color: $action-link-item-job-bgcolor;
+
+    &:hover,
+    &:focus {
+      background-color: darken($action-link-item-job-bgcolor, 7%);
+    }
+
     #{$p}__icon {
       color: $action-link-item-job-icon-color;
       align-self: flex-start;
@@ -47,6 +54,12 @@ export default {
 
   &--project-offer {
     background-color: $action-link-item-project-bgcolor;
+
+    &:hover,
+    &:focus {
+      background-color: darken($action-link-item-project-bgcolor, 7%);
+    }
+
     #{$p}__icon {
       color: $action-link-item-project-icon-color;
       align-self: flex-end;
@@ -55,6 +68,12 @@ export default {
 
   &--more-info {
     background-color: $action-link-item-info-bgcolor;
+
+    &:hover,
+    &:focus {
+      background-color: darken($action-link-item-info-bgcolor, 6%);
+    }
+
     #{$p}__icon {
       color: $action-link-item-info-icon-color;
       align-self: flex-start;
@@ -63,6 +82,13 @@ export default {
 
   &--new-section {
     background-color: $action-link-item-section-bgcolor;
+
+    &:hover,
+    &:focus {
+      background-color: darken($action-link-item-section-bgcolor, 7%);
+    }
+    
+
     #{$p}__icon {
       color: $action-link-item-section-icon-color;
       align-self: flex-end;
