@@ -8,15 +8,15 @@
         <h3 class="article-card__title">{{ title }}</h3>
       </a>
       <a href="/" class="article-card__author-link">
-        <span class="article-card__author-name">{{ author }}</span>
+        <span class="article-card__author-name">{{ author.username }}</span>
       </a>
       <a href="#" class="article-card__author-avatar-link">
         <img :src="authorAvatar" class="article-card__author-avatar" :alt="author">
       </a>
     </header>
-    <p class="article-card__content">{{ content }}</p>
+    <p class="article-card__description">{{ description }}</p>
     <footer class="article-card__footer">
-      <time :datetime="time">{{ formatDateToLocalString(time) }}</time>
+      <time :datetime="publishedAt">{{ formatDateToLocalString(publishedAt) }}</time>
       <ul class="article-card__stats" aria-label="Statystyki">
         <li class="article-card__stats-group">
           <a @click.prevent.stop="handleLikeClick" :class="{ ['article-card__like-button--liked']: isLiked }" href="#" role="button" class="article-card__like-button" title="Lubię to!" aria-label="Polub post">
@@ -36,10 +36,10 @@
 </template>
 
 <script>
+import articleFullSchema from '~/schemes/article/full'
 import templateHelper from '~/helpers/templateHelper'
-import articleSchema from '~/schemes/article'
 
-// @TODO: Make elipsis overflow in article card content
+// @TODO: Make elipsis overflow in article card description
 export default {
   data () {
     return {
@@ -53,11 +53,11 @@ export default {
     commentsAmmout () {
       return this.comments.length
     },
-    time () {
-      return this.publishedAt || this.createdAt
+    authorAvatar () {
+      return this.author.avatar.url
     }
   },
-  props: articleSchema.props,
+  props: articleFullSchema.props,
   methods: {
     handleLikeClick () {
       this.isLiked = !this.isLiked
@@ -151,7 +151,7 @@ export default {
     object-fit: cover;
   }
 
-  &__content {
+  &__description {
     padding: 0 20px 15px 20px;
     font-weight: 300;
     font-size: 14px;

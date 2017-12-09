@@ -42,7 +42,7 @@ export const actions = {
            TODO: There should be logic which checks if article is published
           */
           const articlesData = data['hydra:member']
-          const article = commonHelper.pickItemsProps(articlesData, settings.props, true)[0]
+          const article = commonHelper.pickItemsProps(articlesData, settings.props, true, settings.datePicker)[0]
 
           storeHelper.commitMultiple([ success(article), status('complete') ], commit)
         })

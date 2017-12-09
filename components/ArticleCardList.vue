@@ -1,24 +1,25 @@
 <template>
   <section class="article-card-list article-card-list--big-main-post">
     <h2 class="visualy-hidden">Artykuły KNIT</h2>
+
     <article-card v-for="(article, index) in cardsArticles" :key="index"
                        :title="article.title"
-                       :author="article.author.username"
+                       :author="article.author"
                        :content="article.content"
-                       :thumbnail="article.image"
-                       :author-avatar="article.author.authorAvatar"
+                       :description="article.description"
+                       :thumbnail="article.image.url"
                        :published-at="article.publishedAt"
-                       :created-at="article.createdAt"
                        :likes="article.likes"
                        :comments="article.comments"
                        :slug="article.code"/>
+
   </section>
 </template>
 
 <script>
 import ArticleCard from '~/components/ArticleCard'
-import _ from 'lodash'
 import { mapGetters } from 'vuex'
+import _ from 'lodash'
 
 const storePath = 'articles/list'
 
@@ -107,7 +108,7 @@ export default {
           z-index: 2;
         }
 
-        .article-card__content {
+        .article-card__description {
           z-index: 2;
           color: #fff;
         }

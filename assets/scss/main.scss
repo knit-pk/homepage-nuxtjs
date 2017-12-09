@@ -21,6 +21,11 @@ a {
   padding: 3px 9px;
 }
 
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
 .page {
   display: flex;
   flex-wrap: wrap;

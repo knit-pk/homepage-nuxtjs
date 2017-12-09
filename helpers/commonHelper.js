@@ -53,12 +53,16 @@ export default {
    * @param {boolean} [deleteFalsyProps=false]
    * @returns
    */
-  pickItemsProps (collection = [], props = [], deleteFalsyProps = false) {
+  pickItemsProps (collection = [], props = [], deleteFalsyProps = false, customPicker = (a) => a) {
     const reducer = deleteFalsyProps ?
-      (coll, item) => [...coll, this.removeFalsyProps(_.pick(item, props))] :
-      (coll, item) => [...coll, _.pick(item, props)]
+      (coll, item) => [...coll, customPicker(this.removeFalsyProps(_.pick(item, props)))] :
+      (coll, item) => [...coll, customPicker(_.pick(item, props))]
 
     return _.reduce(collection, reducer, [])
+  },
+
+  beautifyMd (regex = new RegExp(), beautifier = '') {
+    return (content) => _.replace(content, regex, string => `${string} ${beautifier}`)
   },
 
   /**
