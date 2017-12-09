@@ -14,8 +14,7 @@
         </div>
       </div>
     </header>
-    <vue-markdown class="article-content__body" :source="content" :postrender="articlePostRender">
-    </vue-markdown>
+    <vue-markdown class="article-content__body" :source="content" :postrender="articlePostRender"/>
   </div>
 </template>
 
@@ -27,8 +26,10 @@ import VueMarkdown from 'vue-markdown'
 import _ from 'lodash'
 
 const mdRegexps = {
+  imageDescRegex: /<img .+\/>\n<em/,
   imageRegex: /img src=".+"/g,
   paragraphRegex: /<p(?!r)/g,
+  quoteRegex: /<blockquote/g,
   listItemRegex: /<li/g,
   headingRegex: /<h2/g,
   codeRegex: /<code/g,
@@ -52,13 +53,15 @@ export default {
   },
   methods: {
     articlePostRender: _.flow([
+      ch.beautifyMd(mdRegexps.imageDescRegex, 'class="article-content__body-img-description"'),
+      ch.beautifyMd(mdRegexps.imageRegex, 'class="img-fluid article-content__body-img"'),
       ch.beautifyMd(mdRegexps.paragraphRegex, 'class="article-content__body-paragraph"'),
       ch.beautifyMd(mdRegexps.listItemRegex, 'class="article-content__body-list-item"'),
       ch.beautifyMd(mdRegexps.headingRegex, 'class="article-content__body-heading"'),
+      ch.beautifyMd(mdRegexps.quoteRegex, 'class="article-content__body-quote"'),
       ch.beautifyMd(mdRegexps.listRegex, 'class="article-content__body-list"'),
       ch.beautifyMd(mdRegexps.codeRegex, 'class="article-content__body-code"'),
-      ch.beautifyMd(mdRegexps.preRegex, 'class="article-content__body-pre"'),
-      ch.beautifyMd(mdRegexps.imageRegex, 'class="img-fluid"')
+      ch.beautifyMd(mdRegexps.preRegex, 'class="article-content__body-pre"')
     ])
   },
   mixins: [ templateHelper ],
@@ -117,11 +120,13 @@ export default {
   }
 
   &__body {
-    padding: 0 30px 10px 30px;
+    padding: 0 30px 30px 30px;
+    text-align: justify;
   }
 
   &__body-paragraph {
     padding: 10px 0;
+    line-height: 1.55;
   }
 
   &__body-heading {
@@ -149,8 +154,36 @@ export default {
 
   &__body-code {
     background-color: #f2f2f2;
-    padding: 0 1px;
+    padding: 0 3px;
     color: #111111;
+  }
+
+  &__body-quote {
+    margin: 30px 0 20px 0;
+    padding: 5px 20px;
+    font-style: italic;
+    position: relative;
+
+    &:before {
+      content: '';
+      background-color: #e8e8e8;
+      height: 100%;
+      position: absolute;
+      width: 4px;
+      top: 1px;
+      left: 0px;
+    }
+  }
+
+  &__body-img {
+    padding-top: 20px;
+  }
+
+  &__body-img-description {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    font-size: 0.90rem;
   }
 
   &__body-pre {
