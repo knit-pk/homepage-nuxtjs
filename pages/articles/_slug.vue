@@ -3,12 +3,11 @@
     <div class="leftside-wrapper">
       <main class="main-content">
         <article-single :title="article.title"
-                    :author="article.author.username"
                     :content="article.content"
-                    :thumbnail-url="article.image"
-                    :author-avatar-url="article.author.avatarUrl"
+                    :thumbnail="article.image.url"
+                    :author="article.author"
+                    :description="article.description"
                     :published-at="article.publishedAt"
-                    :created-at="article.createdAt"
                     :likes="article.likes"
                     :comments="article.comments"
                     :slug="article.code"/>

@@ -38,7 +38,7 @@ export default {
   /**
    * Removes all falsy props
    * @param {Object} [object={}]
-   * @returns
+   * @returns {Object}
    */
   removeFalsyProps (object = {}) {
     return _.pickBy(object, _.identity)
@@ -48,23 +48,35 @@ export default {
    * Returns only specified props
    * and deletes falsy props if corresponding
    * flag is set (one level deep)
-   * @param {any} [collection=[]]
-   * @param {any} [props=[]]
-   * @param {boolean} [deleteFalsyProps=false]
-   * @returns
+   * @param {Array} [collection=[]]
+   * @param {Array} [props=[]]
+   * @param {Boolean} [deleteFalsyProps=false]
+   * @returns {Array}
    */
-  pickItemsProps (collection = [], props = [], deleteFalsyProps = false) {
+  pickItemsProps (collection = [], props = [], deleteFalsyProps = false, customPicker = o => o) {
     const reducer = deleteFalsyProps ?
-      (coll, item) => [...coll, this.removeFalsyProps(_.pick(item, props))] :
-      (coll, item) => [...coll, _.pick(item, props)]
+      (coll, item) => [...coll, customPicker(this.removeFalsyProps(_.pick(item, props)))] :
+      (coll, item) => [...coll, customPicker(_.pick(item, props))]
 
     return _.reduce(collection, reducer, [])
   },
 
   /**
+   * Returns function which adds beautifier
+   * string to all occurences of regex
+   * e.g. Add a class to a tag which match the regex
+   * @param {Regex} [regex=new RegExp()]
+   * @param {String} [beautifier='']
+   * @returns {Function}
+   */
+  beautifyMd (regex = new RegExp(), beautifier = '') {
+    return content => _.replace(content, regex, string => `${string} ${beautifier}`)
+  },
+
+  /**
    * Stringifies queryObject to queryString
-   * @param {any} [qsObject={}]
-   * @returns
+   * @param {Object} [qsObject={}]
+   * @returns {String}
    */
   getKnitQs (qsObject = {}) {
     return qs.stringify(qsObject, { arrayFormat: 'brackets' })

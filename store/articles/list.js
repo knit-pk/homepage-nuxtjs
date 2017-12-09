@@ -50,9 +50,9 @@ export const actions = {
         const articlesData = data['hydra:member']
         const totalItems = data['hydra:totalItems']
         const pagesMap = data['hydra:view']
-        const articles = commonHelper.pickItemsProps(articlesData, settings.props, true)
+        const articles = commonHelper.pickItemsProps(articlesData, settings.props, true, settings.datePicker)
 
-        knitLogger.debug(`Main articles list fetched successfully: data ${JSON.stringify(data)}`)
+        knitLogger.debug(`Main articles list fetched successfully: data ${data}`)
 
         storeHelper.commitMultiple([
           success({ articles, page, totalItems }),
@@ -61,8 +61,7 @@ export const actions = {
         ], commit)
       })
       .catch(err => {
-        knitLogger.debug(`Error occurred while trying to fetch main articles list: err ${JSON.stringify(err)}`)
-
+        knitLogger.debug(`Error occurred while trying to fetch main articles list: err ${err}`)
         storeHelper.commitMultiple([ error(err), changeStatus('error') ], commit)
       })
   }
