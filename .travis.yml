@@ -30,7 +30,13 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: bash ./deploy/mydevil.sh
+    script: bash ./deploy/mydevil-deploy.sh
+    on:
+      branch: develop
+      node: '8'
+  - provider: script
+    skip_cleanup: true
+    script: ssh k911-main@s11.mydevil.net 'bash -s' < ./deploy/mydevil-post-deploy.sh
     on:
       branch: develop
       node: '8'
