@@ -1,14 +1,36 @@
 language: node_js
+
 node_js:
-  - "9"
+  - '8'
+  - '9'
+
 before_install:
   - npm install -g greenkeeper-lockfile@1
   - yarn global add greenkeeper-lockfile@1
+
 before_script:
   - greenkeeper-lockfile-update
+
 script:
   - npm run test
   - npm run lint
-  # - npm run build:nuxt no needed for now, nuxt comes as built one package
   - npm run build
+
 after_script: greenkeeper-lockfile-upload
+
+addons:
+  ssh_known_hosts: s11.mydevil.net
+
+before_deploy:
+  - openssl aes-256-cbc -K $encrypted_1e282a7349af_key -iv $encrypted_1e282a7349af_iv -in ./deploy/mydevil_rsa.enc -out /tmp/mydevil_rsa -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 /tmp/mydevil_rsa
+  - ssh-add /tmp/mydevil_rsa
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: bash ./deploy/mydevil.sh
+    on:
+      branch: develop
+      node: '8'
