@@ -1,8 +1,8 @@
 <template>
   <div class= "article-breadcrumb">
     <ul class="article-breadcrumb__routes">
-      <li v-for="(item, index) in breadcrumbs" :key ="index" class="article-breadcrumb__item">
-        <a href="#"> {{ item }} </a>
+      <li v-for="(item, index) in breadcrumbs" class="article-breadcrumb__item" :key ="index">
+        <router-link to="#"> {{ item }} </router-link>
       </li>
     </ul>
   </div>
@@ -30,7 +30,7 @@ export default {
     list-style: none;
     margin-left: 9px;
     margin-bottom: 10px;
-    padding: 4px 0px 11px 0;
+    padding: 4px 0 11px 0;
   }
 
   &__routes li {
@@ -38,7 +38,7 @@ export default {
   }
 
   &__routes li+li:before {
-    padding: 8px;
+    padding: 6px;
     color: $gray-50;
     content: ">\00a0";
   }
@@ -52,7 +52,7 @@ export default {
     text-decoration: underline;
   }
 
-  &__routes li:last-child a{
+  &__routes li:last-child a {
     font-weight: bold;
     text-decoration: none;
   }

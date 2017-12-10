@@ -1,7 +1,7 @@
 <template>
   <article class="article">
-
     <article-breadcrumb/>
+
     <article-content
       :content="content"
       :published-at="publishedAt"
