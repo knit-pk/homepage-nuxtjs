@@ -1,5 +1,6 @@
 <template>
   <article class="article">
+    <article-breadcrumb/>
 
     <article-content
       :content="content"
@@ -14,6 +15,7 @@
 </template>
 
 <script>
+import ArticleBreadcrumb from '~/components/partials/ArticleBreadcrumb'
 import ArticleComments from '~/components/partials/ArticleComments'
 import ArticleContent from '~/components/partials/ArticleContent'
 import ArticleFooter from '~/components/partials/ArticleFooter'
@@ -26,6 +28,7 @@ export default {
   },
   computed: {},
   components: {
+    ArticleBreadcrumb,
     ArticleComments,
     ArticleContent,
     ArticleFooter
