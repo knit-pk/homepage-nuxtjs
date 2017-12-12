@@ -23,7 +23,7 @@ export default {
 @import "assets/scss/_imports.scss";
 
 .action-link {
-  outline: 0; 
+  outline: 0;
   $p: &;
 
   &__text {
@@ -87,7 +87,7 @@ export default {
     &:focus {
       background-color: darken($action-link-item-section-bgcolor, 7%);
     }
-    
+
 
     #{$p}__icon {
       color: $action-link-item-section-icon-color;

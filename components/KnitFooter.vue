@@ -1,8 +1,8 @@
 <template>
   <footer class="knit-footer">
-    <a href="/" class="knit-footer__link">
-      <img src="/knit-logotype.svg" class="knit-footer__logo" alt="Koło Naukowe IT">
-    </a>
+    <router-link :to="{path: '/'}" class="knit-footer__link">
+      <knit-logo/>
+    </router-link>
     <knit-navbar class="navbar--footy"/>
     <span class="knit-footer__caption"> 2017 &copy; Koło Naukowe IT Politechnika Krakowska </span>
     <ul class="knit-footer__socialbox-list">
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import KnitLogo from '~/components/partials/KnitLogo'
 import KnitNavbar from '~/components/KnitNavbar'
 
 export default {
@@ -30,7 +31,8 @@ export default {
     return {}
   },
   components: {
-    KnitNavbar
+    KnitNavbar,
+    KnitLogo
   }
 }
 </script>
@@ -47,12 +49,8 @@ export default {
   &__link {
     display: block;
     margin-top: 35px;
-  }
-
-  &__logo {
-    margin: 0 auto;
-    display: block;
-    height: 65px;
+    width: 65px;
+    height: auto;
   }
 
   &__caption {

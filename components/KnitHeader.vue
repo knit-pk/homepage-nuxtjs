@@ -1,13 +1,15 @@
 <template>
   <header class="knit-header">
     <h1 class="site-heading">
-      <a href="/" class="site-heading__link">
-        <img src="/knit-logotype.svg" class="site-heading__logo" alt="">
+      <router-link :to="{path: '/'}" class="site-heading__link">
+        <div class="site-heading__logo">
+          <knit-logo/>
+        </div>
         <div class="site-heading__name-wrapper">
           <span>Koło Naukowe IT</span>
           <span class="site-heading__university-name">Politechnika Krakowska</span>
         </div>
-      </a>
+      </router-link>
     </h1>
     <form class="searchbar">
       <label for="site-search" class="visualy-hidden">Wyszukaj na stronie</label>
@@ -50,16 +52,21 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        user: {
-          name: 'Dominik Źrebiec',
-          avatarUrl: '/temporary/article-author.png'
-        }
+import KnitLogo from '~/components/partials/KnitLogo'
+
+export default {
+  data () {
+    return {
+      user: {
+        name: 'Dominik Źrebiec',
+        avatarUrl: '/temporary/article-author.png'
       }
     }
+  },
+  components: {
+    KnitLogo
   }
+}
 </script>
 
 <style lang='scss'>
@@ -86,21 +93,22 @@
 
   &__link {
     display: flex;
+    align-items: center;
     text-decoration: none;
     color: $knit-header-text-color;
   }
 
   &__logo {
-    width: 35px;
+    width: 37px;
     height: 100%;
     margin-right: 10px;
+    margin-bottom: -5px;
   }
 
   &__name-wrapper {
     display: flex;
     flex-direction: column;
     font-size: 16px;
-    padding-top: 3px;
     font-weight: 400;
   }
 
@@ -197,11 +205,11 @@
     font-size: 14px;
     font-family: $default-font-family;
   }
-  
+
   &__username {
     margin-right: 3px;
   }
-  
+
   &__avatar {
     width: 32px;
     height: 32px;
@@ -231,7 +239,7 @@
     font-size: 14px;
     color: $gray-60;
     padding: 7px 17px;
-    
+
     &:hover,
     &:focus {
       background-color: $knit-header-links-focus-bg-color;
