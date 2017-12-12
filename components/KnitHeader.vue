@@ -99,7 +99,7 @@ export default {
   }
 
   &__logo {
-    width: 45px;
+    width: 37px;
     height: 100%;
     margin-right: 10px;
     margin-bottom: -5px;

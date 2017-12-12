@@ -26,17 +26,9 @@ module.exports = {
     ],
     script: [],
     link: [{
-      rel: 'icon',
+      rel: 'shortcut icon',
       type: 'image/x-icon',
       href: '/favicon.ico'
-    },
-    {
-      rel: 'dns-prefetch',
-      href: '//cdn.rawgit.com'
-    },
-    {
-      rel: 'dns-prefetch',
-      href: '//fonts.googleapis.com'
     },
     {
       rel: 'preconnect',
@@ -44,11 +36,13 @@ module.exports = {
       crossorigin: 'anonymous'
     },
     {
-      rel: 'prefetch stylesheet',
+      rel: 'stylesheet preload',
+      as: 'style',
       href: 'https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css'
     },
     {
-      rel: 'prefetch stylesheet',
+      rel: 'stylesheet preload',
+      as: 'style',
       href: 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&amp;subset=latin-ext'
     }
     ]
