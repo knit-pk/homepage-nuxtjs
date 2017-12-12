@@ -4,15 +4,15 @@
       <img :src="thumbnail" class="article-card__thumbnail" alt="">
     </router-link>
     <header class="article-card__header">
-      <a href="/" class="article-card__title-link">
+      <router-link :to="{name: 'articles-slug', params: { slug }}" class="article-card__title-link">
         <h3 class="article-card__title">{{ title }}</h3>
-      </a>
-      <a href="/" class="article-card__author-link">
+      </router-link>
+      <router-link :to="{name: 'articles-slug', params: { slug }}" class="article-card__author-link">
         <span class="article-card__author-name">{{ author.username }}</span>
-      </a>
-      <a href="#" class="article-card__author-avatar-link">
+      </router-link>
+      <router-link :to="{name: 'articles-slug', params: { slug }}" class="article-card__author-avatar-link">
         <img :src="authorAvatar" class="article-card__author-avatar" :alt="author">
-      </a>
+      </router-link>
     </header>
     <p class="article-card__description">{{ description }}</p>
     <footer class="article-card__footer">

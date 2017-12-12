@@ -2,25 +2,25 @@
   <nav class="navbar">
     <ul class="navbar__list">
       <li class="navbar__list-item">
-        <router-link :to="{ path: '/'}" class="navbar__list-link"> Strona Główna </router-link>
+        <router-link :to="{ path: '/'}" class="navbar__list-link">Strona Główna</router-link>
       </li>
       <li class="navbar__list-item">
-        <a href="/" class="navbar__list-link">O nas</a>
+        <router-link :to="{ path: '/'}" class="navbar__list-link">O nas</router-link>
       </li>
       <li class="navbar__list-item">
-        <a href="/" class="navbar__list-link">Sekcje</a>
+        <router-link :to="{ path: '/'}" class="navbar__list-link">Sekcje</router-link>
       </li>
       <li class="navbar__list-item">
-        <a href="/" class="navbar__list-link">Zarząd</a>
+        <router-link :to="{ path: '/'}" class="navbar__list-link">Zarząd</router-link>
       </li>
       <li class="navbar__list-item">
-        <a href="/" class="navbar__list-link">Członkowie</a>
+        <router-link :to="{ path: '/'}" class="navbar__list-link">Członkowie</router-link>
       </li>
       <li class="navbar__list-item">
-        <a href="/" class="navbar__list-link">Kontakt</a>
+        <router-link :to="{ path: '/'}" class="navbar__list-link">Kontakt</router-link>
       </li>
       <li class="navbar__list-item">
-        <router-link :to="{ name: 'articles'}" class="navbar__list-link"> Artykuły </router-link>
+        <router-link :to="{ name: 'articles'}" class="navbar__list-link">Artykuły</router-link>
       </li>
     </ul>
   </nav>
