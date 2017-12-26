@@ -63,6 +63,7 @@ export default {
 
       return date.toLocaleString(locale, format)
     },
+
     capitalize: _.capitalize,
     upper: _.toUpper,
     pick: _.pick,

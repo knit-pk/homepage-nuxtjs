@@ -20,16 +20,19 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/imports.scss";
 
 .action-link {
-  outline: 0;
   $p: &;
 
   &__text {
     color: $action-link-item-text;
     text-transform: uppercase;
     text-decoration: none;
+
+    @media (max-width: 1110px) and (min-width: $screen-md) {
+      font-size: 0.85rem;
+    }
   }
 
   &__icon {
@@ -87,7 +90,6 @@ export default {
     &:focus {
       background-color: darken($action-link-item-section-bgcolor, 7%);
     }
-
 
     #{$p}__icon {
       color: $action-link-item-section-icon-color;

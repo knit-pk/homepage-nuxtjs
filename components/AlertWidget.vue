@@ -27,4 +27,9 @@ export default {
 </script>
 
 <style lang="scss">
+@import "assets/scss/imports.scss";
+
+.alert-widget {
+  display: block;
+}
 </style>

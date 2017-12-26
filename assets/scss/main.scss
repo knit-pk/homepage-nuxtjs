@@ -24,7 +24,6 @@ a {
 .page {
   display: flex;
   flex-wrap: wrap;
-  padding: $default-gutters-width;
   max-width: 1300px;
   margin: 0 auto;
 }
@@ -37,19 +36,17 @@ a {
   opacity: 0;
 }
 
-.leftside-wrapper {
-  flex: 1;
+.aside-right {
+  padding: 20px;
+  flex-basis: 320px;
 }
 
-.aside-right {
-  flex-basis: 320px;
-  margin: 0;
-  margin-left: $default-gutters-width;
+.main-content {
+  padding: 20px 0 0 20px;
 }
 
 .aside-down {
   flex-basis: 100%;
-  margin-right: $default-gutters-width;
   display: flex;
 }
 

@@ -51,7 +51,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
   flex-basis: calc(50% - #{$default-gutters-width / 2});
-  margin-left: $default-gutters-width / 2;
   background-color: $gray-20;
   justify-content: space-between;
   align-content: space-between;
@@ -60,16 +59,20 @@ export default {
   font-size: 0.975rem;
   font-weight: 300;
 
+  @media (max-width: $screen-md) {
+    margin-top: $default-gutters-width;
+    height: 400px;
+    flex-basis: 100%;
+  }
+
   &__link-item {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex-basis: calc(50% - #{$default-gutters-width / 2});
     border-radius: $default-blocks-border-radius;
-    max-width: 200px;
-    max-height: 150px;
-    min-width: calc(50% - #{$default-gutters-width / 2});
-    min-height: calc(50% - #{$default-gutters-width / 2});
+    width: calc(50% - #{$default-gutters-width / 2});
+    height: calc(50% - #{$default-gutters-width / 2});
     padding: 20px;
   }
 }

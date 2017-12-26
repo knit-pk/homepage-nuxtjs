@@ -130,6 +130,7 @@ export default {
     justify-content: space-between;
     padding-right: 10px;
     min-height: 36px;
+    margin-left: 10px;
   }
 
   &__job-position {
@@ -155,6 +156,7 @@ export default {
 
   &__salary-brackets {
     font-size: 0.95rem;
+    white-space: nowrap;
 
     &:before {
       color: $job-offers-widget-item-salary-brackets-icon-color;

@@ -90,7 +90,7 @@ export default {
     align-self: center;
     font-weight: normal;
     margin-left: 15px;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 300;
   }
 

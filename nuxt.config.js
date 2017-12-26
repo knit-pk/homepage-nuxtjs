@@ -1,7 +1,7 @@
 const env = require('dotenv').config().parsed
 
 if (typeof env.API_URL === 'undefined') {
-  throw new Error('API_URL enviroment variable must be defined.')
+  throw new Error('API_URL environment variable must be defined.')
 }
 
 module.exports = {

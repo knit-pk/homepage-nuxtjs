@@ -1,37 +1,48 @@
 <template>
   <article class="article-card">
+
+    <!-- Thumbnail -->
     <router-link class="article-card__thumbnail-link" :to="{name: 'articles-slug', params: { slug }}">
       <img :src="thumbnail" class="article-card__thumbnail" alt="">
     </router-link>
-    <header class="article-card__header">
-      <router-link :to="{name: 'articles-slug', params: { slug }}" class="article-card__title-link">
-        <h3 class="article-card__title">{{ title }}</h3>
-      </router-link>
-      <router-link :to="{name: 'articles-slug', params: { slug }}" class="article-card__author-link">
-        <span class="article-card__author-name">{{ author.username }}</span>
-      </router-link>
-      <router-link :to="{name: 'articles-slug', params: { slug }}" class="article-card__author-avatar-link">
-        <img :src="authorAvatar" class="article-card__author-avatar" :alt="author">
-      </router-link>
-    </header>
-    <p class="article-card__description">{{ description }}</p>
+
+    <div class="article-card__horizontal-wrapper">
+      <!-- Header -->
+      <header class="article-card__header">
+        <router-link :to="{name: 'articles-slug', params: { slug }}" class="article-card__title-link">
+          <h3 class="article-card__title"> {{ title }} </h3>
+        </router-link>
+        <router-link :to="{name: 'articles-slug', params: { slug }}" class="article-card__author-link">
+          <span class="article-card__author-name"> {{ author.username }} </span>
+        </router-link>
+        <router-link :to="{name: 'articles-slug', params: { slug }}" class="article-card__author-avatar-link">
+          <img :src="authorAvatar" class="article-card__author-avatar" :alt="author.fullname">
+        </router-link>
+      </header>
+
+      <!-- Description -->
+      <p class="article-card__description"> {{ description }} </p>
+    </div>
+
+    <!-- Footer -->
     <footer class="article-card__footer">
-      <time :datetime="publishedAt">{{ formatDateToLocalString(publishedAt) }}</time>
+      <time :datetime="publishedAt"> {{ formatDateToLocalString(publishedAt) }} </time>
       <ul class="article-card__stats" aria-label="Statystyki">
         <li class="article-card__stats-group">
           <a @click.prevent.stop="handleLikeClick" :class="{ ['article-card__like-button--liked']: isLiked }" href="#" role="button" class="article-card__like-button" title="Lubię to!" aria-label="Polub post">
             <span class="flaticon-like article-card__stat-icon" aria-hidden="true"></span>
             <span class="visualy-hidden">Polubienia</span>
-            <span>{{ likesAmount }}</span>
+            <span> {{ likesAmount }} </span>
           </a>
         </li>
         <li class="article-card__stats-group">
           <span class="flaticon-chat article-card__stat-icon article-card__comment-icon" title="Komentarze" aria-hidden="true"></span>
           <span class="visualy-hidden">Komentarze</span>
-          <span>{{ commentsCount }}</span>
+          <span> {{ commentsAmmout }} </span>
         </li>
       </ul>
     </footer>
+
   </article>
 </template>
 
@@ -50,9 +61,9 @@ export default {
     likesAmount () {
       return this.likes.length
     },
-    // commentsAmmout () {
-    //   return this.comments.length
-    // },
+    commentsAmmout () {
+      return this.comments.length
+    },
     authorAvatar () {
       return this.author.avatar.url
     }
@@ -75,7 +86,6 @@ export default {
 
 .article-card {
   background-color: #fff;
-  // height: 420px;
   box-sizing: border-box;
   flex-basis: calc(33.333% - #{$default-gutters-width});
   border-radius: $default-blocks-border-radius;
@@ -83,11 +93,16 @@ export default {
   overflow: hidden;
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   font-size: 14px;
 
+  &__horizontal-wrapper {
+    z-index: 10;
+  }
+
   &__thumbnail-link {
-    display: block;
+    flex: 1 0 33%;
   }
 
   &__thumbnail {
@@ -128,8 +143,7 @@ export default {
 
     &:hover,
     &:focus {
-      .article-card__author-name {
-        // color: $primary-text-color;
+      &__author-name {
         text-decoration: underline
       }
     }
@@ -185,8 +199,6 @@ export default {
 
     &:hover, &:focus {
       color: $article-card-like-button-hover-color;
-    // color: $article-card-text-color;
-
     }
 
     &--liked {
@@ -194,8 +206,6 @@ export default {
 
       &:hover, &:focus {
          color: $article-card-like-button-liked-hover-color;
-      // color: $article-card-like-button-liked-color;
-
       }
     }
   }

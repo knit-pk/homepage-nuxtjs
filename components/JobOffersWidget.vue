@@ -4,6 +4,7 @@
       <b-badge pill variant="info" class="default-badge job-offers-widget__badge"> {{ itemsLength }} </b-badge>
     </widget-title>
     <vue-scrollbar classes="job-offers-widget__scrollbar-wrapper">
+      <!-- @TODO: Propose a PR to owner of v-prevent to accept update parameter, for additional info ask FieryCod  -->
       <div class="job-offers-widget__content" v-prevent-parent-scroll>
         <job-offers-widget-item v-for="(item, index) of items" :key="index"
           :title="item.title" :employer="item.employer" :salaryBrackets="item.salaryBrackets"
@@ -90,29 +91,30 @@ export default {
   box-sizing: border-box;
   background-color: $job-offers-widget-bg-color;
   height: $job-offers-widget-height;
-  flex-basis: calc(50% - #{$default-gutters-width / 2});
-  margin-right: $default-gutters-width / 2;
   border-radius: $default-blocks-border-radius;
   overflow: hidden;
-
-  &__title {
-    height: $job-offers-widget-title-height;
-    background-color: $job-offers-widget-bg-color;
-  }
+  flex-basis: calc(50% - #{$default-gutters-width / 2});
+  margin-right: $default-gutters-width / 2;
+  min-width: 365px;
 
   &__scrollbar-wrapper {
-    max-height: $job-offers-widget-height - $job-offers-widget-title-height;
-  }
-
-  &__content {
-    background-color: $job-offers-widget-bg-color;
-    min-height: $job-offers-widget-height - $job-offers-widget-title-height;
+      max-height: $job-offers-widget-height - $job-offers-widget-title-height;
   }
 
   &__badge {
     background-color: $job-offers-widget-badge-bg-color;
     margin-left: 8px;
     margin-top: 1px;
+  }
+
+  &__title {
+    height: $job-offers-widget-title-height;
+    background-color: $job-offers-widget-bg-color;
+  }
+
+  &__content {
+    background-color: $job-offers-widget-bg-color;
+    min-height: $job-offers-widget-height - $job-offers-widget-title-height;
   }
 }
 </style>

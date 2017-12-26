@@ -1,12 +1,12 @@
 <template>
   <div id='#nuxt-app'>
-    <knit-header/>
-    <knit-navbar/>
+    <!-- <knit-header/> -->
+    <!-- <knit-navbar/> -->
 
     <!-- Render content from pages -->
     <nuxt/>
 
-    <knit-footer/>
+    <!-- <knit-footer/> -->
   </div>
 </template>
 

@@ -18,4 +18,4 @@ module.exports = {
     'operator-linebreak': ['error', 'after']
    },
   globals: {}
-}
+};
