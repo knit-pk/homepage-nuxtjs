@@ -53,7 +53,6 @@ export const actions = {
         })
     } else {
       knitLogger.debug(`Article is already in main article list, trying to filter and find it`)
-
       const article = _.filter(articles, article => article.code === slug)[0]
       storeHelper.commitMultiple([ success(article), status('complete') ], commit)
     }

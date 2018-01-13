@@ -7,6 +7,9 @@ export default {
       type: Array,
       default: () => []
     },
+    id: {
+      type: String
+    },
     slug: {
       type: String,
       required: true

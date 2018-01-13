@@ -10,7 +10,8 @@
                     :published-at="article.publishedAt"
                     :likes="article.likes"
                     :comments="article.comments"
-                    :slug="article.code"/>
+                    :slug="article.code"
+                    :id="article.id"/>
       </main>
     </div>
     <aside class="aside-right">
@@ -44,6 +45,7 @@ export default {
     })
   },
   beforeDestroy () {
+    console.log(this.article)
     this.$store.dispatch(`${storePath}/resetArticle`)
   },
   fetch ({ store, params }) {
