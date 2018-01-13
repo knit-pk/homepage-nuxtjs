@@ -1,8 +1,8 @@
 .vue-scrollbar-transition, .vue-scrollbar__scrollbar-vertical, .vue-scrollbar__scrollbar-horizontal {
-  transition: all 0.2s ease;
+  transition: all .2s ease;
 }
 .vue-scrollbar-transition--scrollbar {
-  transition: opacity 0.2s linear;
+  transition: opacity .2s linear;
 }
 .vue-scrollbar__wrapper {
   margin: 0 auto;

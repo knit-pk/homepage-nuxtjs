@@ -1,21 +1,7 @@
 <template>
   <header class="knit-header">
-    <h1 class="site-heading">
-      <router-link :to="{path: '/'}" class="site-heading__link">
-        <div class="site-heading__logo">
-          <knit-logo/>
-        </div>
-        <div class="site-heading__name-wrapper">
-          <span>Koło Naukowe IT</span>
-          <span class="site-heading__university-name">Politechnika Krakowska</span>
-        </div>
-      </router-link>
-    </h1>
-    <form class="searchbar">
-      <label for="site-search" class="visualy-hidden">Wyszukaj na stronie</label>
-      <input id="site-search" type="search" class="searchbar__input" placeholder="Szukaj" autocomplete="off">
-      <span class="flaticon-magnifying-glass searchbar__icon"></span>
-    </form>
+    <site-heading/>
+    <searchbar/>
 
     <b-dropdown class="header-dropdown" right no-flip>
       <div slot="button-content" class="header-dropdown__profile-button">
@@ -52,7 +38,8 @@
 </template>
 
 <script>
-import KnitLogo from '~/components/partials/KnitLogo'
+import SiteHeading from '~/components/partials/SiteHeading'
+import Searchbar from '~/components/partials/Searchbar'
 
 export default {
   data () {
@@ -64,7 +51,8 @@ export default {
     }
   },
   components: {
-    KnitLogo
+    SiteHeading,
+    Searchbar
   }
 }
 </script>
@@ -84,73 +72,6 @@ export default {
   justify-content: flex-end;
   z-index: 9999;
   background-color: $knit-header-bg-color;
-}
-
-.site-heading {
-  display: flex;
-  align-items: center;
-  margin-right: auto;
-
-  &__link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: $knit-header-text-color;
-  }
-
-  &__logo {
-    width: 37px;
-    height: 100%;
-    margin-right: 10px;
-    margin-bottom: -5px;
-  }
-
-  &__name-wrapper {
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
-    font-weight: 400;
-  }
-
-  &__university-name {
-    font-size: 10px;
-    margin-left: auto;
-  }
-}
-
-.searchbar {
-  position: relative;
-  margin-right: 5px;
-
-  &__input {
-    background-color: $knit-header-searchbar-bg-color;
-    border-radius: $default-blocks-border-radius;
-    color: $knit-header-text-color;
-    border: none;
-    height: 30px;
-    padding: 0 10px 0 35px;
-    font-size: 14px;
-    outline: 0;
-    background-color: #fff;
-    width: 100px;
-    transition: 0.4s width;
-
-    &:focus {
-      background-color: $knit-header-searchbar-bg-color;
-      width: 250px;
-    }
-  }
-
-  &__icon {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-
-    &:before {
-      font-size: 14px;
-    }
-  }
 }
 
 .header-dropdown {
@@ -173,7 +94,7 @@ export default {
     background-color: transparent;
     padding: 0 15px;
     outline: 0;
-    color: $primary-text-color;
+    color: $knit-header-links-text-color;
     transition: background-color .15s ease-in-out, color .15s ease-in-out;
 
     &:hover {
@@ -181,7 +102,6 @@ export default {
     }
 
     &:focus {
-      background-color: $knit-header-links-focus-bg-color;
       color: $knit-header-links-hover-text-color;
     }
   }

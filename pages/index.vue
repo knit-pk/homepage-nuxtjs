@@ -6,7 +6,7 @@
       </main>
       <aside class="aside-down">
         <job-offers-widget/>
-        <action-links/>
+        <action-links-widget/>
       </aside>
     </div>
     <aside class="aside-right">
@@ -18,22 +18,22 @@
 </template>
 
 <script>
-import MeetupCalendarWidget from '~/components/MeetupCalendarWidget'
-import JobOffersWidget from '~/components/JobOffersWidget'
-import ArticleCardList from '~/components/ArticleCardList'
-import ProjectsWidget from '~/components/ProjectsWidget'
-import ActionLinks from '~/components/ActionLinks'
-import AlertWidget from '~/components/AlertWidget'
+import MeetupCalendarWidget from '~/components/widgets/MeetupCalendarWidget'
+import ActionLinksWidget from '~/components/widgets/ActionLinksWidget'
+import JobOffersWidget from '~/components/widgets/JobOffersWidget'
+import ArticleCardList from '~/components/lists/ArticleCardList'
+import ProjectsWidget from '~/components/widgets/ProjectsWidget'
+import AlertWidget from '~/components/widgets/AlertWidget'
 
 export default {
   layout: 'common',
   components: {
     MeetupCalendarWidget,
+    ActionLinksWidget,
     JobOffersWidget,
     ArticleCardList,
     ProjectsWidget,
-    AlertWidget,
-    ActionLinks
+    AlertWidget
   },
   fetch ({ store, params }) {
     // Retrieves cards from API
@@ -102,10 +102,6 @@ export default {
 }
 
 .aside-right {
-  @media (min-width: $screen-xl) {
-    margin-left: -$default-gutters-width;
-  }
-
   @media (max-width: 1060px) {
     flex-basis: 100%;
     display: flex;

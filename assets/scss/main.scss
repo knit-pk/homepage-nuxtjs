@@ -25,7 +25,29 @@ a {
   display: flex;
   flex-wrap: wrap;
   max-width: 1300px;
-  margin: 0 auto;
+
+  &--mobile {
+    margin-top: 50px;
+  }
+
+  &--desktop {
+    margin: 100px auto 0 auto;
+  }
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.fixed-top {
+  position: fixed;
+  z-index: 9998;
+  width: 100%;
+  transition: margin-top .2s ease;
+
+  &.fixed-top--hidden {
+    margin-top: -100px;
+  }
 }
 
 .page-enter-active, .page-leave-active {
@@ -37,7 +59,7 @@ a {
 }
 
 .aside-right {
-  padding: 20px;
+  padding: 20px 20px 0 20px;
   flex-basis: 320px;
 }
 

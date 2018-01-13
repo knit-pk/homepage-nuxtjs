@@ -23,8 +23,8 @@
 </template>
 
 <script>
+import KnitNavbar from '~/components/commons/KnitNavbar'
 import KnitLogo from '~/components/partials/KnitLogo'
-import KnitNavbar from '~/components/KnitNavbar'
 
 export default {
   data () {
@@ -41,10 +41,18 @@ export default {
 @import "assets/scss/_imports.scss";
 
 .knit-footer {
-  background-color: $footer-bg-color;
+  margin-top: $default-gutters-width;
+  background-color: $knit-footer-bg-color;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 365px;
+
+  .navbar.navbar--footy {
+    @media (max-width: $screen-lg) {
+      display: none;
+    }
+  }
 
   &__link {
     display: block;
@@ -58,7 +66,7 @@ export default {
     margin: 30px 0 auto;
     text-align: center;
     font-size: 0.75rem;
-    color: $footer-text-color;
+    color: $knit-footer-text-color;
   }
 
   &__socialbox-list {
@@ -69,7 +77,7 @@ export default {
     align-items: center;
     margin-top: 40px;
     height: 50px;
-    background-color: $footer-down-bg-color;
+    background-color: $knit-footer-down-bg-color;
     align-self: stretch;
   }
 

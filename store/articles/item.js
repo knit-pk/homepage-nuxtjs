@@ -1,8 +1,8 @@
 import { ARTICLE_LIST_ITEM_STATUS, ARTICLE_LIST_ITEM_RETRIEVED_SUCCESS, ARTICLE_LIST_ITEM_RETRIEVED_ERROR } from './mutation-types'
-import storeHelper from '~/helpers/storeHelper'
 import commonHelper from '~/helpers/commonHelper'
 import knitService from '~/services/knitService'
-import knitLogger from '~/config/knitLogger'
+import storeHelper from '~/helpers/storeHelper'
+import knitLogger from '~/config/logger'
 import settings from './settings'
 import _ from 'lodash'
 

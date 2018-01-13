@@ -1,0 +1,4 @@
+$knit-header-bg-color: $knit-footer-down-bg-color;
+$knit-header-links-focus-bg-color: darken($knit-header-bg-color, 10%);
+$knit-header-links-hover-text-color: #fff;
+$knit-header-links-text-color: darken($knit-header-links-hover-text-color, 15%);

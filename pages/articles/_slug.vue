@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import ArticleSingle from '~/components/ArticleSingle.vue'
-import PopularArticlesWidget from '~/components/PopularArticlesWidget.vue'
-import RecommendedArticlesWidget from '~/components/RecommendedArticlesWidget.vue'
+import RecommendedArticlesWidget from '~/components/widgets/RecommendedArticlesWidget.vue'
+import PopularArticlesWidget from '~/components/widgets/PopularArticlesWidget.vue'
+import ArticleSingle from '~/components/details/ArticleSingle.vue'
 import { mapGetters } from 'vuex'
 
 const storePath = 'articles/item'

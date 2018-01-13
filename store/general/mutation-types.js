@@ -1,0 +1,1 @@
+export const RESS_CHANGED = 'RESS_CHANGED'
