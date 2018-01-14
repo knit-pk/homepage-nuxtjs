@@ -22,6 +22,7 @@ export default {
     'image',
     'code',
     'tags',
+    'id',
     '@id'
   ],
   storePath: 'articles'
