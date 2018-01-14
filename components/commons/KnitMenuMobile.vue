@@ -1,6 +1,7 @@
 <template>
   <div class="knit-menu">
     <site-heading/>
+
     <button @click="onHamburgerClick" :class="[ 'hamburger', { 'hamburger--open': !isCollapsed } ]" type="button">
       <span class="hamburger__icon icon1"></span>
       <span class="hamburger__icon icon2"></span>
@@ -65,7 +66,11 @@ export default {
   }
 
   .hamburger {
-    margin-right: 10px;
+    margin-right: 12px;
+  }
+
+  &__navigation {
+   padding-top: 20px;
   }
 }
 
@@ -75,9 +80,9 @@ export default {
   flex-direction: column;
   position: fixed;
   z-index: 9998;
-  top: 55px;
+  top: 54px;
   width: 100%;
-  left: -3000px;
+  left: -2000px;
 
   &--show {
     background-color: $knit-menu-collapse-bg-color;

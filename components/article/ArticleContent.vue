@@ -53,7 +53,15 @@ export default {
 
   &__thumbnail {
     @include img-fluid;
+    min-width: 100%;
+    object-fit: cover;
+    height: 500px;
     padding: 10px;
+
+    @media (max-width: $screen-md) {
+      height: 300px;
+      padding: 3px;
+    }
   }
 
   &__pub-info {
@@ -63,15 +71,24 @@ export default {
 
   &__title {
     order: 2;
-    padding: 20px 0 5px 15px;
+    padding: 30px 0 30px 20px;
     margin-left: 15px;
     font-weight: normal;
-    font-size: 2rem;
+    font-size: 1.90rem;
+
+    @media (max-width: $screen-md) {
+      padding: 30px 0 30px 0;
+      margin-left: 15px;
+    }
   }
 
   &__pub-details {
     display: flex;
     color: $primary-text-color;
+  }
+
+  &__pub-details-block {
+    margin-top: -20px;
   }
 
   &__pub-date {
@@ -93,26 +110,42 @@ export default {
     margin-top: -35px;
     margin-left: 30px;
     border-radius: 100%;
+    object-fit: cover;
     width: auto;
     height: 120px;
+    width: 120px;
+
+    @media (max-width: $screen-md) {
+      height: 90px;
+      width: 90px;
+    }
+
+    @media (max-width: $screen-sm) {
+      margin-left: 10px;
+    }
   }
 
   &__body {
     padding: 0 30px 30px 30px;
+    overflow: auto;
     text-align: justify;
+
+    @media (max-width: $screen-md) {
+      padding: 0 15px 30px 15px;
+    }
 
     p {
       padding: 10px 0;
       line-height: 1.55;
     }
 
-    h1, h2, h3 {
+    h1, h2, h3, h4, h5 {
       padding: 25px 0 5px 0;
       font-weight: normal;
       font-size: 1.5rem;
     }
 
-    ul {
+    ul, ol {
       padding: 0 30px 10px 35px;
       list-style: none;
     }
@@ -122,7 +155,7 @@ export default {
       position: relative;
 
       &:before {
-        content:"•";
+        content: "•";
         font-size: 1.5rem;
         position: absolute;
         left: -30px;
@@ -155,7 +188,10 @@ export default {
 
     img {
       @include img-fluid;
+      min-width: 80%;
       padding-top: 20px;
+      display: block;
+      margin: 0 auto;
     }
 
     img + br + em, img + em {
@@ -166,9 +202,15 @@ export default {
     }
 
     pre {
+      overflow: auto;
       margin: 8px 0;
+      display: flex;
       padding: 15px;
       background-color: $code-bg-color;
+
+      code {
+        max-width: 50vw;
+      }
     }
   }
 }

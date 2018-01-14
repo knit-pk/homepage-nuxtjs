@@ -25,7 +25,7 @@
 <script>
 import RecommendedArticlesWidget from '~/components/widgets/RecommendedArticlesWidget.vue'
 import PopularArticlesWidget from '~/components/widgets/PopularArticlesWidget.vue'
-import ArticleSingle from '~/components/details/ArticleSingle.vue'
+import ArticleSingle from '~/components/article/ArticleSingle.vue'
 import { mapGetters } from 'vuex'
 
 const storePath = 'articles/item'
@@ -55,5 +55,30 @@ export default {
 </script>
 
 <style lang="scss">
-</style>
+@import "assets/scss/imports";
 
+.page--article {
+  &.page--mobile {
+    margin-top: 70px;
+  }
+
+  .aside-right {
+    margin-top: 2 * $default-gutters-width;
+  }
+
+  .article {
+    max-width: 100vw;
+    min-width: 365px;
+
+    @media (min-width: $screen-sm) {
+      margin-right: $default-gutters-width;
+    }
+  }
+
+  .main-content {
+    @media (max-width: 1241px) {
+      margin-right: 0;
+    }
+  }
+}
+</style>

@@ -21,20 +21,6 @@ a {
   padding: 3px 9px;
 }
 
-.page {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1300px;
-
-  &--mobile {
-    margin-top: 50px;
-  }
-
-  &--desktop {
-    margin: 100px auto 0 auto;
-  }
-}
-
 body.no-scroll {
   overflow: hidden;
 }
@@ -50,6 +36,20 @@ body.no-scroll {
   }
 }
 
+.page {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: $page-max-width;
+
+  &--mobile {
+    margin: 50px auto 0 auto;
+  }
+
+  &--desktop {
+    margin: 100px auto 0 auto;
+  }
+}
+
 .page-enter-active, .page-leave-active {
   transition: all 0.2s ease;
 }
@@ -58,18 +58,85 @@ body.no-scroll {
   opacity: 0;
 }
 
-.aside-right {
-  padding: 20px 20px 0 20px;
-  flex-basis: 320px;
+.aside-down, .aside-right, .main-content {
+  padding: 20px 0 0;
+
+  @media (min-width: 1061px) {
+    margin-right: 20px;
+  }
+
+  @media (max-width: $screen-sm) {
+    padding: 0;
+    margin: $default-gutters-width 0 0 0;
+  }
 }
 
-.main-content {
-  padding: 20px 0 0 20px;
+.leftside-wrapper {
+  @media (min-width: 1059px) {
+    flex: 1;
+  }
+
+  @media (max-width: $page-max-width) and (min-width: $screen-sm) {
+    margin-left: 20px;
+  }
+}
+
+.aside-right {
+  flex-basis: 320px;
+  margin-right: 0;
+
+  @media (max-width: $page-max-width) {
+    margin-right: 20px;
+  }
+
+  @media (max-width: 1060px) {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: $default-gutters-width;
+
+    &__widget {
+      flex-basis: calc(50% - 10px);
+    }
+  }
+
+  @media (max-width: $screen-sm) {
+    flex-wrap: wrap;
+    margin-left: 0;
+    margin-right: 0;
+
+    &__widget {
+      flex-basis: 100%;
+      min-width: 365px;
+    }
+  }
 }
 
 .aside-down {
   flex-basis: 100%;
   display: flex;
+  padding-top: 0;
+
+  @media (min-width: $screen-xl + 1) {
+    margin-right: 2 * $default-gutters-width;
+  }
+
+  @media (max-width: $screen-xl) {
+    justify-content: space-between;
+  }
+
+  @media (max-width: 1060px) {
+    margin-right: $default-gutters-width;
+  }
+
+  @media (max-width: $screen-md) {
+    flex-basis: calc(50%);
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: $screen-sm) {
+    margin: 0;
+  }
 }
 
 // *** utilities ***

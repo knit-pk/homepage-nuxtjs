@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import JobOffersWidgetItem from '~/components/partials/JobOffersWidgetItem.vue'
-import WidgetTitle from '~/components/partials/WidgetTitle.vue'
+import JobOffersWidgetItem from '~/components/widgets/partials/JobOffersWidgetItem'
+import WidgetTitle from '~/components/widgets/partials/WidgetTitle'
 import VueScrollbar from 'vue2-scrollbar'
 import { mapGetters } from 'vuex'
 

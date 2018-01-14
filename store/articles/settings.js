@@ -1,8 +1,14 @@
+import commonHelper from '~/helpers/commonHelper'
+
+const published = commonHelper.isProd() ? true : undefined
+const orderBy = commonHelper.isProd() ? 'publishedAt' : 'createdAt'
+
 export default {
   defaultQsObject: {
-    published: (process.env.ENV === 'dev' || process.env.ENV === 'debug') ? undefined : true,
+    published,
     group: ['UserReadLess', 'TagRead', 'CategoryRead', 'ImageReadLess'],
-    limit: 5
+    limit: 5,
+    [`order[${orderBy}]`]: 'DESC'
   },
   datePicker (item) {
     item.publishedAt = item.publishedAt || item.createdAt

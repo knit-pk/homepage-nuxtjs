@@ -37,6 +37,7 @@
 
 <script>
 import templateHelper from '~/helpers/templateHelper'
+
 export default {
   data () {
     return {}

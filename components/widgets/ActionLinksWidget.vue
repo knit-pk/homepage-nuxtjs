@@ -1,15 +1,14 @@
 <template>
   <section class="action-links">
-    <action-link-item v-for="(link, index) in links" :key ="index"
+    <action-links-widget-item v-for="(link, index) in links" :key ="index"
       :class="['action-links__link-item', link.itemClass]"
       :linktext="link.text"
-      :iconClass="link.icon">
-    </action-link-item>
+      :iconClass="link.icon"/>
   </section>
 </template>
 
 <script>
-import ActionLinkItem from '~/components/partials/ActionLinkItem'
+import ActionLinksWidgetItem from '~/components/widgets/partials/ActionLinksWidgetItem'
 
 export default {
   data () {
@@ -39,7 +38,7 @@ export default {
     }
   },
   components: {
-    ActionLinkItem
+    ActionLinksWidgetItem
   }
 }
 </script>

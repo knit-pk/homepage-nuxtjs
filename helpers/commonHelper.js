@@ -80,5 +80,21 @@ export default {
    */
   getKnitQs (qsObject = {}) {
     return qs.stringify(qsObject, { arrayFormat: 'brackets' })
+  },
+
+  /**
+   * Returns boolean which tells whether env is prod
+   * @returns {Boolean}
+   */
+  isProd () {
+    return (process.env.ENV === 'prod')
+  },
+
+  /**
+   * Returns name of a current env
+   * @returns {String}
+   */
+  getEnv () {
+    return process.env.ENV
   }
 }

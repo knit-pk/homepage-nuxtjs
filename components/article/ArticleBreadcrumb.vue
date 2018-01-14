@@ -39,10 +39,15 @@ export default {
     list-style: none;
     margin-left: 9px;
     margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     padding: 4px 0 11px 0;
   }
 
   &__routes li {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: inline;
   }
 

@@ -195,13 +195,15 @@ export default {
 
   &__icons {
     position: relative;
-    left: 50px;
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
   }
 
   &__single-icon {
     font-size: .9rem;
     color: $gray-40;
-    margin: 0 5px;
+    margin-right: 5px;
 
     &:before {
       font-size: .9rem;

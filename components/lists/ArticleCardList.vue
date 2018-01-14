@@ -113,6 +113,7 @@ export default {
         &:nth-of-type(2n + 2) {
           margin-right: $default-gutters-width;
         }
+
       }
 
       @media (max-width: 1060px) {

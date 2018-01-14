@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import ProjectsWidgetItem from '~/components/partials/ProjectsWidgetItem.vue'
-import WidgetTitle from '~/components/partials/WidgetTitle.vue'
+import ProjectsWidgetItem from '~/components/widgets/partials/ProjectsWidgetItem'
+import WidgetTitle from '~/components/widgets/partials/WidgetTitle'
 
 export default {
   data () {
@@ -68,7 +68,7 @@ export default {
     font-size: .75rem;
     color: $projects-widget-text-color;
 
-    &:hover, 
+    &:hover,
     &:focus {
       color: $projects-widget-text-color;
       background-color: $projects-widget-link-more-hover-color;

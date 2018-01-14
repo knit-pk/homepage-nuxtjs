@@ -19,7 +19,4 @@ export default {
 </script>
 
 <style lang="scss">
-.leftside-wrapper {
-  flex: 1;
-}
 </style>

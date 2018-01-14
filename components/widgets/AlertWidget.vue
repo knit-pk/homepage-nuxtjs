@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import AlertWidgetItem from '~/components/partials/AlertWidgetItem'
+import AlertWidgetItem from '~/components/widgets/partials/AlertWidgetItem'
 
 export default {
   data () {

@@ -6,7 +6,7 @@
     </template>
 
     <!-- Render menu only for mobile pages -->
-    <knit-menu class="fixed-top" v-else/>
+    <knit-menu-mobile class="fixed-top" v-else/>
 
     <!-- Render content from pages -->
     <nuxt :class="isMobile ? 'page--mobile' : 'page--desktop'"/>
@@ -16,11 +16,11 @@
 </template>
 
 <script>
+import KnitMenuMobile from '~/components/commons/KnitMenuMobile'
 import KnitHeader from '~/components/commons/KnitHeader'
 import KnitNavbar from '~/components/commons/KnitNavbar'
 import KnitFooter from '~/components/commons/KnitFooter'
 import FixedTop from '~/components/mixins/FixedTop'
-import KnitMenu from '~/components/mobile/KnitMenu'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -31,10 +31,10 @@ export default {
     ...mapGetters({ isMobile: 'general/general/isMobile' })
   },
   components: {
+    KnitMenuMobile,
     KnitHeader,
     KnitNavbar,
-    KnitFooter,
-    KnitMenu
+    KnitFooter
   },
   mixins: [ FixedTop ]
 }
