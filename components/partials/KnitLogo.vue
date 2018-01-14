@@ -4,14 +4,14 @@ fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 193 193" xmlns:xlink="http://
     <defs>
       <style type="text/css">
           .str0 {
-              stroke: white;
+              stroke: #000;
               stroke-width: 4.57367
           }
           .fil1 {
               fill: none
           }
           .fil0 {
-              fill: #212121
+              fill: #fff;
           }
       </style>
     </defs>
@@ -24,10 +24,12 @@ fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 193 193" xmlns:xlink="http://
 </template>
 
 <script>
-// export default {
-// }
+export default {
+  data () {
+    return {}
+  }
+}
 </script>
 
 <style lang="scss">
-
 </style>

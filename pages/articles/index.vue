@@ -1,9 +1,11 @@
 <template>
-  <article-list/>
+  <div class="page">
+    <article-list/>
+  </div>
 </template>
 
 <script>
-import ArticleList from '~/components/ArticleList'
+import ArticleList from '~/components/lists/ArticleList'
 
 export default {
   layout: 'common',
@@ -15,3 +17,6 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+</style>

@@ -1,7 +1,11 @@
 const env = require('dotenv').config().parsed
 
-if (typeof env.API_URL === 'undefined') {
-  throw new Error('API_URL enviroment variable must be defined.')
+if (!env.API_URL) {
+  throw new Error('API_URL variable must be defined.')
+}
+
+if (!env.ENV) {
+  throw new Error('ENV variable must be defined')
 }
 
 module.exports = {
@@ -54,7 +58,6 @@ module.exports = {
     color: '#3B8070'
   },
   plugins: [
-    '~/plugins/http-common.js',
     '~/plugins/prevent-scroll.js',
     '~/plugins/vue-markdown.js'
   ],
@@ -69,11 +72,13 @@ module.exports = {
   /*
    ** Build configuration
    */
-  router: {},
+  router: {
+    middleware: ['is-mobile']
+  },
   css: [
+    '~/assets/scss/custom-components/vue-scrollbar.scss',
     '~/node_modules/normalize.css/normalize.css',
     '~/static/fonts/flaticon/flaticon.css',
-    '~/assets/scss/vue-scrollbar.scss',
     '~/assets/bootstrap/custom.scss',
     '~/assets/scss/main.scss'
   ],
