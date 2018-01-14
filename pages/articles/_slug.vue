@@ -10,6 +10,7 @@
                     :published-at="article.publishedAt"
                     :likes="article.likes"
                     :comments="article.comments"
+                    :comments-count="article.commentsCount"
                     :slug="article.code"
                     :id="article.id"/>
       </main>
@@ -45,7 +46,6 @@ export default {
     })
   },
   beforeDestroy () {
-    console.log(this.article)
     this.$store.dispatch(`${storePath}/resetArticle`)
   },
   fetch ({ store, params }) {
@@ -55,12 +55,5 @@ export default {
 </script>
 
 <style lang="scss">
-  .page {
-    &--article {
-      // max-width: 1200px;
-      // margin-left: 70px;
-      // margin: 0 auto;
-    }
-  }
 </style>
 

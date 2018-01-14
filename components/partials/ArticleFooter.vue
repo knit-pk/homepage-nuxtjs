@@ -37,7 +37,7 @@
       </div>
       <span class="article-footer__icons">
         <router-link to="" class="article-footer__single-icon flaticon-like"> {{ likes.length }} </router-link>
-        <router-link to="" class="article-footer__single-icon flaticon-chat"> {{ comments.length }} </router-link>
+        <router-link to="" class="article-footer__single-icon flaticon-chat"> {{ commentsCount }} </router-link>
         <router-link to="" class="article-footer__single-icon flaticon-facebook-logo"></router-link>
         <router-link to="" class="article-footer__single-icon flaticon-bookmark"></router-link>
         <router-link to="" class="article-footer__single-icon flaticon-trash"></router-link>

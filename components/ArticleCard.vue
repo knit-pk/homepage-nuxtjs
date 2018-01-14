@@ -28,7 +28,7 @@
         <li class="article-card__stats-group">
           <span class="flaticon-chat article-card__stat-icon article-card__comment-icon" title="Komentarze" aria-hidden="true"></span>
           <span class="visualy-hidden">Komentarze</span>
-          <span>{{ commentsAmmout }}</span>
+          <span>{{ commentsCount }}</span>
         </li>
       </ul>
     </footer>
@@ -50,9 +50,9 @@ export default {
     likesAmount () {
       return this.likes.length
     },
-    commentsAmmout () {
-      return this.comments.length
-    },
+    // commentsAmmout () {
+    //   return this.comments.length
+    // },
     authorAvatar () {
       return this.author.avatar.url
     }

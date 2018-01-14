@@ -12,8 +12,9 @@
     <article-footer
       :author="author"
       :likes="likes"
-      :comments="comments"/>
-    <article-comments/>
+      :comments-count="commentsCount"/>
+
+    <article-comments :articleId="id"/>
   </article>
 </template>
 
