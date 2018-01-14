@@ -9,7 +9,10 @@
       :title="title"
       :thumbnail="thumbnail"/>
 
-    <article-footer/>
+    <article-footer
+      :author="author"
+      :likes="likes"
+      :comments="comments"/>
     <article-comments/>
   </article>
 </template>
