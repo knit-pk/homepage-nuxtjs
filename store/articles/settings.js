@@ -16,6 +16,7 @@ export default {
     'published',
     'createdAt',
     'comments',
+    'commentsCount',
     'content',
     'author',
     'title',

@@ -1,10 +1,10 @@
 export default {
   props: {
     likes: {
-      type: Number,
-      default: 0
+      type: Array,
+      default: () => []
     },
-    comments: {
+    commentsCount: {
       type: Number,
       default: 0
     },

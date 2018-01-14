@@ -11,6 +11,7 @@
                        :published-at="article.publishedAt"
                        :likes="article.likes"
                        :comments="article.comments"
+                       :comments-count="article.commentsCount"
                        :slug="article.code"/>
 
   </section>

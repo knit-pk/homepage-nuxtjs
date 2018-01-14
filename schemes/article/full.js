@@ -18,6 +18,10 @@ export default {
       type: Array,
       default: () => []
     },
+    commentsCount: {
+      type: Number,
+      default: 0
+    },
     description: {
       type: String,
       required: true
