@@ -22,7 +22,7 @@
     "@nuxtjs/axios": "^4.5.2",
     "bootstrap": "4.0.0",
     "bootstrap-vue": "^1.4.0",
-    "dotenv": "^4.0.0",
+    "dotenv": "^5.0.0",
     "lodash": "^4.17.4",
     "node-sass": "^4.7.2",
     "normalize.css": "^7.0.0",
