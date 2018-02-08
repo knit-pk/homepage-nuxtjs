@@ -19,7 +19,7 @@
     "format-on-save": "watch \"npm run lint -- --fix\" -d -p \"/node_modules/\""
   },
   "dependencies": {
-    "@nuxtjs/axios": "^4.5.2",
+    "@nuxtjs/axios": "^5.0.0",
     "bootstrap": "4.0.0",
     "bootstrap-vue": "^1.4.0",
     "dotenv": "^5.0.0",
