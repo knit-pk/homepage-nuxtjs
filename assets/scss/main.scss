@@ -72,6 +72,7 @@ body.no-scroll {
 }
 
 .leftside-wrapper {
+  max-width: 100%;
   @media (min-width: 1059px) {
     flex: 1;
   }
