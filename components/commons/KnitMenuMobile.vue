@@ -75,17 +75,17 @@ export default {
 }
 
 .collapse-menu {
-  transition: left .1s ease-out;
-  height: calc(100vh + 55px);
+  transition: left .1s linear;
+  height: 100%;
   flex-direction: column;
   position: fixed;
   z-index: 9998;
-  top: 54px;
+  top: 55px;
   width: 100%;
-  left: -2000px;
+  left: -100%;
+  background-color: $knit-menu-collapse-bg-color;
 
   &--show {
-    background-color: $knit-menu-collapse-bg-color;
     display: flex;
     left: 0;
   }
