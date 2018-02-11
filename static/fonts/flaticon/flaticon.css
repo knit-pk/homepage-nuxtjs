@@ -1,6 +1,6 @@
 	/*
   	Flaticon icon font: Flaticon
-  	Creation date: 08/11/2017 16:05
+  	Creation date: 12/02/2018 00:08
   	*/
 
 @font-face {
@@ -22,33 +22,35 @@
 }
 
 [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
-[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {
   font-family: Flaticon;
   font-size: 20px;
-	font-style: normal;
+  font-style: normal;
 }
 
 .flaticon-teamwork:before { content: "\f100"; }
-.flaticon-money:before { content: "\f101"; }
-.flaticon-arrow-right:before { content: "\f102"; }
-.flaticon-cog-wheel:before { content: "\f103"; }
-.flaticon-like:before { content: "\f104"; }
-.flaticon-code-fork:before { content: "\f105"; }
-.flaticon-arrow-left:before { content: "\f106"; }
-.flaticon-magnifying-glass:before { content: "\f107"; }
-.flaticon-github-logo:before { content: "\f108"; }
-.flaticon-close:before { content: "\f109"; }
-.flaticon-users:before { content: "\f10a"; }
-.flaticon-plus:before { content: "\f10b"; }
-.flaticon-job-search:before { content: "\f10c"; }
-.flaticon-handshake:before { content: "\f10d"; }
-.flaticon-logout:before { content: "\f10e"; }
-.flaticon-chat:before { content: "\f10f"; }
-.flaticon-dropdown-arrow:before { content: "\f110"; }
-.flaticon-star:before { content: "\f111"; }
-.flaticon-curly-brackets:before { content: "\f112"; }
-.flaticon-user:before { content: "\f113"; }
-.flaticon-programming:before { content: "\f114"; }
-.flaticon-arrow-down:before { content: "\f115"; }
-.flaticon-info:before { content: "\f116"; }
-.flaticon-facebook-logo:before { content: "\f117"; }
+.flaticon-handshake:before { content: "\f101"; }
+.flaticon-logout:before { content: "\f102"; }
+.flaticon-chat:before { content: "\f103"; }
+.flaticon-dropdown-arrow:before { content: "\f104"; }
+.flaticon-star:before { content: "\f105"; }
+.flaticon-curly-brackets:before { content: "\f106"; }
+.flaticon-user:before { content: "\f107"; }
+.flaticon-programming:before { content: "\f108"; }
+.flaticon-arrow-down:before { content: "\f109"; }
+.flaticon-plus:before { content: "\f10a"; }
+.flaticon-social:before { content: "\f10b"; }
+.flaticon-delete:before { content: "\f10c"; }
+.flaticon-facebook-logo:before { content: "\f10d"; }
+.flaticon-users:before { content: "\f10e"; }
+.flaticon-money:before { content: "\f10f"; }
+.flaticon-arrow-right:before { content: "\f110"; }
+.flaticon-cog-wheel:before { content: "\f111"; }
+.flaticon-like:before { content: "\f112"; }
+.flaticon-code-fork:before { content: "\f113"; }
+.flaticon-arrow-left:before { content: "\f114"; }
+.flaticon-magnifying-glass:before { content: "\f115"; }
+.flaticon-github-logo:before { content: "\f116"; }
+.flaticon-close:before { content: "\f117"; }
+.flaticon-info:before { content: "\f118"; }
+.flaticon-job-search:before { content: "\f119"; }
