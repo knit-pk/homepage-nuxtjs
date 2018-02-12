@@ -25,6 +25,10 @@ body.no-scroll {
   overflow: hidden;
 }
 
+.button-no-highlight {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .fixed-top {
   position: fixed;
   z-index: 9998;

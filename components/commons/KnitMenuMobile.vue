@@ -2,7 +2,7 @@
   <div class="knit-menu">
     <site-heading/>
 
-    <button @click="onHamburgerClick" :class="[ 'hamburger', { 'hamburger--open': !isCollapsed } ]" type="button">
+    <button @click="onHamburgerClick" :class="[ 'button-no-highlight hamburger', { 'hamburger--open': !isCollapsed } ]" type="button">
       <span class="hamburger__icon icon1"></span>
       <span class="hamburger__icon icon2"></span>
       <span class="hamburger__icon icon3"></span>
