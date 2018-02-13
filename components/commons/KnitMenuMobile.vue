@@ -9,7 +9,7 @@
     </button>
 
     <div :class="[ 'knit-menu__navigation collapse-menu', { 'collapse-menu--show': !isCollapsed } ]">
-      <knit-navbar class="navbar--menu"/>
+      <knit-navbar class="navbar--menu" @linkClickedEvent="onHamburgerClick"/>
       <div class="knit-menu__searchbar-wrapper">
         <searchbar class="searchbar--menu"/>
       </div>
