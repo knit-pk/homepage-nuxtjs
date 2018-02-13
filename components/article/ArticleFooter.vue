@@ -39,8 +39,8 @@
         <router-link to="" class="article-footer__single-icon flaticon-like"> {{ likes.length }} </router-link>
         <router-link to="" class="article-footer__single-icon flaticon-chat"> {{ commentsCount }} </router-link>
         <router-link to="" class="article-footer__single-icon flaticon-facebook-logo"></router-link>
-        <router-link to="" class="article-footer__single-icon flaticon-bookmark"></router-link>
-        <router-link to="" class="article-footer__single-icon flaticon-trash"></router-link>
+        <router-link to="" class="article-footer__single-icon flaticon-social"></router-link>
+        <router-link to="" class="article-footer__single-icon flaticon-delete"></router-link>
       </span>
     </div>
   </footer>
@@ -194,7 +194,6 @@ export default {
   }
 
   &__icons {
-    position: relative;
     display: flex;
     justify-content: flex-end;
     flex: 1;
@@ -203,7 +202,8 @@ export default {
   &__single-icon {
     font-size: .9rem;
     color: $gray-40;
-    margin-right: 5px;
+    margin-left: 15px;
+    height: 0;
 
     &:before {
       font-size: .9rem;
