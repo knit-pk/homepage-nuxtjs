@@ -1,49 +1,49 @@
 <template>
-  <article class="article-card">
+<article class="article-card">
 
-    <!-- Thumbnail -->
-    <router-link class="article-card__thumbnail-link" :to="{name: 'articles-slug', params: { slug }}">
-      <img :src="thumbnail" class="article-card__thumbnail" alt="">
-    </router-link>
+  <!-- Thumbnail -->
+  <router-link class="article-card__thumbnail-link" :to="{ name: 'articles-slug', params: { slug } }">
+    <img :src="thumbnail" class="article-card__thumbnail" alt="">
+  </router-link>
 
-    <div class="article-card__horizontal-wrapper">
-      <!-- Header -->
-      <header class="article-card__header">
-        <router-link :to="{name: 'articles-slug', params: { slug }}" class="article-card__title-link">
-          <h3 class="article-card__title"> {{ title }} </h3>
-        </router-link>
-        <router-link :to="{name: 'articles-slug', params: { slug }}" class="article-card__author-link">
-          <span class="article-card__author-name"> {{ author.username }} </span>
-        </router-link>
-        <router-link :to="{name: 'articles-slug', params: { slug }}" class="article-card__author-avatar-link">
-          <img :src="authorAvatar" class="article-card__author-avatar" :alt="author.fullname">
-        </router-link>
-      </header>
+  <div class="article-card__horizontal-wrapper">
+    <!-- Header -->
+    <header class="article-card__header">
+      <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__title-link">
+        <h3 ref="articleTitle" class="article-card__title"> {{ title }} </h3>
+      </router-link>
+      <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__author-link">
+        <span class="article-card__author-name"> {{ author.username }} </span>
+      </router-link>
+      <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__author-avatar-link">
+        <img :src="authorAvatar" class="article-card__author-avatar" :alt="author.fullname">
+      </router-link>
+    </header>
+  </div>
 
-      <!-- Description -->
-      <p class="article-card__description"> {{ description }} </p>
-    </div>
+  <!-- Description -->
+  <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__description"> {{ description }} </router-link>
 
-    <!-- Footer -->
-    <footer class="article-card__footer">
-      <time :datetime="publishedAt"> {{ formatDateToLocalString(publishedAt) }} </time>
-      <ul class="article-card__stats" aria-label="Statystyki">
-        <li class="article-card__stats-group">
-          <a @click.prevent.stop="handleLikeClick" :class="{ ['article-card__like-button--liked']: isLiked }" href="#" role="button" class="article-card__like-button" title="Lubię to!" aria-label="Polub post">
-            <span class="flaticon-like article-card__stat-icon" aria-hidden="true"></span>
-            <span class="visualy-hidden">Polubienia</span>
-            <span> {{ likesAmount }} </span>
-          </a>
-        </li>
-        <li class="article-card__stats-group">
-          <span class="flaticon-chat article-card__stat-icon article-card__comment-icon" title="Komentarze" aria-hidden="true"></span>
-          <span class="visualy-hidden">Komentarze</span>
-          <span> {{ commentsAmmout }} </span>
-        </li>
-      </ul>
-    </footer>
+  <!-- Footer -->
+  <footer class="article-card__footer">
+    <time :datetime="publishedAt"> {{ formatDateToLocalString(publishedAt) }} </time>
+    <ul class="article-card__stats" aria-label="Statystyki">
+      <li class="article-card__stats-group">
+        <a @click.prevent.stop="handleLikeClick" :class="{ [ 'article-card__like-button--liked' ]: isLiked }" href="#" role="button" class="article-card__like-button" title="Lubię to!" aria-label="Polub post">
+          <span class="flaticon-like article-card__stat-icon" aria-hidden="true"></span>
+          <span class="visualy-hidden">Polubienia</span>
+          <span> {{ likesAmount }} </span>
+        </a>
+      </li>
+      <li class="article-card__stats-group">
+        <span class="flaticon-chat article-card__stat-icon article-card__comment-icon" title="Komentarze" aria-hidden="true"></span>
+        <span class="visualy-hidden">Komentarze</span>
+        <span> {{ commentsAmmout }} </span>
+      </li>
+    </ul>
+  </footer>
 
-  </article>
+</article>
 </template>
 
 <script>
@@ -75,7 +75,6 @@ export default {
       document.activeElement.blur()
       // @TODO: Send handling request to the server
     }
-
   },
   mixins: [ templateHelper ]
 }
@@ -96,10 +95,6 @@ export default {
   flex-wrap: wrap;
   flex-direction: column;
   font-size: 14px;
-
-  &__horizontal-wrapper {
-    z-index: 10;
-  }
 
   &__thumbnail-link {
     flex: 1 0 33%;
@@ -140,13 +135,6 @@ export default {
     align-items: flex-end;
     text-decoration: none;
     color: $secondary-text-color;
-
-    &:hover,
-    &:focus {
-      &__author-name {
-        text-decoration: underline
-      }
-    }
   }
 
   &__author-avatar-link {
@@ -166,6 +154,7 @@ export default {
   }
 
   &__description {
+    display: block;
     padding: 0 20px 15px 20px;
     font-weight: 300;
     font-size: 14px;
