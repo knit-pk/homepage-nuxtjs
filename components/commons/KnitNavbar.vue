@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar">
     <ul v-for="(link, index) of navigation" class="navbar__list" :key="index">
-      <li class="navbar__list-item">
+      <li class="navbar__list-item" @click="collapseMenu">
         <router-link :to="{ path: link.path }" class="navbar__list-link"> {{ link.text }} </router-link>
       </li>
     </ul>
@@ -42,6 +42,11 @@ export default {
           path: '/articles'
         }
       ]
+    }
+  },
+  methods: {
+    collapseMenu () {
+      this.$emit('linkClickedEvent')
     }
   }
 }
