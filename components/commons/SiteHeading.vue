@@ -12,7 +12,7 @@
   </h1>
 </template>
 <script>
-import KnitLogo from '~/components/partials/KnitLogo'
+import KnitLogo from '~/components/commons/KnitLogo'
 
 export default {
   data () {

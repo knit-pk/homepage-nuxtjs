@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import SiteHeading from '~/components/partials/SiteHeading'
-import Searchbar from '~/components/partials/Searchbar'
+import SiteHeading from '~/components/commons/SiteHeading'
+import Searchbar from '~/components/commons/Searchbar'
 
 export default {
   data () {

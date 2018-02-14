@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import ArticleCard from '~/components/partials/ArticleCard'
+import ArticleCard from '~/components/article/ArticleCard'
 import { mapGetters } from 'vuex'
 import _ from 'lodash'
 
