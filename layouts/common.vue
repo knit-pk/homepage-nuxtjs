@@ -1,5 +1,5 @@
 <template>
-  <div id='#nuxt-app'>
+  <div id="#nuxt-app">
     <template v-if="!isMobile">
       <knit-header/>
       <knit-navbar class="fixed-top"/>

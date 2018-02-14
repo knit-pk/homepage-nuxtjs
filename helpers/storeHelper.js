@@ -3,10 +3,10 @@ import _ from 'lodash'
 export default {
   /**
    * Commits multiple mutations
+   * @param {Function} [commit]
    * @param {Array} [commitArray=[]]
-   * @param {Function} [commit=() => {}]
    */
-  commitMultiple (commitArray = [], commit = () => {}) {
+  commitMultiple (commit, commitArray = []) {
     _.each(commitArray, commitItem => commit(commitItem))
   },
 
@@ -22,5 +22,14 @@ export default {
     return _.isEmpty(payloadName) ?
       (payload) => ({ type, ...payload }) :
       (payload) => ({ type, [payloadName]: payload })
+  },
+
+  /**
+  * Dispatches multiple actions
+  * @param {Function} [dispatch] - Dispatch function
+  * @param {Array} [actionArray=[]] - Array of actions
+  */
+  dispatchMultiple (dispatch, actionArray = []) {
+    _.each(actionArray, action => dispatch(action))
   }
 }

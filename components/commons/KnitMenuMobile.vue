@@ -21,27 +21,31 @@
 import SiteHeading from '~/components/commons/SiteHeading'
 import KnitNavbar from '~/components/commons/KnitNavbar'
 import Searchbar from '~/components/commons/Searchbar'
+import commonHelper from '~/helpers/commonHelper'
 
 export default {
   data () {
     return {
       isCollapsed: true,
-      body: null
+      bodyElement: null,
+      htmlElement: null
     }
   },
+  computed: {},
   methods: {
     onHamburgerClick () {
       this.isCollapsed = !this.isCollapsed
-      this.body.classList.toggle('no-scroll')
+      commonHelper.toggleElementsClasses([ this.bodyElement, this.htmlElement ], ['no-scroll'])
     }
+  },
+  beforeMount () {
+    this.bodyElement = document.querySelector('body')
+    this.htmlElement = document.querySelector('html')
   },
   components: {
     SiteHeading,
     KnitNavbar,
     Searchbar
-  },
-  beforeMount () {
-    this.body = document.querySelector('body')
   }
 }
 </script>

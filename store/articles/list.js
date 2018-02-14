@@ -54,15 +54,15 @@ export const actions = {
 
         knitLogger.debug(`Main articles list fetched successfully: data ${data}`)
 
-        storeHelper.commitMultiple([
+        storeHelper.commitMultiple(commit, [
           success({ articles, page, totalItems }),
           changeStatus('success'),
           updatePagesMap(pagesMap)
-        ], commit)
+        ])
       })
       .catch(err => {
         knitLogger.debug(`Error occurred while trying to fetch main articles list: err ${err}`)
-        storeHelper.commitMultiple([ error(err), changeStatus('error') ], commit)
+        storeHelper.commitMultiple(commit, [ error(err), changeStatus('error') ])
       })
   }
 }
