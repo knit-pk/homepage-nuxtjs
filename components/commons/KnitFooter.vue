@@ -24,7 +24,7 @@
 
 <script>
 import KnitNavbar from '~/components/commons/KnitNavbar'
-import KnitLogo from '~/components/partials/KnitLogo'
+import KnitLogo from '~/components/commons/KnitLogo'
 
 export default {
   data () {

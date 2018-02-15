@@ -11,21 +11,22 @@
 @import "variables/default.scss";
 
 // *** Components ***
-
-// *** Partials ***
-@import "variables/components/partials/job-offers-widget-item.scss";
-@import "variables/components/partials/projects-widget-item.scss";
-@import "variables/components/partials/alert-widget-item.scss";
-@import "variables/components/partials/action-link-item.scss";
-@import "variables/components/partials/article-content.scss";
-@import "variables/components/partials/article-footer.scss";
-@import "variables/components/partials/widget-title.scss";
-@import "variables/components/partials/article-comment.scss";
-@import "variables/components/partials/article-card.scss";
+// *** Article Component ***
+@import "variables/components/article/article-content.scss";
+@import "variables/components/article/article-footer.scss";
+@import "variables/components/article/article-comment.scss";
+@import "variables/components/article/article-card.scss";
 
 // *** Widgets ***
 @import "variables/components/widgets/job-offers-widget.scss";
 @import "variables/components/widgets/projects-widget.scss";
+
+// *** Widget Partials ***
+@import "variables/components/widgets/partials/job-offers-widget-item.scss";
+@import "variables/components/widgets/partials/projects-widget-item.scss";
+@import "variables/components/widgets/partials/alert-widget-item.scss";
+@import "variables/components/widgets/partials/action-link-item.scss";
+@import "variables/components/widgets/partials/widget-title.scss";
 
 // *** Common components ***
 @import "variables/components/commons/knit-footer.scss";

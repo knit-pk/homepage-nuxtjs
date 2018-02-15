@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import SiteHeading from '~/components/partials/SiteHeading'
+import SiteHeading from '~/components/commons/SiteHeading'
 import KnitNavbar from '~/components/commons/KnitNavbar'
-import Searchbar from '~/components/partials/Searchbar'
+import Searchbar from '~/components/commons/Searchbar'
 
 export default {
   data () {

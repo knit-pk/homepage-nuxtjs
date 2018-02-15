@@ -21,7 +21,7 @@
 import MeetupCalendarWidget from '~/components/widgets/MeetupCalendarWidget'
 import ActionLinksWidget from '~/components/widgets/ActionLinksWidget'
 import JobOffersWidget from '~/components/widgets/JobOffersWidget'
-import ArticleCardList from '~/components/lists/ArticleCardList'
+import ArticleCardList from '~/components/article/ArticleCardList'
 import ProjectsWidget from '~/components/widgets/ProjectsWidget'
 import AlertWidget from '~/components/widgets/AlertWidget'
 
