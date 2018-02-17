@@ -39,7 +39,7 @@ export default {
         },
         {
           text: 'Artykuły',
-          path: '/articles'
+          path: '/wszystkie'
         }
       ]
     }

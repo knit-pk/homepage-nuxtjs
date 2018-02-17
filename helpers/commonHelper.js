@@ -53,10 +53,10 @@ export default {
    * @param {Boolean} [deleteFalsyProps=false]
    * @returns {Array}
    */
-  pickItemsProps (collection = [], props = [], deleteFalsyProps = false, customPicker = o => o) {
+  pickItemsProps (collection = {}, props = [], deleteFalsyProps = false, customPicker = o => o) {
     const reducer = deleteFalsyProps ?
-      (coll, item) => [...coll, customPicker(this.removeFalsyProps(_.pick(item, props)))] :
-      (coll, item) => [...coll, customPicker(_.pick(item, props))]
+      (coll, item) => ({...coll, [item.code]: customPicker(this.removeFalsyProps(_.pick(item, props)))}) :
+      (coll, item) => ({...coll, [item.code]: customPicker(_.pick(item, props))})
 
     return _.reduce(collection, reducer, [])
   },
