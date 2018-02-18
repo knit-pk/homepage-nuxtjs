@@ -44,17 +44,17 @@ export const actions = {
           const articlesData = data['hydra:member']
           const article = commonHelper.pickItemsProps(articlesData, settings.props, true, settings.datePicker)[0]
 
-          storeHelper.commitMultiple([ success(article), status('complete') ], commit)
+          storeHelper.commitMultiple(commit, [ success(article), status('complete') ])
         })
         .catch(err => {
           knitLogger.debug(`Error occurred while trying to fetch single main article: err ${JSON.stringify(err)}`)
 
-          storeHelper.commitMultiple([ error(err), status('error') ], commit)
+          storeHelper.commitMultiple(commit, [ error(err), status('error') ])
         })
     } else {
       knitLogger.debug(`Article is already in main article list, trying to filter and find it`)
       const article = _.filter(articles, article => article.code === slug)[0]
-      storeHelper.commitMultiple([ success(article), status('complete') ], commit)
+      storeHelper.commitMultiple(commit, [ success(article), status('complete') ])
     }
   },
 

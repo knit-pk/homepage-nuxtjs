@@ -96,5 +96,14 @@ export default {
    */
   getEnv () {
     return process.env.ENV
+  },
+
+  /**
+  * Toggles multiple css classes in multiple css elements
+  * @param {Array<HtmlElement>} [elements=[]] - array of html elements
+  * @param {Array<String>} [classes=[]] - array of class name strings
+  */
+  toggleElementsClasses (elements = [], classes = []) {
+    _.each(elements, element => { element && element.classList.toggle(...classes) })
   }
 }
