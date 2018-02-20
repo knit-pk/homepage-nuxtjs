@@ -35,7 +35,6 @@
 import ArticleComment from '~/components/article/ArticleComment.vue'
 import KnitButton from '~/components/commons/KnitButton.vue'
 import KnitService from '~/services/knitService'
-import ArticleCommentsSchema from '~/schemes/article/comments'
 import _ from 'lodash'
 
 export default {
@@ -51,7 +50,12 @@ export default {
     ArticleComment,
     KnitButton
   },
-  props: ArticleCommentsSchema.props,
+  props: {
+    articleId: {
+      type: String,
+      required: true
+    }
+  },
   computed: {
     commentsAmount () {
       return this.comments.length

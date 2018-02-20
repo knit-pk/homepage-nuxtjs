@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import articleFullSchema from '~/schemes/article/full'
 import templateHelper from '~/helpers/templateHelper'
 
 // @TODO: Make elipsis overflow in article card description
@@ -68,7 +67,52 @@ export default {
       return this.author.avatar.url
     }
   },
-  props: articleFullSchema.props,
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    content: {
+      type: String,
+      required: true
+    },
+    author: {
+      type: Object,
+      required: true
+    },
+    thumbnail: {
+      type: String,
+      required: true
+    },
+    publishedAt: {
+      type: String,
+      default: '',
+      required: true
+    },
+    likes: {
+      type: Array,
+      default: () => []
+    },
+    id: {
+      type: String
+    },
+    slug: {
+      type: String,
+      required: true
+    },
+    comments: {
+      type: Array,
+      default: () => []
+    },
+    commentsCount: {
+      type: Number,
+      default: 0
+    },
+    description: {
+      type: String,
+      required: true
+    }
+  },
   methods: {
     handleLikeClick () {
       this.isLiked = !this.isLiked

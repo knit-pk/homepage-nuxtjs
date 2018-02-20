@@ -47,8 +47,6 @@
 </template>
 
 <script>
-import articleFooterSchema from '~/schemes/article/footer'
-
 export default {
   data () {
     return {
@@ -76,7 +74,20 @@ export default {
       ]
     }
   },
-  props: articleFooterSchema.props
+  props: {
+    likes: {
+      type: Array,
+      default: () => []
+    },
+    commentsCount: {
+      type: Number,
+      default: 0
+    },
+    author: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 
