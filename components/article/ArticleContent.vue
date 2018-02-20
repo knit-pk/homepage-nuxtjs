@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import articleContentSchema from '~/schemes/article/content'
 import templateHelper from '~/helpers/templateHelper'
 import VueMarkdown from 'vue-markdown'
 import _ from 'lodash'
@@ -41,7 +40,29 @@ export default {
   components: {
     VueMarkdown
   },
-  props: articleContentSchema.props
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    content: {
+      type: String,
+      required: true
+    },
+    author: {
+      type: Object,
+      required: true
+    },
+    thumbnail: {
+      type: String,
+      required: true
+    },
+    publishedAt: {
+      type: String,
+      default: '',
+      required: true
+    }
+  }
 }
 </script>
 

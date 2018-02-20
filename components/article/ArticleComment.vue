@@ -10,7 +10,7 @@
             <time :datetime="createdAt" class="article-comment__datetime"> {{ formatDateToLocalString(createdAt) }} </time>
           </header>
           <p class="article-comment__content"> {{ content }} </p>
-          <a v-if="isParent" @click.prevent="handleLoadRepliesClick(parentId)" 
+          <a v-if="isParent" @click.prevent="handleLoadRepliesClick(parentId)"
              href="#" class="article-comment__replies-link"> {{ loadRepliesLinkLabel }} </a>
         </div>
       </div>
@@ -23,7 +23,6 @@
 
 <script>
 import templateHelper from '~/helpers/templateHelper'
-import articleCommentSchema from '~/schemes/article/comment'
 
 export default {
   data () {
@@ -32,7 +31,35 @@ export default {
       areRepliesFetched: false
     }
   },
-  props: articleCommentSchema.props,
+  props: {
+    avatarUrl: {
+      type: String,
+      required: true
+    },
+    author: {
+      type: String,
+      required: true
+    },
+    createdAt: {
+      type: String,
+      required: true
+    },
+    content: {
+      type: String,
+      required: true
+    },
+    repliesAmount: {
+      type: Number,
+      default: 0
+    },
+    parentId: {
+      type: String
+    },
+    isParent: {
+      type: Boolean,
+      default: false
+    }
+  },
   computed: {
     loadRepliesLinkLabel () {
       if (this.repliesAmount === 1) {
@@ -139,4 +166,3 @@ export default {
     }
   }
 </style>
-
