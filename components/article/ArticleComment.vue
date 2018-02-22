@@ -31,6 +31,7 @@ export default {
       areRepliesFetched: false
     }
   },
+  components: {},
   props: {
     avatarUrl: {
       type: String,

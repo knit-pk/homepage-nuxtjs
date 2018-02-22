@@ -28,6 +28,10 @@ export default {
   data () {
     return {}
   },
+  components: {
+    ArticleCard
+  },
+  props: {},
   computed: {
     cardsArticles () {
       return _.slice(this.articles, 0, 5)
@@ -40,9 +44,8 @@ export default {
       error: `${storePath}/error`
     })
   },
-  components: {
-    ArticleCard
-  }
+  methods: {},
+  mixins: {}
 }
 </script>
 

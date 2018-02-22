@@ -33,7 +33,6 @@ export default {
   data () {
     return {}
   },
-  computed: {},
   components: {
     ArticleBreadcrumb,
     ArticleComments,
@@ -86,6 +85,7 @@ export default {
       required: true
     }
   },
+  computed: {},
   methods: {
     handleLikeClick () {
       this.isLiked = !this.isLiked

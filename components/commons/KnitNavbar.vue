@@ -44,11 +44,15 @@ export default {
       ]
     }
   },
+  components: {},
+  props: {},
+  computed: {},
   methods: {
     collapseMenu () {
       this.$emit('linkClickedEvent')
     }
-  }
+  },
+  mixins: {}
 }
 </script>
 

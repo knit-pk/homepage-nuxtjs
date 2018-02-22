@@ -9,6 +9,10 @@
 
 <script>
 export default {
+  data () {
+    return {}
+  },
+  components: {},
   props: {
     buttonClasses: {
       type: Array
@@ -19,7 +23,10 @@ export default {
     iconClasses: {
       type: Array
     }
-  }
+  },
+  computed: {},
+  methods: {},
+  mixins: {}
 }
 </script>
 

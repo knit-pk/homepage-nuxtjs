@@ -107,6 +107,7 @@ export default {
         })
     }
   },
+  mixins: {},
   beforeMount () {
     this.getCommentsPage()
       .then(data => {

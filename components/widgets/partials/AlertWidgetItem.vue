@@ -15,12 +15,15 @@ export default {
       show: true
     }
   },
+  components: {},
+  props: ['message'],
+  computed: {},
   methods: {
     hideMessage (event) {
       setTimeout(() => { this.show = false }, 100)
     }
   },
-  props: ['message']
+  mixins: {}
 }
 </script>
 

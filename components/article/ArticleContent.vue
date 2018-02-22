@@ -26,17 +26,6 @@ export default {
   data () {
     return {}
   },
-  computed: {
-    publicationDate () {
-      const date = new Date(this.publishedAt)
-      const month = _.capitalize(date.toLocaleString('pl', { month: 'long' }))
-      const day = date.toLocaleString('pl', { day: 'numeric' })
-      const year = date.toLocaleString('pl', { year: 'numeric' })
-
-      return `${month} ${day}, ${year}`
-    }
-  },
-  mixins: [ templateHelper ],
   components: {
     VueMarkdown
   },
@@ -62,7 +51,19 @@ export default {
       default: '',
       required: true
     }
-  }
+  },
+  computed: {
+    publicationDate () {
+      const date = new Date(this.publishedAt)
+      const month = _.capitalize(date.toLocaleString('pl', { month: 'long' }))
+      const day = date.toLocaleString('pl', { day: 'numeric' })
+      const year = date.toLocaleString('pl', { year: 'numeric' })
+
+      return `${month} ${day}, ${year}`
+    }
+  },
+  methods: {},
+  mixins: [ templateHelper ]
 }
 </script>
 

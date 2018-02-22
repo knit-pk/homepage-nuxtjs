@@ -74,6 +74,7 @@ export default {
       ]
     }
   },
+  components: {},
   props: {
     likes: {
       type: Array,
@@ -87,7 +88,10 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
+  computed: {},
+  methods: {},
+  mixins: {}
 }
 </script>
 

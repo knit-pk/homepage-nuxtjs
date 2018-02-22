@@ -20,7 +20,11 @@ export default {
   },
   components: {
     KnitLogo
-  }
+  },
+  props: {},
+  computed: {},
+  methods: {},
+  mixins: {}
 }
 </script>
 

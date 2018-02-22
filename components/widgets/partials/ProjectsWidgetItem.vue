@@ -42,6 +42,7 @@ export default {
   data () {
     return {}
   },
+  components: {},
   props: {
     tags: {
       default: [],
@@ -68,6 +69,8 @@ export default {
       type: String
     }
   },
+  computed: {},
+  methods: {},
   mixins: [ templateHelper ]
 }
 </script>
