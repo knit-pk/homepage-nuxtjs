@@ -68,6 +68,11 @@ import { mapActions, mapGetters } from 'vuex'
 const storePath = 'articles/list'
 
 export default {
+  data () {
+    return {}
+  },
+  components: {},
+  props: {},
   computed: mapGetters({
     totalItems: `${storePath}/totalItems`,
     pagesMap: `${storePath}/pagesMap`,
@@ -79,6 +84,7 @@ export default {
   }),
   methods: mapActions({
     getPage: `${storePath}/getArticleList`
-  })
+  }),
+  mixins: {}
 }
 </script>

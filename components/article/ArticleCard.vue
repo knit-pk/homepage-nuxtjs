@@ -56,17 +56,7 @@ export default {
       isLiked: false
     }
   },
-  computed: {
-    likesAmount () {
-      return this.likes.length
-    },
-    commentsAmmout () {
-      return this.comments.length
-    },
-    authorAvatar () {
-      return this.author.avatar.url
-    }
-  },
+  components: {},
   props: {
     title: {
       type: String,
@@ -111,6 +101,17 @@ export default {
     description: {
       type: String,
       required: true
+    }
+  },
+  computed: {
+    likesAmount () {
+      return this.likes.length
+    },
+    commentsAmmout () {
+      return this.comments.length
+    },
+    authorAvatar () {
+      return this.author.avatar.url
     }
   },
   methods: {

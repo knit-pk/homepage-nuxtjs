@@ -80,6 +80,12 @@ export default {
       ]
     }
   },
+  components: {
+    JobOffersWidgetItem,
+    WidgetTitle,
+    VueScrollbar
+  },
+  props: {},
   computed: {
     itemsLength () {
       return this.items.length
@@ -91,11 +97,8 @@ export default {
       isMobile: 'general/general/isMobile'
     })
   },
-  components: {
-    JobOffersWidgetItem,
-    WidgetTitle,
-    VueScrollbar
-  }
+  methods: {},
+  mixins: {}
 }
 </script>
 

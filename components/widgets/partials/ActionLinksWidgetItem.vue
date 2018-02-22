@@ -7,6 +7,10 @@
 
 <script>
 export default {
+  data () {
+    return {}
+  },
+  components: {},
   props: {
     linktext: {
       type: String,
@@ -15,7 +19,10 @@ export default {
     iconClass: {
       type: String
     }
-  }
+  },
+  computed: {},
+  methods: {},
+  mixins: {}
 }
 </script>
 

@@ -39,7 +39,11 @@ export default {
   },
   components: {
     ActionLinksWidgetItem
-  }
+  },
+  props: {},
+  computed: {},
+  methods: {},
+  mixins: {}
 }
 </script>
 

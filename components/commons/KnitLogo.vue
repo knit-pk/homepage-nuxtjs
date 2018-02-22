@@ -27,7 +27,12 @@ fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 193 193" xmlns:xlink="http://
 export default {
   data () {
     return {}
-  }
+  },
+  components: {},
+  props: {},
+  computed: {},
+  methods: {},
+  mixins: {}
 }
 </script>
 

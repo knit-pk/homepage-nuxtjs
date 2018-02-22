@@ -11,7 +11,8 @@ export default {
       currScrollY: 0
     }
   },
-
+  components: {},
+  props: {},
   computed: {
     isScrollingDown () {
       return this.currScrollY > this.prevScrollY
@@ -20,7 +21,6 @@ export default {
       return this.currScrollY < this.prevScrollY
     }
   },
-
   methods: {
     fixedTopFall: _.debounce(function () {
       this.currScrollY = window.scrollY
@@ -42,6 +42,7 @@ export default {
       this.fixedTop.classList.remove(this.hiddenClass)
     }
   },
+  mixins: {},
 
   beforeMount () {
     this.fixedTop = document.querySelector('.fixed-top')

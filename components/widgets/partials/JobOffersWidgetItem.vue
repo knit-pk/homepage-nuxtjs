@@ -32,17 +32,7 @@ export default {
   data () {
     return {}
   },
-  computed: {
-    devIconClass () {
-      return `devicon-${this.technology}-plain colored`
-    },
-    employerName () {
-      return `@ ${this.employer}`
-    },
-    salaryBracketsWithCurrency () {
-      return `${this.salaryBrackets} ${this.currency}`
-    }
-  },
+  components: {},
   props: {
     createdAt: {
       default: '',
@@ -73,6 +63,18 @@ export default {
       type: String
     }
   },
+  computed: {
+    devIconClass () {
+      return `devicon-${this.technology}-plain colored`
+    },
+    employerName () {
+      return `@ ${this.employer}`
+    },
+    salaryBracketsWithCurrency () {
+      return `${this.salaryBrackets} ${this.currency}`
+    }
+  },
+  methods: {},
   mixins: [ templateHelper ]
 }
 </script>

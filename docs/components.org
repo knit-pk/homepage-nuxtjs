@@ -1,0 +1,10 @@
+#-*- mode: org -*-
+#+STARTUP: showall
+
+* Components - properties order:
+- data
+- components
+- props
+- computed
+- methods
+- mixins

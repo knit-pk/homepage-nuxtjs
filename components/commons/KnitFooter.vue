@@ -33,7 +33,11 @@ export default {
   components: {
     KnitNavbar,
     KnitLogo
-  }
+  },
+  props: {},
+  computed: {},
+  methods: {},
+  mixins: {}
 }
 </script>
 

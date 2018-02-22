@@ -22,7 +22,11 @@ export default {
   },
   components: {
     AlertWidgetItem
-  }
+  },
+  props: {},
+  computed: {},
+  methods: {},
+  mixins: {}
 }
 </script>
 

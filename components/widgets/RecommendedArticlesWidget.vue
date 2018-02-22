@@ -6,12 +6,17 @@
 
 <script>
 export default {
-
+  data () {
+    return {}
+  },
+  components: {},
+  props: {},
+  computed: {},
+  methods: {},
+  mixins: {}
 }
 </script>
 
 <style lang="scss">
 
 </style>
-
-

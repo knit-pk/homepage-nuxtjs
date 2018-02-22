@@ -31,6 +31,12 @@ export default {
       htmlElement: null
     }
   },
+  components: {
+    SiteHeading,
+    KnitNavbar,
+    Searchbar
+  },
+  props: {},
   computed: {},
   methods: {
     onHamburgerClick () {
@@ -38,14 +44,10 @@ export default {
       commonHelper.toggleElementsClasses([ this.bodyElement, this.htmlElement ], ['no-scroll'])
     }
   },
+  mixins: {},
   beforeMount () {
     this.bodyElement = document.querySelector('body')
     this.htmlElement = document.querySelector('html')
-  },
-  components: {
-    SiteHeading,
-    KnitNavbar,
-    Searchbar
   }
 }
 </script>

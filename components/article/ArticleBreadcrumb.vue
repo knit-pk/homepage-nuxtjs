@@ -27,7 +27,12 @@ export default {
         }
       ]
     }
-  }
+  },
+  components: {},
+  props: {},
+  computed: {},
+  methods: {},
+  mixins: {}
 }
 </script>
 

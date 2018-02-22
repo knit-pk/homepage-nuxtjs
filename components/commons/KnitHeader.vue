@@ -53,7 +53,11 @@ export default {
   components: {
     SiteHeading,
     Searchbar
-  }
+  },
+  props: {},
+  computed: {},
+  methods: {},
+  mixins: {}
 }
 </script>
 

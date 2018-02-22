@@ -11,6 +11,7 @@ export default {
   data () {
     return {}
   },
+  components: {},
   props: {
     title: {
       default: '',
@@ -24,7 +25,10 @@ export default {
       default: '',
       type: String
     }
-  }
+  },
+  computed: {},
+  methods: {},
+  mixins: {}
 }
 </script>
 

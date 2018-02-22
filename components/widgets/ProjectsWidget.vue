@@ -50,7 +50,11 @@ export default {
   components: {
     ProjectsWidgetItem,
     WidgetTitle
-  }
+  },
+  props: {},
+  computed: {},
+  methods: {},
+  mixins: {}
 }
 </script>
 
