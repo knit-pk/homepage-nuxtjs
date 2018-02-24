@@ -70,6 +70,7 @@ export default {
   padding-right: 15%;
   font-size: 15px;
   font-weight: 300;
+  flex-wrap: nowrap;
 
   @media (max-width: $screen-md) {
     padding-right: 0px;
