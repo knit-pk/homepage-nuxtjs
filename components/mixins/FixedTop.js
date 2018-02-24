@@ -8,7 +8,8 @@ export default {
       defaultDebounceTime: 200,
       prevScrollY: 0,
       fixedTop: null,
-      currScrollY: 0
+      currScrollY: 0,
+      isMobileMenuShown: false
     }
   },
   components: {},
@@ -17,15 +18,20 @@ export default {
     isScrollingDown () {
       return this.currScrollY > this.prevScrollY
     },
+
     isScrollingUp () {
       return this.currScrollY < this.prevScrollY
+    },
+
+    isEligibleForScroll () {
+      return this.currScrollY > this.initializeHideHeight
     }
   },
   methods: {
     fixedTopFall: _.debounce(function () {
       this.currScrollY = window.scrollY
 
-      if ((this.currScrollY > this.initializeHideHeight) && this.isScrollingDown) {
+      if (!this.isMobileMenuShown && this.isEligibleForScroll && this.isScrollingDown) {
         this.hideFixedTop()
       } else if (this.isScrollingUp) {
         this.showFixedTop()
@@ -33,22 +39,18 @@ export default {
 
       this.prevScrollY = window.scrollY
     }, this.defaultDebounceTime),
-
     hideFixedTop () {
       this.fixedTop.classList.add(this.hiddenClass)
     },
-
     showFixedTop () {
       this.fixedTop.classList.remove(this.hiddenClass)
     }
   },
   mixins: {},
-
   beforeMount () {
     this.fixedTop = document.querySelector('.fixed-top')
     window.addEventListener('scroll', this.fixedTopFall)
   },
-
   beforeDestroy () {
     window.removeEventListener('scroll', this.fixedTopFall)
   }

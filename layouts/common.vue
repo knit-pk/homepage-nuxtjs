@@ -1,18 +1,18 @@
 <template>
-  <div id="#nuxt-app">
-    <template v-if="!isMobile">
-      <knit-header/>
-      <knit-navbar class="fixed-top"/>
-    </template>
+<div id="#nuxt-app">
+  <template v-if="!isMobile">
+    <knit-header/>
+    <knit-navbar class="fixed-top"/>
+  </template>
 
-    <!-- Render menu only for mobile pages -->
-    <knit-menu-mobile class="fixed-top" v-else/>
+  <!-- Render menu only for mobile pages -->
+  <knit-menu-mobile @mobileMenuToggle="onMobileMenuToggle" class="fixed-top" v-else/>
 
-    <!-- Render content from pages -->
-    <nuxt :class="isMobile ? 'page--mobile' : 'page--desktop'"/>
+  <!-- Render content from pages -->
+  <nuxt :class="isMobile ? 'page--mobile' : 'page--desktop'"/>
 
-    <knit-footer/>
-  </div>
+  <knit-footer/>
+</div>
 </template>
 
 <script>
@@ -29,6 +29,11 @@ export default {
   },
   computed: {
     ...mapGetters({ isMobile: 'general/general/isMobile' })
+  },
+  methods: {
+    onMobileMenuToggle (value) {
+      this.isMobileMenuShown = value
+    }
   },
   components: {
     KnitMenuMobile,

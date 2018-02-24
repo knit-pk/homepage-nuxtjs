@@ -1,20 +1,20 @@
 <template>
-  <div class="knit-menu">
-    <site-heading/>
+<div class="knit-menu">
+  <site-heading/>
 
-    <button @click="onHamburgerClick" :class="[ 'button-no-highlight hamburger', { 'hamburger--open': !isCollapsed } ]" type="button">
-      <span class="hamburger__icon icon1"></span>
-      <span class="hamburger__icon icon2"></span>
-      <span class="hamburger__icon icon3"></span>
-    </button>
+  <button @click="onHamburgerClick" :class="[ 'button-no-highlight hamburger', { 'hamburger--open': isMobileMenuShown } ]" type="button">
+    <span class="hamburger__icon icon1"></span>
+    <span class="hamburger__icon icon2"></span>
+    <span class="hamburger__icon icon3"></span>
+  </button>
 
-    <div :class="[ 'knit-menu__navigation collapse-menu', { 'collapse-menu--show': !isCollapsed } ]">
-      <knit-navbar class="navbar--menu" @linkClickedEvent="onHamburgerClick"/>
-      <div class="knit-menu__searchbar-wrapper">
-        <searchbar class="searchbar--menu"/>
-      </div>
+  <div :class="[ 'knit-menu__navigation collapse-menu', { 'collapse-menu--show': isMobileMenuShown } ]">
+    <knit-navbar class="navbar--menu" @linkClickedEvent="onNavbarLinkClick"/>
+    <div class="knit-menu__searchbar-wrapper">
+      <searchbar class="searchbar--menu"/>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -26,7 +26,7 @@ import commonHelper from '~/helpers/commonHelper'
 export default {
   data () {
     return {
-      isCollapsed: true,
+      isMobileMenuShown: false,
       bodyElement: null,
       htmlElement: null
     }
@@ -40,8 +40,12 @@ export default {
   computed: {},
   methods: {
     onHamburgerClick () {
-      this.isCollapsed = !this.isCollapsed
+      this.isMobileMenuShown = !this.isMobileMenuShown
       commonHelper.toggleElementsClasses([ this.bodyElement, this.htmlElement ], ['no-scroll'])
+      this.$emit('mobileMenuToggle', this.isMobileMenuShown)
+    },
+    onNavbarLinkClick () {
+      setTimeout(() => this.onHamburgerClick(), 300)
     }
   },
   mixins: {},
@@ -71,12 +75,8 @@ export default {
     margin-left: 10px;
   }
 
-  .hamburger {
-    margin-right: 12px;
-  }
-
   &__navigation {
-   padding-top: 20px;
+    padding-top: 20px;
   }
 }
 
@@ -86,10 +86,14 @@ export default {
   flex-direction: column;
   position: fixed;
   z-index: 9998;
-  top: 55px;
-  width: 100%;
+  top: 54px;
+  width: 70%;
   left: -100%;
   background-color: $knit-menu-collapse-bg-color;
+
+  @media (min-width: $screen-md) {
+    width: 30%;
+  }
 
   &--show {
     display: flex;
@@ -104,7 +108,7 @@ export default {
   position: relative;
   margin-top: 12px;
   cursor: pointer;
-  width: 25px;
+  width: 80px;
 
   &__icon {
     background-color: $knit-header-links-text-color;
@@ -114,20 +118,20 @@ export default {
     position: absolute;
     display: block;
     width: 25px;
+    right: 12px;
     height: 2px;
     opacity: 1;
-    left: 0;
 
     &.icon1 {
-      top: 5px;
+      top: 6px;
     }
 
     &.icon2 {
-      top: 14px;
+      top: 15px;
     }
 
     &.icon3 {
-      top: 23px;
+      top: 24px;
     }
   }
 
