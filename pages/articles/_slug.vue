@@ -68,7 +68,6 @@ export default {
 
   .article {
     max-width: 100vw;
-    min-width: 365px;
 
     @media (min-width: $screen-sm) {
       margin-right: $default-gutters-width;

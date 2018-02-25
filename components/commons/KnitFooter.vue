@@ -50,7 +50,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 365px;
 
   .navbar.navbar--footy {
     @media (max-width: $screen-lg) {
