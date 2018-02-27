@@ -1,11 +1,11 @@
-const env = require('dotenv').config().parsed
+const env = process.env.NODE_ENV === 'production' ? process.env : require('dotenv').config().parsed
 
 if (!env.API_URL) {
   throw new Error('API_URL variable must be defined.')
 }
 
-if (!env.ENV) {
-  throw new Error('ENV variable must be defined')
+if (!env.NODE_ENV) {
+  throw new Error('NODE_ENV variable must be defined')
 }
 
 module.exports = {

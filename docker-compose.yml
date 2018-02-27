@@ -1,0 +1,7 @@
+version: '3'
+services:
+  homepage-nuxtjs:
+    build: .
+    command: npm start
+    ports:
+      - "8080:3000"

@@ -1,4 +1,4 @@
-const knitLogger = process.env.ENV === 'debug' ?
+const knitLogger = process.env.NODE_ENV === 'debug' ?
   {
     debug: console.log
   } :
