@@ -14,41 +14,46 @@ module.exports = {
    ** Headers of the page
    */
   head: {
+    htmlAttrs: {
+      lang: 'pl-PL'
+    },
     title: 'Koło Naukowe IT - Politechnika Krakowska',
-    meta: [{
-      charset: 'utf-8'
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1'
-    },
-    {
-      hid: 'description',
-      name: 'description',
-      content: 'Nuxt.js project'
-    }
+    meta: [
+      {
+        charset: 'utf-8'
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Nuxt.js project'
+      }
     ],
     script: [],
-    link: [{
-      rel: 'shortcut icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    },
-    {
-      rel: 'preconnect',
-      href: env.API_URL,
-      crossorigin: 'anonymous'
-    },
-    {
-      rel: 'stylesheet preload',
-      as: 'style',
-      href: 'https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css'
-    },
-    {
-      rel: 'stylesheet preload',
-      as: 'style',
-      href: 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&amp;subset=latin-ext'
-    }
+    link: [
+      {
+        rel: 'shortcut icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico'
+      },
+      {
+        rel: 'preconnect',
+        href: env.API_URL,
+        crossorigin: 'anonymous'
+      },
+      {
+        rel: 'stylesheet preload',
+        as: 'style',
+        href: 'https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css'
+      },
+      {
+        rel: 'stylesheet preload',
+        as: 'style',
+        href: 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=latin,latin-ext'
+      }
     ]
   },
   /*
@@ -62,18 +67,22 @@ module.exports = {
     '~/plugins/vue-markdown.js'
   ],
   modules: [
-    ['@nuxtjs/axios', {
-      credentials: false
-    }],
-    ['bootstrap-vue/nuxt', {
-      css: false
-    }]
+    [
+      '@nuxtjs/axios', {
+        credentials: false
+      }
+    ],
+    [
+      'bootstrap-vue/nuxt', {
+        css: false
+      }
+    ]
   ],
   /*
    ** Build configuration
    */
   router: {
-    middleware: ['is-mobile']
+    middleware: [ 'is-mobile' ]
   },
   css: [
     '~/assets/scss/custom-components/vue-scrollbar.scss',
@@ -83,7 +92,7 @@ module.exports = {
     '~/assets/scss/main.scss'
   ],
   build: {
-    vendor: ['axios', 'lodash', 'qs', 'vue2-scrollbar'],
+    vendor: [ 'axios', 'lodash', 'qs', 'vue2-scrollbar' ],
     /*
      ** Run ESLint on save
      */

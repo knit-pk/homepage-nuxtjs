@@ -11,6 +11,9 @@ body {
   display: block;
   text-size-adjust: 100%;
   margin: auto;
+  background-color: $background-color;
+  font-family: $default-font-family;
+  color: $primary-text-color;
 }
 
 h1, h2, h3, h4, h5, h6 {
