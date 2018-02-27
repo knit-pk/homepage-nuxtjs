@@ -107,34 +107,25 @@ export default {
   }
 
   &--big-main-post {
+    @media (max-width: $screen-sm) {
+      padding: 0 10px;
+    }
+
     .article-card {
-      @media (max-width: $screen-xl) {
-        flex-basis: calc(50% - #{$default-gutters-width/2});
-        flex-wrap: wrap;
-        margin-right: 0;
-
-        &:nth-of-type(2n + 2) {
-          margin-right: $default-gutters-width;
-        }
-
+      flex-basis: calc(33.333% - #{$default-gutters-width});
+      margin-right: $default-gutters-width;
+      
+      @media (min-width: 1060px) and (max-width: $screen-xl) {
+        flex-basis: calc(50% - #{$default-gutters-width});
       }
 
-      @media (max-width: 1060px) {
+      @media (max-width: $screen-md) {
         flex-basis: calc(50% - #{$default-gutters-width});
-        margin-right: $default-gutters-width;
       }
 
       @media (max-width: $screen-sm) {
         flex-basis: 100%;
         margin-right: 0;
-
-        &:nth-of-type(2n + 2) {
-          margin-right: 0;
-        }
-      }
-
-      &__title-link {
-        width: 100%;
       }
 
       &:first-of-type {
@@ -144,11 +135,6 @@ export default {
           flex-basis: calc(66.666% - #{$default-gutters-width});
           position: relative;
           justify-content: flex-end;
-
-          @media (max-width: $screen-xl) {
-            height: 360px;
-            flex-basis: 100%;
-          }
 
           #{$ac}__thumbnail-link {
             position: absolute;
@@ -179,6 +165,7 @@ export default {
           #{$ac}__title-link {
             color: #fff;
             z-index: 2;
+            flex-basis: 100%;
           }
 
           #{$ac}__author-link {
@@ -213,6 +200,16 @@ export default {
               color: darken($article-card-like-button-liked-color, 5%);
             }
           }
+        }
+
+        @media (min-width: 1060px) and (max-width: $screen-xl) {
+          flex-basis: 100%;
+          height: 360px;
+        }
+
+        @media (min-width: $screen-sm) and (max-width: $screen-md) {
+          height: 360px;
+          flex-basis: 100%;
         }
       }
     }

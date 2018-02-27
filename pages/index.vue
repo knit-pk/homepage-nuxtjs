@@ -56,13 +56,47 @@ export default {
 
   .aside-down {
     .job-offers-widget {
+      margin-right: $default-gutters-width;
+      flex: 1;
+
       @media (max-width: $screen-md) {
-        flex-basis: 100%;
-        margin-right: 0;
+        flex-basis: calc(65% - #{$default-gutters-width});
       }
 
-      @media (min-width: 1059px) {
-        margin-right: $default-gutters-width;
+      @media (max-width: $screen-sm) {
+        margin: 0 10px;
+      }
+    }
+
+    .action-links {
+      @media (max-width: $screen-md) {
+        flex-basis: 35%;
+        height: 320px;  
+        flex-direction: column;
+        flex-wrap: nowrap;
+      }
+
+      @media (max-width: $screen-sm) {
+        padding: 0 10px;
+        margin-top: $default-gutters-width;
+        flex-basis: 100%;
+      }
+
+      &__link-item {
+        @media (max-width: $screen-md) {
+          flex-basis: 100%;
+          height: auto;
+          flex-direction: row;
+          align-items: center;
+          margin-bottom: 10px;
+          padding: 15px;
+          flex: 1;
+          width: 100%;
+
+          &:last-child {
+            margin-bottom: 0;
+          } 
+        }
       }
     }
   }

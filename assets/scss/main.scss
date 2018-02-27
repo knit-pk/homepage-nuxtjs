@@ -72,10 +72,10 @@ a {
 }
 
 .aside-down, .aside-right, .main-content {
-  padding: 20px 0 0;
+  padding: $default-gutters-width 0 0;
 
   @media (min-width: 1061px) {
-    margin-right: 20px;
+    margin-right: $default-gutters-width;
   }
 
   @media (max-width: $screen-sm) {
@@ -90,7 +90,7 @@ a {
   }
 
   @media (max-width: $page-max-width) and (min-width: $screen-sm) {
-    margin-left: 20px;
+    margin-left: $default-gutters-width;
   }
 }
 
@@ -99,7 +99,7 @@ a {
   margin-right: 0;
 
   @media (max-width: $page-max-width) {
-    margin-right: 20px;
+    margin-right: $default-gutters-width;
   }
 
   @media (max-width: 1060px) {
@@ -109,7 +109,7 @@ a {
     margin-left: $default-gutters-width;
 
     &__widget {
-      flex-basis: calc(50% - 10px);
+      flex-basis: calc(50% - #{$default-gutters-width / 2});
     }
   }
 
@@ -129,7 +129,7 @@ a {
   display: flex;
   padding-top: 0;
 
-  @media (min-width: $screen-xl + 1) {
+  @media (min-width: 1060px + 1) {
     margin-right: 2 * $default-gutters-width;
   }
 
