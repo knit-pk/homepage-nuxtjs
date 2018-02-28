@@ -7611,6 +7611,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-config-manager@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/vue-config-manager/-/vue-config-manager-0.2.2.tgz#324c06198be13a4977736053a990f577aa80ca02"
+
 vue-functional-data-merge@^2.0.3:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/vue-functional-data-merge/-/vue-functional-data-merge-2.0.5.tgz#8b4756be3aefde430e9a86253530e41f8dd1c631"

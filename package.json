@@ -29,6 +29,7 @@
     "nuxt": "^1.4.0",
     "qs": "^6.5.1",
     "sass-loader": "^6.0.6",
+    "vue-config-manager": "^0.2.2",
     "vue-markdown": "^2.2.4",
     "vue-prevent-parent-scroll": "^1.0.5",
     "vue2-scrollbar": "0.0.3"

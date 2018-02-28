@@ -1,7 +1,6 @@
 <template>
   <section :class="['article-card-list']">
     <h2 class="visualy-hidden"> Artykuły KNIT </h2>
-
     <article-card v-for="(article, index) in cardsArticles" :key="index"
                        :title="article.title"
                        :author="article.author"

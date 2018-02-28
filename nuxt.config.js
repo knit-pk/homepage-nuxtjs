@@ -64,7 +64,8 @@ module.exports = {
   },
   plugins: [
     '~/plugins/prevent-scroll.js',
-    '~/plugins/vue-markdown.js'
+    '~/plugins/vue-markdown.js',
+    '~/plugins/vue-config-manager.js'
   ],
   modules: [
     [

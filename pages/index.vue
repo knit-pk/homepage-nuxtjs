@@ -5,14 +5,24 @@
         <article-card-list class="article-card-list--big-main-post"/>
       </main>
       <aside class="aside-down">
-        <job-offers-widget/>
-        <action-links-widget/>
+        <show-component-wrapper name="job-offers-widget">
+          <job-offers-widget/>
+        </show-component-wrapper>
+        <show-component-wrapper name="action-links-widget">
+          <action-links-widget/>
+        </show-component-wrapper>
       </aside>
     </div>
     <aside class="aside-right">
-      <alert-widget class="aside-right__widget"/>
-      <meetup-calendar-widget class="aside-right__widget"/>
-      <projects-widget class="aside-right__widget"/>
+      <show-component-wrapper name="alert-widget">
+        <alert-widget class="aside-right__widget"/>
+      </show-component-wrapper>
+      <show-component-wrapper name="meetup-calendar-widget">
+        <meetup-calendar-widget class="aside-right__widget"/>
+      </show-component-wrapper>
+      <show-component-wrapper name="meetup-calendar-widget">
+        <projects-widget class="aside-right__widget"/>
+      </show-component-wrapper>
     </aside>
   </div>
 </template>
@@ -24,6 +34,7 @@ import JobOffersWidget from '~/components/widgets/JobOffersWidget'
 import ArticleCardList from '~/components/article/ArticleCardList'
 import ProjectsWidget from '~/components/widgets/ProjectsWidget'
 import AlertWidget from '~/components/widgets/AlertWidget'
+import ShowComponentWrapper from '~/components/ShowComponentWrapper'
 
 export default {
   layout: 'common',
@@ -33,7 +44,8 @@ export default {
     JobOffersWidget,
     ArticleCardList,
     ProjectsWidget,
-    AlertWidget
+    AlertWidget,
+    ShowComponentWrapper
   },
   fetch ({ store, params }) {
     // Retrieves cards from API

@@ -1,0 +1,11 @@
+{
+  "showComponents": {
+    "action-links-widget": false,
+    "alert-widget": false,
+    "job-offers-widget": false,
+    "meetup-calendar-widget": false,
+    "popular-articles-widget": false,
+    "projects-widget": false,
+    "recommended-articles-widget": false
+  }
+}
