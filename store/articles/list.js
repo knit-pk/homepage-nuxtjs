@@ -1,4 +1,9 @@
-import { ARTICLE_LIST_RETRIEVED_SUCCESS, ARTICLE_LIST_UPDATE_PAGES_MAP, ARTICLE_LIST_RETRIEVED_ERROR, ARTICLE_LIST_STATUS } from './mutation-types'
+import {
+  ARTICLE_LIST_RETRIEVED_SUCCESS,
+  ARTICLE_LIST_UPDATE_PAGES_MAP,
+  ARTICLE_LIST_RETRIEVED_ERROR,
+  ARTICLE_LIST_STATUS
+} from './mutation-types'
 import commonHelper from '~/helpers/commonHelper'
 import knitService from '~/services/knitService'
 import storeHelper from '~/helpers/storeHelper'
@@ -61,7 +66,7 @@ export const actions = {
         ])
       })
       .catch(err => {
-        knitLogger.debug(`Error occurred while trying to fetch main articles list: err ${err}`)
+        knitLogger.debug(`Error occurred while trying to fetch main articles list: ${err}`)
         storeHelper.commitMultiple(commit, [ error(err), changeStatus('error') ])
       })
   }

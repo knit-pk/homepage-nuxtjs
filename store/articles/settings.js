@@ -23,6 +23,7 @@ export default {
     'createdAt',
     'comments',
     'commentsCount',
+    'ratings',
     'content',
     'author',
     'title',

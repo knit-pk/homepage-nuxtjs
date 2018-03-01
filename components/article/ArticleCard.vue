@@ -32,13 +32,13 @@
         <a @click.prevent.stop="handleLikeClick" :class="{ [ 'article-card__like-button--liked' ]: isLiked }" href="#" role="button" class="article-card__like-button" title="Lubię to!" aria-label="Polub post">
           <span class="flaticon-like article-card__stat-icon" aria-hidden="true"></span>
           <span class="visualy-hidden">Polubienia</span>
-          <span> {{ likesAmount }} </span>
+          <span> {{ likesCount }} </span>
         </a>
       </li>
       <li class="article-card__stats-group">
         <span class="flaticon-chat article-card__stat-icon article-card__comment-icon" title="Komentarze" aria-hidden="true"></span>
         <span class="visualy-hidden">Komentarze</span>
-        <span> {{ commentsAmmout }} </span>
+        <span> {{ commentsCount }} </span>
       </li>
     </ul>
   </footer>
@@ -79,10 +79,6 @@ export default {
       default: '',
       required: true
     },
-    likes: {
-      type: Array,
-      default: () => []
-    },
     id: {
       type: String
     },
@@ -98,17 +94,18 @@ export default {
       type: Number,
       default: 0
     },
+    ratings: {
+      type: Array,
+      default: () => []
+    },
     description: {
       type: String,
       required: true
     }
   },
   computed: {
-    likesAmount () {
-      return this.likes.length
-    },
-    commentsAmmout () {
-      return this.comments.length
+    likesCount () {
+      return this.ratings.length
     },
     authorAvatar () {
       return this.author.avatar.url

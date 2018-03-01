@@ -9,7 +9,7 @@
                        :description="article.description"
                        :thumbnail="article.image.url"
                        :published-at="article.publishedAt"
-                       :likes="article.likes"
+                       :ratings="article.ratings"
                        :comments="article.comments"
                        :comments-count="article.commentsCount"
                        :slug="article.code"/>

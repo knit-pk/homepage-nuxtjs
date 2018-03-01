@@ -31,7 +31,7 @@ export const actions = {
     const articles = rootGetters[getterName]
 
     if (_.isEmpty(articles)) {
-      const qsObject = _.assign({ code: slug }, settings.defaultQsObject)
+      const qsObject = _.assign({}, settings.defaultQsObject, { code: slug, limit: 1 })
 
       knitLogger.debug(`No articles in main list, trying to fetch single main article`)
 

@@ -14,7 +14,7 @@
     <!-- article footer -->
     <article-footer
       :author="author"
-      :likes="likes"
+      :likes-count="likesCount"
       :comments-count="commentsCount"/>
 
     <!-- article comments section -->
@@ -61,10 +61,6 @@ export default {
       default: '',
       required: true
     },
-    likes: {
-      type: Array,
-      default: () => []
-    },
     id: {
       type: String
     },
@@ -80,12 +76,20 @@ export default {
       type: Number,
       default: 0
     },
+    ratings: {
+      type: Array,
+      default: () => []
+    },
     description: {
       type: String,
       required: true
     }
   },
-  computed: {},
+  computed: {
+    likesCount () {
+      return this.ratings.length
+    }
+  },
   methods: {
     handleLikeClick () {
       this.isLiked = !this.isLiked

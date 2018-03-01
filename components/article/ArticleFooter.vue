@@ -36,7 +36,7 @@
         </span>
       </div>
       <span class="article-footer__icons">
-        <router-link to="" class="article-footer__single-icon flaticon-like"> {{ likes.length }} </router-link>
+        <router-link to="" class="article-footer__single-icon flaticon-like"> {{ likesCount }} </router-link>
         <router-link to="" class="article-footer__single-icon flaticon-chat"> {{ commentsCount }} </router-link>
         <router-link to="" class="article-footer__single-icon flaticon-facebook-logo"></router-link>
         <router-link to="" class="article-footer__single-icon flaticon-social"></router-link>
@@ -76,9 +76,9 @@ export default {
   },
   components: {},
   props: {
-    likes: {
-      type: Array,
-      default: () => []
+    likesCount: {
+      type: Number,
+      default: 0
     },
     commentsCount: {
       type: Number,
