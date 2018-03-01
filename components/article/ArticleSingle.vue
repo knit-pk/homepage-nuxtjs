@@ -1,7 +1,7 @@
 <template>
   <article class="article">
     <!-- article breadcrumbs -->
-    <article-breadcrumb/>
+    <article-breadcrumb :breadcrumbs="breadcrumbs"/>
 
     <!-- article content-->
     <article-content
@@ -14,7 +14,8 @@
     <!-- article footer -->
     <article-footer
       :author="author"
-      :likes="likes"
+      :tags="tags"
+      :likes-count="likesCount"
       :comments-count="commentsCount"/>
 
     <!-- article comments section -->
@@ -28,6 +29,21 @@ import ArticleComments from '~/components/article/ArticleComments'
 import ArticleContent from '~/components/article/ArticleContent'
 import ArticleFooter from '~/components/article/ArticleFooter'
 import templateHelper from '~/helpers/templateHelper'
+
+const makeArticleBreadcrumbs = (code, title) => [
+  {
+    text: 'Strona główna',
+    path: '/'
+  },
+  {
+    text: 'Artykuły',
+    path: '/articles'
+  },
+  {
+    text: title,
+    path: `/articles/${code}`
+  }
+]
 
 export default {
   data () {
@@ -61,10 +77,6 @@ export default {
       default: '',
       required: true
     },
-    likes: {
-      type: Array,
-      default: () => []
-    },
     id: {
       type: String
     },
@@ -80,12 +92,27 @@ export default {
       type: Number,
       default: 0
     },
+    ratings: {
+      type: Array,
+      default: () => []
+    },
+    tags: {
+      type: Array,
+      default: () => []
+    },
     description: {
       type: String,
       required: true
     }
   },
-  computed: {},
+  computed: {
+    breadcrumbs () {
+      return makeArticleBreadcrumbs(this.slug, this.title)
+    },
+    likesCount () {
+      return this.ratings.length
+    }
+  },
   methods: {
     handleLikeClick () {
       this.isLiked = !this.isLiked

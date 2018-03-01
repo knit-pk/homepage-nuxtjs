@@ -1,8 +1,8 @@
 <template>
   <div class= "article-breadcrumb">
     <ul class="article-breadcrumb__routes">
-      <li v-for="(item, index) in breadcrumbs" class="article-breadcrumb__item" :key ="index">
-        <router-link :to="{ path: item.path }"> {{ item.text }} </router-link>
+      <li v-for="({path, text}, index) in breadcrumbs" class="article-breadcrumb__item" :key ="index">
+        <router-link :to="{ path }"> {{ text }} </router-link>
       </li>
     </ul>
   </div>
@@ -11,25 +11,20 @@
 <script>
 export default {
   data () {
-    return {
-      breadcrumbs: [
+    return {}
+  },
+  components: {},
+  props: {
+    breadcrumbs: {
+      type: Array,
+      default: () => [
         {
           text: 'Strona główna',
           path: '/'
-        },
-        {
-          text: 'Artykuły',
-          path: '/articles'
-        },
-        {
-          text: 'Jak zacząć naukę języka Kotlin',
-          path: ''
         }
       ]
     }
   },
-  components: {},
-  props: {},
   computed: {},
   methods: {},
   mixins: {}
