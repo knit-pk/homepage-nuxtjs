@@ -1,7 +1,7 @@
 <template>
   <article class="article">
     <!-- article breadcrumbs -->
-    <article-breadcrumb/>
+    <article-breadcrumb :breadcrumbs="breadcrumbs"/>
 
     <!-- article content-->
     <article-content
@@ -29,6 +29,21 @@ import ArticleComments from '~/components/article/ArticleComments'
 import ArticleContent from '~/components/article/ArticleContent'
 import ArticleFooter from '~/components/article/ArticleFooter'
 import templateHelper from '~/helpers/templateHelper'
+
+const makeArticleBreadcrumbs = (code, title) => [
+  {
+    text: 'Strona główna',
+    path: '/'
+  },
+  {
+    text: 'Artykuły',
+    path: '/articles'
+  },
+  {
+    text: title,
+    path: `/articles/${code}`
+  }
+]
 
 export default {
   data () {
@@ -91,6 +106,9 @@ export default {
     }
   },
   computed: {
+    breadcrumbs () {
+      return makeArticleBreadcrumbs(this.slug, this.title)
+    },
     likesCount () {
       return this.ratings.length
     }
