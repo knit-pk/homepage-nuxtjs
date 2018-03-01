@@ -8,6 +8,7 @@
                     :author="article.author"
                     :description="article.description"
                     :published-at="article.publishedAt"
+                    :tags="article.tags"
                     :ratings="article.ratings"
                     :comments="article.comments"
                     :comments-count="article.commentsCount"

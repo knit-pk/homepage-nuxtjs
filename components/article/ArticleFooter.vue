@@ -2,7 +2,7 @@
   <footer class="article-footer">
     <ul class="article-footer__tags">
       <li v-for="(tag, index) in tags" class="article-footer__single-tag" :key = "index">
-        <router-link to="" class="article-footer__single-tag-route"> {{ tag }} </router-link>
+        <router-link to="" class="article-footer__single-tag-route"> {{ tag.name }} </router-link>
       </li>
     </ul>
     <div class="article-footer__footer-box">
@@ -50,12 +50,6 @@
 export default {
   data () {
     return {
-      tags: [
-        'Java',
-        'Programowanie',
-        'Kotlin',
-        'Technologia'
-      ],
       leaderTags: [
         {
           text: 'Java',
@@ -76,6 +70,10 @@ export default {
   },
   components: {},
   props: {
+    tags: {
+      type: Array,
+      default: () => []
+    },
     likesCount: {
       type: Number,
       default: 0

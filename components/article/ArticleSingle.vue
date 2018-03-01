@@ -14,6 +14,7 @@
     <!-- article footer -->
     <article-footer
       :author="author"
+      :tags="tags"
       :likes-count="likesCount"
       :comments-count="commentsCount"/>
 
@@ -77,6 +78,10 @@ export default {
       default: 0
     },
     ratings: {
+      type: Array,
+      default: () => []
+    },
+    tags: {
       type: Array,
       default: () => []
     },
