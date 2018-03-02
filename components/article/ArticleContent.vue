@@ -2,15 +2,17 @@
   <div class="article-content">
     <header class="article-content__header">
       <img :src="thumbnail" class="article-content__thumbnail"/>
-      <div class="article-content__pub-info">
+      <div class="article-content__header-info">
         <h2 class="article-content__title"> {{ title }} </h2>
-        <router-link to="/" class="article-content__pub-details">
-          <img class="article-content__author-avatar" :src="author.avatar.url" :alt="author.fullname"/>
-          <div class="article-content__pub-details-block">
-            <span class="article-content__author-fullname"> {{ author.fullname }} </span>
-            <span class="article-content__pub-date"> {{ publicationDate }} </span>
+        <div class="article-content__pub-info">
+          <router-link to="/" class="article-content__author-avatar-link">
+            <img class="article-content__author-avatar" :src="author.avatar.url" :alt="author.fullname"/>
+          </router-link>
+          <div>
+            <router-link to="/" class="article-content__author-fullname"> {{ author.fullname }} </router-link>
+            <time :datetime="publicationDate" class="article-content__pub-date"> {{ publicationDate }} </time>
           </div>
-        </router-link>
+        </div>
       </div>
     </header>
     <vue-markdown class="article-content__body" :source="content"/>
@@ -20,7 +22,6 @@
 <script>
 import templateHelper from '~/helpers/templateHelper'
 import VueMarkdown from 'vue-markdown'
-import _ from 'lodash'
 
 export default {
   data () {
@@ -54,12 +55,7 @@ export default {
   },
   computed: {
     publicationDate () {
-      const date = new Date(this.publishedAt)
-      const month = _.capitalize(date.toLocaleString('pl', { month: 'long' }))
-      const day = date.toLocaleString('pl', { day: 'numeric' })
-      const year = date.toLocaleString('pl', { year: 'numeric' })
-
-      return `${month} ${day}, ${year}`
+      return this.formatDateToLocalString(this.publishedAt)
     }
   },
   methods: {},
@@ -81,27 +77,38 @@ export default {
     padding: 10px;
 
     @media (max-width: $screen-md) {
+      height: 400px;
+      padding: 8px;
+    }
+
+    @media (max-width: $screen-sm) {
       height: 300px;
-      padding: 3px;
+      padding: 0;
     }
   }
 
-  &__pub-info {
+  &__header-info {
     display: flex;
     flex-direction: column;
   }
 
   &__title {
     order: 2;
-    padding: 30px 0 30px 20px;
-    margin-left: 15px;
+    padding: 30px 35px;
     font-weight: normal;
     font-size: 1.90rem;
 
     @media (max-width: $screen-md) {
-      padding: 30px 0 30px 0;
-      margin-left: 15px;
+      padding: 25px 20px;
     }
+
+    @media (max-width: $screen-sm) {
+      padding: 15px 20px;
+    }
+  }
+
+  &__pub-info {
+    display: flex;
   }
 
   &__pub-details {
@@ -109,15 +116,17 @@ export default {
     color: $primary-text-color;
   }
 
-  &__pub-details-block {
-    margin-top: -20px;
-  }
-
   &__pub-date {
     display: block;
-    padding: 3px 0 0 20px;
+    padding-top: 3px;
+    margin-left: 20px;
     font-size: 0.85rem;
-    font-weight: 100;
+    font-weight: 300;
+
+    @media (max-width: $screen-sm) {
+      margin-left: 15px;
+      font-size: 0.75rem;
+    }
   }
 
   &__author-fullname {
@@ -125,15 +134,36 @@ export default {
     display: block;
     font-weight: normal;
     font-size: 1.5rem;
+    color: $primary-text-color;
+
+    &:hover,
+    &:focus {
+      color: lighten($primary-text-color, 25%);
+    }
+
+    @media (max-width: $screen-sm) {
+      font-size: 1.1rem;
+      padding: 10px 0 0 15px;
+    }
+  }
+
+  &__author-avatar-link {
+    display: inline-block;
+    border-radius: 50%;
+    margin-top: -35px;
+    padding-left: 30px;
+    align-self: flex-start;
+
+    @media (max-width: $screen-md) {
+      padding-left: 20px;
+      margin-top: -25px;
+    }
   }
 
   &__author-avatar {
     border: 3px solid $author-avatar-border-color;
-    margin-top: -35px;
-    margin-left: 30px;
-    border-radius: 100%;
+    border-radius: 50%;
     object-fit: cover;
-    width: auto;
     height: 120px;
     width: 120px;
 
@@ -143,7 +173,8 @@ export default {
     }
 
     @media (max-width: $screen-sm) {
-      margin-left: 10px;
+      height: 75px;
+      width: 75px;
     }
   }
 
@@ -153,7 +184,11 @@ export default {
     text-align: justify;
 
     @media (max-width: $screen-md) {
-      padding: 0 15px 30px 15px;
+      padding: 0 20px 30px 20px;
+    }
+
+    @media (max-width: $screen-sm) {
+      padding: 0 15px 15px 15px;
     }
 
     p {
@@ -162,7 +197,7 @@ export default {
     }
 
     h1, h2, h3, h4, h5 {
-      padding: 25px 0 5px 0;
+      padding: 15px 0;
       font-weight: normal;
       font-size: 1.5rem;
     }

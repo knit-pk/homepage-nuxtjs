@@ -113,7 +113,7 @@ export default {
   overflow: hidden;
   flex-basis: calc(50% - #{$default-gutters-width / 2});
   margin-right: $default-gutters-width / 2;
-
+  
   &__scrollbar-wrapper {
     max-height: $job-offers-widget-height - $job-offers-widget-title-height;
   }
