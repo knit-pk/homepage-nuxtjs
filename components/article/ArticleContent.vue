@@ -208,19 +208,42 @@ export default {
 
     ul, ol {
       padding: 0 30px 10px 35px;
-      list-style: none;
     }
 
-    li {
-      padding: 5px 0;
-      position: relative;
+    ol {
+      list-style-type: decimal;
+      padding: 0 30px 10px 15px;
 
-      &:before {
-        content: "•";
-        font-size: 1.5rem;
-        position: absolute;
-        left: -30px;
-        top: 0px;
+      li {
+        padding: 4px 0;
+        position: relative;
+
+        br {
+          display: block;
+          margin: 8px;
+          content: " ";
+
+          &:first-of-type {
+            margin-top: 8px;
+          }
+        }
+      }
+    }
+
+    ul {
+      list-style: none;
+
+      li {
+        padding: 5px 0;
+        position: relative;
+
+        &:before {
+          content: "•";
+          font-size: 1.5rem;
+          position: absolute;
+          left: -30px;
+          top: 0px;
+        }
       }
     }
 

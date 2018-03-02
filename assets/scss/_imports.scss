@@ -10,6 +10,9 @@
 // *** Layouts***
 @import "variables/default.scss";
 
+// *** Integration ***
+@import "custom-components/katex-integration.scss";
+
 // *** Components ***
 // *** Article Component ***
 @import "variables/components/article/article-content.scss";

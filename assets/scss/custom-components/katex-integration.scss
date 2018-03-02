@@ -1,0 +1,33 @@
+// subscripts and superscripts align
+.katex {
+  line-height: 0;
+}
+
+.katex-display {
+  margin: 0.5em 0;
+}
+
+// content in brackets
+.mpunct {
+  margin-right: 5px;
+}
+
+// math operators
+.mbin,
+.mrel {
+    font-size: 15px;
+    margin: 0 5px;
+}
+
+// size of subscripts and superscripts
+.vlist {
+  .reset-textstyle.scriptstyle.cramped,
+  .reset-textstyle.scriptstyle.uncramped {
+    .mord.mathit, .mbin, .mrel, .mord.mathrm {
+      position: relative;
+      margin: 0;
+      font-size: 14px;
+      top: -5px;
+    }
+  }
+}
