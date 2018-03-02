@@ -10,7 +10,7 @@
     <!-- Header -->
     <header class="article-card__header">
       <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__title-link">
-        <h3 ref="articleTitle" class="article-card__title"> {{ title }} </h3>
+        <h3 ref="articleTitle" class="article-card__title"> {{ trimString(title, 75) }} </h3>
       </router-link>
       <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__author-link">
         <span class="article-card__author-name"> {{ author.username }} </span>
@@ -22,7 +22,7 @@
   </div>
 
   <!-- Description -->
-  <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__description"> {{ description }} </router-link>
+  <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__description"> {{ trimString(description, 170) }} </router-link>
 
   <!-- Footer -->
   <footer class="article-card__footer">
@@ -138,9 +138,12 @@ export default {
   flex-direction: column;
   font-size: 14px;
 
-  &__thumbnail-link {
-    flex: 1 0 33%;
-  }
+  // NOTE: It fixes mainpage card issue, but it may affect to horizontal card
+  //       in article list, which is not implemented yet. 
+
+  // &__thumbnail-link {
+  //   flex: 1 0 33%; 
+  // }
 
   &__thumbnail {
     @include img-fluid;
@@ -156,6 +159,10 @@ export default {
     flex-wrap: wrap;
     padding: 0 20px;
     margin-top: -26px;
+
+    @media (max-width: $screen-sm) {
+      padding: 0 15px;
+    }
   }
 
   &__title-link {
@@ -163,6 +170,7 @@ export default {
     margin: 13px 0;
     color: $gray-50;
     order: 3;
+    flex-basis: 100%;
   }
 
   &__title {
@@ -201,6 +209,10 @@ export default {
     font-weight: 300;
     font-size: 14px;
     color: #888888;
+
+    @media (max-width: $screen-sm) {
+      padding: 0 15px 15px 15px;
+    }
   }
 
   &__footer {
@@ -210,6 +222,10 @@ export default {
     margin-top: auto;
     padding: 15px 20px;
     font-size: 13px;
+
+    @media (max-width: $screen-sm) {
+      padding: 15px;
+    }
   }
 
   &__stats {

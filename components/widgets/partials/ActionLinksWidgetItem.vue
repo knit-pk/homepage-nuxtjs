@@ -37,14 +37,18 @@ export default {
     text-transform: uppercase;
     text-decoration: none;
 
-    @media (max-width: 1110px) and (min-width: $screen-md) {
-      font-size: 0.85rem;
+    @media (max-width: $screen-sm) {
+      font-size: 0.9rem;
     }
   }
 
   &__icon {
     &:before {
       font-size: 3rem;
+
+      @media (max-width: $screen-md) {
+        font-size: 2rem;
+      }
     }
   }
 

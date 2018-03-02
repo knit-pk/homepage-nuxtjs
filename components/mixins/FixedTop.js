@@ -5,7 +5,7 @@ export default {
     return {
       initializeHideHeight: 100,
       hiddenClass: 'fixed-top--hidden',
-      defaultDebounceTime: 200,
+      defaultDebounceTime: 1000,
       prevScrollY: 0,
       fixedTop: null,
       currScrollY: 0,
@@ -14,19 +14,7 @@ export default {
   },
   components: {},
   props: {},
-  computed: {
-    isScrollingDown () {
-      return this.currScrollY > this.prevScrollY
-    },
-
-    isScrollingUp () {
-      return this.currScrollY < this.prevScrollY
-    },
-
-    isEligibleForScroll () {
-      return this.currScrollY > this.initializeHideHeight
-    }
-  },
+  computed: {},
   methods: {
     fixedTopFall: _.debounce(function () {
       this.currScrollY = window.scrollY
@@ -39,11 +27,25 @@ export default {
 
       this.prevScrollY = window.scrollY
     }, this.defaultDebounceTime),
+
     hideFixedTop () {
       this.fixedTop.classList.add(this.hiddenClass)
     },
+
     showFixedTop () {
       this.fixedTop.classList.remove(this.hiddenClass)
+    },
+
+    isScrollingDown () {
+      return this.currScrollY > this.prevScrollY
+    },
+
+    isScrollingUp () {
+      return this.currScrollY < this.prevScrollY
+    },
+
+    isEligibleForScroll () {
+      return this.currScrollY > this.initializeHideHeight
     }
   },
   mixins: {},

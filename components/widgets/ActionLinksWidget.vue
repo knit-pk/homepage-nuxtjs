@@ -62,12 +62,6 @@ export default {
   font-size: 0.975rem;
   font-weight: 300;
 
-  @media (max-width: $screen-md) {
-    margin-top: $default-gutters-width;
-    height: 400px;
-    flex-basis: 100%;
-  }
-
   &__link-item {
     display: flex;
     flex-direction: column;
