@@ -1,28 +1,17 @@
-FROM node:carbon
+FROM node:9-alpine
 
-# Specify env variables here
-ENV NODE_ENV=production
-ENV API_URL=https://knit-test-api.tk
+ARG NODE_ENV=production
+ARG API_URL=https://knit-test-api.tk
+
 ENV HOST 0.0.0.0
+ENV NODE_ENV ${NODE_ENV}
+ENV API_URL ${API_URL}
 
-# Create homepage-nuxtjs directory
-RUN mkdir -p /var/www/homepage-nuxtjs
+WORKDIR /usr/src/app
+COPY . /usr/src/app
 
-# Mark directory as a working one
-WORKDIR /var/www/homepage-nuxtjs
+RUN yarn install && yarn build
 
-# Expose the port of the application
 EXPOSE 3000
 
-# Copy the package informations
-COPY package.json yarn.lock .env.example ./
-
-# Install dependencies
-RUN npm install -g yarn
-RUN yarn install --production
-
-# Copy source files
-COPY . .
-
-# Build the project
-RUN npm run build
+CMD [ "yarn", "start" ]
