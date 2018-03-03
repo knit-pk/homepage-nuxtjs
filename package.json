@@ -22,6 +22,7 @@
     "@nuxtjs/axios": "^5.0.1",
     "bootstrap": "4.0.0",
     "bootstrap-vue": "^2.0.0-rc.1",
+    "detect-it": "^3.0.4",
     "dotenv": "^5.0.1",
     "lodash": "^4.17.5",
     "node-sass": "^4.7.2",

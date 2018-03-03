@@ -1,3 +1,4 @@
+import detectIt from 'detect-it'
 import _ from 'lodash'
 
 export default {
@@ -7,8 +8,8 @@ export default {
       hiddenClass: 'fixed-top--hidden',
       defaultDebounceTime: 1000,
       prevScrollY: 0,
-      fixedTop: null,
       currScrollY: 0,
+      fixedTop: null,
       isMobileMenuShown: false
     }
   },
@@ -19,13 +20,13 @@ export default {
     fixedTopFall: _.debounce(function () {
       this.currScrollY = window.scrollY
 
-      if (!this.isMobileMenuShown && this.isEligibleForScroll && this.isScrollingDown) {
+      if (!this.isMobileMenuShown && this.isEligibleForScroll() && this.isScrollingDown()) {
         this.hideFixedTop()
-      } else if (this.isScrollingUp) {
+      } else if (this.isScrollingUp()) {
         this.showFixedTop()
       }
 
-      this.prevScrollY = window.scrollY
+      this.prevScrollY = this.currScrollY
     }, this.defaultDebounceTime),
 
     hideFixedTop () {
@@ -51,7 +52,7 @@ export default {
   mixins: {},
   beforeMount () {
     this.fixedTop = document.querySelector('.fixed-top')
-    window.addEventListener('scroll', this.fixedTopFall)
+    window.addEventListener('scroll', this.fixedTopFall, detectIt.passiveEvents ? { capture: false, passive: true } : false)
   },
   beforeDestroy () {
     window.removeEventListener('scroll', this.fixedTopFall)
