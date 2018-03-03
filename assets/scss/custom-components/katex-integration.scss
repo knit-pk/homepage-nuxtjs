@@ -3,8 +3,12 @@
   line-height: 0;
 }
 
+// displaying math equations
 .katex-display {
   margin: 0.5em 0;
+  @media (max-width: $screen-md) {
+    overflow-x: auto;
+  }
 }
 
 // content in brackets

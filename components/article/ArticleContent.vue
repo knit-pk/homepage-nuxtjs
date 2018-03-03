@@ -212,10 +212,10 @@ export default {
 
     ol {
       list-style-type: decimal;
-      padding: 0 30px 10px 15px;
+      padding: 0 25px;
 
       li {
-        padding: 4px 0;
+        padding: 5px 0 5px 10px;
         position: relative;
 
         br {
@@ -237,6 +237,10 @@ export default {
         padding: 5px 0;
         position: relative;
 
+        &:first-of-type {
+          margin-top: 6px;
+        }
+
         &:before {
           content: "•";
           font-size: 1.5rem;
@@ -245,6 +249,29 @@ export default {
           top: 0px;
         }
       }
+    }
+
+    table {
+      color: $table-bg-color;
+      border-collapse: collapse;
+      border-spacing: 0;
+      margin: 0 auto;
+    }
+
+    td, th {
+      border: 1px solid $table-border-color;
+      height: 30px;
+      padding: 0 8px;
+    }
+
+    th {
+      background: $table-header-color;
+      font-weight: bold;
+    }
+
+    td {
+      background: $table-data-color;
+      text-align: center;
     }
 
     code {
