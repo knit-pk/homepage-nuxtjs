@@ -59,7 +59,7 @@ export default {
   align-content: space-between;
   overflow: hidden;
   position: relative;
-  font-size: 0.975rem;
+  font-size: 1.062rem;
   font-weight: 300;
 
   &__link-item {
@@ -70,7 +70,7 @@ export default {
     border-radius: $default-blocks-border-radius;
     width: calc(50% - #{$default-gutters-width / 2});
     height: calc(50% - #{$default-gutters-width / 2});
-    padding: 20px;
+    padding: 20px 15px;
   }
 }
 </style>
