@@ -1,5 +1,5 @@
 <template>
-  <section class="meetup-calendar">
+  <section class="meetup-calendar" v-checkConfig>
     Meetup calendar
   </section>
 </template>

@@ -1,5 +1,5 @@
 <template>
-<section>
+<section v-checkConfig>
   <h3>Liczba komentarzy</h3>
   <form action="">
     <input type="text">

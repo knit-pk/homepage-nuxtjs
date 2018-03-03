@@ -1,6 +1,7 @@
 <template>
-  <section :class="['article-card-list']">
+  <section :class="['article-card-list']" v-checkConfig>
     <h2 class="visualy-hidden"> Artykuły KNIT </h2>
+
     <article-card v-for="(article, index) in cardsArticles" :key="index"
                        :title="article.title"
                        :author="article.author"

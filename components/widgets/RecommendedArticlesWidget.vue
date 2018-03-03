@@ -1,5 +1,5 @@
 <template>
-  <section style="height: 400px; background-color: #fff;">
+  <section style="height: 400px; background-color: #fff;" v-checkConfig>
     Recommended articles or something else
   </section>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <section style="height: 400px; background-color: #fff; margin-bottom: 20px;">
+  <section style="height: 400px; background-color: #fff; margin-bottom: 20px;" v-checkConfig>
     Popular articles
   </section>
 </template>

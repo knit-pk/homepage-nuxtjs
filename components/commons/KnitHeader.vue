@@ -1,5 +1,5 @@
 <template>
-  <header class="knit-header">
+  <header class="knit-header" v-checkConfig>
     <site-heading/>
     <searchbar/>
 

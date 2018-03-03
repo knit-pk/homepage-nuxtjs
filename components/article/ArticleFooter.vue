@@ -1,6 +1,6 @@
 <template>
 <!-- Article footer -->
-<footer class="article-footer">
+<footer class="article-footer" v-checkConfig>
   <!-- Topic tags -->
   <ul class="article-footer__tags-tabs">
     <li v-for="(tag, index) in tags" class="article-footer__tag-tab" :key = "index">

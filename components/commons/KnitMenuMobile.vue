@@ -1,5 +1,5 @@
 <template>
-<div class="knit-menu">
+<div class="knit-menu" v-checkConfig>
   <site-heading/>
 
   <button @click="onHamburgerClick" :class="[ 'button-no-highlight hamburger', { 'hamburger--open': isMobileMenuShown } ]" type="button">

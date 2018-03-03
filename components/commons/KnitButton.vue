@@ -1,5 +1,5 @@
 <template>
-  <button :class="['knit-button', ...buttonClasses]">
+  <button :class="['knit-button', ...buttonClasses]" v-checkConfig>
     <span :class="['knit-button__label', ...labelClasses]">
       <slot/>
     </span>

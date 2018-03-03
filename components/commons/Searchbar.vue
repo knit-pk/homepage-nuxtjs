@@ -1,5 +1,5 @@
 <template>
-  <form class="searchbar">
+  <form class="searchbar" v-checkConfig>
     <label for="site-search" class="visualy-hidden">Wyszukaj na stronie</label>
     <input id="site-search" type="search" class="searchbar__input" placeholder="Szukaj" autocomplete="off">
     <span class="flaticon-magnifying-glass searchbar__icon"></span>

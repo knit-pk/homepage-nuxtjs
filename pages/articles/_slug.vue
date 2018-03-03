@@ -17,12 +17,8 @@
       </main>
     </div>
     <aside class="aside-right">
-      <show-component-wrapper name="popular-articles-widget">
-        <popular-articles-widget/>
-      </show-component-wrapper>
-      <show-component-wrapper name="recommended-articles-widget">
-        <recommended-articles-widget/>
-      </show-component-wrapper>
+      <popular-articles-widget/>
+      <recommended-articles-widget/>
     </aside>
   </div>
 </template>
@@ -31,7 +27,6 @@
 import RecommendedArticlesWidget from '~/components/widgets/RecommendedArticlesWidget.vue'
 import PopularArticlesWidget from '~/components/widgets/PopularArticlesWidget.vue'
 import ArticleSingle from '~/components/article/ArticleSingle.vue'
-import ShowComponentWrapper from '~/components/ShowComponentWrapper'
 import { mapGetters } from 'vuex'
 
 const storePath = 'articles/item'
@@ -41,8 +36,7 @@ export default {
   components: {
     ArticleSingle,
     PopularArticlesWidget,
-    RecommendedArticlesWidget,
-    ShowComponentWrapper
+    RecommendedArticlesWidget
   },
   computed: {
     ...mapGetters({
