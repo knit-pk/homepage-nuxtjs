@@ -191,6 +191,16 @@ export default {
       padding: 0 15px 15px 15px;
     }
 
+    a {
+      color: $article-link-color;
+
+      &:hover,
+      &:focus {
+        color: $article-link-color;
+        text-decoration: underline;
+      }
+    }
+
     p {
       padding: 10px 0;
       line-height: 1.55;
