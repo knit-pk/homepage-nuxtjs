@@ -101,6 +101,16 @@ export default {
   height: 250px;
   background-color: $article-footer-bg-color;
 
+  @media (max-width: $screen-md) {
+    padding: 0 20px 30px 20px;
+    height: 300px;
+  }
+
+  @media (max-width: $screen-sm) {
+    padding: 0 15px 15px 15px;
+    height: 300px;
+  }
+
   &__tags {
     list-style: none;
     padding-bottom: 20px;
@@ -111,6 +121,11 @@ export default {
     margin-right: 16px;
     position: relative;
     font-size: .8rem;
+
+    @media (max-width: $screen-md - 1) {
+      margin-right: 8px;
+      font-size: .7rem;
+    }
   }
 
   &__single-tag-route {
@@ -125,6 +140,10 @@ export default {
     &:hover,
     &:focus {
       background-color: $gray-10;
+    }
+
+    @media (max-width: $screen-md - 1) {
+      padding: .55em 1em .55em 1em;
     }
   }
 
@@ -145,6 +164,16 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 0 15px;
+
+    @media (max-width: $screen-md) {
+      padding: 0 5px;
+      width: 155px;
+    }
+
+    @media (min-width: $screen-md) and (max-width: $screen-lg) {
+      padding: 0 5px;
+      width: 350px;
+    }
   }
 
   &__details-text {
@@ -159,10 +188,14 @@ export default {
   }
 
   &__author-description {
-    width: 50%;
+    width: 250px;
     padding: 10px 0;
     font-size: .8rem;
     color: $gray-40;
+
+    @media (max-width: $screen-md) {
+      width: 150px;
+    }
   }
 
   &__author-leader-sections {
@@ -182,12 +215,28 @@ export default {
     display: inline-block;
     margin: 0 10px 0 5px;
     position: relative;
+
+    @media (max-width: $screen-md) {
+      margin: 0px;
+    }
+
+    @media (min-width: $screen-md) and (max-width: $screen-lg) {
+      margin: 0 5px;
+    }
   }
 
   &__single-member-tag {
     display: inline-block;
     margin: 0 5px;
     position: relative;
+
+    @media (max-width: $screen-md) {
+      margin: 0;
+    }
+
+    @media (min-width: $screen-md) and (max-width: $screen-lg) {
+      margin: 0 5px 0 5px;
+    }
   }
 
   &__single-section-tag-route {
@@ -204,6 +253,10 @@ export default {
     &:focus {
       filter: brightness(110%);
     }
+
+    @media (max-width: $screen-md) {
+      margin: 2px 0;
+    }
   }
 
   &__icons {
@@ -215,8 +268,8 @@ export default {
   &__single-icon {
     font-size: .9rem;
     color: $gray-40;
-    margin-left: 15px;
     height: 0;
+    margin-left: 15px;
 
     &:before {
       font-size: .9rem;
@@ -225,6 +278,14 @@ export default {
     &:hover,
     &:focus {
       color: $article-footer-button-hover-color;
+    }
+
+    @media (max-width: $screen-sm) {
+      margin: 0 5px;
+    }
+
+    @media (min-width: $screen-sm) and (max-width: $screen-md - 1) {
+      margin: 0 10px;
     }
   }
 }
