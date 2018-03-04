@@ -4,7 +4,7 @@
       <knit-logo/>
     </router-link>
     <knit-navbar class="navbar--footy"/>
-    <span class="knit-footer__caption"> 2017 &copy; Koło Naukowe IT Politechnika Krakowska </span>
+    <span class="knit-footer__caption"> 2018 &copy; Koło Naukowe IT Politechnika Krakowska </span>
     <ul class="knit-footer__socialbox-list">
       <li class="knit-footer__socialbox-item">
         <a href="https://github.com/knit-pk" target="_blank" class="knit-footer__socialbox-link">
