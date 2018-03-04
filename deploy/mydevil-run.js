@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'development'
+
 const resolve = require('path').resolve
 const nxt = require('nuxt')
 const Nuxt = nxt.Nuxt
