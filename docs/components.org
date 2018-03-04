@@ -1,10 +1,37 @@
-#-*- mode: org -*-
-#+STARTUP: showall
+* Components:
 
-* Components - properties order:
-- data
-- components
-- props
-- computed
-- methods
-- mixins
+*Every* ~.vue~ file should consist of those three sections:
+
+~
+<template>
+<some-tag-here>
+<some-tag-here>
+</template>
+
+<script>
+export default {
+  data () {
+    return {}
+  },
+  components: {},
+  props: {},
+  computed: {},
+  methods: {},
+  mixins: {}
+}
+</script>
+
+<style lang="scss">
+</style>
+~
+
+*Detailed table of component properties:*
+
+| Property   | Default value |
+|------------+---------------|
+| data       | fn -> {}      |
+| components | {}            |
+| props      | {}            |
+| computed   | {}            |
+| methods    | {}            |
+| mixins     | {}            |
