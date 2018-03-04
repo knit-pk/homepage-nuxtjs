@@ -1,49 +1,49 @@
 <template>
-  <footer class="article-footer">
-    <ul class="article-footer__tags">
-      <li v-for="(tag, index) in tags" class="article-footer__single-tag" :key = "index">
-        <router-link to="" class="article-footer__single-tag-route"> {{ tag.name }} </router-link>
-      </li>
-    </ul>
-    <div class="article-footer__footer-box">
-      <router-link to="">
-        <img class="article-footer__author-avatar" :src="author.avatar.url" :alt="author.fullname"/>
-      </router-link>
-      <div class="article-footer__author-details">
-        <router-link to="">
-          <span class="article-footer__author-fullname article-footer__details-text"> {{ author.fullname }} </span>
-        </router-link>
-        <span class="article-footer__author-description article-footer__details-text">This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor...</span>
-        <span class="article-footer__author-leader-sections">
-          <ul class ="article-footer__section-tags">
-            Lider sekcji:
-            <li v-for="(ltag, index) in leaderTags" class="article-footer__single-leader-tag" :key = "index">
-              <router-link to="" :style="{ 'background-color': ltag.color }" class="article-footer__single-section-tag-route">
-                {{ ltag.text }}
-              </router-link>
-            </li>
-          </ul>
-        </span>
-        <span class="article-footer__author-member-sections">
-          <ul class ="article-footer__section-tags">
-            Członek sekcji:
-            <li v-for="(mtag, index) in memberTags" class="article-footer__single-member-tag" :key = "index">
-              <router-link to="" :style="{ 'background-color': mtag.color }" class="article-footer__single-section-tag-route">
-                {{ mtag.text }}
-              </router-link>
-            </li>
-          </ul>
-        </span>
-      </div>
-      <span class="article-footer__icons">
-        <router-link to="" class="article-footer__single-icon flaticon-like"> {{ likesCount }} </router-link>
-        <router-link to="" class="article-footer__single-icon flaticon-chat"> {{ commentsCount }} </router-link>
-        <router-link to="" class="article-footer__single-icon flaticon-facebook-logo"></router-link>
-        <router-link to="" class="article-footer__single-icon flaticon-social"></router-link>
-        <router-link to="" class="article-footer__single-icon flaticon-delete"></router-link>
-      </span>
+<!-- Article footer -->
+<footer class="article-footer">
+  <!-- Topic tags -->
+  <ul class="article-footer__tags-tabs">
+    <li v-for="(tag, index) in tags" class="article-footer__tag-tab" :key = "index">
+      <router-link to="" class="article-footer__tag-tab-link"> {{ tag.name }} </router-link>
+    </li>
+  </ul>
+
+  <!-- Article footer box -->
+  <div class="article-footer__footer-box">
+    <router-link to=""> <img class="article-footer__author-avatar" :src="author.avatar.url" :alt="author.fullname"/> </router-link>
+
+    <!-- Author details -->
+    <div class="article-footer__author-details">
+      <router-link to="" class="article-footer__author-fullname article-footer__details-text"> {{ author.fullname }} </router-link>
+      <span class="article-footer__author-description article-footer__details-text"> This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor... </span>
+
+      <!-- Section lider tags -->
+      <ul class ="article-footer__section-lider-tags article-footer__color-tabs">
+        Lider sekcji:
+        <li v-for="(leaderTag, index) in leaderTags" class="article-footer__color-tab-item" :key = "index">
+          <router-link to="" :style="{ 'background-color': leaderTag.color }" class="article-footer__color-tab-link"> {{ leaderTag.text }} </router-link>
+        </li>
+      </ul>
+
+      <!-- Section member tags -->
+      <ul class ="article-footer__section-member-tags article-footer__color-tabs">
+        Członek sekcji:
+        <li v-for="(memberTag, index) in memberTags" class="article-footer__color-tab-item" :key = "index">
+          <router-link to="" :style="{ 'background-color': memberTag.color }" class="article-footer__color-tab-link"> {{ memberTag.text }} </router-link>
+        </li>
+      </ul>
     </div>
-  </footer>
+
+    <!-- Social icons -->
+    <span class="article-footer__social-icons">
+      <router-link to="" class="article-footer__social-icon flaticon-like"> {{ likesCount }} </router-link>
+      <router-link to="" class="article-footer__social-icon flaticon-chat"> {{ commentsCount }} </router-link>
+      <router-link to="" class="article-footer__social-icon flaticon-facebook-logo"></router-link>
+      <router-link to="" class="article-footer__social-icon flaticon-social"></router-link>
+      <router-link to="" class="article-footer__social-icon flaticon-delete"></router-link>
+    </span>
+  </div>
+</footer>
 </template>
 
 <script>
@@ -97,53 +97,36 @@ export default {
 @import "assets/scss/_imports.scss";
 
 .article-footer {
-  padding: 0 30px 30px 30px;
-  height: 250px;
+  padding: 0 30px 5px 30px;
   background-color: $article-footer-bg-color;
 
   @media (max-width: $screen-md) {
-    padding: 0 20px 30px 20px;
-    height: 300px;
+    padding: 0 10px;
   }
 
-  @media (max-width: $screen-sm) {
-    padding: 0 15px 15px 15px;
-    height: 300px;
-  }
-
-  &__tags {
+  &__tags-tabs {
+    margin-bottom: 10px;
     list-style: none;
-    padding-bottom: 20px;
   }
 
-  &__single-tag {
+  &__tag-tab {
     display: inline-block;
-    margin-right: 16px;
     position: relative;
     font-size: .8rem;
-
-    @media (max-width: $screen-md - 1) {
-      margin-right: 8px;
-      font-size: .7rem;
-    }
+    padding: 0 10px 10px 0;
   }
 
-  &__single-tag-route {
+  &__tag-tab-link {
     background: $gray-20;
     color: $gray-50;
     display: block;
-    line-height: 1em;
-    padding: .65em 1.5em .65em 1.5em;
+    padding: 8px 20px 8px 20px;
     text-decoration: none;
     border-radius: 30px;
 
     &:hover,
     &:focus {
       background-color: $gray-10;
-    }
-
-    @media (max-width: $screen-md - 1) {
-      padding: .55em 1em .55em 1em;
     }
   }
 
@@ -164,21 +147,12 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 0 15px;
-
-    @media (max-width: $screen-md) {
-      padding: 0 5px;
-      width: 155px;
-    }
-
-    @media (min-width: $screen-md) and (max-width: $screen-lg) {
-      padding: 0 5px;
-      width: 350px;
-    }
   }
 
   &__details-text {
     display: inline-block;
     text-decoration: none;
+    text-wrap: break-word;
   }
 
   &__author-fullname {
@@ -188,88 +162,65 @@ export default {
   }
 
   &__author-description {
-    width: 250px;
     padding: 10px 0;
     font-size: .8rem;
     color: $gray-40;
-
-    @media (max-width: $screen-md) {
-      width: 150px;
-    }
+    max-width: 300px;
   }
 
-  &__author-leader-sections {
-    padding: 10px 0;
+  &__color-tabs {
     font-size: .8rem;
+    padding: 6px 0;
   }
 
-  &__author-member-sections {
-    font-size: .8rem;
-  }
-
-  &__section-tags {
-    list-style: none;
-  }
-
-  &__single-leader-tag {
-    display: inline-block;
-    margin: 0 10px 0 5px;
-    position: relative;
-
-    @media (max-width: $screen-md) {
-      margin: 0px;
-    }
-
-    @media (min-width: $screen-md) and (max-width: $screen-lg) {
-      margin: 0 5px;
-    }
-  }
-
-  &__single-member-tag {
+  &__color-tab-item {
     display: inline-block;
     margin: 0 5px;
     position: relative;
 
     @media (max-width: $screen-md) {
-      margin: 0;
-    }
-
-    @media (min-width: $screen-md) and (max-width: $screen-lg) {
-      margin: 0 5px 0 5px;
+      margin: 8px 5px 0 0;
     }
   }
 
-  &__single-section-tag-route {
+  &__color-tab-link {
     color: $gray-10;
     font-weight: bold;
     font-size: .7rem;
     display: block;
-    line-height: .6em;
-    padding: .6em 1em .6em 1em;
+    padding: 7px 14px 7px 14px;
     text-decoration: none;
+    white-space: nowrap;
+    word-wrap: none;
     border-radius: 30px;
 
     &:hover,
     &:focus {
       filter: brightness(110%);
     }
-
-    @media (max-width: $screen-md) {
-      margin: 2px 0;
-    }
   }
 
-  &__icons {
+  &__social-icons {
     display: flex;
     justify-content: flex-end;
     flex: 1;
+
+    @media (max-width: $screen-sm) {
+      flex: none;
+    }
+
+    @media (max-width: 400px) {
+      display: block;
+      width: 80px;
+      margin-left: -10px;
+    }
   }
 
-  &__single-icon {
+  &__social-icon {
     font-size: .9rem;
     color: $gray-40;
-    height: 0;
     margin-left: 15px;
+    display: inline-block;
 
     &:before {
       font-size: .9rem;
@@ -284,8 +235,8 @@ export default {
       margin: 0 5px;
     }
 
-    @media (min-width: $screen-sm) and (max-width: $screen-md - 1) {
-      margin: 0 10px;
+    @media (max-width: 400px) {
+      margin: 10px 5px;
     }
   }
 }
