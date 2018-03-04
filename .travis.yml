@@ -1,8 +1,17 @@
 language: node_js
 
-node_js:
-  - '8'
-  - '9'
+env:
+  global:
+    - NODE_ENV=development
+
+matrix:
+  include:
+    - node_js: '8'
+    - node_js: '9'
+      env:
+        - DOCKER_APP_PUSH=1
+      services:
+        - docker
 
 cache: yarn
 
@@ -42,3 +51,10 @@ deploy:
     on:
       branch: develop
       node: '8'
+  - provider: script
+    skip_cleanup: true
+    script: bash ./deploy/docker-app-push.sh
+    on:
+      tags: true
+      condition: "$DOCKER_APP_PUSH = 1"
+

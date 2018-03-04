@@ -87,7 +87,7 @@ export default {
    * @returns {Boolean}
    */
   isProd () {
-    return (process.env.ENV === 'prod')
+    return (process.env.NODE_ENV === 'production')
   },
 
   /**
@@ -95,7 +95,7 @@ export default {
    * @returns {String}
    */
   getEnv () {
-    return process.env.ENV
+    return process.env.NODE_ENV
   },
 
   /**
