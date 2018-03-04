@@ -192,13 +192,7 @@ export default {
     }
 
     a {
-      color: $article-link-color;
-
-      &:hover,
-      &:focus {
-        color: $article-link-color;
-        text-decoration: underline;
-      }
+      @include link;
     }
 
     p {

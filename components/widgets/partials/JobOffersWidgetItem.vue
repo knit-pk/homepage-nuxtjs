@@ -8,7 +8,7 @@
         <span class="job-offers-widget-item__job-position">
           {{ upper(title) }}
         </span>
-        <a v-if="employerWebpage" target="_blank" :href="employerWebpage" class="job-offers-widget-item__employer-link">
+        <a v-if="employerWebpage" target="_blank" :href="employerWebpage" class="job-offers-widget-item__employer-link link">
           {{ employerName }}
         </a>
         <span v-else class="job-offers-widget-item__employer-name"> {{ employerName }} </span>
@@ -140,15 +140,10 @@ export default {
   }
 
   &__employer-link {
-    color: $job-offers-widget-item-employer-link-hover-color;
     font-size: 0.75rem;
     margin-top: 7px;
     font-weight: 400;
     z-index: 10;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
    &__employer-name {

@@ -28,7 +28,7 @@
           <span class="visualy-hidden">Repozytorium</span>
         </dt>
         <dd class="projects-widget-item__list-item-definition">
-          <a :href="url" class="projects-widget-item__list-item-link"> {{ url }} </a>
+          <a :href="url" class="projects-widget-item__list-item-link link"> {{ url }} </a>
         </dd>
       </div>
     </dl>
@@ -138,15 +138,6 @@ export default {
 
     &:not(:last-child) {
       margin-bottom: 8px;
-    }
-  }
-
-  &__list-item-link {
-    color: $projects-widget-item-link-color;
-
-    &:hover,
-    &:focus {
-      text-decoration: underline;
     }
   }
 

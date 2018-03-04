@@ -139,10 +139,10 @@ export default {
   font-size: 14px;
 
   // NOTE: It fixes mainpage card issue, but it may affect to horizontal card
-  //       in article list, which is not implemented yet. 
+  //       in article list, which is not implemented yet.
 
   // &__thumbnail-link {
-  //   flex: 1 0 33%; 
+  //   flex: 1 0 33%;
   // }
 
   &__thumbnail {
