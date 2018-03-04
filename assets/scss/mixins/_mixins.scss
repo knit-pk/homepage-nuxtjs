@@ -12,3 +12,12 @@
   cursor: pointer;
   outline: inherit !important;
 };
+
+@mixin link {
+  color: $steel-blue;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+};

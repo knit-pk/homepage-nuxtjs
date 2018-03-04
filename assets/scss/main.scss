@@ -24,6 +24,10 @@ a {
   text-decoration: none;
 }
 
+.link {
+  @include link;
+}
+
 // *** base ***
 .default-badge {
   display: inline-block;
