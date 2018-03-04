@@ -1,6 +1,6 @@
 
 <template>
-  <section class="projects-widget" v-checkConfig>
+  <section class="projects-widget" v-config>
     <widget-title :title="title" :widgetClass="widgetClass" :widgetIconClass="widgetIconClass"/>
     <div v-for="(item, index) of items" class="projects-widget__projects-wrapper" :key="index">
       <projects-widget-item :title="item.title" :maxTeamSize="item.maxTeamSize"

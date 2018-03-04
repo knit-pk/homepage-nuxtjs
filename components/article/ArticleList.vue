@@ -1,5 +1,5 @@
 <template>
-  <div v-checkConfig>
+  <div v-config>
     <h1>Article List (Page: {{ page }})</h1>
 
     <div v-if="loading" class="alert alert-info">Loading...</div>

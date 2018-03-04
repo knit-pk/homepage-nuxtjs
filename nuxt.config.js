@@ -1,5 +1,5 @@
 const env = process.env.NODE_ENV === 'production' ? process.env : Object.assign({}, require('dotenv').config().parsed, process.env)
-const ssrDirectives = require('./directives/ssr/index.js')
+const ssrDirectives = require('./directives/ssr')
 
 if (!env.NODE_ENV) {
   throw new Error('NODE_ENV variable must be defined')
@@ -67,7 +67,7 @@ module.exports = {
     '~/plugins/prevent-scroll.js',
     '~/plugins/vue-markdown.js',
     '~/plugins/vue-config-manager.js',
-    '~/directives/client/v-checkConfig.js'
+    '~/directives/client/config.js'
   ],
   render: {
     bundleRenderer: {

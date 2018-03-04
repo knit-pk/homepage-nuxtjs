@@ -1,5 +1,5 @@
 <template>
-<article class="article-card" v-checkConfig>
+<article class="article-card" v-config>
 
   <!-- Thumbnail -->
   <router-link class="article-card__thumbnail-link" :to="{ name: 'articles-slug', params: { slug } }">

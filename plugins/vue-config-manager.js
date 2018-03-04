@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueConfigManager from 'vue-config-manager'
-import componentsConfig from '~/config/componentsConfig.json'
+import componentsConfig from '~/config/components-config'
 
 Vue.use(VueConfigManager, {
   defaults: {

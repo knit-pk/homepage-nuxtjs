@@ -1,5 +1,5 @@
 <template>
-  <article class="article-comment" v-checkConfig>
+  <article class="article-comment" v-config>
       <div class="article-comment__inner">
         <a href="#" class="article-comment__avatar-link">
           <img :src="avatarUrl" class="article-comment__author-avatar" :alt="author">

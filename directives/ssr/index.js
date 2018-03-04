@@ -1,5 +1,5 @@
-const checkConfig = require('./v-checkConfig.js')
+const config = require('./config')
 
 module.exports = {
-  checkConfig
+  config
 }

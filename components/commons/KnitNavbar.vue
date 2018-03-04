@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar" v-checkConfig>
+  <nav class="navbar" v-config>
     <ul v-for="(link, index) of navigation" class="navbar__list" :key="index">
       <li class="navbar__list-item" @click="collapseMenu">
         <router-link :to="{ path: link.path }" class="navbar__list-link"> {{ link.text }} </router-link>
