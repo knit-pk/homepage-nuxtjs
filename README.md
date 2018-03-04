@@ -1,8 +1,6 @@
-# homepage-nuxtjs
+# Homepage-nuxtjs
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/knit-pk/homepage-nuxtjs.svg)](https://greenkeeper.io/)
-
-> KNIT Homepage
 
 ## Build Setup
 Project can be run for development in two different ways.
@@ -15,7 +13,7 @@ Project can be run for development in two different ways.
 $ cp .env.example .env
 
 # install dependencies
-$ yarn install
+$ yarn
 
 # serve with hot reload at localhost:3000
 $ yarn run dev
