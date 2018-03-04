@@ -1,34 +1,42 @@
 <template>
   <div class="article-content" v-config>
     <header class="article-content__header">
-      <img :src="thumbnail" class="article-content__thumbnail"/>
+      <img :src="thumbnail" class="article-content__thumbnail" itemprop="image" />
       <div class="article-content__header-info">
-        <h2 class="article-content__title"> {{ title }} </h2>
+        <h2 class="article-content__title" itemprop="headline"> {{ trimString(title, 110) }} </h2>
         <div class="article-content__pub-info">
           <router-link to="/" class="article-content__author-avatar-link">
-            <img class="article-content__author-avatar" :src="author.avatar.url" :alt="author.fullname"/>
+            <img class="article-content__author-avatar" :src="author.avatar.url" :alt="author.fullname" />
           </router-link>
           <div>
             <router-link to="/" class="article-content__author-fullname"> {{ author.fullname }} </router-link>
-            <time :datetime="publicationDate" class="article-content__pub-date"> {{ publicationDate }} </time>
+            <time :datetime="publishedAt" class="article-content__pub-date" itemprop="datePublished"> {{ publicationDate }} </time>
+            <meta itemprop="dateModified" :content="updatedAt" />
           </div>
         </div>
       </div>
     </header>
     <vue-markdown class="article-content__body" :source="content"/>
+
+    <!-- Meta -->
+    <link itemprop="mainEntityOfPage" :href="mainEntityOfPage" />
+    <meta itemprop="description" :content="description" />
+    <ArticlePublisherMeta />
   </div>
 </template>
 
 <script>
 import templateHelper from '~/helpers/templateHelper'
 import VueMarkdown from 'vue-markdown'
+import ArticlePublisherMeta from '~/components/article/ArticlePublisherMeta'
 
 export default {
   data () {
     return {}
   },
   components: {
-    VueMarkdown
+    VueMarkdown,
+    ArticlePublisherMeta
   },
   props: {
     title: {
@@ -43,19 +51,31 @@ export default {
       type: Object,
       required: true
     },
+    description: {
+      type: String,
+      required: true
+    },
     thumbnail: {
       type: String,
       required: true
     },
     publishedAt: {
       type: String,
-      default: '',
+      required: true
+    },
+    updatedAt: {
+      type: String,
       required: true
     }
   },
   computed: {
     publicationDate () {
       return this.formatDateToLocalString(this.publishedAt)
+    },
+    mainEntityOfPage () {
+      if (process.BROWSER_BUILD) {
+        return `${window.location.hostname}${this.$route.path}`
+      }
     }
   },
   methods: {},

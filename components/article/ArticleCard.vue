@@ -1,53 +1,61 @@
 <template>
-<article class="article-card" v-config>
+<article class="article-card" itemscope itemtype="http://schema.org/Article" v-config>
 
   <!-- Thumbnail -->
   <router-link class="article-card__thumbnail-link" :to="{ name: 'articles-slug', params: { slug } }">
-    <img :src="thumbnail" class="article-card__thumbnail" alt="">
+    <img :src="thumbnail" class="article-card__thumbnail" alt="" itemprop="image">
   </router-link>
 
   <div class="article-card__horizontal-wrapper">
     <!-- Header -->
     <header class="article-card__header">
       <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__title-link">
-        <h3 ref="articleTitle" class="article-card__title"> {{ trimString(title, 75) }} </h3>
+        <h3 ref="articleTitle" class="article-card__title" itemprop="headline"> {{ trimString(title, 75) }} </h3>
       </router-link>
-      <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__author-link">
-        <span class="article-card__author-name"> {{ author.username }} </span>
-      </router-link>
-      <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__author-avatar-link">
-        <img :src="authorAvatar" class="article-card__author-avatar" :alt="author.fullname">
-      </router-link>
+      <div class="article-card__author-wrapper" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__author-link">
+          <span class="article-card__author-name" itemprop="name"> {{ author.username }} </span>
+        </router-link>
+        <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__author-avatar-link">
+          <img :src="authorAvatar" class="article-card__author-avatar" :alt="author.fullname" itemprop="image">
+        </router-link>
+      </div>
     </header>
   </div>
 
   <!-- Description -->
-  <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__description"> {{ trimString(description, 170) }} </router-link>
+  <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__description" itemtype="description"> {{ trimString(description, 170) }} </router-link>
 
   <!-- Footer -->
   <footer class="article-card__footer">
-    <time :datetime="publishedAt"> {{ formatDateToLocalString(publishedAt) }} </time>
+    <time :datetime="publishedAt" itemprop="datePublished"> {{ formatDateToLocalString(publishedAt) }} </time>
+    <meta itemprop="dateModified" :content="updatedAt" />
     <ul class="article-card__stats" aria-label="Statystyki">
       <li class="article-card__stats-group">
-        <a @click.prevent.stop="handleLikeClick" :class="{ [ 'article-card__like-button--liked' ]: isLiked }" href="#" role="button" class="article-card__like-button" title="Lubię to!" aria-label="Polub post">
+        <a @click.prevent.stop="handleLikeClick" :class="{ [ 'article-card__like-button--liked' ]: isLiked }" href="#" role="button" class="article-card__like-button"
+           title="Lubię to!" aria-label="Polub post" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
           <span class="flaticon-like article-card__stat-icon" aria-hidden="true"></span>
-          <span class="visualy-hidden">Polubienia</span>
-          <span> {{ likesCount }} </span>
+          <span class="visualy-hidden" itemprop="interactionType" content="http://schema.org/LikeAction">Polubienia</span>
+          <span itemprop="userInteractionCount"> {{ likesCount }} </span>
         </a>
       </li>
-      <li class="article-card__stats-group">
+      <li class="article-card__stats-group" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
         <span class="flaticon-chat article-card__stat-icon article-card__comment-icon" title="Komentarze" aria-hidden="true"></span>
-        <span class="visualy-hidden">Komentarze</span>
-        <span> {{ commentsCount }} </span>
+        <span class="visualy-hidden" itemprop="interactionType" content="http://schema.org/CommentAction">Komentarze</span>
+        <span itemprop="userInteractionCount"> {{ commentsCount }} </span>
       </li>
     </ul>
   </footer>
+
+  <!-- Meta -->
+  <ArticlePublisherMeta />
 
 </article>
 </template>
 
 <script>
 import templateHelper from '~/helpers/templateHelper'
+import ArticlePublisherMeta from '~/components/article/ArticlePublisherMeta'
 
 // @TODO: Make elipsis overflow in article card description
 export default {
@@ -56,7 +64,9 @@ export default {
       isLiked: false
     }
   },
-  components: {},
+  components: {
+    ArticlePublisherMeta
+  },
   props: {
     title: {
       type: String,
@@ -76,7 +86,10 @@ export default {
     },
     publishedAt: {
       type: String,
-      default: '',
+      required: true
+    },
+    updatedAt: {
+      type: String,
       required: true
     },
     id: {
@@ -177,6 +190,10 @@ export default {
     min-width: 200px;
     font-weight: 300;
     font-size: 21px;
+  }
+
+  &__author-wrapper {
+    display: flex;
   }
 
   &__author-link {

@@ -1,47 +1,65 @@
 <template>
-<!-- Article footer -->
-<footer class="article-footer" v-config>
-  <!-- Topic tags -->
-  <ul class="article-footer__tags-tabs">
-    <li v-for="(tag, index) in tags" class="article-footer__tag-tab" :key = "index">
-      <router-link to="" class="article-footer__tag-tab-link"> {{ tag.name }} </router-link>
-    </li>
-  </ul>
+  <footer class="article-footer" v-config>
 
-  <!-- Article footer box -->
-  <div class="article-footer__footer-box">
-    <router-link to=""> <img class="article-footer__author-avatar" :src="author.avatar.url" :alt="author.fullname"/> </router-link>
+    <!-- Topic tags -->
+    <ul class="article-footer__tags-tabs">
+      <li v-for="(tag, index) in tags" class="article-footer__tag-tab" :key = "index">
+        <router-link to="" class="article-footer__tag-tab-link"> {{ tag.name }} </router-link>
+      </li>
+    </ul>
+    <meta itemprop="keywords" :content="keywords" />
 
-    <!-- Author details -->
-    <div class="article-footer__author-details">
-      <router-link to="" class="article-footer__author-fullname article-footer__details-text"> {{ author.fullname }} </router-link>
-      <span class="article-footer__author-description article-footer__details-text"> This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor... </span>
+    <div class="article-footer__footer-box">
+      <div class="article-footer__author-wrapper" itemprop="author" itemscope itemtype="http://schema.org/Person">
 
-      <!-- Section lider tags -->
-      <ul class ="article-footer__section-lider-tags article-footer__color-tabs">
-        Lider sekcji:
-        <li v-for="(leaderTag, index) in leaderTags" class="article-footer__color-tab-item" :key = "index">
-          <router-link to="" :style="{ 'background-color': leaderTag.color }" class="article-footer__color-tab-link"> {{ leaderTag.text }} </router-link>
-        </li>
-      </ul>
+        <!-- Author image -->
+        <router-link to="">
+          <img class="article-footer__author-avatar" :src="author.avatar.url" :alt="author.fullname" itemprop="image" />
+        </router-link>
 
-      <!-- Section member tags -->
-      <ul class ="article-footer__section-member-tags article-footer__color-tabs">
-        Członek sekcji:
-        <li v-for="(memberTag, index) in memberTags" class="article-footer__color-tab-item" :key = "index">
-          <router-link to="" :style="{ 'background-color': memberTag.color }" class="article-footer__color-tab-link"> {{ memberTag.text }} </router-link>
-        </li>
-      </ul>
-    </div>
+        <div class="article-footer__author-details">
+          <!-- Author basic info -->          
+          <router-link to="">
+            <span class="article-footer__author-fullname article-footer__details-text" itemprop="name"> {{ author.fullname }} </span>
+          </router-link>
+          <span class="article-footer__author-description article-footer__details-text" itemprop="description">This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor...</span>
 
-    <!-- Social icons -->
-    <span class="article-footer__social-icons">
-      <router-link to="" class="article-footer__social-icon flaticon-like"> {{ likesCount }} </router-link>
-      <router-link to="" class="article-footer__social-icon flaticon-chat"> {{ commentsCount }} </router-link>
-      <router-link to="" class="article-footer__social-icon flaticon-facebook-logo"></router-link>
-      <router-link to="" class="article-footer__social-icon flaticon-social"></router-link>
-      <router-link to="" class="article-footer__social-icon flaticon-delete"></router-link>
-    </span>
+          <!-- Section lider tags -->
+          <ul class ="article-footer__section-lider-tags article-footer__color-tabs">
+            Lider sekcji:
+            <li v-for="(ltag, index) in leaderTags" class="article-footer__color-tab-item" :key = "index">
+              <router-link to="" :style="{ 'background-color': ltag.color }" class="article-footer__color-tab-link">
+                {{ ltag.text }}
+              </router-link>
+            </li>
+          </ul>
+          
+          <!-- Section member tags -->
+          <ul class ="article-footer__section-member-tags article-footer__color-tabs">
+            Członek sekcji:
+            <li v-for="(mtag, index) in memberTags" class="article-footer__color-tab-item" :key = "index">
+              <router-link to="" :style="{ 'background-color': mtag.color }" class="article-footer__color-tab-link">
+                {{ mtag.text }}
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Social icons -->
+      <span class="article-footer__icons">
+        <router-link to="" class="article-footer__social-icon flaticon-like" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+          <meta itemprop="interactionType" content="http://schema.org/LikeAction" />
+          <span itemprop="userInteractionCount"> {{ likesCount }} </span> 
+        </router-link>
+        <router-link to="" class="article-footer__social-icon flaticon-chat" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+          <meta itemprop="interactionType" content="http://schema.org/CommentAction" />
+          <span itemprop="userInteractionCount"> {{ commentsCount }} </span>    
+        </router-link>
+        <router-link to="" class="article-footer__social-icon flaticon-facebook-logo"></router-link>
+        <router-link to="" class="article-footer__social-icon flaticon-social"></router-link>
+        <router-link to="" class="article-footer__social-icon flaticon-delete"></router-link>
+      </span>
   </div>
 </footer>
 </template>
@@ -87,7 +105,11 @@ export default {
       required: true
     }
   },
-  computed: {},
+  computed: {
+    keywords () {
+      return this.tags.map(o => o.name)
+    }
+  },
   methods: {},
   mixins: {}
 }
@@ -126,14 +148,31 @@ export default {
 
     &:hover,
     &:focus {
-      background-color: $gray-10;
+      background-color: $gray-30;
     }
   }
 
   &__footer-box {
     display: flex;
+    justify-content: space-between;
     border-top: 1px solid $gray-30;
     padding: 20px 0;
+
+    @media (max-width: $screen-sm) {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &__icons {
+    text-align: right;
+
+    @media (max-width: $screen-sm) {
+      padding-bottom: 5px;
+    }
+  }
+
+  &__author-wrapper {
+    display: flex;
   }
 
   &__author-avatar {
@@ -152,7 +191,6 @@ export default {
   &__details-text {
     display: inline-block;
     text-decoration: none;
-    text-wrap: break-word;
   }
 
   &__author-fullname {
@@ -188,7 +226,7 @@ export default {
     font-weight: bold;
     font-size: .7rem;
     display: block;
-    padding: 7px 14px 7px 14px;
+    padding: 6px 13px 6px 13px;
     text-decoration: none;
     white-space: nowrap;
     word-wrap: none;
@@ -230,7 +268,7 @@ export default {
     &:focus {
       color: $article-footer-button-hover-color;
     }
-
+    
     @media (max-width: $screen-sm) {
       margin: 0 5px;
     }

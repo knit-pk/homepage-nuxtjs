@@ -21,6 +21,7 @@ export default {
     'image.url',
     'published',
     'createdAt',
+    'updatedAt',
     'comments',
     'commentsCount',
     'ratings',
