@@ -1,5 +1,5 @@
 <template>
-  <section :class="['article-card-list']">
+  <section :class="['article-card-list']" v-config>
     <h2 class="visualy-hidden"> Artykuły KNIT </h2>
 
     <article-card v-for="(article, index) in cardsArticles" :key="index"
@@ -114,7 +114,7 @@ export default {
     .article-card {
       flex-basis: calc(33.333% - #{$default-gutters-width});
       margin-right: $default-gutters-width;
-      
+
       @media (min-width: 1060px) and (max-width: $screen-xl) {
         flex-basis: calc(50% - #{$default-gutters-width});
       }

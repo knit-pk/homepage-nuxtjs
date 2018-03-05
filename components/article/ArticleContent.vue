@@ -1,5 +1,5 @@
 <template>
-  <div class="article-content">
+  <div class="article-content" v-config>
     <header class="article-content__header">
       <img :src="thumbnail" class="article-content__thumbnail"/>
       <div class="article-content__header-info">

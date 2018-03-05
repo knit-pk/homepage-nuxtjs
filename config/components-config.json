@@ -1,0 +1,28 @@
+{
+  "showComponents": {
+    "action-links-widget": true,
+    "alert-widget": true,
+    "article-breadcrumb": true,
+    "article-card": true,
+    "article-card-list": true,
+    "article-comment": true,
+    "article-comments": true,
+    "article-content": true,
+    "article-footer": true,
+    "article-list": true,
+    "article-single": true,
+    "job-offers-widget": true,
+    "knit-button": true,
+    "knit-footer": true,
+    "knit-header": true,
+    "knit-logo": true,
+    "knit-menu-mobile": true,
+    "knit-navbar": true,
+    "meetup-calendar-widget": true,
+    "popular-articles-widget": true,
+    "projects-widget": true,
+    "recommended-articles-widget": true,
+    "searchbar": true,
+    "site-heading": true
+  }
+}

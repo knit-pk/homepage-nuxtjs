@@ -1,5 +1,5 @@
 <template>
-  <article class="article">
+  <article class="article" v-config>
     <!-- article breadcrumbs -->
     <article-breadcrumb :breadcrumbs="breadcrumbs"/>
 

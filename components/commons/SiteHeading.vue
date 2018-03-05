@@ -1,5 +1,5 @@
 <template>
-  <h1 class="site-heading">
+  <h1 class="site-heading" v-config>
     <router-link :to="{ path: '/' }" class="site-heading__link">
       <div class="site-heading__logo">
         <knit-logo/>
