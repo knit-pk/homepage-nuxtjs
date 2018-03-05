@@ -6,6 +6,8 @@
 // displaying math equations
 .katex-display {
   margin: 0.5em 0;
+  overflow-y: hidden;
+
   @media (max-width: $screen-md) {
     overflow-x: auto;
   }
@@ -19,8 +21,8 @@
 // math operators
 .mbin,
 .mrel {
-    font-size: 15px;
-    margin: 0 5px;
+  font-size: 15px;
+  margin: 0 5px;
 }
 
 // size of subscripts and superscripts

@@ -207,25 +207,24 @@ export default {
     }
 
     ul, ol {
-      padding: 0 30px 10px 35px;
+      padding: 0 0 10px 35px;
+
+      li {
+        padding: 5px 0;
+      }
     }
 
     ol {
       list-style-type: decimal;
-      padding: 0 25px;
+      margin-left: -13px;
 
       li {
-        padding: 5px 0 5px 10px;
         position: relative;
 
         br {
           display: block;
-          margin: 8px;
+          padding: 5px 0;
           content: " ";
-
-          &:first-of-type {
-            margin-top: 8px;
-          }
         }
       }
     }
@@ -234,12 +233,7 @@ export default {
       list-style: none;
 
       li {
-        padding: 5px 0;
         position: relative;
-
-        &:first-of-type {
-          margin-top: 6px;
-        }
 
         &:before {
           content: "•";
@@ -316,7 +310,7 @@ export default {
       overflow: auto;
       margin: 8px 0;
       display: flex;
-      padding: 15px;
+      padding: 5px;
       background-color: $code-bg-color;
 
       code {
