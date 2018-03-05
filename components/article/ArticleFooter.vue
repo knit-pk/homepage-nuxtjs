@@ -211,7 +211,7 @@ export default {
 
     @media (max-width: 400px) {
       display: block;
-      width: 80px;
+      width: 75px;
       margin-left: -10px;
     }
   }

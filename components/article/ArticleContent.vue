@@ -104,6 +104,7 @@ export default {
 
     @media (max-width: $screen-sm) {
       padding: 15px 20px;
+      font-size: 1.75rem;
     }
   }
 
@@ -211,6 +212,10 @@ export default {
 
       li {
         padding: 5px 0;
+
+        ul, ol {
+          padding: 5px 0 0 35px;
+        }
       }
     }
 

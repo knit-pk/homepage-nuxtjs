@@ -5,8 +5,9 @@
 
 // displaying math equations
 .katex-display {
-  margin: 0.5em 0;
   overflow-y: hidden;
+  padding: 10px;
+  margin: 0;
 
   @media (max-width: $screen-md) {
     overflow-x: auto;
