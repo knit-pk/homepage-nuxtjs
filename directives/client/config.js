@@ -1,9 +1,9 @@
-import Vue from 'vue'
-
-Vue.directive('config', {
-  bind: function (el, binding, vnode) {
-    if (!Vue.$config('showComponents')[vnode.parent.componentOptions.tag]) {
-      el.style = Object.assign({}, el.style, {display: 'none'})
+export default function (Vue) {
+  Vue.directive('config', {
+    bind (el, binding, vnode) {
+      if (process.env.NODE_ENV === 'production' && !Vue.$config('showComponents')[vnode.parent.componentOptions.tag]) {
+        el.style.display = 'none'
+      }
     }
-  }
-})
+  })
+}

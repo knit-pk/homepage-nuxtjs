@@ -67,7 +67,7 @@ module.exports = {
     '~/plugins/prevent-scroll.js',
     '~/plugins/vue-markdown.js',
     '~/plugins/vue-config-manager.js',
-    '~/directives/client/config.js'
+    '~/plugins/inject-directives.js'
   ],
   render: {
     bundleRenderer: {
