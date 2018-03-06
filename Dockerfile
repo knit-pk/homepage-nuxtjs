@@ -1,7 +1,7 @@
 FROM node:9-alpine
 
 ARG NODE_ENV=production
-ARG API_URL=https://knit-test-api.tk
+ARG API_URL=http://api.knit.pk.edu.pl
 
 ENV HOST 0.0.0.0
 ENV NODE_ENV ${NODE_ENV}
