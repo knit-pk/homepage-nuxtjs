@@ -1,6 +1,6 @@
 <template>
 <!-- Article footer -->
-<footer class="article-footer">
+<footer class="article-footer" v-config>
   <!-- Topic tags -->
   <ul class="article-footer__tags-tabs">
     <li v-for="(tag, index) in tags" class="article-footer__tag-tab" :key = "index">
@@ -211,7 +211,7 @@ export default {
 
     @media (max-width: 400px) {
       display: block;
-      width: 80px;
+      width: 75px;
       margin-left: -10px;
     }
   }

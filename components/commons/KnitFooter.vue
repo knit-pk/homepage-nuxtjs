@@ -1,5 +1,5 @@
 <template>
-  <footer class="knit-footer">
+  <footer class="knit-footer" v-config>
     <router-link :to="{path: '/'}" class="knit-footer__link">
       <knit-logo/>
     </router-link>

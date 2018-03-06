@@ -73,6 +73,10 @@ export default {
     @media (min-width: $screen-sm) {
       margin-right: $default-gutters-width;
     }
+
+    @media (min-width: $screen-xl) {
+      max-width: 950px;
+    }
   }
 
   .main-content {

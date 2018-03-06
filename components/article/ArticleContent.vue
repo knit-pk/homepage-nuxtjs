@@ -1,5 +1,5 @@
 <template>
-  <div class="article-content">
+  <div class="article-content" v-config>
     <header class="article-content__header">
       <img :src="thumbnail" class="article-content__thumbnail"/>
       <div class="article-content__header-info">
@@ -104,6 +104,7 @@ export default {
 
     @media (max-width: $screen-sm) {
       padding: 15px 20px;
+      font-size: 1.75rem;
     }
   }
 
@@ -207,21 +208,69 @@ export default {
     }
 
     ul, ol {
-      padding: 0 30px 10px 35px;
-      list-style: none;
+      padding: 0 0 10px 35px;
+
+      li {
+        padding: 5px 0;
+
+        ul, ol {
+          padding: 5px 0 0 35px;
+        }
+      }
     }
 
-    li {
-      padding: 5px 0;
-      position: relative;
+    ol {
+      list-style-type: decimal;
+      margin-left: -13px;
 
-      &:before {
-        content: "•";
-        font-size: 1.5rem;
-        position: absolute;
-        left: -30px;
-        top: 0px;
+      li {
+        position: relative;
+
+        br {
+          display: block;
+          padding: 5px 0;
+          content: " ";
+        }
       }
+    }
+
+    ul {
+      list-style: none;
+
+      li {
+        position: relative;
+
+        &:before {
+          content: "•";
+          font-size: 1.5rem;
+          position: absolute;
+          left: -30px;
+          top: 0px;
+        }
+      }
+    }
+
+    table {
+      color: $table-bg-color;
+      border-collapse: collapse;
+      border-spacing: 0;
+      margin: 0 auto;
+    }
+
+    td, th {
+      border: 1px solid $table-border-color;
+      height: 30px;
+      padding: 0 8px;
+    }
+
+    th {
+      background: $table-header-color;
+      font-weight: bold;
+    }
+
+    td {
+      background: $table-data-color;
+      text-align: center;
     }
 
     code {
@@ -266,7 +315,7 @@ export default {
       overflow: auto;
       margin: 8px 0;
       display: flex;
-      padding: 15px;
+      padding: 5px;
       background-color: $code-bg-color;
 
       code {

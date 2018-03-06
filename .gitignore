@@ -2,6 +2,7 @@
 .env
 app.js
 .env.mydevil
+package-lock.json
 
 # dependencies
 node_modules

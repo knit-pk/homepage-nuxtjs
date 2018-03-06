@@ -1,6 +1,6 @@
 <template>
   <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="100%" height="100%" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality;
-fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 193 193" xmlns:xlink="http://www.w3.org/1999/xlink">
+fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 193 193" xmlns:xlink="http://www.w3.org/1999/xlink" v-config>
     <defs>
       <style type="text/css">
           .str0 {
