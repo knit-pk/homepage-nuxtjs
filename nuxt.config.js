@@ -25,7 +25,7 @@ module.exports = {
       },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
+        content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
       },
       {
         hid: 'description',
@@ -54,6 +54,11 @@ module.exports = {
         rel: 'stylesheet preload',
         as: 'style',
         href: 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=latin,latin-ext'
+      },
+      {
+        rel: 'stylesheet preload',
+        as: 'style',
+        href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css'
       }
     ]
   },
