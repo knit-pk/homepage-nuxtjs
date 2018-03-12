@@ -9,6 +9,7 @@
                        :description="article.description"
                        :thumbnail="article.image.url"
                        :published-at="article.publishedAt"
+                       :updated-at="article.updatedAt"
                        :ratings="article.ratings"
                        :comments="article.comments"
                        :comments-count="article.commentsCount"

@@ -1,25 +1,27 @@
 <template>
-  <article class="article" v-config>
+  <article class="article" itemscope itemtype="http://schema.org/Article" v-config>
     <!-- article breadcrumbs -->
-    <article-breadcrumb :breadcrumbs="breadcrumbs"/>
+    <article-breadcrumb :breadcrumbs="breadcrumbs" />
 
     <!-- article content-->
     <article-content
       :content="content"
       :published-at="publishedAt"
+      :updated-at="updatedAt"
       :author="author"
       :title="title"
-      :thumbnail="thumbnail"/>
+      :thumbnail="thumbnail"
+      :description="description" />
 
     <!-- article footer -->
     <article-footer
       :author="author"
       :tags="tags"
       :likes-count="likesCount"
-      :comments-count="commentsCount"/>
+      :comments-count="commentsCount" />
 
     <!-- article comments section -->
-    <article-comments :articleId="id"/>
+    <article-comments :articleId="id" />
   </article>
 </template>
 
@@ -74,7 +76,10 @@ export default {
     },
     publishedAt: {
       type: String,
-      default: '',
+      required: true
+    },
+    updatedAt: {
+      type: String,
       required: true
     },
     id: {
