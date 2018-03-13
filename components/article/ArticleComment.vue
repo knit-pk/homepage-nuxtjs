@@ -165,5 +165,9 @@ export default {
       display: block;
       margin-top: 10px;
     }
+
+    &:first-of-type {
+      margin-top: 15px;
+    }
   }
 </style>
