@@ -18,10 +18,10 @@
     "knit-logo": true,
     "knit-menu-mobile": true,
     "knit-navbar": true,
-    "meetup-calendar-widget": true,
-    "popular-articles-widget": true,
+    "meetup-calendar-widget": false,
+    "popular-articles-widget": false,
     "projects-widget": true,
-    "recommended-articles-widget": true,
+    "recommended-articles-widget": false,
     "searchbar": true,
     "site-heading": true
   }
