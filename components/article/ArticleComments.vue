@@ -1,33 +1,29 @@
 <template>
 <section v-config>
-  <h3>Liczba komentarzy</h3>
-  <form action="">
-    <input type="text">
-  </form>
-    <article-comment v-for="(element, index) in comments" :key="index"
-                      :author="element.author.fullname"
-                      :avatar-url="element.author.avatar.url"
-                      :created-at="element.createdAt"
-                      :content="element.text"
-                      :replies-amount="element.replies.length"
-                      :parent-id="element.id"
-                      :is-parent="true"
-                      @clicked-load-replies="getReplies">
+  <article-comment v-for="(element, index) in comments" :key="index"
+                    :author="element.author.fullname"
+                    :avatar-url="element.author.avatar.url"
+                    :created-at="element.createdAt"
+                    :content="element.text"
+                    :replies-amount="element.replies.length"
+                    :parent-id="element.id"
+                    :is-parent="true"
+                    @clicked-load-replies="getReplies">
 
-      <div v-if="element.areRepliesExpanded">
-        <article-comment v-for="(element, index) in element.replies" :key="index"
-                          :author="element.author.fullname"
-                          :avatar-url="element.author.avatar.url"
-                          :created-at="element.createdAt"
-                          :content="element.text"
-                          :is-parent="false"/>
-      </div>
-    </article-comment>
+    <div v-if="element.areRepliesExpanded">
+      <article-comment v-for="(element, index) in element.replies" :key="index"
+                        :author="element.author.fullname"
+                        :avatar-url="element.author.avatar.url"
+                        :created-at="element.createdAt"
+                        :content="element.text"
+                        :is-parent="false"/>
+    </div>
+  </article-comment>
 
-    <knit-button v-if="commentsAmount < totalItems" @click.native="onLoadCommentsClick()"
-                  :buttonClasses="['knit-button--big', 'article-comments__load-button']">
-                  Załaduj więcej
-    </knit-button>
+  <knit-button v-if="commentsAmount < totalItems" @click.native="onLoadCommentsClick()"
+                :buttonClasses="['knit-button--big', 'article-comments__load-button']">
+                Załaduj więcej
+  </knit-button>
 </section>
 </template>
 

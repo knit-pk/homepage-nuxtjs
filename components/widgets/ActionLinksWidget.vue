@@ -70,7 +70,7 @@ export default {
     border-radius: $default-blocks-border-radius;
     width: calc(50% - #{$default-gutters-width / 2});
     height: calc(50% - #{$default-gutters-width / 2});
-    padding: 20px 15px;
+    padding: 20px 18px;
   }
 }
 </style>
