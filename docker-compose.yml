@@ -1,0 +1,20 @@
+version: '3'
+
+volumes:
+  yarn_cache:
+
+services:
+  homepage:
+    build:
+      context: .
+      args:
+        - NODE_ENV=development
+    command: ['/bin/sh', '-c', 'yarn install && yarn dev']
+    environment:
+      - API_URL=https://knit-test-api.tk
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+      - yarn_cache:/root/.yarn-cache

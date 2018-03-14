@@ -1,0 +1,170 @@
+@import '_imports.scss';
+
+// *** resets ***
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: block;
+  text-size-adjust: 100%;
+  margin: auto;
+  background-color: $background-color;
+  font-family: $default-font-family;
+  color: $primary-text-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.link {
+  @include link;
+}
+
+// *** base ***
+.default-badge {
+  display: inline-block;
+  padding: 3px 9px;
+}
+
+.no-scroll {
+  overflow-y: hidden;
+}
+
+.button-no-highlight {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fixed-top {
+  position: fixed;
+  z-index: 9998;
+  width: 100%;
+  transition: margin-top .2s ease;
+
+  &.fixed-top--hidden {
+    margin-top: -100px;
+  }
+}
+
+.page {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: $page-max-width;
+
+  &--mobile {
+    margin: 50px auto 0 auto;
+  }
+
+  &--desktop {
+    margin: 100px auto 0 auto;
+  }
+}
+
+.page-enter-active, .page-leave-active {
+  transition: all 0.2s ease;
+}
+
+.page-enter, .page-leave-active {
+  opacity: 0;
+}
+
+.aside-down, .aside-right, .main-content {
+  padding: $default-gutters-width 0 0;
+
+  @media (min-width: 1061px) {
+    margin-right: $default-gutters-width;
+  }
+
+  @media (max-width: $screen-sm) {
+    padding: 0;
+    margin: $default-gutters-width 0 0 0;
+  }
+}
+
+.leftside-wrapper {
+  max-width: 100%;
+
+  @media (min-width: 1059px) {
+    flex: 1;
+  }
+
+  @media (max-width: $page-max-width) and (min-width: $screen-sm) {
+    margin-left: $default-gutters-width;
+  }
+}
+
+.aside-right {
+  flex-basis: 320px;
+  margin-right: 0;
+
+  @media (max-width: $page-max-width) {
+    margin-right: $default-gutters-width;
+  }
+
+  @media (max-width: 1060px) {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: $default-gutters-width;
+
+    &__widget {
+      flex-basis: calc(50% - #{$default-gutters-width / 2});
+    }
+  }
+
+  @media (max-width: $screen-sm) {
+    flex-wrap: wrap;
+    margin-left: 0;
+    margin-right: 0;
+
+    &__widget {
+      flex-basis: 100%;
+    }
+  }
+}
+
+.aside-down {
+  flex-basis: 100%;
+  display: flex;
+  padding-top: 0;
+
+  @media (min-width: 1060px + 1) {
+    margin-right: 2 * $default-gutters-width;
+  }
+
+  @media (max-width: $screen-xl) {
+    justify-content: space-between;
+  }
+
+  @media (max-width: 1060px) {
+    margin-right: $default-gutters-width;
+  }
+
+  @media (max-width: $screen-md) {
+    flex-basis: calc(50%);
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: $screen-sm) {
+    margin: 0;
+  }
+}
+
+// *** utilities ***
+.visualy-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}

@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "checkJs": true
+    "target": "ES6",
+    "allowSyntheticDefaultImports": true
   },
-  "exclude": [
-    "node_modules",
-    "**/node_modules/*"
+  "lib": [
+    "es2015",
+    "dom"
   ],
   "typeAcquisition": {
     "include": [
-      "jest",
-      "node"
+      "lodash"
     ]
   }
 }

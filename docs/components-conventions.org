@@ -1,0 +1,37 @@
+* Components conventions
+
+*Every* ~.vue~ file should consist of those three sections:
+
+#+BEGIN_SRC web
+<template>  <--- Template section
+<some-tag-here>
+<some-tag-here>
+</template>
+
+<script>    <--- Script section
+export default {
+  data () {
+    return {}
+  },
+  components: {},
+  props: {},
+  computed: {},
+  methods: {},
+  mixins: {}
+}
+</script>
+
+<style lang="scss">  <--- Style section
+</style>
+#+END_SRC
+
+The script section *MUST* export an ~Object~ which consist *AT LEAST* those properties:
+
+| Property   | Default value |
+|------------+---------------|
+| data       | fn -> {}      |
+| components | {}            |
+| props      | {}            |
+| computed   | {}            |
+| methods    | {}            |
+| mixins     | {}            |

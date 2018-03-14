@@ -4,7 +4,8 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    'jest/globals': true
+    'jest/globals': true,
+    es6: true
   },
   extends: ['standard', 'plugin:jest/recommended'],
   // required to lint *.vue files
@@ -14,7 +15,7 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    semi: [2, 'always']
-  },
+    'operator-linebreak': ['error', 'after']
+   },
   globals: {}
-};
+}

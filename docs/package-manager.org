@@ -1,0 +1,27 @@
+* Favored package manager
+
+Recently we dropped the support for the ~npm~.
+The decision was made upon the several problems we came across while using this package manager.
+
+- [[https://zaufanatrzeciastrona.pl/post/menadzer-paczek-node-npm-brickuje-systemy/][NPM brickuje systemy]] (PL)
+- [[https://www.theinquirer.net/inquirer/news/3027293/bug-found-in-popular-javascript-package-manager-nmp-update-causes-system-crashes][NPM update causes system crashes]] (EN)
+
+We experienced various lags, and bugs with ~npm~ which did not allow us to complete the build or even to install packages.
+The only solution for those problems was purging entire ~node_modules~ and deleting ~package-lock.json~ which is completely undesirable (because ~package-lock.json~ was created to handle those situations
+it's entire purpose is to provide faster download and confidence that if in one computer your app installs and builds then in all machines it should do the same).
+
+*Moreover we encountered problems while trying to integrate* ~docker~, because of ~npm~ which was for us the huge dissatisfaction and the main reason we're not using ~npm~.
+
+/Because of those reasons we switched to incredibly fast and powerful yarn and guess what we don't regret it :)./
+
+* How to use ~yarn~?
+
+Usage of ~yarn~ is really straightforward. Simply install it globally using:
+
+#+BEGIN_SRC sh
+npm install -g yarn
+#+END_SRC
+
+and then every occurrence of ~npm~ replace with ~yarn~.
+
+** More info might be found on the official ~yarn~ [[https://yarnpkg.com/lang/en/][site]].

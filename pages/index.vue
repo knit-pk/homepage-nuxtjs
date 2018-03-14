@@ -1,52 +1,104 @@
 <template>
-  <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title"> homepage-nuxtjs </h1>
-      <h2 class="subtitle"> Nuxt.js project </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">Documentation</a>
-        <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey">GitHub</a>
-      </div>
+  <div class="page page--mainpage">
+    <div class="leftside-wrapper">
+      <main class="main-content">
+        <article-card-list class="article-card-list--big-main-post"/>
+      </main>
+      <aside class="aside-down">
+        <job-offers-widget/>
+        <action-links-widget/>
+      </aside>
     </div>
-  </section>
+    <aside class="aside-right">
+      <alert-widget class="aside-right__widget"/>
+      <meetup-calendar-widget class="aside-right__widget"/>
+      <projects-widget class="aside-right__widget"/>
+    </aside>
+  </div>
 </template>
 
 <script>
-import Logo from '../components/Logo.vue';
+import MeetupCalendarWidget from '~/components/widgets/MeetupCalendarWidget'
+import ActionLinksWidget from '~/components/widgets/ActionLinksWidget'
+import JobOffersWidget from '~/components/widgets/JobOffersWidget'
+import ArticleCardList from '~/components/article/ArticleCardList'
+import ProjectsWidget from '~/components/widgets/ProjectsWidget'
+import AlertWidget from '~/components/widgets/AlertWidget'
+
 export default {
+  layout: 'common',
   components: {
-    Logo
+    MeetupCalendarWidget,
+    ActionLinksWidget,
+    JobOffersWidget,
+    ArticleCardList,
+    ProjectsWidget,
+    AlertWidget
+  },
+  fetch ({ store, params }) {
+    // Retrieves cards from API
+    return Promise.all([ store.dispatch('articles/list/getArticleList', { page: 1 }) ])
   }
-};
+}
 </script>
 
-<style>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+<style lang="scss">
+@import "assets/scss/imports.scss";
 
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+.page--mainpage {
+  .aside-right {
+    .alert-widget {
+      @media (max-width: 1060px) {
+        display: none;
+      }
+    }
+  }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-.links {
-  padding-top: 15px;
+  .aside-down {
+    .job-offers-widget {
+      margin-right: $default-gutters-width;
+      flex: 1;
+
+      @media (max-width: $screen-md) {
+        flex-basis: calc(65% - #{$default-gutters-width});
+      }
+
+      @media (max-width: $screen-sm) {
+        margin: 0 10px;
+      }
+    }
+
+    .action-links {
+      @media (max-width: $screen-md) {
+        flex-basis: 35%;
+        height: 320px;  
+        flex-direction: column;
+        flex-wrap: nowrap;
+      }
+
+      @media (max-width: $screen-sm) {
+        padding: 0 10px;
+        margin-top: $default-gutters-width;
+        flex-basis: 100%;
+      }
+
+      &__link-item {
+        @media (max-width: $screen-md) {
+          flex-basis: 100%;
+          height: auto;
+          flex-direction: row;
+          align-items: center;
+          margin-bottom: 10px;
+          padding: 15px;
+          flex: 1;
+          width: 100%;
+
+          &:last-child {
+            margin-bottom: 0;
+          } 
+        }
+      }
+    }
+  }
 }
 </style>
