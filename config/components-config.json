@@ -1,7 +1,7 @@
 {
   "showComponents": {
-    "action-links-widget": true,
-    "alert-widget": true,
+    "action-links-widget": false,
+    "alert-widget": false,
     "article-breadcrumb": true,
     "article-card": true,
     "article-card-list": true,
@@ -20,7 +20,7 @@
     "knit-navbar": true,
     "meetup-calendar-widget": false,
     "popular-articles-widget": false,
-    "projects-widget": true,
+    "projects-widget": false,
     "recommended-articles-widget": false,
     "searchbar": true,
     "site-heading": true
