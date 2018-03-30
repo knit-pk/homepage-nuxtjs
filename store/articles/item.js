@@ -24,14 +24,14 @@ export const state = () => ({
 })
 
 export const actions = {
-  getArticle ({ commit, state, rootGetters }, slug) {
+  getArticle ({ commit, state, rootGetters }, code) {
     commit(status('loading'))
 
     const getterName = `${settings.storePath}/list/articles`
     const articles = rootGetters[getterName]
 
     if (_.isEmpty(articles)) {
-      const qsObject = _.assign({}, settings.defaultQsObject, { code: slug, limit: 1 })
+      const qsObject = _.assign({}, settings.defaultQsObject, { code, limit: 1 })
 
       knitLogger.debug(`No articles in main list, trying to fetch single main article`)
 
@@ -53,7 +53,7 @@ export const actions = {
         })
     } else {
       knitLogger.debug(`Article is already in main article list, trying to filter and find it`)
-      const article = _.filter(articles, article => article.code === slug)[0]
+      const article = _.filter(articles, article => article.code === code)[0]
       storeHelper.commitMultiple(commit, [ success(article), status('complete') ])
     }
   },

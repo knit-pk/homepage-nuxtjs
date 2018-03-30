@@ -36,7 +36,6 @@ export default {
     AlertWidget
   },
   fetch ({ store, params }) {
-    // Retrieves cards from API
     return Promise.all([ store.dispatch('articles/list/getArticleList', { page: 1 }) ])
   }
 }
@@ -71,7 +70,7 @@ export default {
     .action-links {
       @media (max-width: $screen-md) {
         flex-basis: 35%;
-        height: 320px;  
+        height: 320px;
         flex-direction: column;
         flex-wrap: nowrap;
       }
@@ -95,7 +94,7 @@ export default {
 
           &:last-child {
             margin-bottom: 0;
-          } 
+          }
         }
       }
     }

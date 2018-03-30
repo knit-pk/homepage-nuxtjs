@@ -9,6 +9,7 @@ import knitService from '~/services/knitService'
 import storeHelper from '~/helpers/storeHelper'
 import knitLogger from '~/config/logger'
 import settings from './settings'
+import reducers from './reducers'
 import _ from 'lodash'
 
 const updatePagesMap = storeHelper.createMutationFn(ARTICLE_LIST_UPDATE_PAGES_MAP, 'pagesMap')
@@ -75,7 +76,7 @@ export const actions = {
 export const mutations = {
   [ARTICLE_LIST_RETRIEVED_SUCCESS] (state, payload) {
     state.totalItems = payload.totalItems
-    state.articles = [...state.articles, ...payload.articles]
+    state.articles = _.assign({}, state.articles, _.reduce(payload.articles, reducers.normalizeArticle, {}))
     state.page = payload.page
   },
 

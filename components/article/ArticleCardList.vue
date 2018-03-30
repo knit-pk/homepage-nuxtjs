@@ -1,21 +1,26 @@
 <template>
-  <section :class="['article-card-list']" v-config>
-    <h2 class="visualy-hidden"> Artykuły KNIT </h2>
+<section class="article-card-list" v-config>
+  <h2 class="visualy-hidden"> Artykuły KNIT </h2>
 
-    <article-card v-for="(article, index) in cardsArticles" :key="index"
-                       :title="article.title"
-                       :author="article.author"
-                       :content="article.content"
-                       :description="article.description"
-                       :thumbnail="article.image.url"
-                       :published-at="article.publishedAt"
-                       :updated-at="article.updatedAt"
-                       :ratings="article.ratings"
-                       :comments="article.comments"
-                       :comments-count="article.commentsCount"
-                       :slug="article.code"/>
+  <!-- Articles list -->
+  <article-card v-for="(article, index) in cardsArticles" :key="index"
+                      :title="article.title"
+                      :author="article.author"
+                      :content="article.content"
+                      :description="article.description"
+                      :thumbnail="article.image.url"
+                      :published-at="article.publishedAt"
+                      :updated-at="article.updatedAt"
+                      :ratings="article.ratings"
+                      :comments="article.comments"
+                      :category="article.category"
+                      :comments-count="article.commentsCount"
+                      :short-id="article.shortId"
+                      :title-code="article.titleCode"
+                      :category-code="article.categoryCode"
+                      :code="article.code"/>
 
-  </section>
+</section>
 </template>
 
 <script>
@@ -35,7 +40,8 @@ export default {
   props: {},
   computed: {
     cardsArticles () {
-      return _.slice(this.articles, 0, 5)
+      // @TODO: Will be change in next PR
+      return _.slice(_.values(this.articles), 0, 5)
     },
     ...mapGetters({
       articles: `${storePath}/articles`,

@@ -16,14 +16,15 @@ export default {
     return item
   },
   props: [
+    'commentsCount',
     'publishedAt',
     'description',
     'image.url',
     'published',
     'createdAt',
     'updatedAt',
+    'category',
     'comments',
-    'commentsCount',
     'ratings',
     'content',
     'author',

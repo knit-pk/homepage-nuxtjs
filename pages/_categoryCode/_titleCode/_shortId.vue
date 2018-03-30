@@ -1,7 +1,11 @@
 <template>
   <div class="page page--article">
+
+    <!-- Leftside wrapper -->
     <div class="leftside-wrapper">
       <main class="main-content">
+
+        <!-- Article detail -->
         <article-single :title="article.title"
                     :content="article.content"
                     :thumbnail="article.image.url"
@@ -11,12 +15,15 @@
                     :updated-at="article.updatedAt"
                     :tags="article.tags"
                     :ratings="article.ratings"
+                    :category="article.category"
                     :comments="article.comments"
                     :comments-count="article.commentsCount"
-                    :slug="article.code"
+                    :code="article.code"
                     :id="article.id"/>
       </main>
     </div>
+
+    <!-- Aside right -->
     <aside class="aside-right">
       <popular-articles-widget/>
       <recommended-articles-widget/>
@@ -29,6 +36,7 @@ import RecommendedArticlesWidget from '~/components/widgets/RecommendedArticlesW
 import PopularArticlesWidget from '~/components/widgets/PopularArticlesWidget.vue'
 import ArticleSingle from '~/components/article/ArticleSingle.vue'
 import { mapGetters } from 'vuex'
+import _ from 'lodash'
 
 const storePath = 'articles/item'
 
@@ -51,7 +59,7 @@ export default {
     this.$store.dispatch(`${storePath}/resetArticle`)
   },
   fetch ({ store, params }) {
-    return Promise.all([ store.dispatch('articles/item/getArticle', params.slug) ])
+    return Promise.all([ store.dispatch('articles/item/getArticle', _.join(_.values(params), '/')) ])
   }
 }
 </script>
