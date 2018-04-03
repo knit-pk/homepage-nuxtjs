@@ -30,7 +30,7 @@ import ArticleBreadcrumb from '~/components/article/ArticleBreadcrumb'
 import ArticleComments from '~/components/article/ArticleComments'
 import ArticleContent from '~/components/article/ArticleContent'
 import ArticleFooter from '~/components/article/ArticleFooter'
-import templateHelper from '~/helpers/templateHelper'
+import templateHelper from '~/helpers/template'
 
 export default {
   data () {

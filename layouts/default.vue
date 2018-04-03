@@ -1,9 +1,9 @@
 <template>
-  <nuxt/>
+<nuxt/>
 </template>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 body {
   background-color: $background-color;

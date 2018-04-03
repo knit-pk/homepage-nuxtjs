@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import templateHelper from '~/helpers/templateHelper'
+import templateHelper from '~/helpers/template'
 
 export default {
   data () {
@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
   .article-comment {
     background-color: #fff;

@@ -1,20 +1,20 @@
 <template>
-  <div class="page page--mainpage">
-    <div class="leftside-wrapper">
-      <main class="main-content">
-        <article-card-list class="article-card-list--big-main-post"/>
-      </main>
-      <aside class="aside-down">
-        <job-offers-widget/>
-        <action-links-widget/>
-      </aside>
-    </div>
-    <aside class="aside-right">
-      <alert-widget class="aside-right__widget"/>
-      <meetup-calendar-widget class="aside-right__widget"/>
-      <projects-widget class="aside-right__widget"/>
+<div class="page page--mainpage">
+  <div class="leftside-wrapper">
+    <main class="main-content">
+      <article-card-list class="article-card-list--big-main-post" :articles="mainpageList"/>
+    </main>
+    <aside class="aside-down">
+      <job-offers-widget/>
+      <action-links-widget/>
     </aside>
   </div>
+  <aside class="aside-right">
+    <alert-widget class="aside-right__widget"/>
+    <meetup-calendar-widget class="aside-right__widget"/>
+    <projects-widget class="aside-right__widget"/>
+  </aside>
+</div>
 </template>
 
 <script>
@@ -24,6 +24,8 @@ import JobOffersWidget from '~/components/widgets/JobOffersWidget'
 import ArticleCardList from '~/components/article/ArticleCardList'
 import ProjectsWidget from '~/components/widgets/ProjectsWidget'
 import AlertWidget from '~/components/widgets/AlertWidget'
+import commonHelper from '~/helpers/common'
+import { mapGetters } from 'vuex'
 
 export default {
   layout: 'common',
@@ -35,14 +37,22 @@ export default {
     ProjectsWidget,
     AlertWidget
   },
+  computed: {
+    ...mapGetters({
+      mainpageCodesList: 'view/articles/mainpage'
+    }),
+    mainpageList () {
+      return commonHelper.resourceObjToArr(this.$store.getters[ 'resources/articles' ], this.mainpageCodesList)
+    }
+  },
   fetch ({ store, params }) {
-    return Promise.all([ store.dispatch('articles/list/getArticleList', { page: 1 }) ])
+    return store.dispatch('view/articles/getMainpage')
   }
 }
 </script>
 
 <style lang="scss">
-@import "assets/scss/imports.scss";
+@import "assets/scss/imports";
 
 .page--mainpage {
   .aside-right {

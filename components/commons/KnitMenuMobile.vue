@@ -1,13 +1,17 @@
 <template>
 <div class="knit-menu" v-config>
+
+  <!-- Site heading -->
   <site-heading/>
 
+  <!-- Hamburger button -->
   <button @click="onHamburgerClick" :class="[ 'button-no-highlight hamburger', { 'hamburger--open': isMobileMenuShown } ]" type="button">
     <span class="hamburger__icon icon1"></span>
     <span class="hamburger__icon icon2"></span>
     <span class="hamburger__icon icon3"></span>
   </button>
 
+  <!-- Collapse menu content -->
   <div :class="[ 'knit-menu__navigation collapse-menu', { 'collapse-menu--show': isMobileMenuShown } ]">
     <knit-navbar class="navbar--menu" @linkClickedEvent="onNavbarLinkClick"/>
     <div class="knit-menu__searchbar-wrapper">
@@ -21,7 +25,7 @@
 import SiteHeading from '~/components/commons/SiteHeading'
 import KnitNavbar from '~/components/commons/KnitNavbar'
 import Searchbar from '~/components/commons/Searchbar'
-import commonHelper from '~/helpers/commonHelper'
+import _ from 'lodash'
 
 export default {
   data () {
@@ -41,11 +45,14 @@ export default {
   methods: {
     onHamburgerClick () {
       this.isMobileMenuShown = !this.isMobileMenuShown
-      commonHelper.toggleElementsClasses([ this.bodyElement, this.htmlElement ], ['no-scroll'])
+      this.toggleElementsClass([ this.bodyElement, this.htmlElement ], 'no-scroll')
       this.$emit('mobileMenuToggle', this.isMobileMenuShown)
     },
     onNavbarLinkClick () {
       setTimeout(() => this.onHamburgerClick(), 300)
+    },
+    toggleElementsClass (elements, className) {
+      _.each(elements, element => { element && element.classList.toggle(className) })
     }
   },
   mixins: {},

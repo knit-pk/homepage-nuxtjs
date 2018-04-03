@@ -1,29 +1,30 @@
 <template>
-  <!-- Desktop version -->
-  <section v-if="isScrollable" :class="['job-offers-widget', 'job-offers-widget--scrollable']" v-config>
-    <widget-title :title="title" :widgetClass="widgetClass" :widgetIconClass="widgetIconClass">
-      <b-badge pill variant="info" class="default-badge job-offers-widget__badge"> {{ itemsLength }} </b-badge>
-    </widget-title>
-    <vue-scrollbar classes="job-offers-widget__scrollbar-wrapper">
-      <div class="job-offers-widget__content" v-prevent-parent-scroll>
-        <job-offers-widget-item v-for="(item, index) of items" :key="index"
-          :title="item.title" :employer="item.employer" :salaryBrackets="item.salaryBrackets"
-          :createdAt="item.createdAt" :currency="item.currency" :technology="item.technology"
-          :employerWebpage="item.employerWebpage"/>
-      </div>
-    </vue-scrollbar>
-  </section>
 
-  <!-- Mobile version -->
-  <section v-else :class="['job-offers-widget']" v-config>
-    <widget-title :title="title" :widgetClass="widgetClass" :widgetIconClass="widgetIconClass"></widget-title>
-    <div class="job-offers-widget__content">
+<!-- Desktop version -->
+<section v-if="isScrollable" :class="['job-offers-widget', 'job-offers-widget--scrollable']" v-config>
+  <widget-title :title="title" :widgetClass="widgetClass" :widgetIconClass="widgetIconClass">
+    <b-badge pill variant="info" class="default-badge job-offers-widget__badge"> {{ itemsLength }} </b-badge>
+  </widget-title>
+  <vue-scrollbar classes="job-offers-widget__scrollbar-wrapper">
+    <div class="job-offers-widget__content" v-prevent-parent-scroll>
       <job-offers-widget-item v-for="(item, index) of items" :key="index"
         :title="item.title" :employer="item.employer" :salaryBrackets="item.salaryBrackets"
         :createdAt="item.createdAt" :currency="item.currency" :technology="item.technology"
         :employerWebpage="item.employerWebpage"/>
     </div>
-  </section>
+  </vue-scrollbar>
+</section>
+
+<!-- Mobile version -->
+<section v-else :class="['job-offers-widget']" v-config>
+  <widget-title :title="title" :widgetClass="widgetClass" :widgetIconClass="widgetIconClass"></widget-title>
+  <div class="job-offers-widget__content">
+    <job-offers-widget-item v-for="(item, index) of items" :key="index"
+      :title="item.title" :employer="item.employer" :salaryBrackets="item.salaryBrackets"
+      :createdAt="item.createdAt" :currency="item.currency" :technology="item.technology"
+      :employerWebpage="item.employerWebpage"/>
+  </div>
+</section>
 </template>
 
 <script>
@@ -94,7 +95,7 @@ export default {
       return this.itemsLength > 4 && !this.isMobile
     },
     ...mapGetters({
-      isMobile: 'general/general/isMobile'
+      isMobile: 'general/isMobile'
     })
   },
   methods: {},
@@ -103,7 +104,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .job-offers-widget {
   box-sizing: border-box;

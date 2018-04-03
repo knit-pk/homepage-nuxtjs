@@ -3,7 +3,7 @@
   <h2 class="visualy-hidden"> Artykuły KNIT </h2>
 
   <!-- Articles list -->
-  <article-card v-for="(article, index) in cardsArticles" :key="index"
+  <article-card v-for="(article, index) in articles" :key="index"
                       :title="article.title"
                       :author="article.author"
                       :content="article.content"
@@ -25,10 +25,6 @@
 
 <script>
 import ArticleCard from '~/components/article/ArticleCard'
-import { mapGetters } from 'vuex'
-import _ from 'lodash'
-
-const storePath = 'articles/list'
 
 export default {
   data () {
@@ -37,27 +33,20 @@ export default {
   components: {
     ArticleCard
   },
-  props: {},
-  computed: {
-    cardsArticles () {
-      // @TODO: Will be change in next PR
-      return _.slice(_.values(this.articles), 0, 5)
-    },
-    ...mapGetters({
-      articles: `${storePath}/articles`,
-      loading: `${storePath}/loading`,
-      status: `${storePath}/status`,
-      limit: `${storePath}/limit`,
-      error: `${storePath}/error`
-    })
+  props: {
+    articles: {
+      required: true,
+      type: Array
+    }
   },
+  computed: {},
   methods: {},
   mixins: {}
 }
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .article-card-list {
   display: flex;

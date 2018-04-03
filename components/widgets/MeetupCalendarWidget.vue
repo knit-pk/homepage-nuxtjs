@@ -1,7 +1,7 @@
 <template>
-  <section class="meetup-calendar" v-config>
-    Meetup calendar
-  </section>
+<section class="meetup-calendar" v-config>
+  Meetup calendar
+</section>
 </template>
 
 <script>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .meetup-calendar {
   background-color: #fff;

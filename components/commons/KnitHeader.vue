@@ -1,40 +1,44 @@
 <template>
-  <header class="knit-header" v-config>
-    <site-heading/>
-    <searchbar/>
+<header class="knit-header" v-config>
 
-    <b-dropdown class="header-dropdown" right no-flip>
-      <div slot="button-content" class="header-dropdown__profile-button">
-        <img :src="user.avatarUrl" class="header-dropdown__avatar" alt="">
-        <span class="header-dropdown__username">{{ user.name }}</span>
-      </div>
-      <b-dropdown-item href="#">If won't</b-dropdown-item>
-      <b-dropdown-item href="#">be useful</b-dropdown-item>
-      <b-dropdown-item href="#">we'll delete</b-dropdown-item>
-      <b-dropdown-divider></b-dropdown-divider>
-      <b-dropdown-item href="#">dropdown and make</b-dropdown-item>
-      <b-dropdown-item href="#">link to profile</b-dropdown-item>
-    </b-dropdown>
+  <!-- Site heading (logo + caption) -->
+  <site-heading/>
 
-    <b-dropdown class="header-dropdown" right no-caret no-flip>
-      <span slot="button-content" class="flaticon-plus header-dropdown__button-icon" aria-label="Dodaj treść"></span>
-      <b-dropdown-item href="#">Napisz artykuł</b-dropdown-item>
-      <b-dropdown-item href="#">Dodaj ofertę pracy</b-dropdown-item>
-      <b-dropdown-item href="#">Utwórz projekt</b-dropdown-item>
-      <b-dropdown-divider></b-dropdown-divider>
-      <b-dropdown-item href="#">Dodaj spotkanie</b-dropdown-item>
-    </b-dropdown>
+  <!-- Searchbar -->
+  <searchbar/>
 
-    <b-dropdown class="header-dropdown" right no-caret no-flip>
-      <span slot="button-content" class="flaticon-cog-wheel header-dropdown__button-icon" aria-label="Ustawienia"></span>
-      <b-dropdown-item href="#"><span class="flaticon-user header-dropdown__list-item-icon" aria-hidden="true"></span>Moje konto</b-dropdown-item>
-      <b-dropdown-divider></b-dropdown-divider>
-      <b-dropdown-item href="#">Akcja 1</b-dropdown-item>
-      <b-dropdown-item href="#">Akcja 2</b-dropdown-item>
-      <b-dropdown-divider></b-dropdown-divider>
-      <b-dropdown-item href="#"><span class="flaticon-logout header-dropdown__list-item-icon" aria-hidden="true"></span>Wyloguj</b-dropdown-item>
-    </b-dropdown>
-  </header>
+  <b-dropdown class="header-dropdown" right no-flip>
+    <div slot="button-content" class="header-dropdown__profile-button">
+      <img :src="user.avatarUrl" class="header-dropdown__avatar" alt="">
+      <span class="header-dropdown__username">{{ user.name }}</span>
+    </div>
+    <b-dropdown-item href="#">If won't</b-dropdown-item>
+    <b-dropdown-item href="#">be useful</b-dropdown-item>
+    <b-dropdown-item href="#">we'll delete</b-dropdown-item>
+    <b-dropdown-divider></b-dropdown-divider>
+    <b-dropdown-item href="#">dropdown and make</b-dropdown-item>
+    <b-dropdown-item href="#">link to profile</b-dropdown-item>
+  </b-dropdown>
+
+  <b-dropdown class="header-dropdown" right no-caret no-flip>
+    <span slot="button-content" class="flaticon-plus header-dropdown__button-icon" aria-label="Dodaj treść"></span>
+    <b-dropdown-item href="#">Napisz artykuł</b-dropdown-item>
+    <b-dropdown-item href="#">Dodaj ofertę pracy</b-dropdown-item>
+    <b-dropdown-item href="#">Utwórz projekt</b-dropdown-item>
+    <b-dropdown-divider></b-dropdown-divider>
+    <b-dropdown-item href="#">Dodaj spotkanie</b-dropdown-item>
+  </b-dropdown>
+
+  <b-dropdown class="header-dropdown" right no-caret no-flip>
+    <span slot="button-content" class="flaticon-cog-wheel header-dropdown__button-icon" aria-label="Ustawienia"></span>
+    <b-dropdown-item href="#"><span class="flaticon-user header-dropdown__list-item-icon" aria-hidden="true"></span>Moje konto</b-dropdown-item>
+    <b-dropdown-divider></b-dropdown-divider>
+    <b-dropdown-item href="#">Akcja 1</b-dropdown-item>
+    <b-dropdown-item href="#">Akcja 2</b-dropdown-item>
+    <b-dropdown-divider></b-dropdown-divider>
+    <b-dropdown-item href="#"><span class="flaticon-logout header-dropdown__list-item-icon" aria-hidden="true"></span>Wyloguj</b-dropdown-item>
+  </b-dropdown>
+</header>
 </template>
 
 <script>
@@ -62,7 +66,7 @@ export default {
 </script>
 
 <style lang='scss'>
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .knit-header {
   position: fixed;

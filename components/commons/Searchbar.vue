@@ -1,9 +1,9 @@
 <template>
-  <form class="searchbar" v-config>
-    <label for="site-search" class="visualy-hidden">Wyszukaj na stronie</label>
-    <input id="site-search" type="search" class="searchbar__input" placeholder="Szukaj" autocomplete="off">
-    <span class="flaticon-magnifying-glass searchbar__icon"></span>
-  </form>
+<form class="searchbar" v-config>
+  <label for="site-search" class="visualy-hidden">Wyszukaj na stronie</label>
+  <input id="site-search" type="search" class="searchbar__input" placeholder="Szukaj" autocomplete="off">
+  <span class="flaticon-magnifying-glass searchbar__icon"></span>
+</form>
 </template>
 
 <script>
@@ -21,7 +21,6 @@ export default {
 
 <style lang="scss">
 @import "assets/scss/imports";
-/* @TODO: Probably we should create another scss file for all these colors */
 
 .searchbar {
   $p: &;

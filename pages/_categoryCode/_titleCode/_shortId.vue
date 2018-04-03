@@ -1,44 +1,40 @@
 <template>
-  <div class="page page--article">
+<div class="page page--article">
 
-    <!-- Leftside wrapper -->
-    <div class="leftside-wrapper">
-      <main class="main-content">
+  <!-- Leftside wrapper -->
+  <div class="leftside-wrapper">
+    <main class="main-content">
 
-        <!-- Article detail -->
-        <article-single :title="article.title"
-                    :content="article.content"
-                    :thumbnail="article.image.url"
-                    :author="article.author"
-                    :description="article.description"
-                    :published-at="article.publishedAt"
-                    :updated-at="article.updatedAt"
-                    :tags="article.tags"
-                    :ratings="article.ratings"
-                    :category="article.category"
-                    :comments="article.comments"
-                    :comments-count="article.commentsCount"
-                    :code="article.code"
-                    :id="article.id"/>
-      </main>
-    </div>
-
-    <!-- Aside right -->
-    <aside class="aside-right">
-      <popular-articles-widget/>
-      <recommended-articles-widget/>
-    </aside>
+      <!-- Article detail -->
+      <article-single :title="article.title"
+                  :content="article.content"
+                  :thumbnail="article.image.url"
+                  :author="article.author"
+                  :description="article.description"
+                  :published-at="article.publishedAt"
+                  :updated-at="article.updatedAt"
+                  :tags="article.tags"
+                  :ratings="article.ratings"
+                  :category="article.category"
+                  :comments="article.comments"
+                  :comments-count="article.commentsCount"
+                  :code="article.code"
+                  :id="article.id"/>
+    </main>
   </div>
+
+  <!-- Aside right -->
+  <aside class="aside-right">
+    <popular-articles-widget/>
+    <recommended-articles-widget/>
+  </aside>
+</div>
 </template>
 
 <script>
-import RecommendedArticlesWidget from '~/components/widgets/RecommendedArticlesWidget.vue'
-import PopularArticlesWidget from '~/components/widgets/PopularArticlesWidget.vue'
-import ArticleSingle from '~/components/article/ArticleSingle.vue'
-import { mapGetters } from 'vuex'
-import _ from 'lodash'
-
-const storePath = 'articles/item'
+import RecommendedArticlesWidget from '~/components/widgets/RecommendedArticlesWidget'
+import PopularArticlesWidget from '~/components/widgets/PopularArticlesWidget'
+import ArticleSingle from '~/components/article/ArticleSingle'
 
 export default {
   layout: 'common',
@@ -47,19 +43,8 @@ export default {
     PopularArticlesWidget,
     RecommendedArticlesWidget
   },
-  computed: {
-    ...mapGetters({
-      loading: `${storePath}/loading`,
-      article: `${storePath}/article`,
-      status: `${storePath}/status`,
-      error: `${storePath}/error`
-    })
-  },
-  beforeDestroy () {
-    this.$store.dispatch(`${storePath}/resetArticle`)
-  },
+  computed: {},
   fetch ({ store, params }) {
-    return Promise.all([ store.dispatch('articles/item/getArticle', _.join(_.values(params), '/')) ])
   }
 }
 </script>

@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import templateHelper from '~/helpers/templateHelper'
+import templateHelper from '~/helpers/template'
 import ArticlePublisherMeta from '~/components/article/ArticlePublisherMeta'
 
 // @TODO: Make elipsis overflow in article card description
@@ -158,7 +158,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .article-card {
   background-color: #fff;

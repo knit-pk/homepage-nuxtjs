@@ -1,8 +1,8 @@
 <template>
-  <a class="action-link" href="#">
-    <span class="action-link__text">{{ linktext }}</span>
-    <span :class="[iconClass]" class="action-link__icon"></span>
-  </a>
+<a class="action-link" href="#">
+  <span class="action-link__text">{{ linktext }}</span>
+  <span :class="[ iconClass ]" class="action-link__icon"></span>
+</a>
 </template>
 
 <script>
@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/imports.scss";
+@import "assets/scss/_imports";
 
 .action-link {
   $p: &;

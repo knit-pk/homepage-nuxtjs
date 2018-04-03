@@ -1,34 +1,38 @@
 <template>
-  <div class="article-content" v-config>
-    <header class="article-content__header">
-      <img :src="thumbnail" class="article-content__thumbnail" itemprop="image" />
-      <div class="article-content__header-info">
-        <h2 class="article-content__title" itemprop="headline"> {{ trimString(title, 110) }} </h2>
-        <div class="article-content__pub-info">
-          <router-link to="/" class="article-content__author-avatar-link">
-            <img class="article-content__author-avatar" :src="author.avatar.url" :alt="author.fullname" />
-          </router-link>
-          <div>
-            <router-link to="/" class="article-content__author-fullname"> {{ author.fullname }} </router-link>
-            <time :datetime="publishedAt" class="article-content__pub-date" itemprop="datePublished"> {{ publicationDate }} </time>
-            <meta itemprop="dateModified" :content="updatedAt" />
-          </div>
+<div class="article-content" v-config>
+  <header class="article-content__header">
+    <img :src="thumbnail" class="article-content__thumbnail" itemprop="image" />
+    <div class="article-content__header-info">
+      <h2 class="article-content__title" itemprop="headline"> {{ trimString(title, 110) }} </h2>
+      <div class="article-content__pub-info">
+        <router-link to="/" class="article-content__author-avatar-link">
+          <img class="article-content__author-avatar" :src="author.avatar.url" :alt="author.fullname" />
+        </router-link>
+        <div>
+          <router-link to="/" class="article-content__author-fullname"> {{ author.fullname }} </router-link>
+          <time :datetime="publishedAt" class="article-content__pub-date" itemprop="datePublished"> {{ publicationDate }} </time>
+          <meta itemprop="dateModified" :content="updatedAt" />
         </div>
       </div>
-    </header>
-    <vue-markdown class="article-content__body" :source="content"/>
+    </div>
+  </header>
 
-    <!-- Meta -->
-    <link itemprop="mainEntityOfPage" :href="mainEntityOfPage" />
-    <meta itemprop="description" :content="description" />
-    <ArticlePublisherMeta />
-  </div>
+  <!-- Article content body -->
+  <vue-markdown class="article-content__body" :source="content"/>
+
+  <!-- Meta -->
+  <link itemprop="mainEntityOfPage" :href="mainEntityOfPage" />
+  <meta itemprop="description" :content="description" />
+
+  <!-- Publisher meta -->
+  <ArticlePublisherMeta />
+</div>
 </template>
 
 <script>
-import templateHelper from '~/helpers/templateHelper'
-import VueMarkdown from 'vue-markdown'
 import ArticlePublisherMeta from '~/components/article/ArticlePublisherMeta'
+import templateHelper from '~/helpers/template'
+import VueMarkdown from 'vue-markdown'
 
 export default {
   data () {
@@ -84,7 +88,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .article-content {
   background-color: $article-content-bg-color;
