@@ -6,8 +6,8 @@ const methods = {
   }
 }
 
-function compose ({ before, caller, after, always, fail }) {
-  // Binds all parameters to all after, always functions
+function compose ({ before, caller, success, always, fail }) {
+  // Binds all parameters to all success, always functions
   const promisesBoundCaller = async (arrFn, that, ctx, params, result) => {
     const boundPromises = _.map(arrFn, async (bind) => bind({ that, ctx, params, result }))
 
@@ -33,9 +33,9 @@ function compose ({ before, caller, after, always, fail }) {
     return async function actionCall (ctx, params) {
       try {
         const result = await flowWithBoundCaller(this, ctx, params)(actionWithBoundCaller(this, ctx, params, actionDefinition))
-        await promisesBoundCaller(after, this, ctx, params, result)
+        await promisesBoundCaller(success, this, ctx, params, result)
       } catch (err) {
-        // When something is canceled or before functions thrown an error
+        // When something is canceled, or when action does not succeeds and all fails have been called
       } finally {
         await promisesBoundCaller(always, this, ctx, params, null)
       }

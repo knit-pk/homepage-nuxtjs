@@ -39,14 +39,14 @@ export default {
   },
   computed: {
     ...mapGetters({
-      mainpageCodesList: 'view/articles/mainpage'
+      mainPageCodesList: 'view/articles/mainPage'
     }),
     mainpageList () {
-      return _.map(this.mainpageCodesList, code => this.$store.getters[ 'resources/articles' ][code])
+      return _.map(this.mainPageCodesList, code => this.$store.getters[ 'resources/articles' ][code])
     }
   },
   fetch ({ store, params }) {
-    return store.dispatch('view/articles/getMainpage')
+    return store.dispatch('view/articles/getMainPage')
   }
 }
 </script>

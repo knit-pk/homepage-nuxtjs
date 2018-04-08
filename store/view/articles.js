@@ -16,51 +16,51 @@ const types = {
   ADD_CODES: 'ADD_CODES'
 }
 
-// Mutation functions
+// Mutation function
 const changeCurrCategory = storeHelper.createMutationFn(types.CHANGE_CURRENT_CATEGORY_CODE, 'currentCategoryCode')
-const changeCurrArticle = storeHelper.createMutationFn(types.CHANGE_CURRENT_ARTICLE_CODE, 'currArticleCode')
+const changeCurrArticle = storeHelper.createMutationFn(types.CHANGE_CURRENT_ARTICLE_CODE, 'currentArticleCode')
 const loading = storeHelper.createMutationFn(types.LOAD_ARTICLES, 'loading')
 const codes = storeHelper.createMutationFn(types.ADD_CODES)
 
 // Module getters
 export const getters = {
   loading: state => state.loading,
-  mainpage: state => state.mainpage,
-  mainlist: state => state.mainlist,
+  mainPage: state => state.mainPage,
+  mainList: state => state.mainList,
   all: state => state.all,
-  currArticleCode: state => state.currArticleCode,
+  currentArticleCode: state => state.currentArticleCode,
   currentCategoryCode: state => state.currentCategoryCode,
-  categoryCodeList: state => state.currentCategoryCode === 'wszystkie' ? state.mainlist : state.byCategory[state.currentCategoryCode],
+  categoryCodeList: state => state.currentCategoryCode === settings.mainListName ? state.mainList : state.byCategory[state.currentCategoryCode],
   byCategory: state => state.byCategory
 }
 
 // Module state
 export const state = () => ({
   totalItems: 0,
-  mainpage: [],
-  mainlist: [],
+  mainPage: [],
+  mainList: [],
   all: [],
   byCategory: {},
   loading: false,
   error: false,
-  currArticleCode: '',
+  currentArticleCode: '',
   currentCategoryCode: ''
 })
 
 // Module actions
 export const actions = {
-  getMainpage: composer.compose({
+  getMainPage: composer.compose({
     before: [
-      compounds.callActionWhen(({ ctx }) => _.isEmpty(ctx.getters.mainpage)),
+      compounds.callActionWhen(({ ctx }) => _.isEmpty(ctx.getters.mainPage)),
       compounds.doSth(({ ctx }) => ctx.commit(loading(true)))
     ],
-    caller: callers.squashErrorsCall('#getMainpage'),
-    after: [
-      opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'mainpage', codes: result })),
+    caller: callers.squashErrorsCall('#getMainPage'),
+    success: [
+      opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'mainPage', codes: result })),
       opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
       opuses.doSth(({ ctx, result }) => ctx.commit(loading(false)))
     ]
-  })(async function getMainpageAction ({ state, commit, dispatch }, params) {
+  })(async function getMainPageAction ({ state, commit, dispatch }, params) {
     const data = await knitService.getCollection(this.$axios, 'articles', settings.defaultQsObject)
 
     // Inject articles and return their codes
@@ -77,7 +77,7 @@ export const actions = {
       compounds.doSth(({ ctx }) => ctx.commit(loading(true)))
     ],
     caller: callers.squashErrorsCall('#getCategoryList'),
-    after: [
+    success: [
       opuses.doSth(({ ctx, params, result }) => ctx.dispatch('addCodes', { categoryCode: params.categoryCode, codes: result })),
       opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
       opuses.doSth(({ ctx, result }) => ctx.commit(loading(false)))
@@ -91,15 +91,15 @@ export const actions = {
       data: await dispatch('prepareArticles', data)
     }, { root: true })
   }),
-  getMainlist: composer.compose({
+  getMainList: composer.compose({
     before: [
-      compounds.doSth(({ ctx }) => ctx.commit(changeCurrCategory('wszystkie'))),
-      compounds.callActionWhen(({ ctx }) => _.isEmpty(ctx.getters.mainlist)),
+      compounds.doSth(({ ctx }) => ctx.commit(changeCurrCategory(settings.mainListName))),
+      compounds.callActionWhen(({ ctx }) => _.isEmpty(ctx.getters.mainList)),
       compounds.doSth(({ ctx }) => ctx.commit(loading(true)))
     ],
-    caller: callers.squashErrorsCall('#getMainlist'),
-    after: [
-      opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'mainlist', codes: result })),
+    caller: callers.squashErrorsCall('#getMainList'),
+    success: [
+      opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'mainList', codes: result })),
       opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
       opuses.doSth(({ ctx, result }) => ctx.commit(loading(false)))
     ]
@@ -118,12 +118,12 @@ export const actions = {
       compounds.doSth(({ ctx }) => ctx.commit(loading(true)))
     ],
     caller: callers.squashErrorsCall('#getArticle'),
-    after: [
+    success: [
       opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
       opuses.doSth(({ ctx, result }) => ctx.commit(loading(false)))
     ],
     always: [
-      opuses.doSth(({ ctx, params }) => params.code !== ctx.getters['currArticleCode'] && ctx.commit(changeCurrArticle(params.code)))
+      opuses.doSth(({ ctx, params }) => params.code !== ctx.getters['currentArticleCode'] && ctx.commit(changeCurrArticle(params.code)))
     ]
   })(async function getArticleAction ({ commit, dispatch }, params) {
     const data = await knitService.getCollection(this.$axios, 'articles', {
@@ -140,10 +140,10 @@ export const actions = {
   }),
   prepareArticles (ctx, data) {
     const articlesArr = commonHelper.pickItemsProps(data['hydra:member'], settings.props, true, settings.datePicker)
-    return _.keyBy(articlesArr, article => article.code)
+    return _.keyBy(articlesArr, 'code')
   },
   addCodes ({ commit }, params) {
-    knitLogger.debug(() => `Adding codes to 'all' and '${params.path}': ${JSON.stringify(params.codes)}`)
+    knitLogger.debug(() => `Adding codes to '${params.path || params.categoryCode}': ${JSON.stringify(params.codes)}`)
     commit(codes(params))
   }
 }
@@ -160,7 +160,7 @@ export const mutations = {
     }
   },
   [ types.CHANGE_CURRENT_ARTICLE_CODE ] (state, payload) {
-    state.currArticleCode = payload.currArticleCode
+    state.currentArticleCode = payload.currentArticleCode
   },
   [ types.CHANGE_CURRENT_CATEGORY_CODE ] (state, payload) {
     state.currentCategoryCode = payload.currentCategoryCode

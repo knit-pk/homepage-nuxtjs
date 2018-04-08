@@ -16,7 +16,7 @@
         <span class="flaticon-curly-brackets projects-widget-item__list-item-logo" aria-hidden="true"></span>
         <span class="visualy-hidden">Technologie</span>
       </dt>
-      <dd class="projects-widget-item__list-item-definition"> {{ strArrToStrList(tags) }} </dd>
+      <dd class="projects-widget-item__list-item-definition"> {{ join(tags, ', ') }} </dd>
     </div>
 
     <!-- Collaborators -->

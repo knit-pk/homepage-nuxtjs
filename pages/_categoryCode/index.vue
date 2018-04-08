@@ -43,7 +43,7 @@ export default {
   },
   fetch ({ store, params }) {
     if (params.categoryCode === 'wszystkie') {
-      return store.dispatch('view/articles/getMainlist')
+      return store.dispatch('view/articles/getMainList')
     }
 
     return store.dispatch('view/articles/getCategoryList', params)

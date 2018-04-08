@@ -6,31 +6,31 @@
     <img :src="thumbnail" class="article-card__thumbnail" alt="" itemprop="image">
   </router-link>
 
-  <!-- Article horizontal wrapper -->
+  <!-- Horizontal wrapper -->
   <div class="article-card__horizontal-wrapper">
 
-    <!-- Article header -->
+    <!-- Header -->
     <header class="article-card__header">
 
-      <!-- Article title -->
+      <!-- Title -->
       <router-link :to="{ path: code }" class="article-card__title-link">
-        <h3 ref="articleTitle" class="article-card__title" itemprop="headline"> {{ trimString(title, 75) }} </h3>
+        <h3 ref="articleTitle" class="article-card__title" itemprop="headline"> {{ ellipsis(title, 75) }} </h3>
       </router-link>
 
-      <!-- Article tags -->
+      <!-- Tags -->
       <ul class="article-card__tags-wrapper">
         <li class="article-card__single-tag" v-for="(tag, index) in tags" :key="index"> {{ tag.name }} </li>
       </ul>
 
-      <!-- Author wrapper -->
+      <!-- Wrapper -->
       <div class="article-card__author-wrapper" itemprop="author" itemscope itemtype="http://schema.org/Person">
 
-        <!-- Author name -->
+        <!-- Name -->
         <router-link :to="{ path: code }" class="article-card__author-link">
           <span class="article-card__author-name" itemprop="name"> {{ author.username }} </span>
         </router-link>
 
-        <!-- Author avatar -->
+        <!-- Avatar -->
         <router-link :to="{ path: code }" class="article-card__author-avatar-link">
           <img :src="authorAvatar" class="article-card__author-avatar" :alt="author.fullname" itemprop="image">
         </router-link>
@@ -38,40 +38,40 @@
     </header>
   </div>
 
-  <!-- Article description -->
+  <!-- Description -->
   <router-link :to="{ path: code }" itemtype="description" class="article-card__description">
-    {{ trimString(description, 170) }}
+    {{ ellipsis(description, 170) }}
   </router-link>
 
-  <!-- Article footer -->
+  <!-- Footer -->
   <footer class="article-card__footer">
     <time :datetime="publishedAt" itemprop="datePublished"> {{ formatDateToLocalString(publishedAt) }} </time>
     <meta itemprop="dateModified" :content="updatedAt" />
 
 
-    <!-- Article stats -->
+    <!-- Stats -->
     <ul class="article-card__stats" aria-label="Statystyki">
 
-      <!-- Article likes -->
+      <!-- Likes -->
       <li class="article-card__stats-group">
         <a @click.prevent.stop="handleLikeClick" :class="{ [ 'article-card__like-button--liked' ]: isLiked }" href="#" role="button" class="article-card__like-button"
            title="Lubię to!" aria-label="Polub post" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
-          <span class="flaticon-like article-card__stat-icon" aria-hidden="true"></span>
-          <span class="visualy-hidden" itemprop="interactionType" content="http://schema.org/LikeAction">Polubienia</span>
+          <span class="flaticon-like article-card__stat-icon" aria-hidden="true"/>
+          <span class="visualy-hidden" itemprop="interactionType" content="http://schema.org/LikeAction"> Polubienia </span>
           <span itemprop="userInteractionCount"> {{ likesCount }} </span>
         </a>
       </li>
 
-      <!-- Article comments -->
+      <!-- Comments -->
       <li class="article-card__stats-group" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
         <span class="flaticon-chat article-card__stat-icon article-card__comment-icon" title="Komentarze" aria-hidden="true"></span>
-        <span class="visualy-hidden" itemprop="interactionType" content="http://schema.org/CommentAction">Komentarze</span>
+        <span class="visualy-hidden" itemprop="interactionType" content="http://schema.org/CommentAction"> Komentarze </span>
         <span itemprop="userInteractionCount"> {{ commentsCount }} </span>
       </li>
     </ul>
   </footer>
 
-  <!-- Article meta informations-->
+  <!-- Meta informations-->
   <ArticlePublisherMeta />
 </article>
 </template>
@@ -234,6 +234,8 @@ export default {
     border: 1px solid #bbb9b9;
     padding: 5px;
     font-size: .8rem;
+    flex-wrap: wrap;
+    white-space: nowrap;
     border-radius: 7px;
   }
 

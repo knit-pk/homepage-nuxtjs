@@ -3,7 +3,7 @@
   <header class="article-content__header">
     <img :src="thumbnail" class="article-content__thumbnail" itemprop="image" />
     <div class="article-content__header-info">
-      <h2 class="article-content__title" itemprop="headline"> {{ trimString(title, 110) }} </h2>
+      <h2 class="article-content__title" itemprop="headline"> {{ ellipsis(title, 110) }} </h2>
       <div class="article-content__pub-info">
         <router-link to="/" class="article-content__author-avatar-link">
           <img class="article-content__author-avatar" :src="author.avatar.url" :alt="author.fullname" />

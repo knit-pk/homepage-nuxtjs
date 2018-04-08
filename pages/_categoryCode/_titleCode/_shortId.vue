@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     article () {
-      return this.$store.getters['resources/articles'][this.$store.getters['view/articles/currArticleCode']]
+      return this.$store.getters['resources/articles'][this.$store.getters['view/articles/currentArticleCode']]
     }
   },
   fetch ({ store, params }) {

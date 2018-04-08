@@ -32,5 +32,6 @@ export default {
     'id',
     '@id'
   ],
-  storePath: 'articles'
+  storePath: 'articles',
+  mainListName: 'wszystkie'
 }

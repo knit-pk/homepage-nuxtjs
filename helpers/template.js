@@ -1,22 +1,13 @@
 import _ from 'lodash'
 
 /**
- * Creates list of comma separated values
- * @param {Array<String>} arr
- * @returns {String}
- */
-function strArrToStrList (arr) {
-  return _.reduce(arr, (str, item) => `${str}, ${item}`)
-}
-
-/**
  * Returns string with dots if
  * length of a string is too big
  * @param {String} str
  * @param {Number} [length=3]
  * @returns {String}
  */
-function trimString (str, length = 3) {
+function ellipsis (str, length = 3) {
   return (length - 3) >= str.length ? str : `${str.slice(0, length - 3)}...`
 }
 
@@ -58,9 +49,8 @@ function formatDateToLocalString (date = new Date(), locale = 'pl', format = { m
 export default {
   methods: {
     formatDateToLocalString,
-    strArrToStrList,
     defaultCssPostfix,
-    trimString,
+    ellipsis,
     isUrl,
     capitalize: _.capitalize,
     upper: _.toUpper,
@@ -68,6 +58,7 @@ export default {
     flow: _.flow,
     every: _.every,
     isEmpty: _.isEmpty,
+    join: _.join,
     isNotEmpty: _.negate(_.isEmpty)
   }
 }
