@@ -6,18 +6,24 @@ const methods = {
   }
 }
 
-function compose ({ before, caller, after }) {
+function compose ({ before, caller, after, always, fail }) {
+  // Binds all parameters to all after, always functions
+  const promisesBoundCaller = async (arrFn, that, ctx, params, result) => {
+    const boundPromises = _.map(arrFn, async (bind) => bind({ that, ctx, params, result }))
+
+    for (const promise of boundPromises) {
+      await promise
+    }
+  }
+
   // Binds all parameters to the action
   const actionWithBoundCaller = (that, ctx, params, actionDefn) =>
     () => actionDefn.bind(that)(ctx, params)
 
   // Binds all parameters to all composers, caller
-  const flowWithBoundCaller = (that, ctx, params) =>
-    _.flow([...before, caller]).bind({ that, ctx, params, methods })
-
-  // Binds all parameters to all after functions
-  const afterBoundCaller = (that, ctx, params, result) => {
-    return Promise.all(_.map(after, afterElm => afterElm({ that, ctx, params, result })))
+  const flowWithBoundCaller = (that, ctx, params) => {
+    const beforeBound = _.flow(before).bind({ that, ctx, params, methods })
+    return _.flow([ beforeBound, caller.bind({ that, ctx, params, methods: { ...methods, promisesBoundCaller }, fail }) ])
   }
 
   // Take action definition
@@ -27,9 +33,11 @@ function compose ({ before, caller, after }) {
     return async function actionCall (ctx, params) {
       try {
         const result = await flowWithBoundCaller(this, ctx, params)(actionWithBoundCaller(this, ctx, params, actionDefinition))
-        await afterBoundCaller(this, ctx, params, result)
+        await promisesBoundCaller(after, this, ctx, params, result)
       } catch (err) {
-        // I do not know what we gonna do there yet
+        // When something is canceled or before functions thrown an error
+      } finally {
+        await promisesBoundCaller(always, this, ctx, params, null)
       }
     }
   }

@@ -1,7 +1,7 @@
 <template>
 
 <!-- Desktop version -->
-<section v-if="isScrollable" :class="['job-offers-widget', 'job-offers-widget--scrollable']" v-config>
+<section v-if="isScrollable" class="widget job-offers-widget job-offers-widget--scrollable" v-config>
   <widget-title :title="title" :widgetClass="widgetClass" :widgetIconClass="widgetIconClass">
     <b-badge pill variant="info" class="default-badge job-offers-widget__badge"> {{ itemsLength }} </b-badge>
   </widget-title>
@@ -16,8 +16,8 @@
 </section>
 
 <!-- Mobile version -->
-<section v-else :class="['job-offers-widget']" v-config>
-  <widget-title :title="title" :widgetClass="widgetClass" :widgetIconClass="widgetIconClass"></widget-title>
+<section v-else class="widget job-offers-widget" v-config>
+  <widget-title :title="title" :widgetClass="widgetClass" :widgetIconClass="widgetIconClass"/>
   <div class="job-offers-widget__content">
     <job-offers-widget-item v-for="(item, index) of items" :key="index"
       :title="item.title" :employer="item.employer" :salaryBrackets="item.salaryBrackets"

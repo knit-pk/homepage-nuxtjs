@@ -1,6 +1,6 @@
 <template>
-<section class="widget meetup-calendar" v-config>
-  Meetup calendar
+<section class="widget categories-widget" v-config>
+  Categories widget
 </section>
 </template>
 
@@ -20,7 +20,7 @@ export default {
 <style lang="scss">
 @import "assets/scss/_imports";
 
-.meetup-calendar {
+.categories-widget {
   background-color: #fff;
   height: 500px;
   margin-bottom: $default-gutters-width;

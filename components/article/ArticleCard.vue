@@ -17,6 +17,11 @@
         <h3 ref="articleTitle" class="article-card__title" itemprop="headline"> {{ trimString(title, 75) }} </h3>
       </router-link>
 
+      <!-- Article tags -->
+      <ul class="article-card__tags-wrapper">
+        <li class="article-card__single-tag" v-for="(tag, index) in tags" :key="index"> {{ tag.name }} </li>
+      </ul>
+
       <!-- Author wrapper -->
       <div class="article-card__author-wrapper" itemprop="author" itemscope itemtype="http://schema.org/Person">
 
@@ -75,7 +80,6 @@
 import templateHelper from '~/helpers/template'
 import ArticlePublisherMeta from '~/components/article/ArticlePublisherMeta'
 
-// @TODO: Make elipsis overflow in article card description
 export default {
   data () {
     return {
@@ -136,6 +140,10 @@ export default {
     category: {
       type: Object,
       required: true
+    },
+    tags: {
+      type: Array,
+      required: true
     }
   },
   computed: {
@@ -173,12 +181,9 @@ export default {
   flex-direction: column;
   font-size: 14px;
 
-  // NOTE: It fixes mainpage card issue, but it may affect to horizontal card
-  //       in article list, which is not implemented yet.
-
-  // &__thumbnail-link {
-  //   flex: 1 0 33%;
-  // }
+  /* &__thumbnail-link { */
+  /*   flex: 1 0 33%; */
+  /* } */
 
   &__thumbnail {
     @include img-fluid;
@@ -204,7 +209,7 @@ export default {
     text-decoration: none;
     margin: 13px 0;
     color: $gray-50;
-    order: 3;
+    order: 4;
     flex-basis: 100%;
   }
 
@@ -212,6 +217,24 @@ export default {
     min-width: 200px;
     font-weight: 300;
     font-size: 21px;
+  }
+
+  &__tags-wrapper {
+    color: $primary-text-color;
+    margin: 10px 0 0 -2px;
+    display: flex;
+    list-style: none;
+    flex-basis: 100%;
+    order: 3;
+  }
+
+  &__single-tag {
+    margin-right: 7px;
+    z-index: 9997;
+    border: 1px solid #bbb9b9;
+    padding: 5px;
+    font-size: .8rem;
+    border-radius: 7px;
   }
 
   &__author-wrapper {

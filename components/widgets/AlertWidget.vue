@@ -1,5 +1,5 @@
 <template>
-<div class="alert-widget" v-config>
+<div class="widget alert-widget" v-config>
   <alert-widget-item v-for="(item, index) of items" :key="index" :message="item.message"/>
 </div>
 </template>

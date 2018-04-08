@@ -1,7 +1,5 @@
 <template>
 <div class="page page--article">
-
-  <!-- Leftside wrapper -->
   <div class="leftside-wrapper">
     <main class="main-content">
 
@@ -35,6 +33,7 @@
 import RecommendedArticlesWidget from '~/components/widgets/RecommendedArticlesWidget'
 import PopularArticlesWidget from '~/components/widgets/PopularArticlesWidget'
 import ArticleSingle from '~/components/article/ArticleSingle'
+import _ from 'lodash'
 
 export default {
   layout: 'common',
@@ -43,8 +42,15 @@ export default {
     PopularArticlesWidget,
     RecommendedArticlesWidget
   },
-  computed: {},
+  computed: {
+    article () {
+      return this.$store.getters['resources/articles'][this.$store.getters['view/articles/currArticleCode']]
+    }
+  },
   fetch ({ store, params }) {
+    return store.dispatch('view/articles/getArticle', {
+      code: _.values(params).join('/')
+    })
   }
 }
 </script>

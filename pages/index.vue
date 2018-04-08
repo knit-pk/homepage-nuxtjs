@@ -2,7 +2,7 @@
 <div class="page page--mainpage">
   <div class="leftside-wrapper">
     <main class="main-content">
-      <article-card-list class="article-card-list--big-main-post" :articles="mainpageList"/>
+      <article-card-list :articles="mainpageList"/>
     </main>
     <aside class="aside-down">
       <job-offers-widget/>
@@ -24,8 +24,8 @@ import JobOffersWidget from '~/components/widgets/JobOffersWidget'
 import ArticleCardList from '~/components/article/ArticleCardList'
 import ProjectsWidget from '~/components/widgets/ProjectsWidget'
 import AlertWidget from '~/components/widgets/AlertWidget'
-import commonHelper from '~/helpers/common'
 import { mapGetters } from 'vuex'
+import _ from 'lodash'
 
 export default {
   layout: 'common',
@@ -42,7 +42,7 @@ export default {
       mainpageCodesList: 'view/articles/mainpage'
     }),
     mainpageList () {
-      return commonHelper.resourceObjToArr(this.$store.getters[ 'resources/articles' ], this.mainpageCodesList)
+      return _.map(this.mainpageCodesList, code => this.$store.getters[ 'resources/articles' ][code])
     }
   },
   fetch ({ store, params }) {

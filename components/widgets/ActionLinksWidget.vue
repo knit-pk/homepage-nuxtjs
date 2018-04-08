@@ -1,5 +1,5 @@
 <template>
-<section class="action-links" v-config>
+<section class="widget action-links" v-config>
   <action-links-widget-item v-for="(link, index) in links" :key ="index"
     :class="['action-links__link-item', link.itemClass]"
     :linktext="link.text"

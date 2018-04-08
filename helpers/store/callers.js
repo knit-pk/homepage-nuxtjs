@@ -4,21 +4,15 @@ function squashErrorsCall (message = '') {
   return function (action) {
     return Promise
       .resolve(action())
-      .catch(err => {
+      .catch(async (err) => {
         knitLogger.debug(() => err)
         knitLogger.debug(() => message)
+
+        await this.methods.promisesBoundCaller(this.fail, this.that, this.ctx, this.params, null)
       })
   }
 }
 
-function defaultCall (message = '') {
-  return function (action) {
-    knitLogger.debug(() => `Default caller: ${message}`)
-    return action()
-  }
-}
-
 export default {
-  squashErrorsCall,
-  defaultCall
+  squashErrorsCall
 }
