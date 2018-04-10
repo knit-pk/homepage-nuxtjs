@@ -1,9 +1,11 @@
 const knitLogger = process.env.NODE_ENV === 'debug' ?
   {
-    debug: console.log
+    debug (fn) {
+      console.log(fn())
+    }
   } :
   {
-    debug: () => {}
+    debug () {}
   }
 
 export default knitLogger

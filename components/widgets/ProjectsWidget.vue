@@ -1,13 +1,18 @@
-
 <template>
-  <section class="projects-widget" v-config>
-    <widget-title :title="title" :widgetClass="widgetClass" :widgetIconClass="widgetIconClass"/>
-    <div v-for="(item, index) of items" class="projects-widget__projects-wrapper" :key="index">
-      <projects-widget-item :title="item.title" :maxTeamSize="item.maxTeamSize"
-        :currentTeamSize="item.currentTeamSize" :url="item.url" :tags="item.tags" :logo="item.logo"/>
-    </div>
-    <a class="projects-widget__see-more" href="/"> Zobacz więcej </a>
-  </section>
+<section class="projects-widget" v-config>
+
+  <!-- Widget title -->
+  <widget-title :title="title" :widgetClass="widgetClass" :widgetIconClass="widgetIconClass"/>
+
+  <!-- Projects wrapper -->
+  <div v-for="(item, index) of items" class="projects-widget__projects-wrapper" :key="index">
+    <projects-widget-item :title="item.title" :maxTeamSize="item.maxTeamSize"
+      :currentTeamSize="item.currentTeamSize" :url="item.url" :tags="item.tags" :logo="item.logo"/>
+  </div>
+
+  <!-- See more -->
+  <a class="projects-widget__see-more" href="/"> Zobacz więcej </a>
+</section>
 </template>
 
 <script>
@@ -59,7 +64,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .projects-widget {
   background-color: $projects-widget-bg-color;

@@ -1,11 +1,13 @@
 <template>
-  <div v-if="show" class="alert-widget-item">
-    <button @click="hideMessage" class="alert-widget-item__close-button"> &times; </button>
-    <h2 class="alert-widget-item__message-box">
-      <span class="alert-widget-item__message-decorator"> Uwaga! </span>
-      <span class="alert-widget-item__message"> {{ message }} </span>
-    </h2>
-  </div>
+<div v-if="show" class="alert-widget-item">
+  <button @click="hideMessage" class="alert-widget-item__close-button"> &times; </button>
+
+  <!-- Message box -->
+  <h2 class="alert-widget-item__message-box">
+    <span class="alert-widget-item__message-decorator"> Uwaga! </span>
+    <span class="alert-widget-item__message"> {{ message }} </span>
+  </h2>
+</div>
 </template>
 
 <script>
@@ -16,7 +18,7 @@ export default {
     }
   },
   components: {},
-  props: ['message'],
+  props: [ 'message' ],
   computed: {},
   methods: {
     hideMessage (event) {
@@ -28,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/imports.scss";
+@import "assets/scss/_imports";
 
 .alert-widget-item {
   position: relative;

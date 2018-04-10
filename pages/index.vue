@@ -1,20 +1,20 @@
 <template>
-  <div class="page page--mainpage">
-    <div class="leftside-wrapper">
-      <main class="main-content">
-        <article-card-list class="article-card-list--big-main-post"/>
-      </main>
-      <aside class="aside-down">
-        <job-offers-widget/>
-        <action-links-widget/>
-      </aside>
-    </div>
-    <aside class="aside-right">
-      <alert-widget class="aside-right__widget"/>
-      <meetup-calendar-widget class="aside-right__widget"/>
-      <projects-widget class="aside-right__widget"/>
+<div class="page page--mainpage">
+  <div class="leftside-wrapper">
+    <main class="main-content">
+      <article-card-list :articles="mainpageList"/>
+    </main>
+    <aside class="aside-down">
+      <job-offers-widget/>
+      <action-links-widget/>
     </aside>
   </div>
+  <aside class="aside-right">
+    <alert-widget class="aside-right__widget"/>
+    <meetup-calendar-widget class="aside-right__widget"/>
+    <projects-widget class="aside-right__widget"/>
+  </aside>
+</div>
 </template>
 
 <script>
@@ -24,6 +24,8 @@ import JobOffersWidget from '~/components/widgets/JobOffersWidget'
 import ArticleCardList from '~/components/article/ArticleCardList'
 import ProjectsWidget from '~/components/widgets/ProjectsWidget'
 import AlertWidget from '~/components/widgets/AlertWidget'
+import { mapGetters } from 'vuex'
+import _ from 'lodash'
 
 export default {
   layout: 'common',
@@ -35,15 +37,22 @@ export default {
     ProjectsWidget,
     AlertWidget
   },
+  computed: {
+    ...mapGetters({
+      mainPageCodesList: 'view/articles/mainPage'
+    }),
+    mainpageList () {
+      return _.map(this.mainPageCodesList, code => this.$store.getters[ 'resources/articles' ][code])
+    }
+  },
   fetch ({ store, params }) {
-    // Retrieves cards from API
-    return Promise.all([ store.dispatch('articles/list/getArticleList', { page: 1 }) ])
+    return store.dispatch('view/articles/getMainPage')
   }
 }
 </script>
 
 <style lang="scss">
-@import "assets/scss/imports.scss";
+@import "assets/scss/imports";
 
 .page--mainpage {
   .aside-right {
@@ -71,7 +80,7 @@ export default {
     .action-links {
       @media (max-width: $screen-md) {
         flex-basis: 35%;
-        height: 320px;  
+        height: 320px;
         flex-direction: column;
         flex-wrap: nowrap;
       }
@@ -95,7 +104,7 @@ export default {
 
           &:last-child {
             margin-bottom: 0;
-          } 
+          }
         }
       }
     }

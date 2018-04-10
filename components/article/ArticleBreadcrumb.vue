@@ -1,7 +1,7 @@
 <template>
   <div class= "article-breadcrumb" v-config>
     <ul class="article-breadcrumb__routes">
-      <li v-for="({path, text}, index) in breadcrumbs" class="article-breadcrumb__item" :key ="index">
+      <li v-for="({ path, text }, index) in breadcrumbs" class="article-breadcrumb__item" :key ="index">
         <router-link :to="{ path }"> {{ text }} </router-link>
       </li>
     </ul>
@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .article-breadcrumb {
   &__routes {

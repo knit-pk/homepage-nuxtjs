@@ -1,25 +1,31 @@
 <template>
-  <footer class="knit-footer" v-config>
-    <router-link :to="{path: '/'}" class="knit-footer__link">
-      <knit-logo/>
-    </router-link>
-    <knit-navbar class="navbar--footy"/>
-    <span class="knit-footer__caption"> 2018 &copy; Koło Naukowe IT Politechnika Krakowska </span>
-    <ul class="knit-footer__socialbox-list">
-      <li class="knit-footer__socialbox-item">
-        <a href="https://github.com/knit-pk" target="_blank" class="knit-footer__socialbox-link">
-          <span class="flaticon-github-logo knit-footer__socialbox-icon" aria-hidden="true"></span>
-          Github
-        </a>
-      </li>
-      <li class="knit-footer__socialbox-item">
-        <a href="https://www.facebook.com/wieik.knit" target="_blank" class="knit-footer__socialbox-link">
-          <span class="flaticon-facebook-logo knit-footer__socialbox-icon" aria-hidden="true"></span>
-          Facebook
-        </a>
-      </li>
-    </ul>
-  </footer>
+<footer class="knit-footer" v-config>
+
+  <!-- Footer logo link -->
+  <router-link :to="{ path: '/' }" class="knit-footer__link">
+    <knit-logo/>
+  </router-link>
+
+  <!-- Navbar -->
+  <knit-navbar class="navbar--footy"/>
+
+  <!-- Footer caption -->
+  <span class="knit-footer__caption"> 2018 &copy; Koło Naukowe IT Politechnika Krakowska </span>
+  <ul class="knit-footer__socialbox-list">
+    <li class="knit-footer__socialbox-item">
+      <a href="https://github.com/knit-pk" target="_blank" class="knit-footer__socialbox-link">
+        <span class="flaticon-github-logo knit-footer__socialbox-icon" aria-hidden="true"></span>
+        Github
+      </a>
+    </li>
+    <li class="knit-footer__socialbox-item">
+      <a href="https://www.facebook.com/wieik.knit" target="_blank" class="knit-footer__socialbox-link">
+        <span class="flaticon-facebook-logo knit-footer__socialbox-icon" aria-hidden="true"></span>
+        Facebook
+      </a>
+    </li>
+  </ul>
+</footer>
 </template>
 
 <script>
@@ -42,7 +48,7 @@ export default {
 </script>
 
 <style lang='scss'>
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .knit-footer {
   margin-top: $default-gutters-width;

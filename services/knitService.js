@@ -1,9 +1,10 @@
-import commonHelper from '~/helpers/commonHelper'
+import commonHelper from '~/helpers/common'
 import _ from 'lodash'
 
 const endpoint = process.env.API_URL
 const mimetype = 'application/ld+json'
 
+// @TODO: Use graphql instead of this service
 export default {
   /**
    * Returns collection or it's part based on qsObject

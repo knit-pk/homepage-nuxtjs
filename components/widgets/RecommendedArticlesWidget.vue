@@ -1,7 +1,7 @@
 <template>
-  <section style="height: 400px; background-color: #fff;" v-config>
-    Recommended articles or something else
-  </section>
+<section style="height: 400px; background-color: #fff;" v-config>
+  Recommended articles or something else
+</section>
 </template>
 
 <script>
@@ -18,5 +18,4 @@ export default {
 </script>
 
 <style lang="scss">
-
 </style>

@@ -1,10 +1,10 @@
 <template>
-  <section class="action-links" v-config>
-    <action-links-widget-item v-for="(link, index) in links" :key ="index"
-      :class="['action-links__link-item', link.itemClass]"
-      :linktext="link.text"
-      :iconClass="link.icon"/>
-  </section>
+<section class="widget action-links" v-config>
+  <action-links-widget-item v-for="(link, index) in links" :key ="index"
+    :class="['action-links__link-item', link.itemClass]"
+    :linktext="link.text"
+    :iconClass="link.icon"/>
+</section>
 </template>
 
 <script>
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .action-links {
   display: flex;

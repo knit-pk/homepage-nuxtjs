@@ -30,22 +30,7 @@ import ArticleBreadcrumb from '~/components/article/ArticleBreadcrumb'
 import ArticleComments from '~/components/article/ArticleComments'
 import ArticleContent from '~/components/article/ArticleContent'
 import ArticleFooter from '~/components/article/ArticleFooter'
-import templateHelper from '~/helpers/templateHelper'
-
-const makeArticleBreadcrumbs = (code, title) => [
-  {
-    text: 'Strona główna',
-    path: '/'
-  },
-  {
-    text: 'Artykuły',
-    path: '/articles'
-  },
-  {
-    text: title,
-    path: `/articles/${code}`
-  }
-]
+import templateHelper from '~/helpers/template'
 
 export default {
   data () {
@@ -85,10 +70,6 @@ export default {
     id: {
       type: String
     },
-    slug: {
-      type: String,
-      required: true
-    },
     comments: {
       type: Array,
       default: () => []
@@ -108,11 +89,30 @@ export default {
     description: {
       type: String,
       required: true
+    },
+    category: {
+      type: Object
+    },
+    code: {
+      type: String
     }
   },
   computed: {
     breadcrumbs () {
-      return makeArticleBreadcrumbs(this.slug, this.title)
+      return [
+        {
+          text: 'Strona Główna',
+          path: '/'
+        },
+        {
+          text: this.category.name,
+          path: `/${this.category.code}`
+        },
+        {
+          text: this.title,
+          path: `/articles/${this.code}`
+        }
+      ]
     },
     likesCount () {
       return this.ratings.length

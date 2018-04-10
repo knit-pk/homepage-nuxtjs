@@ -11,6 +11,7 @@
   <!-- Render content from pages -->
   <nuxt :class="isMobile ? 'page--mobile' : 'page--desktop'"/>
 
+  <!-- Knit footer -->
   <knit-footer/>
 </div>
 </template>
@@ -28,7 +29,7 @@ export default {
     return {}
   },
   computed: {
-    ...mapGetters({ isMobile: 'general/general/isMobile' })
+    ...mapGetters({ isMobile: 'general/isMobile' })
   },
   methods: {
     onMobileMenuToggle (value) {

@@ -1,15 +1,15 @@
 <template>
-  <h1 class="site-heading" v-config>
-    <router-link :to="{ path: '/' }" class="site-heading__link">
-      <div class="site-heading__logo">
-        <knit-logo/>
-      </div>
-      <div class="site-heading__name-wrapper">
-        <span>Koło Naukowe IT</span>
-        <span class="site-heading__university-name">Politechnika Krakowska</span>
-      </div>
-    </router-link>
-  </h1>
+<h1 class="site-heading" v-config>
+  <router-link :to="{ path: '/' }" class="site-heading__link">
+    <div class="site-heading__logo">
+      <knit-logo/>
+    </div>
+    <div class="site-heading__name-wrapper">
+      <span>Koło Naukowe IT</span>
+      <span class="site-heading__university-name">Politechnika Krakowska</span>
+    </div>
+  </router-link>
+</h1>
 </template>
 <script>
 import KnitLogo from '~/components/commons/KnitLogo'
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/imports.scss";
+@import "assets/scss/imports";
 
 .site-heading {
   display: flex;

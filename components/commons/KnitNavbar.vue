@@ -1,11 +1,11 @@
 <template>
-  <nav class="navbar" v-config>
-    <ul v-for="(link, index) of navigation" class="navbar__list" :key="index">
-      <li class="navbar__list-item" @click="collapseMenu">
-        <router-link :to="{ path: link.path }" class="navbar__list-link"> {{ link.text }} </router-link>
-      </li>
-    </ul>
-  </nav>
+<nav class="navbar" v-config>
+  <ul v-for="(link, index) of navigation" class="navbar__list" :key="index">
+    <li class="navbar__list-item" @click="collapseMenu">
+      <router-link :to="{ path: link.path }" class="navbar__list-link"> {{ link.text }} </router-link>
+    </li>
+  </ul>
+</nav>
 </template>
 
 <script>
@@ -39,7 +39,7 @@ export default {
         },
         {
           text: 'Artykuły',
-          path: '/articles'
+          path: '/artykuly/wszystkie'
         }
       ]
     }
@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .navbar {
   $p: &;

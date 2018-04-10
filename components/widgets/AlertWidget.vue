@@ -1,7 +1,7 @@
-<template v-if="items">
-  <div class="alert-widget" v-config>
-    <alert-widget-item v-for="(item, index) of items" :key="index" :message="item.message"/>
-  </div>
+<template>
+<div class="widget alert-widget" v-config>
+  <alert-widget-item v-for="(item, index) of items" :key="index" :message="item.message"/>
+</div>
 </template>
 
 <script>
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/imports.scss";
+@import "assets/scss/imports";
 
 .alert-widget {
   display: block;

@@ -20,16 +20,17 @@
     </div>
   </article-comment>
 
-  <knit-button v-if="commentsAmount < totalItems" @click.native="onLoadCommentsClick()"
-                :buttonClasses="['knit-button--big', 'article-comments__load-button']">
-                Załaduj więcej
+  <knit-button v-if="commentsAmount < totalItems"
+               @click.native="onLoadCommentsClick()"
+               :buttonClasses="['knit-button--big', 'article-comments__load-button']">
+    Załaduj więcej
   </knit-button>
 </section>
 </template>
 
 <script>
-import ArticleComment from '~/components/article/ArticleComment.vue'
-import KnitButton from '~/components/commons/KnitButton.vue'
+import ArticleComment from '~/components/article/ArticleComment'
+import KnitButton from '~/components/commons/KnitButton'
 import KnitService from '~/services/knitService'
 import _ from 'lodash'
 
@@ -114,7 +115,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .article-comments {
   &__load-button {
