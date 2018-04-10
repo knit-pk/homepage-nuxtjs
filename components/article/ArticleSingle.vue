@@ -106,11 +106,11 @@ export default {
         },
         {
           text: this.category.name,
-          path: `/${this.category.code}`
+          path: `/artykuly/${this.category.code}`
         },
         {
           text: this.title,
-          path: `/articles/${this.code}`
+          path: `/artykuly/${this.code}`
         }
       ]
     },
