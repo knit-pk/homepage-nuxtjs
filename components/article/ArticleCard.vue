@@ -2,7 +2,7 @@
 <article class="article-card" itemscope itemtype="http://schema.org/Article" v-config>
 
   <!-- Thumbnail -->
-  <router-link class="article-card__thumbnail-link" :to="{ path: code }">
+  <router-link class="article-card__thumbnail-link" :to="{ path: url }">
     <img :src="thumbnail" class="article-card__thumbnail" alt="" itemprop="image">
   </router-link>
 
@@ -13,7 +13,7 @@
     <header class="article-card__header">
 
       <!-- Title -->
-      <router-link :to="{ path: code }" class="article-card__title-link">
+      <router-link :to="{ path: url }" class="article-card__title-link">
         <h3 ref="articleTitle" class="article-card__title" itemprop="headline"> {{ ellipsis(title, 75) }} </h3>
       </router-link>
 
@@ -26,12 +26,12 @@
       <div class="article-card__author-wrapper" itemprop="author" itemscope itemtype="http://schema.org/Person">
 
         <!-- Name -->
-        <router-link :to="{ path: code }" class="article-card__author-link">
+        <router-link :to="{ path: url }" class="article-card__author-link">
           <span class="article-card__author-name" itemprop="name"> {{ author.username }} </span>
         </router-link>
 
         <!-- Avatar -->
-        <router-link :to="{ path: code }" class="article-card__author-avatar-link">
+        <router-link :to="{ path: url }" class="article-card__author-avatar-link">
           <img :src="authorAvatar" class="article-card__author-avatar" :alt="author.fullname" itemprop="image">
         </router-link>
       </div>
@@ -39,7 +39,7 @@
   </div>
 
   <!-- Description -->
-  <router-link :to="{ path: code }" itemtype="description" class="article-card__description">
+  <router-link :to="{ path: url }" itemtype="description" class="article-card__description">
     {{ ellipsis(description, 170) }}
   </router-link>
 
@@ -152,6 +152,9 @@ export default {
     },
     authorAvatar () {
       return this.author.avatar.url
+    },
+    url () {
+      return `/artykuly/${this.code}`
     }
   },
   methods: {
