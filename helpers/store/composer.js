@@ -1,8 +1,9 @@
+import commonHelper from '~/helpers/common'
 import _ from 'lodash'
 
 const methods = {
   cancel () {
-    throw new Error('cancel')
+    throw new Error({ type: 'actionCancel', message: 'Action is not called!' })
   }
 }
 
@@ -36,6 +37,10 @@ function compose ({ before, caller, success, always, fail }) {
         await promisesBoundCaller(success, this, ctx, params, result)
       } catch (err) {
         // When something is canceled, or when action does not succeeds and all fails have been called
+        if (!err.type && !commonHelper.isProd()) {
+          // Log nuxt.js error
+          console.log(err)
+        }
       } finally {
         await promisesBoundCaller(always, this, ctx, params, null)
       }

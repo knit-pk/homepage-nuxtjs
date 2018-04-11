@@ -13,7 +13,8 @@ function callActionWhen (predicate) {
 
 function doSth (fn) {
   return function (action) {
-    return fn(this) || action
+    fn(this)
+    return action
   }
 }
 
