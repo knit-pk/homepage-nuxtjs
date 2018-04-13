@@ -128,7 +128,7 @@ export default {
     order: 2;
     padding: 30px 35px;
     font-weight: normal;
-    font-size: 1.90rem;
+    font-size: 1.9rem;
 
     @media (max-width: $screen-md) {
       padding: 25px 20px;
@@ -239,14 +239,18 @@ export default {
       font-size: 1.5rem;
     }
 
-    ul, ol {
-      padding: 0 0 10px 35px;
+    ul {
+      list-style: none;
 
       li {
-        padding: 5px 0;
+        position: relative;
 
-        ul, ol {
-          padding: 5px 0 0 35px;
+        &::before {
+          content: "•";
+          font-size: 1.5rem;
+          position: absolute;
+          left: -30px;
+          top: 0; // can destroy someting, don't know where to find and test it
         }
       }
     }
@@ -266,18 +270,14 @@ export default {
       }
     }
 
-    ul {
-      list-style: none;
+    ul, ol {
+      padding: 0 0 10px 35px;
 
       li {
-        position: relative;
+        padding: 5px 0;
 
-        &:before {
-          content: "•";
-          font-size: 1.5rem;
-          position: absolute;
-          left: -30px;
-          top: 0px;
+        ul, ol {
+          padding: 5px 0 0 35px;
         }
       }
     }
@@ -317,14 +317,14 @@ export default {
       font-style: italic;
       position: relative;
 
-      &:before {
+      &::before {
         content: '';
         background-color: $blockquoute-decor-color;
         height: 100%;
         position: absolute;
         width: 4px;
         top: 1px;
-        left: 0px;
+        left: 0; // same as above, can destroy something
       }
     }
 
@@ -336,11 +336,12 @@ export default {
       margin: 0 auto;
     }
 
-    img + br + em, img + em {
+    img + em,
+    img + br + em {
       margin: 0 auto;
       display: block;
       text-align: center;
-      font-size: 0.90rem;
+      font-size: 0.9rem;
     }
 
     pre {

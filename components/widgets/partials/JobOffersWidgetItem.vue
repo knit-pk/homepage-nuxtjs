@@ -154,7 +154,7 @@ export default {
     z-index: 10;
   }
 
-   &__employer-name {
+  &__employer-name {
     font-size: 0.75rem;
     margin-top: 7px;
   }
@@ -163,7 +163,7 @@ export default {
     font-size: 0.95rem;
     white-space: nowrap;
 
-    &:before {
+    &::before {
       color: $job-offers-widget-item-salary-brackets-icon-color;
       font-size: 0.95rem;
     }

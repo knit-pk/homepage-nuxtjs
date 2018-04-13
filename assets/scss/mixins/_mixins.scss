@@ -1,17 +1,17 @@
 @mixin img-fluid {
   max-width: 100%;
   height: auto;
-};
+}
 
 @mixin reset-input {
   background: none !important;
   color: inherit;
   border: none;
-  padding: 0! important;
+  padding: 0 !important;
   font: inherit;
   cursor: pointer;
   outline: inherit !important;
-};
+}
 
 @mixin link {
   color: $steel-blue;
@@ -20,4 +20,4 @@
   &:focus {
     text-decoration: underline;
   }
-};
+}

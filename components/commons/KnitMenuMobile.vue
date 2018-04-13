@@ -88,7 +88,7 @@ export default {
 }
 
 .collapse-menu {
-  transition: left .1s linear;
+  transition: left 0.1s linear;
   height: 100%;
   flex-direction: column;
   position: fixed;
@@ -110,8 +110,9 @@ export default {
 
 .hamburger {
   $p: &;
+
   @include reset-input;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
   position: relative;
   margin-top: 12px;
   cursor: pointer;
@@ -119,7 +120,7 @@ export default {
 
   &__icon {
     background-color: $knit-header-links-text-color;
-    transition: .25s ease-in-out;
+    transition: 0.25s ease-in-out;
     transform: rotate(0deg);
     border-radius: 3px;
     position: absolute;

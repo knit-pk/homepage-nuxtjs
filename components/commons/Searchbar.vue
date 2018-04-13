@@ -74,7 +74,7 @@ export default {
     top: 50%;
     transform: translateY(-50%);
 
-    &:before {
+    &::before {
       font-size: 14px;
     }
   }

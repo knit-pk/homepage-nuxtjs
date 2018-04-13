@@ -12,16 +12,20 @@ fill-rule:evenodd; clip-rule:evenodd"
     xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
       <style type="text/css">
+        /* stylelint-disable */
         .str0 {
         stroke: #000;
-        stroke-width: 4.57367
+        stroke-width: 4.57367;
         }
+
         .fil1 {
-        fill: none
+        fill: none;
         }
+
         .fil0 {
         fill: #fff;
         }
+        /* stylelint-enable */
       </style>
     </defs>
     <g id="Warstwa_x0020_1">

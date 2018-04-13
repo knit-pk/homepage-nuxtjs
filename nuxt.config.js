@@ -1,5 +1,7 @@
-const env = process.env.NODE_ENV === 'production' ? process.env : Object.assign({}, require('dotenv').config().parsed, process.env)
 const ssrDirectives = require('./directives/ssr')
+const StylelintPlugin = require('stylelint-webpack-plugin')
+
+const env = process.env.NODE_ENV === 'production' ? process.env : Object.assign({}, require('dotenv').config().parsed, process.env)
 
 if (!env.NODE_ENV) {
   throw new Error('NODE_ENV variable must be defined')
@@ -116,5 +118,11 @@ module.exports = {
         })
       }
     },
+    plugins: [
+      new StylelintPlugin({
+        files: ['components/**/*.vue', 'layouts/**/*.vue', 'pages/**/*.vue'],
+        syntax: 'scss',
+      }),
+    ],
   },
 }

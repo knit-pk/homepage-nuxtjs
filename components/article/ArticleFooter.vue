@@ -164,7 +164,7 @@ export default {
   &__tag-tab {
     display: inline-block;
     position: relative;
-    font-size: .8rem;
+    font-size: 0.8rem;
     padding: 0 10px 10px 0;
   }
 
@@ -231,13 +231,13 @@ export default {
 
   &__author-description {
     padding: 10px 0;
-    font-size: .8rem;
+    font-size: 0.8rem;
     color: $gray-40;
     max-width: 300px;
   }
 
   &__color-tabs {
-    font-size: .8rem;
+    font-size: 0.8rem;
     padding: 6px 0;
   }
 
@@ -254,7 +254,7 @@ export default {
   &__color-tab-link {
     color: $gray-10;
     font-weight: bold;
-    font-size: .7rem;
+    font-size: 0.7rem;
     display: block;
     padding: 6px 13px 6px 13px;
     text-decoration: none;
@@ -285,13 +285,13 @@ export default {
   }
 
   &__social-icon {
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: $gray-40;
     margin-left: 15px;
     display: inline-block;
 
-    &:before {
-      font-size: .9rem;
+    &::before {
+      font-size: 0.9rem;
     }
 
     &:hover,

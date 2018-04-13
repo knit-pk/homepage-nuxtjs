@@ -93,12 +93,6 @@ export default {
   align-self: stretch;
   font-family: $default-font-family;
 
-  &.show {
-    > .btn {
-      background-color: $knit-header-links-focus-bg-color;
-    }
-  }
-
   .btn {
     display: flex;
     align-items: center;
@@ -108,7 +102,7 @@ export default {
     padding: 0 15px;
     outline: 0;
     color: $knit-header-links-text-color;
-    transition: background-color .15s ease-in-out, color .15s ease-in-out;
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
 
     &:hover {
       color: $knit-header-links-hover-text-color;
@@ -119,14 +113,20 @@ export default {
     }
   }
 
+  &.show {
+    > .btn {
+      background-color: $knit-header-links-focus-bg-color;
+    }
+  }
+
   &__button-icon {
-    &:before {
+    &::before {
       font-size: 15px;
     }
   }
 
   &__list-item-icon {
-    &:before {
+    &::before {
       font-size: 15px;
       margin-right: 8px;
     }
@@ -152,7 +152,7 @@ export default {
   }
 
   &__arrow {
-    &:before {
+    &::before {
       font-size: 10px;
       margin-left: 5px;
     }

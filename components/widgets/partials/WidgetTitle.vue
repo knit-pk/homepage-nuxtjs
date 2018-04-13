@@ -37,10 +37,9 @@ export default {
 
 .widget-title {
   position: relative;
-  font-size: .96rem;
+  font-size: 0.96rem;
   font-size: 15px;
   padding: 15px;
-  font-weight: normal;
   border-bottom: 1px solid $widget-title-border-color;
   display: flex;
   align-items: center;
@@ -49,7 +48,7 @@ export default {
   &__title-icon {
     margin-right: 10px;
 
-    &:before {
+    &::before {
       font-size: 1rem;
     }
   }

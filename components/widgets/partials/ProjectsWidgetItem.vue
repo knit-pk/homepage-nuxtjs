@@ -101,7 +101,6 @@ export default {
 
   &__title {
     align-self: center;
-    font-weight: normal;
     margin-left: 15px;
     font-size: 1.1rem;
     font-weight: 300;
@@ -127,7 +126,7 @@ export default {
   }
 
   &__project-logo-star {
-    &:before {
+    &::before {
       color: $projects-widget-item-project-star-color;
       position: absolute;
       font-size: 1.5rem;
@@ -158,7 +157,7 @@ export default {
   &__list-item-logo {
     padding-right: 10px;
 
-    &:before {
+    &::before {
       font-size: 0.9rem;
     }
   }

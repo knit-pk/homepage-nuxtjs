@@ -93,13 +93,13 @@ export default {
 
       &__link-item {
         @media (max-width: $screen-md) {
-          flex-basis: 100%;
           height: auto;
           flex-direction: row;
           align-items: center;
           margin-bottom: 10px;
           padding: 15px;
           flex: 1;
+          flex-basis: 100%;
           width: 100%;
 
           &:last-child {

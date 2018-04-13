@@ -73,7 +73,7 @@ export default {
   flex-wrap: nowrap;
 
   @media (max-width: $screen-md) {
-    padding-right: 0px;
+    padding-right: 0;
     justify-content: center;
   }
 

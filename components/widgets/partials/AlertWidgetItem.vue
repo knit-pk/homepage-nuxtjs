@@ -46,8 +46,7 @@ export default {
 
   &__message-box {
     padding: 16px 25px 16px 16px;
-    font-size: .86rem;
-    font-weight: normal;
+    font-size: 0.86rem;
     color: $alert-widget-item-text-color;
     background-color: $alert-widget-item-bg-color;
     font-weight: 300;

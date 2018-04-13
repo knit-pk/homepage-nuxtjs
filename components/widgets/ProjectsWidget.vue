@@ -81,7 +81,7 @@ export default {
     text-align: center;
     display: block;
     padding: 15px 0;
-    font-size: .75rem;
+    font-size: 0.75rem;
     color: $projects-widget-text-color;
 
     &:hover,

@@ -194,10 +194,6 @@ export default {
   flex-direction: column;
   font-size: 14px;
 
-  /* &__thumbnail-link { */
-  /*   flex: 1 0 33%; */
-  /* } */
-
   &__thumbnail {
     @include img-fluid;
     vertical-align: middle;
@@ -247,7 +243,8 @@ export default {
     z-index: 9997;
     border: 1px solid #bbb9b9;
     padding: 5px;
-    font-size: .8rem;
+    font-size: 0.8rem;
+    flex-wrap: wrap;
     white-space: nowrap;
     border-radius: 7px;
   }
@@ -285,7 +282,7 @@ export default {
     padding: 0 20px 15px 20px;
     font-weight: 300;
     font-size: 14px;
-    color: #888888;
+    color: #888;
 
     @media (max-width: $screen-sm) {
       padding: 0 15px 15px 15px;
@@ -329,7 +326,7 @@ export default {
       color: $article-card-like-button-liked-color;
 
       &:hover, &:focus {
-         color: $article-card-like-button-liked-hover-color;
+        color: $article-card-like-button-liked-hover-color;
       }
     }
   }
@@ -337,7 +334,7 @@ export default {
   &__stat-icon {
     margin-right: 2px;
 
-    &:before {
+    &::before {
       font-size: 14px;
     }
   }

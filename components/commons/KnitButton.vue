@@ -38,7 +38,7 @@ export default {
 
 .knit-button {
   min-width: 100px;
-  transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   color: #333;
   background-color: #f8f8f8;
   text-align: center;

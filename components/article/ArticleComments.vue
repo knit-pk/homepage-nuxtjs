@@ -136,7 +136,7 @@ export default {
 .article-subcomments {
   flex-basis: 100%;
   margin: 40px 0 0 60px;
-  border-left: 2px solid #dddddd;
+  border-left: 2px solid #ddd;
 
   .article-comment {
     padding: 0 30px 0 20px;

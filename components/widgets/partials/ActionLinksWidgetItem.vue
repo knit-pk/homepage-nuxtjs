@@ -44,7 +44,7 @@ export default {
   }
 
   &__icon {
-    &:before {
+    &::before {
       font-size: 3rem;
 
       @media (max-width: $screen-md) {

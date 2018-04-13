@@ -50,7 +50,7 @@ export default {
     display: inline;
   }
 
-  &__routes li+li:before {
+  &__routes li + li::before {
     padding: 6px;
     color: $gray-50;
     content: ">\00a0";
@@ -61,13 +61,13 @@ export default {
     text-decoration: none;
   }
 
-  &__routes li a:hover {
-    text-decoration: underline;
-  }
-
   &__routes li:last-child a {
     font-weight: bold;
     text-decoration: none;
+  }
+
+  &__routes li a:hover {
+    text-decoration: underline;
   }
 }
 </style>

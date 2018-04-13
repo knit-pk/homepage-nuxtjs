@@ -86,7 +86,6 @@ export default {
     display: flex;
     justify-content: center;
     list-style: none;
-    display: flex;
     align-items: center;
     margin-top: 40px;
     height: 50px;
@@ -105,9 +104,9 @@ export default {
   }
 
   &__socialbox-link {
-    color: #ffffff;
+    color: #fff;
     text-align: center;
-    font-size: 0.80rem;
+    font-size: 0.8rem;
   }
 
   &__socialbox-icon {
