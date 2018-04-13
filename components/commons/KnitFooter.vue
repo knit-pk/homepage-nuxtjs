@@ -1,31 +1,35 @@
 <template>
-<footer class="knit-footer" v-config>
+  <footer v-config class="knit-footer">
 
-  <!-- Footer logo link -->
-  <router-link :to="{ path: '/' }" class="knit-footer__link">
-    <knit-logo/>
-  </router-link>
+    <!-- Footer logo link -->
+    <router-link :to="{ path: '/' }" class="knit-footer__link">
+      <knit-logo/>
+    </router-link>
 
-  <!-- Navbar -->
-  <knit-navbar class="navbar--footy"/>
+    <!-- Navbar -->
+    <knit-navbar class="navbar--footy"/>
 
-  <!-- Footer caption -->
-  <span class="knit-footer__caption"> 2018 &copy; Koło Naukowe IT Politechnika Krakowska </span>
-  <ul class="knit-footer__socialbox-list">
-    <li class="knit-footer__socialbox-item">
-      <a href="https://github.com/knit-pk" target="_blank" class="knit-footer__socialbox-link">
-        <span class="flaticon-github-logo knit-footer__socialbox-icon" aria-hidden="true"></span>
-        Github
-      </a>
-    </li>
-    <li class="knit-footer__socialbox-item">
-      <a href="https://www.facebook.com/wieik.knit" target="_blank" class="knit-footer__socialbox-link">
-        <span class="flaticon-facebook-logo knit-footer__socialbox-icon" aria-hidden="true"></span>
-        Facebook
-      </a>
-    </li>
-  </ul>
-</footer>
+    <!-- Footer caption -->
+    <span class="knit-footer__caption"> 2018 &copy; Koło Naukowe IT Politechnika Krakowska </span>
+    <ul class="knit-footer__socialbox-list">
+
+      <!-- Github link -->
+      <li class="knit-footer__socialbox-item">
+        <a href="https://github.com/knit-pk" target="_blank" class="knit-footer__socialbox-link">
+          <span class="flaticon-github-logo knit-footer__socialbox-icon" aria-hidden="true"/>
+          Github
+        </a>
+      </li>
+
+      <!-- Facebook link -->
+      <li class="knit-footer__socialbox-item">
+        <a href="https://www.facebook.com/wieik.knit" target="_blank" class="knit-footer__socialbox-link">
+          <span class="flaticon-facebook-logo knit-footer__socialbox-icon" aria-hidden="true"/>
+          Facebook
+        </a>
+      </li>
+    </ul>
+  </footer>
 </template>
 
 <script>
@@ -33,17 +37,17 @@ import KnitNavbar from '~/components/commons/KnitNavbar'
 import KnitLogo from '~/components/commons/KnitLogo'
 
 export default {
+  components: {
+    KnitNavbar,
+    KnitLogo,
+  },
+  mixins: {},
+  props: {},
   data () {
     return {}
   },
-  components: {
-    KnitNavbar,
-    KnitLogo
-  },
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 

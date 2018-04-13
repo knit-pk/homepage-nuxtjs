@@ -1,19 +1,19 @@
 <template>
-<section style="height: 400px; background-color: #fff; margin-bottom: 20px;" v-config>
-  Popular articles
-</section>
+  <section v-config style="height: 400px; background-color: #fff; margin-bottom: 20px;">
+    Popular articles
+  </section>
 </template>
 
 <script>
 export default {
+  components: {},
+  mixins: {},
+  props: {},
   data () {
     return {}
   },
-  components: {},
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 

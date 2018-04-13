@@ -1,129 +1,147 @@
 <template>
-<footer class="article-footer" v-config>
+  <footer v-config class="article-footer">
 
-  <!-- Topic tags -->
-  <ul class="article-footer__tags-tabs">
-    <li v-for="(tag, index) in tags" class="article-footer__tag-tab" :key = "index">
-      <router-link to="" class="article-footer__tag-tab-link"> {{ tag.name }} </router-link>
-    </li>
-  </ul>
+    <!-- Topic tags -->
+    <ul class="article-footer__tags-tabs">
+      <li v-for="(tag, index) in tags" :key = "index" class="article-footer__tag-tab">
+        <router-link to="" class="article-footer__tag-tab-link">
+          {{ tag.name }}
+        </router-link>
+      </li>
+    </ul>
 
-  <!-- Meta keywords -->
-  <meta itemprop="keywords" :content="keywords" />
+    <!-- Meta keywords -->
+    <meta :content="keywords" itemprop="keywords">
 
-  <!-- Footer box -->
-  <div class="article-footer__footer-box">
-    <div class="article-footer__author-wrapper" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <!-- Footer box -->
+    <div class="article-footer__footer-box">
+      <div class="article-footer__author-wrapper" itemprop="author" itemscope itemtype="http://schema.org/Person">
 
-      <!-- Author image -->
-      <router-link to="">
-        <img class="article-footer__author-avatar" :src="author.avatar.url" :alt="author.fullname" itemprop="image" />
-      </router-link>
-
-      <div class="article-footer__author-details">
-
-        <!-- Author fullname -->
+        <!-- Author image -->
         <router-link to="">
-          <span class="article-footer__author-fullname article-footer__details-text" itemprop="name"> {{ author.fullname }} </span>
+          <img :src="author.avatar.url" :alt="author.fullname" class="article-footer__author-avatar" itemprop="image" >
         </router-link>
 
-        <!-- About author -->
-        <span class="article-footer__author-description article-footer__details-text" itemprop="description">This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor...</span>
+        <div class="article-footer__author-details">
 
-        <!-- Section lider tags -->
-        <ul class ="article-footer__section-lider-tags article-footer__color-tabs">
-          Lider sekcji:
-          <li v-for="(ltag, index) in leaderTags" class="article-footer__color-tab-item" :key = "index">
-            <router-link to="" :style="{ 'background-color': ltag.color }" class="article-footer__color-tab-link">
-              {{ ltag.text }}
-            </router-link>
-          </li>
-        </ul>
+          <!-- Author fullname -->
+          <router-link to="">
+            <span class="article-footer__author-fullname article-footer__details-text" itemprop="name">
+              {{ author.fullname }}
+            </span>
+          </router-link>
 
-        <!-- Section member tags -->
-        <ul class ="article-footer__section-member-tags article-footer__color-tabs">
-          Członek sekcji:
-          <li v-for="(mtag, index) in memberTags" class="article-footer__color-tab-item" :key = "index">
-            <router-link to="" :style="{ 'background-color': mtag.color }" class="article-footer__color-tab-link">
-              {{ mtag.text }}
-            </router-link>
-          </li>
-        </ul>
+          <!-- About author -->
+          <span class="article-footer__author-description article-footer__details-text" itemprop="description">
+            This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor...
+          </span>
+
+          <!-- Section lider tags -->
+          <ul class ="article-footer__section-lider-tags article-footer__color-tabs">
+            Lider sekcji:
+            <li v-for="(ltag, index) in leaderTags" :key = "index" class="article-footer__color-tab-item">
+              <router-link :style="{ 'background-color': ltag.color }" to="" class="article-footer__color-tab-link">
+                {{ ltag.text }}
+              </router-link>
+            </li>
+          </ul>
+
+          <!-- Section member tags -->
+          <ul class ="article-footer__section-member-tags article-footer__color-tabs">
+            Członek sekcji:
+            <li v-for="(mtag, index) in memberTags" :key = "index" class="article-footer__color-tab-item">
+              <router-link :style="{ 'background-color': mtag.color }" to="" class="article-footer__color-tab-link">
+                {{ mtag.text }}
+              </router-link>
+            </li>
+          </ul>
+        </div>
       </div>
+
+      <!-- Social icons -->
+      <span class="article-footer__icons">
+
+        <!-- Likes -->
+        <router-link
+          to=""
+          class="article-footer__social-icon flaticon-like"
+          itemprop="interactionStatistic"
+          itemtype="http://schema.org/InteractionCounter"
+          itemscope>
+          <meta itemprop="interactionType" content="http://schema.org/LikeAction">
+          <span itemprop="userInteractionCount"> {{ likesCount }} </span>
+        </router-link>
+
+        <!-- Comments -->
+        <router-link
+          to=""
+          class="article-footer__social-icon flaticon-chat"
+          itemprop="interactionStatistic"
+          itemscope
+          itemtype="http://schema.org/InteractionCounter">
+
+          <!-- Meta for comments -->
+          <meta itemprop="interactionType" content="http://schema.org/CommentAction" >
+          <span itemprop="userInteractionCount"> {{ commentsCount }} </span>
+        </router-link>
+
+        <!-- Right footer icons -->
+        <router-link to="" class="article-footer__social-icon flaticon-facebook-logo"/>
+        <router-link to="" class="article-footer__social-icon flaticon-social"/>
+        <router-link to="" class="article-footer__social-icon flaticon-delete"/>
+      </span>
     </div>
-
-    <!-- Social icons -->
-    <span class="article-footer__icons">
-
-      <!-- Likes -->
-      <router-link to="" class="article-footer__social-icon flaticon-like" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
-        <meta itemprop="interactionType" content="http://schema.org/LikeAction" />
-        <span itemprop="userInteractionCount"> {{ likesCount }} </span>
-      </router-link>
-
-      <!-- Comments -->
-      <router-link to="" class="article-footer__social-icon flaticon-chat" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
-        <meta itemprop="interactionType" content="http://schema.org/CommentAction" />
-        <span itemprop="userInteractionCount"> {{ commentsCount }} </span>
-      </router-link>
-
-      <!-- Right footer icons -->
-      <router-link to="" class="article-footer__social-icon flaticon-facebook-logo"></router-link>
-      <router-link to="" class="article-footer__social-icon flaticon-social"></router-link>
-      <router-link to="" class="article-footer__social-icon flaticon-delete"></router-link>
-    </span>
-  </div>
-</footer>
+  </footer>
 </template>
 
 <script>
 export default {
+  components: {},
+  mixins: {},
+  props: {
+    tags: {
+      type: Array,
+      default: () => [],
+    },
+    likesCount: {
+      type: Number,
+      default: 0,
+    },
+    commentsCount: {
+      type: Number,
+      default: 0,
+    },
+    author: {
+      type: Object,
+      required: true,
+    },
+  },
   data () {
     return {
       leaderTags: [
         {
           text: 'Java',
-          color: '#dd5826'
-        }
+          color: '#dd5826',
+        },
       ],
       memberTags: [
         {
           text: 'Sztuczna Inteligencja',
-          color: '#64bd63'
+          color: '#64bd63',
         },
         {
           text: 'WebDev',
-          color: '#5d8fc2'
-        }
-      ]
-    }
-  },
-  components: {},
-  props: {
-    tags: {
-      type: Array,
-      default: () => []
-    },
-    likesCount: {
-      type: Number,
-      default: 0
-    },
-    commentsCount: {
-      type: Number,
-      default: 0
-    },
-    author: {
-      type: Object,
-      required: true
+          color: '#5d8fc2',
+        },
+      ],
     }
   },
   computed: {
     keywords () {
       return this.tags.map(o => o.name)
-    }
+    },
   },
   methods: {},
-  mixins: {}
 }
 </script>
 

@@ -1,19 +1,19 @@
 <template>
-<section class="widget categories-widget" v-config>
-  Categories widget
-</section>
+  <section v-config class="widget categories-widget">
+    Categories widget
+  </section>
 </template>
 
 <script>
 export default {
+  components: {},
+  mixins: {},
+  props: {},
   data () {
     return {}
   },
-  components: {},
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 

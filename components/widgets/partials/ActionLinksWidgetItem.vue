@@ -1,28 +1,29 @@
 <template>
-<a class="action-link" href="#">
-  <span class="action-link__text">{{ linktext }}</span>
-  <span :class="[ iconClass ]" class="action-link__icon"></span>
-</a>
+  <a class="action-link" href="#">
+    <span class="action-link__text"> {{ linktext }} </span>
+    <span :class="[ iconClass ]" class="action-link__icon"/>
+  </a>
 </template>
 
 <script>
 export default {
-  data () {
-    return {}
-  },
   components: {},
+  mixins: {},
   props: {
     linktext: {
       type: String,
-      default: 'empty'
+      default: 'empty',
     },
     iconClass: {
-      type: String
-    }
+      type: String,
+      default: '',
+    },
+  },
+  data () {
+    return {}
   },
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 

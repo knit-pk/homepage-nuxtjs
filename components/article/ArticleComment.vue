@@ -1,65 +1,77 @@
 <template>
-<article class="article-comment" v-config>
-  <div class="article-comment__inner">
-    <a href="#" class="article-comment__avatar-link">
-      <img :src="avatarUrl" class="article-comment__author-avatar" :alt="author">
-    </a>
-    <div class="article-comment__right-side">
-      <header class="article-comment__meta">
-        <h4> <a href="#" class="article-comment__author-name"> {{ author }} </a></h4>
-        <time :datetime="createdAt" class="article-comment__datetime"> {{ formatDateToLocalString(createdAt) }} </time>
-      </header>
-      <p class="article-comment__content"> {{ content }} </p>
-      <a v-if="isParent" @click.prevent="handleLoadRepliesClick(parentId)"
-          href="#" class="article-comment__replies-link"> {{ loadRepliesLinkLabel }}
+  <article v-config class="article-comment">
+
+    <!-- Inner -->
+    <div class="article-comment__inner">
+      <a href="#" class="article-comment__avatar-link">
+        <img :src="avatarUrl" :alt="author" class="article-comment__author-avatar">
       </a>
+
+      <!-- Right side -->
+      <div class="article-comment__right-side">
+        <header class="article-comment__meta">
+          <h4>
+            <a href="#" class="article-comment__author-name"> {{ author }} </a>
+          </h4>
+          <time :datetime="createdAt" class="article-comment__datetime"> {{ formatDateToLocalString(createdAt) }} </time>
+        </header>
+
+        <!-- Content -->
+        <p class="article-comment__content"> {{ content }} </p>
+        <a v-if="isParent" href="#" class="article-comment__replies-link" @click.prevent="handleLoadRepliesClick(parentId)">
+          {{ loadRepliesLinkLabel }}
+        </a>
+      </div>
     </div>
-  </div>
-  <section v-if="areRepliesExpanded" class="article-subcomments">
-    <h5 class="visualy-hidden"> {{ repliesAmount }} odpowiedzi </h5>
-    <slot></slot>
-  </section>
-</article>
+
+    <!-- Subcomments -->
+    <section v-if="areRepliesExpanded" class="article-subcomments">
+      <h5 class="visualy-hidden"> {{ repliesAmount }} odpowiedzi </h5>
+      <slot/>
+    </section>
+  </article>
 </template>
 
 <script>
 import templateHelper from '~/helpers/template'
 
 export default {
-  data () {
-    return {
-      areRepliesExpanded: false,
-      areRepliesFetched: false
-    }
-  },
   components: {},
+  mixins: [templateHelper],
   props: {
     avatarUrl: {
       type: String,
-      required: true
+      required: true,
     },
     author: {
       type: String,
-      required: true
+      required: true,
     },
     createdAt: {
       type: String,
-      required: true
+      required: true,
     },
     content: {
       type: String,
-      required: true
+      required: true,
     },
     repliesAmount: {
       type: Number,
-      default: 0
+      default: 0,
     },
     parentId: {
-      type: String
+      type: String,
+      default: '',
     },
     isParent: {
       type: Boolean,
-      default: false
+      default: false,
+    },
+  },
+  data () {
+    return {
+      areRepliesExpanded: false,
+      areRepliesFetched: false,
     }
   },
   computed: {
@@ -69,7 +81,7 @@ export default {
       } else if (this.repliesAmount > 0) {
         return this.areRepliesExpanded ? 'Ukryj odpowiedzi' : `Pokaż wszystkie ${this.repliesAmount} odpowiedzi`
       }
-    }
+    },
   },
   methods: {
     handleLoadRepliesClick (parentId) {
@@ -79,9 +91,8 @@ export default {
       }
 
       this.areRepliesExpanded = !this.areRepliesExpanded
-    }
+    },
   },
-  mixins: [ templateHelper ]
 }
 </script>
 

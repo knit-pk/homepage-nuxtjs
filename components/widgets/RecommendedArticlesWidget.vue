@@ -1,19 +1,19 @@
 <template>
-<section style="height: 400px; background-color: #fff;" v-config>
-  Recommended articles or something else
-</section>
+  <section v-config style="height: 400px; background-color: #fff;">
+    Recommended articles or something else
+  </section>
 </template>
 
 <script>
 export default {
+  components: {},
+  mixins: {},
+  props: {},
   data () {
     return {}
   },
-  components: {},
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 

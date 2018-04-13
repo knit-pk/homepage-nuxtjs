@@ -1,21 +1,22 @@
 <template>
-<div class="page page--category">
-  <article-category-banner/>
+  <div class="page page--category">
+    <article-category-banner/>
 
-  <!-- Category leftside wrapper -->
-  <div class="leftside-wrapper">
-    <main class="main-content">
-      <article-card-list :class="[ 'article-card-list--horizontal', !isMobile ? 'article-card-list--big-main-post' : '' ]" :articles="list"/>
-    </main>
-    <aside class="aside-down">
+    <!-- Category leftside wrapper -->
+    <div class="leftside-wrapper">
+      <main class="main-content">
+        <article-card-list
+          :class="[ 'article-card-list--horizontal', !isMobile ? 'article-card-list--big-main-post' : '' ]"
+          :articles="list"/>
+      </main>
+      <aside class="aside-down"/>
+    </div>
+
+    <!-- Category aside right -->
+    <aside class="aside-right">
+      <categories-widget/>
     </aside>
   </div>
-
-  <!-- Category aside right -->
-  <aside class="aside-right">
-    <categories-widget/>
-  </aside>
-</div>
 </template>
 
 <script>
@@ -30,16 +31,16 @@ export default {
   components: {
     ArticleCategoryBanner,
     CategoriesWidget,
-    ArticleCardList
+    ArticleCardList,
   },
   computed: {
     ...mapGetters({
       categoryCodeList: 'view/articles/categoryCodeList',
-      isMobile: 'general/isMobile'
+      isMobile: 'general/isMobile',
     }),
     list () {
-      return _.map(this.categoryCodeList, code => this.$store.getters[ 'resources/articles' ][code])
-    }
+      return _.map(this.categoryCodeList, code => this.$store.getters['resources/articles'][code])
+    },
   },
   fetch ({ store, params }) {
     if (params.categoryCode === 'wszystkie') {
@@ -47,7 +48,7 @@ export default {
     }
 
     return store.dispatch('view/articles/getCategoryList', params)
-  }
+  },
 }
 </script>
 

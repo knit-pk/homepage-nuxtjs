@@ -66,5 +66,5 @@ function compose ({ name, before, success, always, fail, cancel }) {
 }
 
 export default {
-  compose
+  compose,
 }

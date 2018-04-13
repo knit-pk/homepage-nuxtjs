@@ -1,47 +1,49 @@
 <template>
-<section class="article-card-list article-card-list--big-main-post" v-config>
-  <h2 class="visualy-hidden"> Artykuły KNIT </h2>
+  <section v-config class="article-card-list article-card-list--big-main-post">
+    <h2 class="visualy-hidden"> Artykuły KNIT </h2>
 
-  <!-- Articles list -->
-  <article-card v-for="(article, index) in articles" :key="index"
-                      :title="article.title"
-                      :author="article.author"
-                      :content="article.content"
-                      :description="article.description"
-                      :thumbnail="article.image.url"
-                      :published-at="article.publishedAt"
-                      :updated-at="article.updatedAt"
-                      :tags="article.tags"
-                      :ratings="article.ratings"
-                      :comments="article.comments"
-                      :category="article.category"
-                      :comments-count="article.commentsCount"
-                      :short-id="article.shortId"
-                      :title-code="article.titleCode"
-                      :category-code="article.categoryCode"
-                      :code="article.code"/>
-</section>
+    <!-- Articles list -->
+    <article-card
+      v-for="(article, index) in articles"
+      :key="index"
+      :title="article.title"
+      :author="article.author"
+      :content="article.content"
+      :description="article.description"
+      :thumbnail="article.image.url"
+      :published-at="article.publishedAt"
+      :updated-at="article.updatedAt"
+      :tags="article.tags"
+      :ratings="article.ratings"
+      :comments="article.comments"
+      :category="article.category"
+      :comments-count="article.commentsCount"
+      :short-id="article.shortId"
+      :title-code="article.titleCode"
+      :category-code="article.categoryCode"
+      :code="article.code"/>
+  </section>
 </template>
 
 <script>
 import ArticleCard from '~/components/article/ArticleCard'
 
 export default {
-  data () {
-    return {}
-  },
   components: {
-    ArticleCard
+    ArticleCard,
   },
+  mixins: {},
   props: {
     articles: {
       required: true,
-      type: Array
-    }
+      type: Array,
+    },
+  },
+  data () {
+    return {}
   },
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 

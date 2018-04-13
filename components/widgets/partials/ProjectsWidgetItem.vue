@@ -1,86 +1,86 @@
 <template>
-<div class="projects-widget-item widget-item">
+  <div class="projects-widget-item widget-item">
 
-  <!-- Projects widget item top section -->
-  <div class="projects-widget-item__top-section">
-    <img v-if="isUrl(logo)" :src="logo" alt="" class="projects-widget-item__project-logo"/>
-    <div v-else :class="['projects-widget-item__project-logo', 'projects-widget-item__project-logo-star', `projects-widget-item__project-logo${defaultCssPostfix(this.logo, '--green')}`, 'flaticon-star']"/>
-    <h3 class="projects-widget-item__title"> {{ title }} </h3>
-  </div>
-
-  <dl class="projects-widget-item__list" aria-label="Informacje o projekcie">
-
-    <!-- Tags -->
-    <div class="projects-widget-item__list-item" v-if="isNotEmpty(tags)">
-      <dt class="projects-widget-item__list-item-term" title="Technologie">
-        <span class="flaticon-curly-brackets projects-widget-item__list-item-logo" aria-hidden="true"></span>
-        <span class="visualy-hidden">Technologie</span>
-      </dt>
-      <dd class="projects-widget-item__list-item-definition"> {{ join(tags, ', ') }} </dd>
+    <!-- Projects widget item top section -->
+    <div class="projects-widget-item__top-section">
+      <img v-if="isUrl(logo)" :src="logo" alt="" class="projects-widget-item__project-logo">
+      <div v-else :class="['projects-widget-item__project-logo', 'projects-widget-item__project-logo-star', `projects-widget-item__project-logo${defaultCssPostfix(logo, '--green')}`, 'flaticon-star']"/>
+      <h3 class="projects-widget-item__title"> {{ title }} </h3>
     </div>
 
-    <!-- Collaborators -->
-    <div class="projects-widget-item__list-item" v-if="maxTeamSize">
-      <dt class="projects-widget-item__list-item-term" title="Liczba kolaboratorów">
-        <span class="flaticon-user projects-widget-item__list-item-logo" aria-hidden="true"></span>
-        <span class="visualy-hidden">Liczba kolaboratorów</span>
-      </dt>
-      <dd class="projects-widget-item__list-item-definition">
+    <dl class="projects-widget-item__list" aria-label="Informacje o projekcie">
+
+      <!-- Tags -->
+      <div v-if="isNotEmpty(tags)" class="projects-widget-item__list-item">
+        <dt class="projects-widget-item__list-item-term" title="Technologie">
+          <span class="flaticon-curly-brackets projects-widget-item__list-item-logo" aria-hidden="true"/>
+          <span class="visualy-hidden"> Technologie </span>
+        </dt>
+        <dd class="projects-widget-item__list-item-definition"> {{ join(tags, ', ') }} </dd>
+      </div>
+
+      <!-- Collaborators -->
+      <div v-if="maxTeamSize" class="projects-widget-item__list-item">
+        <dt class="projects-widget-item__list-item-term" title="Liczba kolaboratorów">
+          <span class="flaticon-user projects-widget-item__list-item-logo" aria-hidden="true"/>
+          <span class="visualy-hidden"> Liczba kolaboratorów </span>
+        </dt>
+        <dd class="projects-widget-item__list-item-definition">
           Max: {{ maxTeamSize }}, Aktualnie: {{ !currentTeamSize ? 0 : currentTeamSize }}
-      </dd>
-    </div>
+        </dd>
+      </div>
 
-    <!-- Repo infos -->
-    <div class="projects-widget-item__list-item" v-if="isNotEmpty(url)">
-      <dt class="projects-widget-item__list-item-term" title="Repozytorium">
-        <span class="flaticon-github-logo projects-widget-item__list-item-logo" aria-hidden="true"></span>
-        <span class="visualy-hidden">Repozytorium</span>
-      </dt>
-      <dd class="projects-widget-item__list-item-definition">
-        <a :href="url" class="projects-widget-item__list-item-link link"> {{ url }} </a>
-      </dd>
-    </div>
-  </dl>
-</div>
+      <!-- Repo infos -->
+      <div v-if="isNotEmpty(url)" class="projects-widget-item__list-item">
+        <dt class="projects-widget-item__list-item-term" title="Repozytorium">
+          <span class="flaticon-github-logo projects-widget-item__list-item-logo" aria-hidden="true"/>
+          <span class="visualy-hidden"> Repozytorium </span>
+        </dt>
+        <dd class="projects-widget-item__list-item-definition">
+          <a :href="url" class="projects-widget-item__list-item-link link"> {{ url }} </a>
+        </dd>
+      </div>
+    </dl>
+  </div>
 </template>
 
 <script>
 import templateHelper from '~/helpers/template'
 
 export default {
-  data () {
-    return {}
-  },
   components: {},
+  mixins: [templateHelper],
   props: {
     tags: {
-      default: [],
-      type: Array
+      required: true,
+      type: Array,
     },
     title: {
-      default: '',
-      type: String
+      required: true,
+      type: String,
     },
     url: {
-      default: '',
-      type: String
+      required: true,
+      type: String,
     },
     maxTeamSize: {
       default: 10,
-      type: Number
+      type: Number,
     },
     currentTeamSize: {
       default: 1,
-      type: Number
+      type: Number,
     },
     logo: {
       default: 'teal',
-      type: String
-    }
+      type: String,
+    },
+  },
+  data () {
+    return {}
   },
   computed: {},
   methods: {},
-  mixins: [ templateHelper ]
 }
 </script>
 

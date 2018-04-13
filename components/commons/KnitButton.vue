@@ -1,32 +1,35 @@
 <template>
-  <button :class="['knit-button', ...buttonClasses]" v-config>
+  <button v-config :class="['knit-button', ...buttonClasses]">
     <span :class="['knit-button__label', ...labelClasses]">
       <slot/>
     </span>
-    <span :class="['knit-button__icon', ...iconClasses]" aria-hidden="true"></span>
+    <span :class="['knit-button__icon', ...iconClasses]" aria-hidden="true"/>
   </button>
 </template>
 
 <script>
 export default {
+  components: {},
+  mixins: {},
+  props: {
+    buttonClasses: {
+      type: Array,
+      default: () => [],
+    },
+    labelClasses: {
+      type: Array,
+      default: () => [],
+    },
+    iconClasses: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data () {
     return {}
   },
-  components: {},
-  props: {
-    buttonClasses: {
-      type: Array
-    },
-    labelClasses: {
-      type: Array
-    },
-    iconClasses: {
-      type: Array
-    }
-  },
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 

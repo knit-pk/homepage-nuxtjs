@@ -74,5 +74,5 @@ export default {
     const finalHttpOptions = _.assign({}, { headers })
 
     return finalHttpOptions
-  }
+  },
 }

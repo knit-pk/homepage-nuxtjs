@@ -1,32 +1,40 @@
 <template>
-<div class="article-content" v-config>
-  <header class="article-content__header">
-    <img :src="thumbnail" class="article-content__thumbnail" itemprop="image" />
-    <div class="article-content__header-info">
-      <h2 class="article-content__title" itemprop="headline"> {{ ellipsis(title, 110) }} </h2>
-      <div class="article-content__pub-info">
-        <router-link to="/" class="article-content__author-avatar-link">
-          <img class="article-content__author-avatar" :src="author.avatar.url" :alt="author.fullname" />
-        </router-link>
-        <div>
-          <router-link to="/" class="article-content__author-fullname"> {{ author.fullname }} </router-link>
-          <time :datetime="publishedAt" class="article-content__pub-date" itemprop="datePublished"> {{ publicationDate }} </time>
-          <meta itemprop="dateModified" :content="updatedAt" />
+  <div v-config class="article-content">
+
+    <!-- Header -->
+    <header class="article-content__header">
+      <img :src="thumbnail" class="article-content__thumbnail" itemprop="image">
+      <div class="article-content__header-info">
+
+        <!-- Title -->
+        <h2 class="article-content__title" itemprop="headline"> {{ ellipsis(title, 110) }} </h2>
+        <div class="article-content__pub-info">
+
+          <!-- Author avatar -->
+          <router-link to="/" class="article-content__author-avatar-link">
+            <img :src="author.avatar.url" :alt="author.fullname" class="article-content__author-avatar">
+          </router-link>
+          <div>
+            <router-link to="/" class="article-content__author-fullname"> {{ author.fullname }} </router-link>
+            <time :datetime="publishedAt" class="article-content__pub-date" itemprop="datePublished">
+              {{ publicationDate }}
+            </time>
+            <meta :content="updatedAt" itemprop="dateModified">
+          </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- Article content body -->
-  <vue-markdown class="article-content__body" :source="content"/>
+    <!-- Body -->
+    <vue-markdown :source="content" class="article-content__body"/>
 
-  <!-- Meta -->
-  <link itemprop="mainEntityOfPage" :href="mainEntityOfPage" />
-  <meta itemprop="description" :content="description" />
+    <!-- Meta -->
+    <link :href="mainEntityOfPage" itemprop="mainEntityOfPage">
+    <meta :content="description" itemprop="description">
 
-  <!-- Publisher meta -->
-  <ArticlePublisherMeta />
-</div>
+    <!-- Publisher meta -->
+    <ArticlePublisherMeta />
+  </div>
 </template>
 
 <script>
@@ -35,42 +43,43 @@ import templateHelper from '~/helpers/template'
 import VueMarkdown from 'vue-markdown'
 
 export default {
-  data () {
-    return {}
-  },
   components: {
     VueMarkdown,
-    ArticlePublisherMeta
+    ArticlePublisherMeta,
   },
+  mixins: [templateHelper],
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     content: {
       type: String,
-      required: true
+      required: true,
     },
     author: {
       type: Object,
-      required: true
+      required: true,
     },
     description: {
       type: String,
-      required: true
+      required: true,
     },
     thumbnail: {
       type: String,
-      required: true
+      required: true,
     },
     publishedAt: {
       type: String,
-      required: true
+      required: true,
     },
     updatedAt: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
+  },
+  data () {
+    return {}
   },
   computed: {
     publicationDate () {
@@ -80,10 +89,9 @@ export default {
       if (process.BROWSER_BUILD) {
         return `${window.location.hostname}${this.$route.path}`
       }
-    }
+    },
   },
   methods: {},
-  mixins: [ templateHelper ]
 }
 </script>
 

@@ -1,31 +1,36 @@
 <template>
-<div v-if="show" class="alert-widget-item">
-  <button @click="hideMessage" class="alert-widget-item__close-button"> &times; </button>
+  <div v-if="show" class="alert-widget-item">
+    <button class="alert-widget-item__close-button" @click="hideMessage"> &times; </button>
 
-  <!-- Message box -->
-  <h2 class="alert-widget-item__message-box">
-    <span class="alert-widget-item__message-decorator"> Uwaga! </span>
-    <span class="alert-widget-item__message"> {{ message }} </span>
-  </h2>
-</div>
+    <!-- Message box -->
+    <h2 class="alert-widget-item__message-box">
+      <span class="alert-widget-item__message-decorator"> Uwaga! </span>
+      <span class="alert-widget-item__message"> {{ message }} </span>
+    </h2>
+  </div>
 </template>
 
 <script>
 export default {
+  components: {},
+  mixins: {},
+  props: {
+    message: {
+      type: String,
+      required: true,
+    },
+  },
   data () {
     return {
-      show: true
+      show: true,
     }
   },
-  components: {},
-  props: [ 'message' ],
   computed: {},
   methods: {
-    hideMessage (event) {
+    hideMessage () {
       setTimeout(() => { this.show = false }, 100)
-    }
+    },
   },
-  mixins: {}
 }
 </script>
 

@@ -59,6 +59,6 @@ export default {
     every: _.every,
     isEmpty: _.isEmpty,
     join: _.join,
-    isNotEmpty: _.negate(_.isEmpty)
-  }
+    isNotEmpty: _.negate(_.isEmpty),
+  },
 }

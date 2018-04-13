@@ -3,5 +3,5 @@ import { CANCEL } from './Cancel'
 
 export default {
   ACTION_FAIL,
-  CANCEL
+  CANCEL,
 }

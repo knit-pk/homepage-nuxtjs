@@ -1,19 +1,19 @@
 <template>
-<section class="widget meetup-calendar" v-config>
-  Meetup calendar
-</section>
+  <section v-config class="widget meetup-calendar">
+    Meetup calendar
+  </section>
 </template>
 
 <script>
 export default {
+  components: {},
+  mixins: {},
+  props: {},
   data () {
     return {}
   },
-  components: {},
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 

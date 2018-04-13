@@ -1,34 +1,34 @@
 <template>
   <h2 :class="['widget-title', `${widgetClass}__title`]">
-    <span :class="[widgetIconClass, 'widget-title__title-icon', `${widgetClass}__title-icon`]" aria-hidden="true"></span>
+    <span :class="[widgetIconClass, 'widget-title__title-icon', `${widgetClass}__title-icon`]" aria-hidden="true"/>
     {{ title }}
-    <slot></slot>
+    <slot/>
   </h2>
 </template>
 
 <script>
 export default {
-  data () {
-    return {}
-  },
   components: {},
+  mixins: {},
   props: {
     title: {
       default: '',
-      type: String
+      type: String,
     },
     widgetClass: {
       default: '',
-      type: String
+      type: String,
     },
     widgetIconClass: {
       default: '',
-      type: String
-    }
+      type: String,
+    },
+  },
+  data () {
+    return {}
   },
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 

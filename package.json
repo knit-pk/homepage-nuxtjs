@@ -35,12 +35,12 @@
     "vue2-scrollbar": "0.0.3"
   },
   "devDependencies": {
-    "dotenv": "^5.0.1",
     "babel-eslint": "^8.2.2",
+    "dotenv": "^5.0.1",
     "eslint": "^4.19.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-loader": "^2.0.0",
-    "eslint-plugin-html": "^4.0.2",
+    "eslint-plugin-vue": "^4.4.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jest": "^21.15.0",
     "eslint-plugin-node": "^6.0.1",

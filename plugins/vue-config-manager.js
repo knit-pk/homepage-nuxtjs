@@ -4,6 +4,6 @@ import Vue from 'vue'
 
 Vue.use(VueConfigManager, {
   defaults: {
-    showComponents: componentsConfig.showComponents
-  }
+    showComponents: componentsConfig.showComponents,
+  },
 })

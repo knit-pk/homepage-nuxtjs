@@ -1,7 +1,7 @@
 <template>
-  <div class= "article-breadcrumb" v-config>
+  <div v-config class="article-breadcrumb">
     <ul class="article-breadcrumb__routes">
-      <li v-for="({ path, text }, index) in breadcrumbs" class="article-breadcrumb__item" :key ="index">
+      <li v-for="({ path, text }, index) in breadcrumbs" :key ="index" class="article-breadcrumb__item">
         <router-link :to="{ path }"> {{ text }} </router-link>
       </li>
     </ul>
@@ -10,24 +10,24 @@
 
 <script>
 export default {
-  data () {
-    return {}
-  },
   components: {},
+  mixins: {},
   props: {
     breadcrumbs: {
       type: Array,
       default: () => [
         {
           text: 'Strona główna',
-          path: '/'
-        }
-      ]
-    }
+          path: '/',
+        },
+      ],
+    },
+  },
+  data () {
+    return {}
   },
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 

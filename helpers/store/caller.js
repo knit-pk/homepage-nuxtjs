@@ -16,5 +16,5 @@ function call (actionName, action) {
 }
 
 export default {
-  call
+  call,
 }
