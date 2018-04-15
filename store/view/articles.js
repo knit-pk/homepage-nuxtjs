@@ -50,11 +50,12 @@ export const state = () => ({
 // Module actions
 export const actions = {
   getMainPage: composer.compose({
+    name: '#getMainpage',
     before: [
       compounds.callActionWhen(({ ctx }) => _.isEmpty(ctx.getters.mainPage)),
       compounds.doSth(({ ctx }) => ctx.commit(loading(true)))
     ],
-    caller: callers.squashErrorsCall('#getMainPage'),
+    caller: callers.call,
     success: [
       opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'mainPage', codes: result })),
       opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
@@ -70,13 +71,14 @@ export const actions = {
     }, { root: true })
   }),
   getCategoryList: composer.compose({
+    name: '#getCategory',
     before: [
       compounds.callActionWhen(({ ctx, params }) => ctx.getters.currentCategoryCode !== params.categoryCode),
       compounds.doSth(({ ctx, params }) => ctx.commit(changeCurrCategory(params.categoryCode))),
       compounds.callActionWhen(({ ctx }) => _.isEmpty(ctx.getters.byCategory[ctx.getters.currentCategoryCode])),
       compounds.doSth(({ ctx }) => ctx.commit(loading(true)))
     ],
-    caller: callers.squashErrorsCall('#getCategoryList'),
+    caller: callers.call,
     success: [
       opuses.doSth(({ ctx, params, result }) => ctx.dispatch('addCodes', { categoryCode: params.categoryCode, codes: result })),
       opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
@@ -92,12 +94,13 @@ export const actions = {
     }, { root: true })
   }),
   getMainList: composer.compose({
+    name: '#getMainlist',
     before: [
       compounds.doSth(({ ctx }) => ctx.commit(changeCurrCategory(settings.mainListName))),
       compounds.callActionWhen(({ ctx }) => _.isEmpty(ctx.getters.mainList)),
       compounds.doSth(({ ctx }) => ctx.commit(loading(true)))
     ],
-    caller: callers.squashErrorsCall('#getMainList'),
+    caller: callers.call,
     success: [
       opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'mainList', codes: result })),
       opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
@@ -113,11 +116,12 @@ export const actions = {
     }, { root: true })
   }),
   getArticle: composer.compose({
+    name: '#getArticle',
     before: [
       compounds.callActionWhen(({ ctx, params }) => !_.includes(ctx.getters['all'], params.code)),
       compounds.doSth(({ ctx }) => ctx.commit(loading(true)))
     ],
-    caller: callers.squashErrorsCall('#getArticle'),
+    caller: callers.call,
     success: [
       opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
       opuses.doSth(({ ctx, result }) => ctx.commit(loading(false)))

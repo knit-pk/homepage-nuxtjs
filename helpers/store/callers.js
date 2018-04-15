@@ -1,22 +1,23 @@
+import ActionFail from './errors/ActionFail'
 import knitLogger from '~/config/logger'
 
-function squashErrorsCall (message = '') {
-  return function (action) {
-    return Promise
-      .resolve(action())
-      .catch(async (err) => {
-        knitLogger.debug(() => err)
-        knitLogger.debug(() => message)
+// NOTE: I think that there will be only one caller but let's wait couple of PR's
+function call (action) {
+  const actionName = this.that.actionName
 
-        // Await for all failure methods
-        await this.methods.promisesBoundCaller(this.fail, this.that, this.ctx, this.params, null)
+  // Debug the action call
+  knitLogger.debug(() => `Calling action: ${actionName}`)
 
-        // Propagate the err
-        throw err
-      })
-  }
+  return Promise
+    .resolve(action())
+    .catch(async err => {
+      knitLogger.debug(() => err)
+
+      // Propagate the err
+      throw new ActionFail(actionName)
+    })
 }
 
 export default {
-  squashErrorsCall
+  call
 }

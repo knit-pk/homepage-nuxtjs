@@ -1,3 +1,4 @@
+import ActionCancel from './errors/ActionCancel'
 import knitLogger from '~/config/logger'
 
 function callActionWhen (predicate) {
@@ -6,14 +7,17 @@ function callActionWhen (predicate) {
       return action
     }
 
-    knitLogger.debug(() => `Predicate: ${JSON.stringify(predicate)} evaluated to false, no action called!`)
-    this.methods.cancel()
+    knitLogger.debug(() => `Predicate: ${predicate} evaluated to false, canceling action!`)
+
+    // Cancel action
+    throw new ActionCancel(this.that.actionName)
   }
 }
 
 function doSth (fn) {
   return function (action) {
-    return fn(this) || action
+    fn(this)
+    return action
   }
 }
 
