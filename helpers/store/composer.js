@@ -1,43 +1,65 @@
+import commonHelper from '~/helpers/common'
+import knitLogger from '~/config/logger'
+import errorTypes from './errors/types'
+import caller from './caller'
 import _ from 'lodash'
 
-const methods = {
-  cancel () {
-    throw new Error('cancel')
+const { CANCEL, ACTION_FAIL } = errorTypes
+
+const hooksCallWithBound = async (fns, that, ctx, params, result) => {
+  for (const fn of fns) {
+    await fn({ that, ctx, params, result })
   }
 }
 
-function compose ({ before, caller, success, always, fail }) {
-  // Binds all parameters to all success, always functions
-  const promisesBoundCaller = async (arrFn, that, ctx, params, result) => {
-    const boundPromises = _.map(arrFn, async (bind) => bind({ that, ctx, params, result }))
-
-    for (const promise of boundPromises) {
-      await promise
-    }
+function compose ({ name, before, success, always, fail, cancel }) {
+  if (!name) {
+    throw Error('Action name should be specified')
   }
 
-  // Binds all parameters to the action
-  const actionWithBoundCaller = (that, ctx, params, actionDefn) =>
-    () => actionDefn.bind(that)(ctx, params)
-
-  // Binds all parameters to all composers, caller
-  const flowWithBoundCaller = (that, ctx, params) => {
-    const beforeBound = _.flow(before).bind({ that, ctx, params, methods })
-    return _.flow([ beforeBound, caller.bind({ that, ctx, params, methods: { ...methods, promisesBoundCaller }, fail }) ])
-  }
+  const progErrorNames = _.values(errorTypes)
 
   // Take action definition
-  return (actionDefinition) => {
-    // Return function which is called
-    // on every action call
-    return async function actionCall (ctx, params) {
+  return (actionDefn) => {
+    return async function onActionCall (ctx, params) {
+      // Bind actionName to this
+      this.actionName = name
+
       try {
-        const result = await flowWithBoundCaller(this, ctx, params)(actionWithBoundCaller(this, ctx, params, actionDefinition))
-        await promisesBoundCaller(success, this, ctx, params, result)
+        // Call all before functions
+        await hooksCallWithBound(before, this, ctx, params, null)
+
+        // Bind the parameters to action
+        const actionBound = () => actionDefn.bind(this)(ctx, params)
+
+        // Calling the action
+        const result = await caller.call(this.actionName, actionBound)
+
+        // On success do sth with result
+        await hooksCallWithBound(success, this, ctx, params, result)
       } catch (err) {
-        // When something is canceled, or when action does not succeeds and all fails have been called
+        // When Nuxt.js/Vue.js error propagate it back
+        if (!commonHelper.isProd() && !_.includes(progErrorNames, err.name)) {
+          knitLogger.debug(() => 'Some nuxt/vue error! Probably it\'s all because getters!')
+          throw err
+        }
+
+        // When action failed
+        if (err.name === ACTION_FAIL && !_.isEmpty(fail)) {
+          knitLogger.debug(() => 'Calling on fail functions')
+          return await hooksCallWithBound(fail, this, ctx, params, null)
+        }
+
+        // When other things in stack are canceled
+        if (err.name === CANCEL && !_.isEmpty(cancel)) {
+          knitLogger.debug(() => 'Calling on cancel functions')
+          return await hooksCallWithBound(cancel, this, ctx, params, null)
+        }
       } finally {
-        await promisesBoundCaller(always, this, ctx, params, null)
+        if (!_.isEmpty(always)) {
+          knitLogger.debug(() => 'Calling always methods!')
+          await hooksCallWithBound(always, this, ctx, params, null)
+        }
       }
     }
   }
