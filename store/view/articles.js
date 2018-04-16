@@ -6,7 +6,15 @@ import knitLogger from '~/config/logger'
 import _ from 'lodash'
 
 // Opera module
-const { compounds, callers, composer, opuses } = storeHelper.opera
+const { composer, opus } = storeHelper.opera
+
+// Action names
+const actionNames = {
+  GET_CATEGORY_LIST: '#getCategoryList',
+  GET_MAINPAGE: '#getMainPage',
+  GET_MAINLIST: '#getMainList',
+  GET_ARTICLE: '#getArticle'
+}
 
 // Mutation types
 const types = {
@@ -21,6 +29,14 @@ const changeCurrCategory = storeHelper.createMutationFn(types.CHANGE_CURRENT_CAT
 const changeCurrArticle = storeHelper.createMutationFn(types.CHANGE_CURRENT_ARTICLE_CODE, 'currentArticleCode')
 const loading = storeHelper.createMutationFn(types.LOAD_ARTICLES, 'loading')
 const codes = storeHelper.createMutationFn(types.ADD_CODES)
+
+// Custom functions in store
+const customFns = {
+  prepareArticles (data) {
+    const articlesArr = commonHelper.pickItemsProps(data['hydra:member'], settings.props, true, settings.datePicker)
+    return _.keyBy(articlesArr, 'code')
+  }
+}
 
 // Module getters
 export const getters = {
@@ -50,84 +66,86 @@ export const state = () => ({
 // Module actions
 export const actions = {
   getMainPage: composer.compose({
-    name: '#getMainpage',
+    name: actionNames.GET_MAINPAGE,
     before: [
-      compounds.callActionWhen(({ ctx }) => _.isEmpty(ctx.getters.mainPage)),
-      compounds.doSth(({ ctx }) => ctx.commit(loading(true)))
+      opus.callOthersWhen(({ ctx }) => _.isEmpty(ctx.getters.mainPage)),
+      opus.call(({ ctx }) => ctx.commit(loading(true)))
     ],
-    caller: callers.call,
     success: [
-      opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'mainPage', codes: result })),
-      opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
-      opuses.doSth(({ ctx, result }) => ctx.commit(loading(false)))
+      opus.call(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'mainPage', codes: result })),
+      opus.call(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
+      opus.call(({ ctx, result }) => ctx.commit(loading(false)))
     ]
   })(async function getMainPageAction ({ state, commit, dispatch }, params) {
     const data = await knitService.getCollection(this.$axios, 'articles', settings.defaultQsObject)
+    const articles = customFns.prepareArticles(data)
 
     // Inject articles and return their codes
     return dispatch('resources/injectResource', {
       path: 'articles',
-      data: await dispatch('prepareArticles', data)
+      data: articles
     }, { root: true })
   }),
+
   getCategoryList: composer.compose({
-    name: '#getCategory',
+    name: actionNames.GET_CATEGORY_LIST,
     before: [
-      compounds.callActionWhen(({ ctx, params }) => ctx.getters.currentCategoryCode !== params.categoryCode),
-      compounds.doSth(({ ctx, params }) => ctx.commit(changeCurrCategory(params.categoryCode))),
-      compounds.callActionWhen(({ ctx }) => _.isEmpty(ctx.getters.byCategory[ctx.getters.currentCategoryCode])),
-      compounds.doSth(({ ctx }) => ctx.commit(loading(true)))
+      opus.callOthersWhen(({ ctx, params }) => ctx.getters.currentCategoryCode !== params.categoryCode),
+      opus.call(({ ctx, params }) => ctx.commit(changeCurrCategory(params.categoryCode))),
+      opus.callOthersWhen(({ ctx }) => _.isEmpty(ctx.getters.byCategory[ctx.getters.currentCategoryCode])),
+      opus.call(({ ctx }) => ctx.commit(loading(true)))
     ],
-    caller: callers.call,
     success: [
-      opuses.doSth(({ ctx, params, result }) => ctx.dispatch('addCodes', { categoryCode: params.categoryCode, codes: result })),
-      opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
-      opuses.doSth(({ ctx, result }) => ctx.commit(loading(false)))
+      opus.call(({ ctx, params, result }) => ctx.dispatch('addCodes', { categoryCode: params.categoryCode, codes: result })),
+      opus.call(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
+      opus.call(({ ctx, result }) => ctx.commit(loading(false)))
     ]
   })(async function getCategoryListAction ({ state, commit, dispatch }, params) {
     const data = await knitService.getCollection(this.$axios, 'articles', { ...settings.defaultQsObject, 'category.code': params.categoryCode })
+    const articles = customFns.prepareArticles(data)
 
     // Inject articles and return their codes
     return dispatch('resources/injectResource', {
       path: 'articles',
-      data: await dispatch('prepareArticles', data)
+      data: articles
     }, { root: true })
   }),
+
   getMainList: composer.compose({
-    name: '#getMainlist',
+    name: actionNames.GET_MAINLIST,
     before: [
-      compounds.doSth(({ ctx }) => ctx.commit(changeCurrCategory(settings.mainListName))),
-      compounds.callActionWhen(({ ctx }) => _.isEmpty(ctx.getters.mainList)),
-      compounds.doSth(({ ctx }) => ctx.commit(loading(true)))
+      opus.call(({ ctx }) => ctx.commit(changeCurrCategory(settings.mainListName))),
+      opus.callOthersWhen(({ ctx }) => _.isEmpty(ctx.getters.mainList)),
+      opus.call(({ ctx }) => ctx.commit(loading(true)))
     ],
-    caller: callers.call,
     success: [
-      opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'mainList', codes: result })),
-      opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
-      opuses.doSth(({ ctx, result }) => ctx.commit(loading(false)))
+      opus.call(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'mainList', codes: result })),
+      opus.call(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
+      opus.call(({ ctx, result }) => ctx.commit(loading(false)))
     ]
   })(async function getMainlistAction ({ state, commit, dispatch }, params) {
     const data = await knitService.getCollection(this.$axios, 'articles', settings.defaultQsObject)
+    const articles = customFns.prepareArticles(data)
 
     // Inject articles and return their codes
     return dispatch('resources/injectResource', {
       path: 'articles',
-      data: await dispatch('prepareArticles', data)
+      data: articles
     }, { root: true })
   }),
+
   getArticle: composer.compose({
-    name: '#getArticle',
+    name: actionNames.GET_ARTICLE,
     before: [
-      compounds.callActionWhen(({ ctx, params }) => !_.includes(ctx.getters['all'], params.code)),
-      compounds.doSth(({ ctx }) => ctx.commit(loading(true)))
+      opus.callOthersWhen(({ ctx, params }) => !_.includes(ctx.getters['all'], params.code)),
+      opus.call(({ ctx }) => ctx.commit(loading(true)))
     ],
-    caller: callers.call,
     success: [
-      opuses.doSth(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
-      opuses.doSth(({ ctx, result }) => ctx.commit(loading(false)))
+      opus.call(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
+      opus.call(({ ctx, result }) => ctx.commit(loading(false)))
     ],
     always: [
-      opuses.doSth(({ ctx, params }) => params.code !== ctx.getters['currentArticleCode'] && ctx.commit(changeCurrArticle(params.code)))
+      opus.call(({ ctx, params }) => params.code !== ctx.getters['currentArticleCode'] && ctx.commit(changeCurrArticle(params.code)))
     ]
   })(async function getArticleAction ({ commit, dispatch }, params) {
     const data = await knitService.getCollection(this.$axios, 'articles', {
@@ -136,16 +154,15 @@ export const actions = {
       limit: 1
     })
 
+    const articles = customFns.prepareArticles(data)
+
     // Inject articles and return their codes
     return dispatch('resources/injectResource', {
       path: 'articles',
-      data: await dispatch('prepareArticles', data)
+      data: articles
     }, { root: true })
   }),
-  prepareArticles (ctx, data) {
-    const articlesArr = commonHelper.pickItemsProps(data['hydra:member'], settings.props, true, settings.datePicker)
-    return _.keyBy(articlesArr, 'code')
-  },
+
   addCodes ({ commit }, params) {
     knitLogger.debug(() => `Adding codes to '${params.path || params.categoryCode}': ${JSON.stringify(params.codes)}`)
     commit(codes(params))

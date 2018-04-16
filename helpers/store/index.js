@@ -1,7 +1,5 @@
-import compounds from './compounds'
 import composer from './composer'
-import callers from './callers'
-import opuses from './opuses'
+import opus from './opus'
 import _ from 'lodash'
 
 /**
@@ -41,9 +39,7 @@ export default {
   dispatchMultiple,
   commitMultiple,
   opera: {
-    callers,
     composer,
-    compounds,
-    opuses
+    opus
   }
 }

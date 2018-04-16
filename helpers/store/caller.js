@@ -1,10 +1,7 @@
-import ActionFail from './errors/ActionFail'
+import { ActionFail } from './errors/ActionFail'
 import knitLogger from '~/config/logger'
 
-// NOTE: I think that there will be only one caller but let's wait couple of PR's
-function call (action) {
-  const actionName = this.that.actionName
-
+function call (actionName, action) {
   // Debug the action call
   knitLogger.debug(() => `Calling action: ${actionName}`)
 
