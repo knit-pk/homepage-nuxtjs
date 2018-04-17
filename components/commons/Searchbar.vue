@@ -7,7 +7,7 @@
       class="searchbar__input"
       placeholder="Szukaj"
       autocomplete="off">
-    <span class="flaticon-magnifying-glass searchbar__icon"/>
+    <span class="searchbar__icon fas fa-search"/>
   </form>
 </template>
 

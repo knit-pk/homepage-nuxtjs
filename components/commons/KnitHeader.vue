@@ -21,7 +21,7 @@
     </b-dropdown>
 
     <b-dropdown class="header-dropdown" right no-caret no-flip>
-      <span slot="button-content" class="flaticon-plus header-dropdown__button-icon" aria-label="Dodaj treść"/>
+      <span slot="button-content" class="header-dropdown__button-icon fas fa-plus" aria-label="Dodaj treść"/>
       <b-dropdown-item href="#"> Napisz artykuł </b-dropdown-item>
       <b-dropdown-item href="#"> Dodaj ofertę pracy </b-dropdown-item>
       <b-dropdown-item href="#"> Utwórz projekt </b-dropdown-item>
@@ -30,16 +30,17 @@
     </b-dropdown>
 
     <b-dropdown class="header-dropdown" right no-caret no-flip>
-      <span slot="button-content" class="flaticon-cog-wheel header-dropdown__button-icon" aria-label="Ustawienia"/>
+      <span slot="button-content" class="header-dropdown__button-icon fas fa-cog" aria-label="Ustawienia"/>
       <b-dropdown-item href="#">
-        <span class="flaticon-user header-dropdown__list-item-icon" aria-hidden="true"/>
+        <span class="header-dropdown__list-item-icon fas fa-user" aria-hidden="true"/>
         Moje konto
       </b-dropdown-item>
       <b-dropdown-divider/>
       <b-dropdown-item href="#"> Akcja 1 </b-dropdown-item>
       <b-dropdown-item href="#"> Akcja 2 </b-dropdown-item>
       <b-dropdown-divider/>
-      <b-dropdown-item href="#"><span class="flaticon-logout header-dropdown__list-item-icon" aria-hidden="true"/>
+      <b-dropdown-item href="#">
+        <span class="header-dropdown__list-item-icon fas fa-sign-out-alt" aria-hidden="true"/>
         Wyloguj
       </b-dropdown-item>
     </b-dropdown>

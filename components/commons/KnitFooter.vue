@@ -16,7 +16,7 @@
       <!-- Github link -->
       <li class="knit-footer__socialbox-item">
         <a href="https://github.com/knit-pk" target="_blank" class="knit-footer__socialbox-link">
-          <span class="flaticon-github-logo knit-footer__socialbox-icon" aria-hidden="true"/>
+          <span class="knit-footer__socialbox-icon fab fa-github" aria-hidden="true"/>
           Github
         </a>
       </li>
@@ -24,7 +24,7 @@
       <!-- Facebook link -->
       <li class="knit-footer__socialbox-item">
         <a href="https://www.facebook.com/wieik.knit" target="_blank" class="knit-footer__socialbox-link">
-          <span class="flaticon-facebook-logo knit-footer__socialbox-icon" aria-hidden="true"/>
+          <span class="knit-footer__socialbox-icon fab fa-facebook" aria-hidden="true"/>
           Facebook
         </a>
       </li>
@@ -113,6 +113,7 @@ export default {
     position: relative;
     top: 2px;
     margin-right: 3px;
+    font-size: 1.5rem;
   }
 }
 </style>

@@ -23,22 +23,22 @@ export default {
       links: [
         {
           text: 'Dodaj nową ofertę pracy!',
-          icon: 'flaticon-job-search',
+          icon: 'fas fa-search',
           itemClass: 'action-link--job-offer',
         },
         {
           text: 'Dodaj nowy projekt i znajdź fantastyczny zespół',
-          icon: 'flaticon-teamwork',
+          icon: 'fas fa-users',
           itemClass: 'action-link--project-offer',
         },
         {
           text: 'Dowiedź się więcej o KNIT PK',
-          icon: 'flaticon-info',
+          icon: 'fas fa-info-circle',
           itemClass: 'action-link--more-info',
         },
         {
           text: 'Utwórz sekcję i wspólnie poszerzaj swoją wiedzę',
-          icon: 'flaticon-programming',
+          icon: 'fas fa-code',
           itemClass: 'action-link--new-section',
         },
       ],
