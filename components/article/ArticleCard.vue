@@ -210,7 +210,7 @@ export default {
 
   &__title-link {
     text-decoration: none;
-    margin: 13px 0;
+    margin: 4px 0;
     color: $gray-50;
     order: 4;
     flex-basis: 100%;
@@ -226,18 +226,18 @@ export default {
     color: $primary-text-color;
     margin: 10px 0 0 -2px;
     display: flex;
+    flex-wrap: wrap;
     list-style: none;
     flex-basis: 100%;
     order: 3;
   }
 
   &__single-tag {
-    margin-right: 7px;
+    margin: 0 7px 7px 0;
     z-index: 9997;
     border: 1px solid #bbb9b9;
     padding: 5px;
     font-size: .8rem;
-    flex-wrap: wrap;
     white-space: nowrap;
     border-radius: 7px;
   }
