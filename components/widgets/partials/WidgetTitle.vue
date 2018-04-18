@@ -1,6 +1,6 @@
 <template>
   <h2 :class="['widget-title', `${widgetClass}__title`]">
-    <span :class="[widgetIconClass, 'widget-title__title-icon', `${widgetClass}__title-icon`]" aria-hidden="true"/>
+    <span :class="['widget-title__title-icon', `${widgetClass}__title-icon`, widgetIconClass]" aria-hidden="true"/>
     {{ title }}
     <slot/>
   </h2>
@@ -49,7 +49,7 @@ export default {
     margin-right: 10px;
 
     &::before {
-      font-size: 1rem;
+      font-size: 1.3rem;
     }
   }
 }

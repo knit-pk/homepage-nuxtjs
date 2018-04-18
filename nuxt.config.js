@@ -47,6 +47,13 @@ module.exports = {
       {
         rel: 'stylesheet preload',
         as: 'style',
+        href: 'https://use.fontawesome.com/releases/v5.0.10/css/all.css',
+        integrity: 'sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg',
+        crossorigin: 'anonymous',
+      },
+      {
+        rel: 'stylesheet preload',
+        as: 'style',
         href: 'https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css',
       },
       {
@@ -95,7 +102,6 @@ module.exports = {
   css: [
     '~/assets/scss/custom-components/vue-scrollbar.scss',
     '~/node_modules/normalize.css/normalize.css',
-    '~/static/fonts/flaticon/flaticon.css',
     '~/assets/bootstrap/custom.scss',
     '~/assets/scss/main.scss',
   ],

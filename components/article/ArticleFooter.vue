@@ -64,10 +64,15 @@
         <!-- Likes -->
         <router-link
           to=""
-          class="article-footer__social-icon flaticon-like"
+          class="article-footer__social-route"
           itemprop="interactionStatistic"
           itemtype="http://schema.org/InteractionCounter"
           itemscope>
+
+          <!-- Icon -->
+          <span class="fas fa-thumbs-up"/>
+
+          <!-- Meta -->
           <meta itemprop="interactionType" content="http://schema.org/LikeAction">
           <span itemprop="userInteractionCount"> {{ likesCount }} </span>
         </router-link>
@@ -75,20 +80,29 @@
         <!-- Comments -->
         <router-link
           to=""
-          class="article-footer__social-icon flaticon-chat"
+          class="article-footer__social-route"
           itemprop="interactionStatistic"
           itemscope
           itemtype="http://schema.org/InteractionCounter">
 
-          <!-- Meta for comments -->
+          <!-- Icon -->
+          <span class="fas fa-comment-alt"/>
+
+          <!-- Meta -->
           <meta itemprop="interactionType" content="http://schema.org/CommentAction" >
           <span itemprop="userInteractionCount"> {{ commentsCount }} </span>
         </router-link>
 
         <!-- Right footer icons -->
-        <router-link to="" class="article-footer__social-icon flaticon-facebook-logo"/>
-        <router-link to="" class="article-footer__social-icon flaticon-social"/>
-        <router-link to="" class="article-footer__social-icon flaticon-delete"/>
+        <router-link to="" class="article-footer__social-route">
+          <span class="fab fa-facebook-square"/>
+        </router-link>
+        <router-link to="" class="article-footer__social-route">
+          <span class="fas fa-share-alt"/>
+        </router-link>
+        <router-link to="" class="article-footer__social-route">
+          <span class="fas fa-trash"/>
+        </router-link>
       </span>
     </div>
   </footer>
@@ -284,7 +298,7 @@ export default {
     }
   }
 
-  &__social-icon {
+  &__social-route {
     font-size: 0.9rem;
     color: $gray-40;
     margin-left: 15px;

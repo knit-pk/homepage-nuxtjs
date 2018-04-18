@@ -22,16 +22,15 @@
 
       <!-- Job offer right side -->
       <div class="job-offers-widget-item__right-side">
-        <span v-if="salaryBrackets" class="flaticon-money job-offers-widget-item__salary-brackets">
+        <span v-if="salaryBrackets" class="job-offers-widget-item__salary-brackets">
+          <span class="job-offers-widget-item__dollar fas fa-dollar-sign"/>
           {{ salaryBracketsWithCurrency }}
         </span>
         <span class="job-offers-widget-item__creation-date">
           {{ formatDateToLocalString(createdAt, 'pl', { month: 'short', day: '2-digit', year: 'numeric' }) }}
         </span>
       </div>
-    </div>
-  </div>
-</template>
+</div></div></template>
 
 <script>
 import templateHelper from '~/helpers/template'
@@ -162,11 +161,10 @@ export default {
   &__salary-brackets {
     font-size: 0.95rem;
     white-space: nowrap;
+  }
 
-    &::before {
-      color: $job-offers-widget-item-salary-brackets-icon-color;
-      font-size: 0.95rem;
-    }
+  &__dollar {
+    color: $job-offers-widget-item-salary-brackets-icon-color;
   }
 
   &__creation-date {

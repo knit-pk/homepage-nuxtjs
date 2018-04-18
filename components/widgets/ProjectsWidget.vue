@@ -37,7 +37,7 @@ export default {
     return {
       title: 'Projekty do których możesz dołączyć',
       widgetClass: 'projects-widget',
-      widgetIconClass: 'flaticon-code-fork',
+      widgetIconClass: 'fas fa-code-branch',
       items: [
         {
           title: 'homepage-nuxtjs',

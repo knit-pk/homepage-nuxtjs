@@ -63,7 +63,7 @@ export default {
     return {
       title: 'Oferty pracy',
       widgetClass: 'job-offers-widget',
-      widgetIconClass: 'flaticon-handshake',
+      widgetIconClass: 'fas fa-handshake',
       items: [
         {
           title: 'full stack developer',

@@ -1,7 +1,7 @@
 <template>
   <a class="action-link" href="#">
     <span class="action-link__text"> {{ linktext }} </span>
-    <span :class="[ iconClass ]" class="action-link__icon"/>
+    <span :class="['action-link__icon', iconClass]"/>
   </a>
 </template>
 
