@@ -1,18 +1,17 @@
 <template>
-<header class="category-banner" v-config>
-</header>
+  <header v-config class="category-banner"/>
 </template>
 
 <script>
 export default {
+  components: {},
+  mixins: [],
+  props: {},
   data () {
     return {}
   },
-  components: {},
-  props: {},
   computed: {},
   methods: {},
-  mixins: []
 }
 </script>
 

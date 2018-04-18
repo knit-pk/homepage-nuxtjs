@@ -1,47 +1,49 @@
 <template>
-<section class="article-card-list article-card-list--big-main-post" v-config>
-  <h2 class="visualy-hidden"> Artykuły KNIT </h2>
+  <section v-config class="article-card-list article-card-list--big-main-post">
+    <h2 class="visualy-hidden"> Artykuły KNIT </h2>
 
-  <!-- Articles list -->
-  <article-card v-for="(article, index) in articles" :key="index"
-                      :title="article.title"
-                      :author="article.author"
-                      :content="article.content"
-                      :description="article.description"
-                      :thumbnail="article.image.url"
-                      :published-at="article.publishedAt"
-                      :updated-at="article.updatedAt"
-                      :tags="article.tags"
-                      :ratings="article.ratings"
-                      :comments="article.comments"
-                      :category="article.category"
-                      :comments-count="article.commentsCount"
-                      :short-id="article.shortId"
-                      :title-code="article.titleCode"
-                      :category-code="article.categoryCode"
-                      :code="article.code"/>
-</section>
+    <!-- Articles list -->
+    <article-card
+      v-for="(article, index) in articles"
+      :key="index"
+      :title="article.title"
+      :author="article.author"
+      :content="article.content"
+      :description="article.description"
+      :thumbnail="article.image.url"
+      :published-at="article.publishedAt"
+      :updated-at="article.updatedAt"
+      :tags="article.tags"
+      :ratings="article.ratings"
+      :comments="article.comments"
+      :category="article.category"
+      :comments-count="article.commentsCount"
+      :short-id="article.shortId"
+      :title-code="article.titleCode"
+      :category-code="article.categoryCode"
+      :code="article.code"/>
+  </section>
 </template>
 
 <script>
 import ArticleCard from '~/components/article/ArticleCard'
 
 export default {
-  data () {
-    return {}
-  },
   components: {
-    ArticleCard
+    ArticleCard,
   },
+  mixins: {},
   props: {
     articles: {
       required: true,
-      type: Array
-    }
+      type: Array,
+    },
+  },
+  data () {
+    return {}
   },
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 
@@ -75,27 +77,6 @@ export default {
     }
   }
 
-  &--horizontal {
-    &.article-card-list--big-main-post {
-      .article-card:first-of-type {
-        @media (max-width: 1060px) and (min-width: $screen-sm) {
-          flex-basis: 100%;
-          height: 400px;
-        }
-      }
-    }
-
-    .article-card {
-      &:nth-of-type(n+3) {
-        flex-basis: 100%;
-      }
-
-      @media (max-width: $screen-xl) {
-        flex-basis: 100%;
-      }
-    }
-  }
-
   &--big-main-post {
     .article-card {
       &:first-of-type {
@@ -118,14 +99,14 @@ export default {
             right: 0;
             z-index: 1;
 
-            &:after {
+            &::after {
               content: '';
               position: absolute;
               top: 0;
               bottom: 0;
               left: 0;
               right: 0;
-              background: linear-gradient(to bottom, rgba(90,45,140,0) 0%, rgba(15,15,15,1) 100%);
+              background: linear-gradient(to bottom, rgba(90, 45, 140, 0) 0%, rgba(15, 15, 15, 1) 100%);
             }
           }
 
@@ -188,5 +169,29 @@ export default {
       }
     }
   }
+
+  /* stylelint-disable */
+  &--horizontal {
+    .article-card {
+      &:nth-of-type(n+3) {
+        flex-basis: 100%;
+      }
+
+      @media (max-width: $screen-xl) {
+        flex-basis: 100%;
+      }
+    }
+    /* stylelint-enable */
+
+    &.article-card-list--big-main-post {
+      .article-card:first-of-type {
+        @media (max-width: 1060px) and (min-width: $screen-sm) {
+          flex-basis: 100%;
+          height: 400px;
+        }
+      }
+    }
+  }
 }
+
 </style>

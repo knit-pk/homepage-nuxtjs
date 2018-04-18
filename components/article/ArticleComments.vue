@@ -1,31 +1,39 @@
 <template>
-<section v-config>
-  <article-comment v-for="(element, index) in comments" :key="index"
-                    :author="element.author.fullname"
-                    :avatar-url="element.author.avatar.url"
-                    :created-at="element.createdAt"
-                    :content="element.text"
-                    :replies-amount="element.replies.length"
-                    :parent-id="element.id"
-                    :is-parent="true"
-                    @clicked-load-replies="getReplies">
+  <section v-config>
+    <!-- Single comment -->
+    <article-comment
+      v-for="(element, index) in comments"
+      :key="index"
+      :author="element.author.fullname"
+      :avatar-url="element.author.avatar.url"
+      :created-at="element.createdAt"
+      :content="element.text"
+      :replies-amount="element.replies.length"
+      :parent-id="element.id"
+      :is-parent="true"
+      @clicked-load-replies="getReplies">
 
-    <div v-if="element.areRepliesExpanded">
-      <article-comment v-for="(element, index) in element.replies" :key="index"
-                        :author="element.author.fullname"
-                        :avatar-url="element.author.avatar.url"
-                        :created-at="element.createdAt"
-                        :content="element.text"
-                        :is-parent="false"/>
-    </div>
-  </article-comment>
+      <!-- Subcomments -->
+      <div v-if="element.areRepliesExpanded">
+        <article-comment
+          v-for="(element, index) in element.replies"
+          :key="index"
+          :author="element.author.fullname"
+          :avatar-url="element.author.avatar.url"
+          :created-at="element.createdAt"
+          :content="element.text"
+          :is-parent="false"/>
+      </div>
+    </article-comment>
 
-  <knit-button v-if="commentsAmount < totalItems"
-               @click.native="onLoadCommentsClick()"
-               :buttonClasses="['knit-button--big', 'article-comments__load-button']">
-    Załaduj więcej
-  </knit-button>
-</section>
+    <!-- Fetch more comments -->
+    <knit-button
+      v-if="commentsAmount < totalItems"
+      :button-classes="['knit-button--big', 'article-comments__load-button']"
+      @click.native="onLoadCommentsClick()">
+      Załaduj więcej
+    </knit-button>
+  </section>
 </template>
 
 <script>
@@ -35,28 +43,35 @@ import KnitService from '~/services/knitService'
 import _ from 'lodash'
 
 export default {
+  components: {
+    ArticleComment,
+    KnitButton,
+  },
+  mixins: {},
+  props: {
+    articleId: {
+      type: String,
+      required: true,
+    },
+  },
   data () {
     return {
       limit: 2,
       comments: [],
       page: 0,
-      totalItems: 0
-    }
-  },
-  components: {
-    ArticleComment,
-    KnitButton
-  },
-  props: {
-    articleId: {
-      type: String,
-      required: true
+      totalItems: 0,
     }
   },
   computed: {
     commentsAmount () {
       return this.comments.length
-    }
+    },
+  },
+  beforeMount () {
+    this.getCommentsPage()
+      .then(data => {
+        this.totalItems = data['hydra:totalItems']
+      })
   },
   methods: {
     onLoadCommentsClick () {
@@ -68,7 +83,7 @@ export default {
         group: ['UserReadLess'],
         limit: this.limit,
         'article.id': this.articleId,
-        'order[createdAt]': 'DESC'
+        'order[createdAt]': 'DESC',
       }
 
       if (!_.isEmpty(this.comments)) {
@@ -93,7 +108,7 @@ export default {
       const qsObject = {
         'comment.id': commentId,
         'order[createdAt]': 'ASC',
-        group: ['UserReadLess']
+        group: ['UserReadLess'],
       }
 
       KnitService.getCollection(this.$axios, 'comment_replies', qsObject)
@@ -102,15 +117,8 @@ export default {
           this.comments[index].replies = data['hydra:member']
           this.comments[index].areRepliesExpanded = true
         })
-    }
+    },
   },
-  mixins: {},
-  beforeMount () {
-    this.getCommentsPage()
-      .then(data => {
-        this.totalItems = data['hydra:totalItems']
-      })
-  }
 }
 </script>
 
@@ -128,7 +136,7 @@ export default {
 .article-subcomments {
   flex-basis: 100%;
   margin: 40px 0 0 60px;
-  border-left: 2px solid #dddddd;
+  border-left: 2px solid #ddd;
 
   .article-comment {
     padding: 0 30px 0 20px;

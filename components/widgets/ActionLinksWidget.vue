@@ -1,49 +1,51 @@
 <template>
-<section class="widget action-links" v-config>
-  <action-links-widget-item v-for="(link, index) in links" :key ="index"
-    :class="['action-links__link-item', link.itemClass]"
-    :linktext="link.text"
-    :iconClass="link.icon"/>
-</section>
+  <section v-config class="widget action-links">
+    <action-links-widget-item
+      v-for="(link, index) in links"
+      :key ="index"
+      :class="['action-links__link-item', link.itemClass]"
+      :linktext="link.text"
+      :icon-class="link.icon"/>
+  </section>
 </template>
 
 <script>
 import ActionLinksWidgetItem from '~/components/widgets/partials/ActionLinksWidgetItem'
 
 export default {
+  components: {
+    ActionLinksWidgetItem,
+  },
+  mixins: {},
+  props: {},
   data () {
     return {
       links: [
         {
           text: 'Dodaj nową ofertę pracy!',
           icon: 'flaticon-job-search',
-          itemClass: 'action-link--job-offer'
+          itemClass: 'action-link--job-offer',
         },
         {
           text: 'Dodaj nowy projekt i znajdź fantastyczny zespół',
           icon: 'flaticon-teamwork',
-          itemClass: 'action-link--project-offer'
+          itemClass: 'action-link--project-offer',
         },
         {
           text: 'Dowiedź się więcej o KNIT PK',
           icon: 'flaticon-info',
-          itemClass: 'action-link--more-info'
+          itemClass: 'action-link--more-info',
         },
         {
           text: 'Utwórz sekcję i wspólnie poszerzaj swoją wiedzę',
           icon: 'flaticon-programming',
-          itemClass: 'action-link--new-section'
-        }
-      ]
+          itemClass: 'action-link--new-section',
+        },
+      ],
     }
   },
-  components: {
-    ActionLinksWidgetItem
-  },
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 

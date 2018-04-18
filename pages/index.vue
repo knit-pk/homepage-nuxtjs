@@ -1,20 +1,20 @@
 <template>
-<div class="page page--mainpage">
-  <div class="leftside-wrapper">
-    <main class="main-content">
-      <article-card-list :articles="mainpageList"/>
-    </main>
-    <aside class="aside-down">
-      <job-offers-widget/>
-      <action-links-widget/>
+  <div class="page page--mainpage">
+    <div class="leftside-wrapper">
+      <main class="main-content">
+        <article-card-list :articles="mainpageList"/>
+      </main>
+      <aside class="aside-down">
+        <job-offers-widget/>
+        <action-links-widget/>
+      </aside>
+    </div>
+    <aside class="aside-right">
+      <alert-widget class="aside-right__widget"/>
+      <meetup-calendar-widget class="aside-right__widget"/>
+      <projects-widget class="aside-right__widget"/>
     </aside>
   </div>
-  <aside class="aside-right">
-    <alert-widget class="aside-right__widget"/>
-    <meetup-calendar-widget class="aside-right__widget"/>
-    <projects-widget class="aside-right__widget"/>
-  </aside>
-</div>
 </template>
 
 <script>
@@ -35,19 +35,19 @@ export default {
     JobOffersWidget,
     ArticleCardList,
     ProjectsWidget,
-    AlertWidget
+    AlertWidget,
   },
   computed: {
     ...mapGetters({
-      mainPageCodesList: 'view/articles/mainPage'
+      mainPageCodesList: 'view/articles/mainPage',
     }),
     mainpageList () {
-      return _.map(this.mainPageCodesList, code => this.$store.getters[ 'resources/articles' ][code])
-    }
+      return _.map(this.mainPageCodesList, code => this.$store.getters['resources/articles'][code])
+    },
   },
-  fetch ({ store, params }) {
+  fetch ({ store }) {
     return store.dispatch('view/articles/getMainPage')
-  }
+  },
 }
 </script>
 
@@ -93,13 +93,13 @@ export default {
 
       &__link-item {
         @media (max-width: $screen-md) {
-          flex-basis: 100%;
           height: auto;
           flex-direction: row;
           align-items: center;
           margin-bottom: 10px;
           padding: 15px;
           flex: 1;
+          flex-basis: 100%;
           width: 100%;
 
           &:last-child {

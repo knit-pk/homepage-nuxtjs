@@ -1,75 +1,76 @@
 <template>
-<div class="job-offers-widget-item">
+  <div class="job-offers-widget-item">
 
-  <!-- Job offer link -->
-  <a href="#" class="job-offers-widget-item__link"></a>
+    <!-- Job offer link -->
+    <a href="#" class="job-offers-widget-item__link"/>
 
-  <!-- Job offer content -->
-  <div class="job-offers-widget-item__content">
-    <span :class="['job-offers-widget-item__technology-icon', devIconClass]" aria-hidden="true"></span>
-    <span class="visualy-hidden"> {{ technology }} </span>
+    <!-- Job offer content -->
+    <div class="job-offers-widget-item__content">
+      <span :class="['job-offers-widget-item__technology-icon', devIconClass]" aria-hidden="true"/>
+      <span class="visualy-hidden"> {{ technology }} </span>
 
-    <!-- Job offer left side -->
-    <div class="job-offers-widget-item__left-side">
-      <span class="job-offers-widget-item__job-position">
-        {{ upper(title) }}
-      </span>
-      <a v-if="employerWebpage" target="_blank" :href="employerWebpage" class="job-offers-widget-item__employer-link link">
-        {{ employerName }}
-      </a>
-      <span v-else class="job-offers-widget-item__employer-name"> {{ employerName }} </span>
-    </div>
+      <!-- Job offer left side -->
+      <div class="job-offers-widget-item__left-side">
+        <span class="job-offers-widget-item__job-position">
+          {{ upper(title) }}
+        </span>
+        <a v-if="employerWebpage" :href="employerWebpage" target="_blank" class="job-offers-widget-item__employer-link link">
+          {{ employerName }}
+        </a>
+        <span v-else class="job-offers-widget-item__employer-name"> {{ employerName }} </span>
+      </div>
 
-    <!-- Job offer right side -->
-    <div class="job-offers-widget-item__right-side">
-      <span v-if="salaryBrackets" class="flaticon-money job-offers-widget-item__salary-brackets">
-        {{ salaryBracketsWithCurrency }}
-      </span>
-      <span class="job-offers-widget-item__creation-date">
-        {{ formatDateToLocalString(createdAt, 'pl', { month: 'short', day: '2-digit', year: 'numeric' }) }}
-      </span>
+      <!-- Job offer right side -->
+      <div class="job-offers-widget-item__right-side">
+        <span v-if="salaryBrackets" class="flaticon-money job-offers-widget-item__salary-brackets">
+          {{ salaryBracketsWithCurrency }}
+        </span>
+        <span class="job-offers-widget-item__creation-date">
+          {{ formatDateToLocalString(createdAt, 'pl', { month: 'short', day: '2-digit', year: 'numeric' }) }}
+        </span>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
 import templateHelper from '~/helpers/template'
 
 export default {
-  data () {
-    return {}
-  },
   components: {},
+  mixins: [templateHelper],
   props: {
     createdAt: {
       default: '',
-      type: String
+      type: String,
     },
     employerWebpage: {
       default: '',
-      type: String
+      type: String,
     },
     salaryBrackets: {
       default: '',
-      type: String
+      type: String,
     },
     technology: {
       default: '',
-      type: String
+      type: String,
     },
     currency: {
       default: '',
-      type: String
+      type: String,
     },
     employer: {
       default: '',
-      type: String
+      type: String,
     },
     title: {
       default: '',
-      type: String
-    }
+      type: String,
+    },
+  },
+  data () {
+    return {}
   },
   computed: {
     devIconClass () {
@@ -80,10 +81,9 @@ export default {
     },
     salaryBracketsWithCurrency () {
       return `${this.salaryBrackets} ${this.currency}`
-    }
+    },
   },
   methods: {},
-  mixins: [ templateHelper ]
 }
 </script>
 
@@ -154,7 +154,7 @@ export default {
     z-index: 10;
   }
 
-   &__employer-name {
+  &__employer-name {
     font-size: 0.75rem;
     margin-top: 7px;
   }
@@ -163,7 +163,7 @@ export default {
     font-size: 0.95rem;
     white-space: nowrap;
 
-    &:before {
+    &::before {
       color: $job-offers-widget-item-salary-brackets-icon-color;
       font-size: 0.95rem;
     }

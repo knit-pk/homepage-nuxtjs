@@ -18,6 +18,7 @@
   "typeAcquisition": {
     "include": [
       "lodash",
+      "jest",
       "axios",
       "vue",
       "qs"

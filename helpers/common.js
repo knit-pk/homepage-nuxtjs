@@ -47,5 +47,5 @@ export default {
   pickItemsProps,
   getKnitQs,
   isProd,
-  getEnv
+  getEnv,
 }

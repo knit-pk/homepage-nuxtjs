@@ -1,30 +1,30 @@
 <template>
-<h1 class="site-heading" v-config>
-  <router-link :to="{ path: '/' }" class="site-heading__link">
-    <div class="site-heading__logo">
-      <knit-logo/>
-    </div>
-    <div class="site-heading__name-wrapper">
-      <span>Koło Naukowe IT</span>
-      <span class="site-heading__university-name">Politechnika Krakowska</span>
-    </div>
-  </router-link>
-</h1>
+  <h1 v-config class="site-heading">
+    <router-link :to="{ path: '/' }" class="site-heading__link">
+      <div class="site-heading__logo">
+        <knit-logo/>
+      </div>
+      <div class="site-heading__name-wrapper">
+        <span>Koło Naukowe IT</span>
+        <span class="site-heading__university-name">Politechnika Krakowska</span>
+      </div>
+    </router-link>
+  </h1>
 </template>
 <script>
 import KnitLogo from '~/components/commons/KnitLogo'
 
 export default {
+  components: {
+    KnitLogo,
+  },
+  mixins: {},
+  props: {},
   data () {
     return {}
   },
-  components: {
-    KnitLogo
-  },
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 

@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 // Mutation types
 const types = {
-  INJECT_RESOURCE: 'INJECT_RESOURCE'
+  INJECT_RESOURCE: 'INJECT_RESOURCE',
 }
 
 // Mutation functions
@@ -12,16 +12,16 @@ const injection = storeHelper.createMutationFn(types.INJECT_RESOURCE)
 
 // Module getters
 export const getters = {
-  articles: state => state.articles
+  articles: state => state.articles,
 }
 
 // Module state
 export const state = () => ({
-  articles: {}
+  articles: {},
 })
 
 export const actions = {
-  injectResource ({ state, commit }, params) {
+  injectResource ({ commit }, params) {
     // Get data codes
     const codes = _.keys(params.data)
 
@@ -33,14 +33,14 @@ export const actions = {
 
     // Return those codes
     return codes
-  }
+  },
 }
 
 export const mutations = {
-  [ types.INJECT_RESOURCE ] (state, payload) {
+  [types.INJECT_RESOURCE] (state, payload) {
     state[payload.path] = {
       ...state[payload.path],
-      ...payload.data
+      ...payload.data,
     }
-  }
+  },
 }

@@ -1,24 +1,24 @@
 <template>
-<div class="knit-menu" v-config>
+  <div v-config class="knit-menu">
 
-  <!-- Site heading -->
-  <site-heading/>
+    <!-- Site heading -->
+    <site-heading/>
 
-  <!-- Hamburger button -->
-  <button @click="onHamburgerClick" :class="[ 'button-no-highlight hamburger', { 'hamburger--open': isMobileMenuShown } ]" type="button">
-    <span class="hamburger__icon icon1"></span>
-    <span class="hamburger__icon icon2"></span>
-    <span class="hamburger__icon icon3"></span>
-  </button>
+    <!-- Hamburger button -->
+    <button :class="[ 'button-no-highlight hamburger', { 'hamburger--open': isMobileMenuShown } ]" type="button" @click="onHamburgerClick">
+      <span class="hamburger__icon icon1"/>
+      <span class="hamburger__icon icon2"/>
+      <span class="hamburger__icon icon3"/>
+    </button>
 
-  <!-- Collapse menu content -->
-  <div :class="[ 'knit-menu__navigation collapse-menu', { 'collapse-menu--show': isMobileMenuShown } ]">
-    <knit-navbar class="navbar--menu" @linkClickedEvent="onNavbarLinkClick"/>
-    <div class="knit-menu__searchbar-wrapper">
-      <searchbar class="searchbar--menu"/>
+    <!-- Collapse menu content -->
+    <div :class="[ 'knit-menu__navigation collapse-menu', { 'collapse-menu--show': isMobileMenuShown } ]">
+      <knit-navbar class="navbar--menu" @linkClickedEvent="onNavbarLinkClick"/>
+      <div class="knit-menu__searchbar-wrapper">
+        <searchbar class="searchbar--menu"/>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -28,24 +28,29 @@ import Searchbar from '~/components/commons/Searchbar'
 import _ from 'lodash'
 
 export default {
+  components: {
+    SiteHeading,
+    KnitNavbar,
+    Searchbar,
+  },
+  mixins: {},
+  props: {},
   data () {
     return {
       isMobileMenuShown: false,
       bodyElement: null,
-      htmlElement: null
+      htmlElement: null,
     }
   },
-  components: {
-    SiteHeading,
-    KnitNavbar,
-    Searchbar
-  },
-  props: {},
   computed: {},
+  beforeMount () {
+    this.bodyElement = document.querySelector('body')
+    this.htmlElement = document.querySelector('html')
+  },
   methods: {
     onHamburgerClick () {
       this.isMobileMenuShown = !this.isMobileMenuShown
-      this.toggleElementsClass([ this.bodyElement, this.htmlElement ], 'no-scroll')
+      this.toggleElementsClass([this.bodyElement, this.htmlElement], 'no-scroll')
       this.$emit('mobileMenuToggle', this.isMobileMenuShown)
     },
     onNavbarLinkClick () {
@@ -53,13 +58,8 @@ export default {
     },
     toggleElementsClass (elements, className) {
       _.each(elements, element => { element && element.classList.toggle(className) })
-    }
+    },
   },
-  mixins: {},
-  beforeMount () {
-    this.bodyElement = document.querySelector('body')
-    this.htmlElement = document.querySelector('html')
-  }
 }
 </script>
 
@@ -88,7 +88,7 @@ export default {
 }
 
 .collapse-menu {
-  transition: left .1s linear;
+  transition: left 0.1s linear;
   height: 100%;
   flex-direction: column;
   position: fixed;
@@ -110,8 +110,9 @@ export default {
 
 .hamburger {
   $p: &;
+
   @include reset-input;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
   position: relative;
   margin-top: 12px;
   cursor: pointer;
@@ -119,7 +120,7 @@ export default {
 
   &__icon {
     background-color: $knit-header-links-text-color;
-    transition: .25s ease-in-out;
+    transition: 0.25s ease-in-out;
     transform: rotate(0deg);
     border-radius: 3px;
     position: absolute;

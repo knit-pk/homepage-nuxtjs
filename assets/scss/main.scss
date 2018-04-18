@@ -46,7 +46,7 @@ a {
   position: fixed;
   z-index: 9998;
   width: 100%;
-  transition: margin-top .2s ease;
+  transition: margin-top 0.2s ease;
 
   &.fixed-top--hidden {
     margin-top: -100px;
@@ -165,6 +165,6 @@ a {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   border: 0;
 }

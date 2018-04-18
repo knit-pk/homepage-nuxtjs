@@ -1,32 +1,40 @@
 <template>
-<div class="article-content" v-config>
-  <header class="article-content__header">
-    <img :src="thumbnail" class="article-content__thumbnail" itemprop="image" />
-    <div class="article-content__header-info">
-      <h2 class="article-content__title" itemprop="headline"> {{ ellipsis(title, 110) }} </h2>
-      <div class="article-content__pub-info">
-        <router-link to="/" class="article-content__author-avatar-link">
-          <img class="article-content__author-avatar" :src="author.avatar.url" :alt="author.fullname" />
-        </router-link>
-        <div>
-          <router-link to="/" class="article-content__author-fullname"> {{ author.fullname }} </router-link>
-          <time :datetime="publishedAt" class="article-content__pub-date" itemprop="datePublished"> {{ publicationDate }} </time>
-          <meta itemprop="dateModified" :content="updatedAt" />
+  <div v-config class="article-content">
+
+    <!-- Header -->
+    <header class="article-content__header">
+      <img :src="thumbnail" class="article-content__thumbnail" itemprop="image">
+      <div class="article-content__header-info">
+
+        <!-- Title -->
+        <h2 class="article-content__title" itemprop="headline"> {{ ellipsis(title, 110) }} </h2>
+        <div class="article-content__pub-info">
+
+          <!-- Author avatar -->
+          <router-link to="/" class="article-content__author-avatar-link">
+            <img :src="author.avatar.url" :alt="author.fullname" class="article-content__author-avatar">
+          </router-link>
+          <div>
+            <router-link to="/" class="article-content__author-fullname"> {{ author.fullname }} </router-link>
+            <time :datetime="publishedAt" class="article-content__pub-date" itemprop="datePublished">
+              {{ publicationDate }}
+            </time>
+            <meta :content="updatedAt" itemprop="dateModified">
+          </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- Article content body -->
-  <vue-markdown class="article-content__body" :source="content"/>
+    <!-- Body -->
+    <vue-markdown :source="content" class="article-content__body"/>
 
-  <!-- Meta -->
-  <link itemprop="mainEntityOfPage" :href="mainEntityOfPage" />
-  <meta itemprop="description" :content="description" />
+    <!-- Meta -->
+    <link :href="mainEntityOfPage" itemprop="mainEntityOfPage">
+    <meta :content="description" itemprop="description">
 
-  <!-- Publisher meta -->
-  <ArticlePublisherMeta />
-</div>
+    <!-- Publisher meta -->
+    <ArticlePublisherMeta />
+  </div>
 </template>
 
 <script>
@@ -35,42 +43,43 @@ import templateHelper from '~/helpers/template'
 import VueMarkdown from 'vue-markdown'
 
 export default {
-  data () {
-    return {}
-  },
   components: {
     VueMarkdown,
-    ArticlePublisherMeta
+    ArticlePublisherMeta,
   },
+  mixins: [templateHelper],
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     content: {
       type: String,
-      required: true
+      required: true,
     },
     author: {
       type: Object,
-      required: true
+      required: true,
     },
     description: {
       type: String,
-      required: true
+      required: true,
     },
     thumbnail: {
       type: String,
-      required: true
+      required: true,
     },
     publishedAt: {
       type: String,
-      required: true
+      required: true,
     },
     updatedAt: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
+  },
+  data () {
+    return {}
   },
   computed: {
     publicationDate () {
@@ -80,10 +89,9 @@ export default {
       if (process.BROWSER_BUILD) {
         return `${window.location.hostname}${this.$route.path}`
       }
-    }
+    },
   },
   methods: {},
-  mixins: [ templateHelper ]
 }
 </script>
 
@@ -120,7 +128,7 @@ export default {
     order: 2;
     padding: 30px 35px;
     font-weight: normal;
-    font-size: 1.90rem;
+    font-size: 1.9rem;
 
     @media (max-width: $screen-md) {
       padding: 25px 20px;
@@ -231,14 +239,18 @@ export default {
       font-size: 1.5rem;
     }
 
-    ul, ol {
-      padding: 0 0 10px 35px;
+    ul {
+      list-style: none;
 
       li {
-        padding: 5px 0;
+        position: relative;
 
-        ul, ol {
-          padding: 5px 0 0 35px;
+        &::before {
+          content: "•";
+          font-size: 1.5rem;
+          position: absolute;
+          left: -30px;
+          top: 0; // can destroy someting, don't know where to find and test it
         }
       }
     }
@@ -258,18 +270,14 @@ export default {
       }
     }
 
-    ul {
-      list-style: none;
+    ul, ol {
+      padding: 0 0 10px 35px;
 
       li {
-        position: relative;
+        padding: 5px 0;
 
-        &:before {
-          content: "•";
-          font-size: 1.5rem;
-          position: absolute;
-          left: -30px;
-          top: 0px;
+        ul, ol {
+          padding: 5px 0 0 35px;
         }
       }
     }
@@ -309,14 +317,14 @@ export default {
       font-style: italic;
       position: relative;
 
-      &:before {
+      &::before {
         content: '';
         background-color: $blockquoute-decor-color;
         height: 100%;
         position: absolute;
         width: 4px;
         top: 1px;
-        left: 0px;
+        left: 0; // same as above, can destroy something
       }
     }
 
@@ -328,11 +336,12 @@ export default {
       margin: 0 auto;
     }
 
-    img + br + em, img + em {
+    img + em,
+    img + br + em {
       margin: 0 auto;
       display: block;
       text-align: center;
-      font-size: 0.90rem;
+      font-size: 0.9rem;
     }
 
     pre {

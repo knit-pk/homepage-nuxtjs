@@ -5,7 +5,7 @@ export default {
     published: commonHelper.isProd() ? true : undefined,
     group: ['UserReadLess', 'TagRead', 'CategoryRead', 'ImageReadLess'],
     limit: 5,
-    [`order[${commonHelper.isProd() ? 'publishedAt' : 'createdAt'}]`]: 'DESC'
+    [`order[${commonHelper.isProd() ? 'publishedAt' : 'createdAt'}]`]: 'DESC',
   },
   datePicker (item) {
     item.publishedAt = item.publishedAt || item.createdAt
@@ -30,8 +30,8 @@ export default {
     'code',
     'tags',
     'id',
-    '@id'
+    '@id',
   ],
   storePath: 'articles',
-  mainListName: 'wszystkie'
+  mainListName: 'wszystkie',
 }

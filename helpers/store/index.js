@@ -22,7 +22,7 @@ function commitMultiple (commit, commitArray) {
 function createMutationFn (type, payloadName = '') {
   return _.isEmpty(payloadName) ?
     (payload) => ({ type, ...payload }) :
-    (payload) => ({ type, [ payloadName ]: payload })
+    (payload) => ({ type, [payloadName]: payload })
 }
 
 /**
@@ -40,6 +40,6 @@ export default {
   commitMultiple,
   opera: {
     composer,
-    opus
-  }
+    opus,
+  },
 }

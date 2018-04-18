@@ -10,14 +10,14 @@
 
 <script>    <--- Script section
 export default {
+  components: {},
+  mixins: {},
+  props: {},
   data () {
     return {}
   },
-  components: {},
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 
@@ -29,9 +29,9 @@ The script section *MUST* export an ~Object~ which consist *AT LEAST* those prop
 
 | Property   | Default value |
 |------------+---------------|
-| data       | fn -> {}      |
 | components | {}            |
+| mixins     | {}            |
 | props      | {}            |
+| data       | fn -> {}      |
 | computed   | {}            |
 | methods    | {}            |
-| mixins     | {}            |

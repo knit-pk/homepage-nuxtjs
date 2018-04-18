@@ -10,7 +10,7 @@ export default {
       prevScrollY: 0,
       currScrollY: 0,
       fixedTop: null,
-      isMobileMenuShown: false
+      isMobileMenuShown: false,
     }
   },
   components: {},
@@ -47,7 +47,7 @@ export default {
 
     isEligibleForScroll () {
       return this.currScrollY > this.initializeHideHeight
-    }
+    },
   },
   mixins: {},
   beforeMount () {
@@ -56,5 +56,5 @@ export default {
   },
   beforeDestroy () {
     window.removeEventListener('scroll', this.fixedTopFall)
-  }
+  },
 }

@@ -20,5 +20,5 @@ function callOthersWhen (predicate) {
 
 export default {
   callOthersWhen,
-  call
+  call,
 }

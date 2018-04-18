@@ -1,44 +1,49 @@
 <template>
-<header class="knit-header" v-config>
+  <header v-config class="knit-header">
 
-  <!-- Site heading (logo + caption) -->
-  <site-heading/>
+    <!-- Site heading (logo + caption) -->
+    <site-heading/>
 
-  <!-- Searchbar -->
-  <searchbar/>
+    <!-- Searchbar -->
+    <searchbar/>
 
-  <b-dropdown class="header-dropdown" right no-flip>
-    <div slot="button-content" class="header-dropdown__profile-button">
-      <img :src="user.avatarUrl" class="header-dropdown__avatar" alt="">
-      <span class="header-dropdown__username">{{ user.name }}</span>
-    </div>
-    <b-dropdown-item href="#">If won't</b-dropdown-item>
-    <b-dropdown-item href="#">be useful</b-dropdown-item>
-    <b-dropdown-item href="#">we'll delete</b-dropdown-item>
-    <b-dropdown-divider></b-dropdown-divider>
-    <b-dropdown-item href="#">dropdown and make</b-dropdown-item>
-    <b-dropdown-item href="#">link to profile</b-dropdown-item>
-  </b-dropdown>
+    <b-dropdown class="header-dropdown" right no-flip>
+      <div slot="button-content" class="header-dropdown__profile-button">
+        <img :src="user.avatarUrl" class="header-dropdown__avatar" alt="">
+        <span class="header-dropdown__username"> {{ user.name }} </span>
+      </div>
+      <b-dropdown-item href="#"> If won't </b-dropdown-item>
+      <b-dropdown-item href="#"> be useful </b-dropdown-item>
+      <b-dropdown-item href="#"> we'll delete </b-dropdown-item>
+      <b-dropdown-divider/>
+      <b-dropdown-item href="#"> dropdown and make </b-dropdown-item>
+      <b-dropdown-item href="#"> link to profile </b-dropdown-item>
+    </b-dropdown>
 
-  <b-dropdown class="header-dropdown" right no-caret no-flip>
-    <span slot="button-content" class="flaticon-plus header-dropdown__button-icon" aria-label="Dodaj treść"></span>
-    <b-dropdown-item href="#">Napisz artykuł</b-dropdown-item>
-    <b-dropdown-item href="#">Dodaj ofertę pracy</b-dropdown-item>
-    <b-dropdown-item href="#">Utwórz projekt</b-dropdown-item>
-    <b-dropdown-divider></b-dropdown-divider>
-    <b-dropdown-item href="#">Dodaj spotkanie</b-dropdown-item>
-  </b-dropdown>
+    <b-dropdown class="header-dropdown" right no-caret no-flip>
+      <span slot="button-content" class="flaticon-plus header-dropdown__button-icon" aria-label="Dodaj treść"/>
+      <b-dropdown-item href="#"> Napisz artykuł </b-dropdown-item>
+      <b-dropdown-item href="#"> Dodaj ofertę pracy </b-dropdown-item>
+      <b-dropdown-item href="#"> Utwórz projekt </b-dropdown-item>
+      <b-dropdown-divider/>
+      <b-dropdown-item href="#"> Dodaj spotkanie </b-dropdown-item>
+    </b-dropdown>
 
-  <b-dropdown class="header-dropdown" right no-caret no-flip>
-    <span slot="button-content" class="flaticon-cog-wheel header-dropdown__button-icon" aria-label="Ustawienia"></span>
-    <b-dropdown-item href="#"><span class="flaticon-user header-dropdown__list-item-icon" aria-hidden="true"></span>Moje konto</b-dropdown-item>
-    <b-dropdown-divider></b-dropdown-divider>
-    <b-dropdown-item href="#">Akcja 1</b-dropdown-item>
-    <b-dropdown-item href="#">Akcja 2</b-dropdown-item>
-    <b-dropdown-divider></b-dropdown-divider>
-    <b-dropdown-item href="#"><span class="flaticon-logout header-dropdown__list-item-icon" aria-hidden="true"></span>Wyloguj</b-dropdown-item>
-  </b-dropdown>
-</header>
+    <b-dropdown class="header-dropdown" right no-caret no-flip>
+      <span slot="button-content" class="flaticon-cog-wheel header-dropdown__button-icon" aria-label="Ustawienia"/>
+      <b-dropdown-item href="#">
+        <span class="flaticon-user header-dropdown__list-item-icon" aria-hidden="true"/>
+        Moje konto
+      </b-dropdown-item>
+      <b-dropdown-divider/>
+      <b-dropdown-item href="#"> Akcja 1 </b-dropdown-item>
+      <b-dropdown-item href="#"> Akcja 2 </b-dropdown-item>
+      <b-dropdown-divider/>
+      <b-dropdown-item href="#"><span class="flaticon-logout header-dropdown__list-item-icon" aria-hidden="true"/>
+        Wyloguj
+      </b-dropdown-item>
+    </b-dropdown>
+  </header>
 </template>
 
 <script>
@@ -46,22 +51,22 @@ import SiteHeading from '~/components/commons/SiteHeading'
 import Searchbar from '~/components/commons/Searchbar'
 
 export default {
+  components: {
+    SiteHeading,
+    Searchbar,
+  },
+  mixins: {},
+  props: {},
   data () {
     return {
       user: {
         name: 'Dominik Źrebiec',
-        avatarUrl: '/temporary/article-author.png'
-      }
+        avatarUrl: '/temporary/article-author.png',
+      },
     }
   },
-  components: {
-    SiteHeading,
-    Searchbar
-  },
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 
@@ -88,12 +93,6 @@ export default {
   align-self: stretch;
   font-family: $default-font-family;
 
-  &.show {
-    > .btn {
-      background-color: $knit-header-links-focus-bg-color;
-    }
-  }
-
   .btn {
     display: flex;
     align-items: center;
@@ -103,7 +102,7 @@ export default {
     padding: 0 15px;
     outline: 0;
     color: $knit-header-links-text-color;
-    transition: background-color .15s ease-in-out, color .15s ease-in-out;
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
 
     &:hover {
       color: $knit-header-links-hover-text-color;
@@ -114,14 +113,20 @@ export default {
     }
   }
 
+  &.show {
+    > .btn {
+      background-color: $knit-header-links-focus-bg-color;
+    }
+  }
+
   &__button-icon {
-    &:before {
+    &::before {
       font-size: 15px;
     }
   }
 
   &__list-item-icon {
-    &:before {
+    &::before {
       font-size: 15px;
       margin-right: 8px;
     }
@@ -147,7 +152,7 @@ export default {
   }
 
   &__arrow {
-    &:before {
+    &::before {
       font-size: 10px;
       margin-left: 5px;
     }

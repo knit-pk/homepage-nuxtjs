@@ -1,21 +1,26 @@
 <template>
-<form class="searchbar" v-config>
-  <label for="site-search" class="visualy-hidden">Wyszukaj na stronie</label>
-  <input id="site-search" type="search" class="searchbar__input" placeholder="Szukaj" autocomplete="off">
-  <span class="flaticon-magnifying-glass searchbar__icon"></span>
-</form>
+  <form v-config class="searchbar">
+    <label for="site-search" class="visualy-hidden"> Wyszukaj na stronie </label>
+    <input
+      id="site-search"
+      type="search"
+      class="searchbar__input"
+      placeholder="Szukaj"
+      autocomplete="off">
+    <span class="flaticon-magnifying-glass searchbar__icon"/>
+  </form>
 </template>
 
 <script>
 export default {
+  components: {},
+  mixins: {},
+  props: {},
   data () {
     return {}
   },
-  components: {},
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 
@@ -69,7 +74,7 @@ export default {
     top: 50%;
     transform: translateY(-50%);
 
-    &:before {
+    &::before {
       font-size: 14px;
     }
   }

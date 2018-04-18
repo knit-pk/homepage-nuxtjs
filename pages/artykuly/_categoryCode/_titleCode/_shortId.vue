@@ -1,32 +1,33 @@
 <template>
-<div class="page page--article">
-  <div class="leftside-wrapper">
-    <main class="main-content">
+  <div class="page page--article">
+    <div class="leftside-wrapper">
+      <main class="main-content">
 
-      <!-- Article detail -->
-      <article-single :title="article.title"
-                  :content="article.content"
-                  :thumbnail="article.image.url"
-                  :author="article.author"
-                  :description="article.description"
-                  :published-at="article.publishedAt"
-                  :updated-at="article.updatedAt"
-                  :tags="article.tags"
-                  :ratings="article.ratings"
-                  :category="article.category"
-                  :comments="article.comments"
-                  :comments-count="article.commentsCount"
-                  :code="article.code"
-                  :id="article.id"/>
-    </main>
+        <!-- Article detail -->
+        <article-single
+          :title="article.title"
+          :content="article.content"
+          :thumbnail="article.image.url"
+          :author="article.author"
+          :description="article.description"
+          :published-at="article.publishedAt"
+          :updated-at="article.updatedAt"
+          :tags="article.tags"
+          :ratings="article.ratings"
+          :category="article.category"
+          :comments="article.comments"
+          :comments-count="article.commentsCount"
+          :code="article.code"
+          :id="article.id"/>
+      </main>
+    </div>
+
+    <!-- Aside right -->
+    <aside class="aside-right">
+      <popular-articles-widget/>
+      <recommended-articles-widget/>
+    </aside>
   </div>
-
-  <!-- Aside right -->
-  <aside class="aside-right">
-    <popular-articles-widget/>
-    <recommended-articles-widget/>
-  </aside>
-</div>
 </template>
 
 <script>
@@ -40,18 +41,18 @@ export default {
   components: {
     ArticleSingle,
     PopularArticlesWidget,
-    RecommendedArticlesWidget
+    RecommendedArticlesWidget,
   },
   computed: {
     article () {
       return this.$store.getters['resources/articles'][this.$store.getters['view/articles/currentArticleCode']]
-    }
+    },
   },
   fetch ({ store, params }) {
     return store.dispatch('view/articles/getArticle', {
-      code: _.values(params).join('/')
+      code: _.values(params).join('/'),
     })
-  }
+  },
 }
 </script>
 
