@@ -13,11 +13,13 @@ const injection = storeHelper.createMutationFn(types.INJECT_RESOURCE)
 // Module getters
 export const getters = {
   articles: state => state.articles,
+  categories: state => state.categories,
 }
 
 // Module state
 export const state = () => ({
   articles: {},
+  categories: {},
 })
 
 export const actions = {

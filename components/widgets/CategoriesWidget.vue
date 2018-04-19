@@ -1,10 +1,13 @@
 <template>
   <section v-config class="widget categories-widget">
-    Categories widget
+    {{ categoriesList }}
   </section>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import _ from 'lodash'
+
 export default {
   components: {},
   mixins: {},
@@ -12,7 +15,14 @@ export default {
   data () {
     return {}
   },
-  computed: {},
+  computed: {
+    ...mapGetters({
+      categoriesCodesList: 'view/categories/categoriesCodesList',
+    }),
+    categoriesList () {
+      return _.map(this.categoriesCodesList, code => this.$store.getters['resources/categories'][code])
+    },
+  },
   methods: {},
 }
 </script>
