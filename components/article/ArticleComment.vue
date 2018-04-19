@@ -103,11 +103,23 @@ export default {
   background-color: #fff;
   border-radius: $default-blocks-border-radius;
   padding: 20px 40px;
-  font-size: 15px;
+  font-size: 1rem;
+
+  @media (max-width: 480px) {
+    padding: 20px 20px;
+  }
+
+  @media (max-width: 400px) {
+    padding: 20px 10px;
+  }
 
   &__inner {
     display: flex;
     font-weight: 300;
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+    }
   }
 
   &__avatar-link {
@@ -144,10 +156,6 @@ export default {
   }
 
   &__content {
-    > p {
-      margin-bottom: 20px;
-    }
-
     > pre {
       display: block;
       padding: 12px 15px;
