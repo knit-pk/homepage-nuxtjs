@@ -222,6 +222,7 @@ export default {
 
     @media (max-width: $screen-sm) {
       padding: 0 15px 15px 15px;
+      text-align: initial;
     }
 
     a {
