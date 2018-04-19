@@ -74,7 +74,7 @@
 
           <!-- Meta -->
           <meta itemprop="interactionType" content="http://schema.org/LikeAction">
-          <span itemprop="userInteractionCount"> {{ likesCount }} </span>
+          <span class="article-footer__user-interaction" itemprop="userInteractionCount"> {{ likesCount }} </span>
         </router-link>
 
         <!-- Comments -->
@@ -90,7 +90,7 @@
 
           <!-- Meta -->
           <meta itemprop="interactionType" content="http://schema.org/CommentAction" >
-          <span itemprop="userInteractionCount"> {{ commentsCount }} </span>
+          <span class="article-footer__user-interaction" itemprop="userInteractionCount"> {{ commentsCount }} </span>
         </router-link>
 
         <!-- Right footer icons -->
@@ -198,24 +198,51 @@ export default {
 
   &__footer-box {
     display: flex;
-    justify-content: space-between;
     border-top: 1px solid $gray-30;
     padding: 20px 0;
 
-    @media (max-width: $screen-sm) {
-      flex-direction: column-reverse;
+    @media (max-width: 480px) {
+      flex-wrap: wrap;
     }
   }
 
   &__icons {
     text-align: right;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
 
-    @media (max-width: $screen-sm) {
-      padding-bottom: 5px;
+    @media (max-width: 480px) {
+      flex-basis: 100%;
+      justify-content: flex-end;
+      margin-top: 20px;
+      padding: 0 30px;
     }
   }
 
+  &__social-route {
+    font-size: 0.9rem;
+    color: $gray-40;
+    margin-left: 15px;
+    display: flex;
+
+    &::before {
+      font-size: 0.9rem;
+    }
+
+    &:hover,
+    &:focus {
+      color: $article-footer-button-hover-color;
+    }
+  }
+
+  &__user-interaction {
+    margin-left: 3px;
+    line-height: 1;
+  }
+
   &__author-wrapper {
+    flex: 1;
     display: flex;
   }
 
@@ -279,46 +306,6 @@ export default {
     &:hover,
     &:focus {
       filter: brightness(110%);
-    }
-  }
-
-  &__social-icons {
-    display: flex;
-    justify-content: flex-end;
-    flex: 1;
-
-    @media (max-width: $screen-sm) {
-      flex: none;
-    }
-
-    @media (max-width: 400px) {
-      display: block;
-      width: 75px;
-      margin-left: -10px;
-    }
-  }
-
-  &__social-route {
-    font-size: 0.9rem;
-    color: $gray-40;
-    margin-left: 15px;
-    display: inline-block;
-
-    &::before {
-      font-size: 0.9rem;
-    }
-
-    &:hover,
-    &:focus {
-      color: $article-footer-button-hover-color;
-    }
-
-    @media (max-width: $screen-sm) {
-      margin: 0 5px;
-    }
-
-    @media (max-width: 400px) {
-      margin: 10px 5px;
     }
   }
 }

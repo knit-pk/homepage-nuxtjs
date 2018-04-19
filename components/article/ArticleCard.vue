@@ -65,7 +65,7 @@
              @click.prevent.stop="handleLikeClick">
 
             <!-- Likes content -->
-            <span class="flaticon-like article-card__stat-icon" aria-hidden="true"/>
+            <span class="article-card__stat-icon fas fa-thumbs-up" aria-hidden="true"/>
             <span class="visualy-hidden" itemprop="interactionType" content="http://schema.org/LikeAction"> Polubienia </span>
             <span itemprop="userInteractionCount"> {{ likesCount }} </span>
           </a>
@@ -73,7 +73,7 @@
 
         <!-- Comments -->
         <li class="article-card__stats-group" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
-          <span class="flaticon-chat article-card__stat-icon article-card__comment-icon" title="Komentarze" aria-hidden="true"/>
+          <span class="article-card__stat-icon article-card__comment-icon fas fa-comment-alt" title="Komentarze" aria-hidden="true"/>
           <span class="visualy-hidden" itemprop="interactionType" content="http://schema.org/CommentAction"> Komentarze </span>
           <span itemprop="userInteractionCount"> {{ commentsCount }} </span>
         </li>
