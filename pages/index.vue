@@ -2,7 +2,7 @@
   <div class="page page--mainpage">
     <div class="leftside-wrapper">
       <main class="main-content">
-        <article-card-list :articles="mainpageList"/>
+        <article-card-list :articles="mainpageArticlesList"/>
       </main>
       <aside class="aside-down">
         <job-offers-widget/>
@@ -39,10 +39,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      mainPageCodesList: 'view/articles/mainPage',
+      mainPageArticlesCodesList: 'view/articles/mainPage',
     }),
-    mainpageList () {
-      return _.map(this.mainPageCodesList, code => this.$store.getters['resources/articles'][code])
+    mainpageArticlesList () {
+      return _.map(this.mainPageArticlesCodesList, code => this.$store.getters['resources/articles'][code])
     },
   },
   fetch ({ store }) {

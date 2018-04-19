@@ -10,7 +10,7 @@ const { composer, opus } = storeHelper.opera
 
 // Action names
 const actionNames = {
-  GET_CATEGORY_LIST: '#getCategoryList',
+  GET_CATEGORY_ARTICLES_LIST: '#getCategoryArticlesList',
   GET_MAINPAGE: '#getMainPage',
   GET_MAINLIST: '#getMainList',
   GET_ARTICLE: '#getArticle',
@@ -46,7 +46,7 @@ export const getters = {
   all: state => state.all,
   currentArticleCode: state => state.currentArticleCode,
   currentCategoryCode: state => state.currentCategoryCode,
-  categoryCodeList: state => state.currentCategoryCode === settings.mainListName ? state.mainList : state.byCategory[state.currentCategoryCode],
+  categoryArticlesCodeList: state => state.currentCategoryCode === settings.mainListName ? state.mainList : state.byCategory[state.currentCategoryCode],
   byCategory: state => state.byCategory,
 }
 
@@ -72,8 +72,8 @@ export const actions = {
       opus.call(({ ctx }) => ctx.commit(loading(true))),
     ],
     success: [
-      opus.call(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'mainPage', codes: result })),
-      opus.call(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
+      opus.call(({ ctx, result }) => ctx.commit(codes({ path: 'mainPage', codes: result }))),
+      opus.call(({ ctx, result }) => ctx.commit(codes({ path: 'all', codes: result }))),
       opus.call(({ ctx }) => ctx.commit(loading(false))),
     ],
   })(async function getMainPageAction ({ dispatch }) {
@@ -87,8 +87,8 @@ export const actions = {
     }, { root: true })
   }),
 
-  getCategoryList: composer.compose({
-    name: actionNames.GET_CATEGORY_LIST,
+  getCategoryArticlesList: composer.compose({
+    name: actionNames.GET_CATEGORY_ARTICLES_LIST,
     before: [
       opus.callOthersWhen(({ ctx, params }) => ctx.getters.currentCategoryCode !== params.categoryCode),
       opus.call(({ ctx, params }) => ctx.commit(changeCurrCategory(params.categoryCode))),
@@ -96,11 +96,11 @@ export const actions = {
       opus.call(({ ctx }) => ctx.commit(loading(true))),
     ],
     success: [
-      opus.call(({ ctx, params, result }) => ctx.dispatch('addCodes', { categoryCode: params.categoryCode, codes: result })),
-      opus.call(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
+      opus.call(({ ctx, params, result }) => ctx.commit(codes({ categoryCode: params.categoryCode, codes: result }))),
+      opus.call(({ ctx, result }) => ctx.commit(codes({ path: 'all', codes: result }))),
       opus.call(({ ctx }) => ctx.commit(loading(false))),
     ],
-  })(async function getCategoryListAction ({ dispatch }, params) {
+  })(async function getCategoryArticlesListAction ({ dispatch }, params) {
     const data = await knitService.getCollection(this.$axios, 'articles', { ...settings.defaultQsObject, 'category.code': params.categoryCode })
     const articles = customFns.prepareArticles(data)
 
@@ -119,8 +119,8 @@ export const actions = {
       opus.call(({ ctx }) => ctx.commit(loading(true))),
     ],
     success: [
-      opus.call(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'mainList', codes: result })),
-      opus.call(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
+      opus.call(({ ctx, result }) => ctx.commit(codes({ path: 'mainList', codes: result }))),
+      opus.call(({ ctx, result }) => ctx.commit(codes({ path: 'all', codes: result }))),
       opus.call(({ ctx }) => ctx.commit(loading(false))),
     ],
   })(async function getMainlistAction ({ dispatch }) {
@@ -141,7 +141,7 @@ export const actions = {
       opus.call(({ ctx }) => ctx.commit(loading(true))),
     ],
     success: [
-      opus.call(({ ctx, result }) => ctx.dispatch('addCodes', { path: 'all', codes: result })),
+      opus.call(({ ctx, result }) => ctx.commit(codes({ path: 'all', codes: result }))),
       opus.call(({ ctx }) => ctx.commit(loading(false))),
     ],
     always: [
@@ -162,11 +162,6 @@ export const actions = {
       data: articles,
     }, { root: true })
   }),
-
-  addCodes ({ commit }, params) {
-    knitLogger.debug(() => `Adding codes to '${params.path || params.categoryCode}': ${JSON.stringify(params.codes)}`)
-    commit(codes(params))
-  },
 }
 
 export const mutations = {
@@ -174,6 +169,8 @@ export const mutations = {
     state.loading = payload.loading
   },
   [types.ADD_CODES] (state, payload) {
+    knitLogger.debug(() => `Adding codes to '${payload.path || payload.categoryCode}': ${JSON.stringify(payload.codes)}`)
+
     if (payload.path) {
       state[payload.path] = _.union(state[payload.path], payload.codes)
     } else {

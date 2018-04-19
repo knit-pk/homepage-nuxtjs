@@ -7,7 +7,7 @@
       <main class="main-content">
         <article-card-list
           :class="[ 'article-card-list--horizontal', !isMobile ? 'article-card-list--big-main-post' : '' ]"
-          :articles="list"/>
+          :articles="articlesList"/>
       </main>
       <aside class="aside-down"/>
     </div>
@@ -35,19 +35,22 @@ export default {
   },
   computed: {
     ...mapGetters({
-      categoryCodeList: 'view/articles/categoryCodeList',
+      categoryArticlesCodeList: 'view/articles/categoryArticlesCodeList',
       isMobile: 'general/isMobile',
     }),
-    list () {
-      return _.map(this.categoryCodeList, code => this.$store.getters['resources/articles'][code])
+    articlesList () {
+      return _.map(this.categoryArticlesCodeList, code => this.$store.getters['resources/articles'][code])
     },
   },
   fetch ({ store, params }) {
-    if (params.categoryCode === 'wszystkie') {
-      return store.dispatch('view/articles/getMainList')
-    }
+    const promises = [
+      store.dispatch('view/categories/getCategories'),
+      params.categoryCode === 'wszystkie' ?
+        store.dispatch('view/articles/getMainList') :
+        store.dispatch('view/articles/getCategoryArticlesList', params),
+    ]
 
-    return store.dispatch('view/articles/getCategoryList', params)
+    return Promise.all(promises)
   },
 }
 </script>
