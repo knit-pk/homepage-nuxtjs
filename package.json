@@ -22,7 +22,7 @@
   "dependencies": {
     "@mapbox/stylelint-processor-arbitrary-tags": "^0.2.0",
     "@nuxtjs/axios": "^5.1.1",
-    "bootstrap": "4.1.1",
+    "bootstrap": "^4.1.1",
     "bootstrap-vue": "^2.0.0-rc.2",
     "detect-it": "^3.0.4",
     "lodash": "^4.17.5",
