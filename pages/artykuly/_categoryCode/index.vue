@@ -14,7 +14,7 @@
 
     <!-- Category aside right -->
     <aside class="aside-right">
-      <categories-widget/>
+      <categories-widget class="aside-right__widget"/>
     </aside>
   </div>
 </template>

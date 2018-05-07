@@ -1,4 +1,5 @@
 import knitService from '~/services/knitService'
+import settings from '~/store-settings/categories'
 import storeHelper from '~/helpers/store'
 import knitLogger from '~/config/logger'
 import _ from 'lodash'
@@ -20,6 +21,14 @@ const types = {
 // Mutation function
 const loading = storeHelper.createMutationFn(types.LOAD_CATEGORIES, 'loading')
 const codes = storeHelper.createMutationFn(types.ADD_CODES, 'codes')
+
+// Custom functions in store
+const customFns = {
+  prepareCategories (data) {
+    const categoriesArrSorted = _.orderBy(data['hydra:member'], 'articlesCount', 'desc')
+    return _.keyBy(categoriesArrSorted, '@id')
+  },
+}
 
 // Module getters
 export const getters = {
@@ -45,8 +54,8 @@ export const actions = {
       opus.call(({ ctx, result }) => ctx.commit(codes(result))),
     ],
   })(async function getCategoriesAction ({ dispatch }) {
-    const data = await knitService.getCollection(this.$axios, 'categories')
-    const categories = _.keyBy(data['hydra:member'], '@id')
+    const data = await knitService.getCollection(this.$axios, 'categories', settings.defaultQsObject)
+    const categories = customFns.prepareCategories(data)
 
     return dispatch('resources/injectResource', {
       data: categories,
