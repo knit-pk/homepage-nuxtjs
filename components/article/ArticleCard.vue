@@ -193,6 +193,7 @@ export default {
   flex-wrap: wrap;
   flex-direction: column;
   font-size: 14px;
+  min-height: 260px;
 
   &__thumbnail {
     @include img-fluid;
