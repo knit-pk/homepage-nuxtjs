@@ -1,0 +1,21 @@
+* Branch naming conventions in the project:
+
+Quoting the @k911:
+
+- ~feature/slug-name~ -> new feature and it should be pointing to develop branch or another feature branch
+
+  *Branch must be created from develop or another feature branch!*
+
+- ~bugfix/slug-name~ -> bugfix branch for develop branch i.e. issue does not occurr on master branch (it occurrs on dev env but not on prod pre-production env)
+
+  *Branch must be created from develop branch!*
+
+- ~hotfix/slug-name~ -> hotfix branch for both develop and master branches, bug occurrs on every environment.
+
+  It should be represented by two PRs:
+  - one pointing master
+  - and one develop
+
+  (Purpose for the hotfix branch is to be able to release fix on prod, pre-prod envs, without accidentally addition of features)
+
+  *Branch must be created from master branch!*
