@@ -1,5 +1,6 @@
 # Homepage-nuxtjs
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/d820268b393178d9e7eb/maintainability)](https://codeclimate.com/github/knit-pk/homepage-nuxtjs/maintainability)
 [![Greenkeeper badge](https://badges.greenkeeper.io/knit-pk/homepage-nuxtjs.svg)](https://greenkeeper.io/)
 
 ## Build Setup
