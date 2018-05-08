@@ -3,6 +3,9 @@ plugins:
   #   enabled: true # Should be enabled when stylelint will support vue (about 2 months 1.08.2018)
   eslint:
     enabled: true
+    checks:
+      vue/attributes-order:
+        enabled: false
     config:
       channel: "eslint-4"
       extensions:
