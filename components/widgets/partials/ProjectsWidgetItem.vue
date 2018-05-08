@@ -4,10 +4,7 @@
     <!-- Projects widget item top section -->
     <div class="projects-widget-item__top-section">
       <img v-if="isUrl(logo)" :src="logo" alt="" class="projects-widget-item__project-logo">
-      <div v-else :class="['projects-widget-item__project-logo',
-                           'projects-widget-item__project-logo-star',
-                           `projects-widget-item__project-logo${defaultCssPostfix(logo, '--green')}`,
-                           'fas fa-star']"/>
+      <div v-else :class="['projects-widget-item__project-logo', 'projects-widget-item__project-logo-star', `projects-widget-item__project-logo${defaultCssPostfix(logo, '--green')}`, 'fas fa-star']"/>
       <h3 class="projects-widget-item__title"> {{ title }} </h3>
     </div>
 

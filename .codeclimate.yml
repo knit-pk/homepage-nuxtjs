@@ -1,0 +1,19 @@
+plugins:
+  # stylelint:
+  #   enabled: true # Should be enabled when stylelint will support vue (about 2 months 1.08.2018)
+  eslint:
+    enabled: true
+    config:
+      channel: "eslint-4"
+      extensions:
+      - .js
+      - .vue
+      - .mjs
+  fixme:
+    enabled: true
+    config:
+      strings:
+      - FIXME
+      - BUG
+      - CUSTOM
+      - TODO
