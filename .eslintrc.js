@@ -28,10 +28,14 @@ module.exports = {
     'object-curly-spacing': ['error', 'always'],
     'operator-linebreak': ['error', 'after'],
     'comma-dangle': ['error', 'always-multiline'],
-    'vue/max-attributes-per-line': [ 4, {
+    'vue/max-attributes-per-line': [2, {
       singleline: 4,
+      multiline: {
+        max: 1,
+        allowFirstLine: true
+      }
     }],
-    'vue/attributes-order': [ 2, {
+    'vue/attributes-order': [2, {
       order: [
         'LIST_RENDERING',
         'CONDITIONALS',
