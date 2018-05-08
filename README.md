@@ -1,5 +1,6 @@
 # Homepage-nuxtjs
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6347d383472f41698f5c08953cccd24f)](https://app.codacy.com/app/kwcharllie379/homepage-nuxtjs?utm_source=github.com&utm_medium=referral&utm_content=knit-pk/homepage-nuxtjs&utm_campaign=badger)
 [![Greenkeeper badge](https://badges.greenkeeper.io/knit-pk/homepage-nuxtjs.svg)](https://greenkeeper.io/)
 
 ## Build Setup
