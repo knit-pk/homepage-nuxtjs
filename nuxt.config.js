@@ -1,5 +1,4 @@
 const ssrDirectives = require('./directives/ssr')
-const StylelintPlugin = require('stylelint-webpack-plugin')
 
 const env = process.env.NODE_ENV === 'production' ? process.env : Object.assign({}, require('dotenv').config().parsed, process.env)
 
@@ -107,28 +106,12 @@ module.exports = {
   ],
   build: {
     vendor: ['axios', 'lodash', 'qs', 'vue2-scrollbar'],
-    extend (config, ctx) {
-      // Vue loader
+    extend (config) {
       const vueLoader = config.module.rules.find(rule => rule.loader === 'vue-loader')
       vueLoader.options = Object.assign({}, vueLoader.options, {
         preserveWhitespace: false,
       })
-
-      // Eslint configuration
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/,
-        })
-      }
     },
-    plugins: [
-      new StylelintPlugin({
-        files: ['components/**/*.vue', 'layouts/**/*.vue', 'pages/**/*.vue'],
-        syntax: 'scss',
-      }),
-    ],
+    plugins: [],
   },
 }
