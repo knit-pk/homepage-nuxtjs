@@ -3,10 +3,7 @@
   <!-- Desktop version -->
   <section v-config v-if="isScrollable" class="widget job-offers-widget job-offers-widget--scrollable">
     <widget-title :title="title" :widget-class="widgetClass" :widget-icon-class="widgetIconClass">
-      <b-badge
-        pill
-        variant="info"
-        class="default-badge job-offers-widget__badge"> {{ itemsLength }} </b-badge>
+      <b-badge pill variant="info" class="default-badge job-offers-widget__badge"> {{ itemsLength }} </b-badge>
     </widget-title>
     <vue-scrollbar classes="job-offers-widget__scrollbar-wrapper">
       <div v-prevent-parent-scroll class="job-offers-widget__content">

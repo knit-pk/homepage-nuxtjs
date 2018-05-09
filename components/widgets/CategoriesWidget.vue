@@ -1,15 +1,26 @@
 <template>
   <section v-config class="widget categories-widget">
-    {{ categoriesList }}
+    <widget-title widget-class="categories-widget" title="Kategorie" widget-icon-class="far fa-newspaper"/>
+    <categories-widget-item
+      v-for="(item, index) of categoriesList"
+      :key="index"
+      :name="item.name"
+      :path="`/artykuly/${item.code}`"
+      :articles-count="item.articlesCount"/>
   </section>
 </template>
 
 <script>
+import CategoriesWidgetItem from '~/components/widgets/partials/CategoriesWidgetItem'
+import WidgetTitle from '~/components/widgets/partials/WidgetTitle'
 import { mapGetters } from 'vuex'
 import _ from 'lodash'
 
 export default {
-  components: {},
+  components: {
+    CategoriesWidgetItem,
+    WidgetTitle,
+  },
   mixins: {},
   props: {},
   data () {
@@ -32,7 +43,10 @@ export default {
 
 .categories-widget {
   background-color: #fff;
-  height: 500px;
   margin-bottom: $default-gutters-width;
+
+  &__title {
+    padding: 17px 15px;
+  }
 }
 </style>
