@@ -1,5 +1,5 @@
 import knitService from '~/services/knitService'
-import settings from '~/store-settings/articles'
+import settings from '~/config/store/articles'
 import commonHelper from '~/helpers/common'
 import storeHelper from '~/helpers/store'
 import knitLogger from '~/config/logger'

@@ -1,5 +1,5 @@
 import knitService from '~/services/knitService'
-import settings from '~/store-settings/categories'
+import settings from '~/config/store/categories'
 import storeHelper from '~/helpers/store'
 import knitLogger from '~/config/logger'
 import _ from 'lodash'
