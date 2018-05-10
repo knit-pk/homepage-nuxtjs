@@ -1,5 +1,5 @@
 import knitService from '~/services/knitService'
-import settings from '~/store-settings/articles'
+import settings from '~/config/store/articles'
 import commonHelper from '~/helpers/common'
 import storeHelper from '~/helpers/store'
 import knitLogger from '~/config/logger'
@@ -17,15 +17,13 @@ const actionNames = {
 }
 
 // Mutation types
-const types = {
+export const types = {
   CHANGE_CURRENT_ARTICLE_CODE: 'CHANGE_CURRENT_ARTICLE_CODE',
-  CHANGE_CURRENT_CATEGORY_CODE: 'CHANGE_CURRENT_CATEGORY_CODE',
   LOAD_ARTICLES: 'LOAD_ARTICLES',
   ADD_CODES: 'ADD_CODES',
 }
 
 // Mutation function
-const changeCurrCategory = storeHelper.createMutationFn(types.CHANGE_CURRENT_CATEGORY_CODE, 'currentCategoryCode')
 const changeCurrArticle = storeHelper.createMutationFn(types.CHANGE_CURRENT_ARTICLE_CODE, 'currentArticleCode')
 const loading = storeHelper.createMutationFn(types.LOAD_ARTICLES, 'loading')
 const codes = storeHelper.createMutationFn(types.ADD_CODES)
@@ -45,8 +43,10 @@ export const getters = {
   mainList: state => state.mainList,
   all: state => state.all,
   currentArticleCode: state => state.currentArticleCode,
-  currentCategoryCode: state => state.currentCategoryCode,
-  categoryArticlesCodeList: state => state.currentCategoryCode === settings.mainListName ? state.mainList : state.byCategory[state.currentCategoryCode],
+  categoryArticlesCodeList: (state, getters, rootGetters) => {
+    const categoriesGetters = rootGetters.view.categories
+    return categoriesGetters.currentCategoryCode === settings.mainListName ? state.mainList : state.byCategory[categoriesGetters.currentCategoryCode]
+  },
   byCategory: state => state.byCategory,
 }
 
@@ -60,7 +60,6 @@ export const state = () => ({
   loading: false,
   error: false,
   currentArticleCode: '',
-  currentCategoryCode: '',
 })
 
 // Module actions
@@ -90,15 +89,16 @@ export const actions = {
   getCategoryArticlesList: composer.compose({
     name: actionNames.GET_CATEGORY_ARTICLES_LIST,
     before: [
-      opus.callOthersWhen(({ ctx, params }) => ctx.getters.currentCategoryCode !== params.categoryCode),
-      opus.call(({ ctx, params }) => ctx.commit(changeCurrCategory(params.categoryCode))),
-      opus.callOthersWhen(({ ctx }) => _.isEmpty(ctx.getters.byCategory[ctx.getters.currentCategoryCode])),
+      opus.callOthersWhen(({ ctx, params }) => _.isEmpty(ctx.getters.byCategory[params.categoryCode])),
       opus.call(({ ctx }) => ctx.commit(loading(true))),
     ],
     success: [
       opus.call(({ ctx, params, result }) => ctx.commit(codes({ categoryCode: params.categoryCode, codes: result }))),
       opus.call(({ ctx, result }) => ctx.commit(codes({ path: 'all', codes: result }))),
       opus.call(({ ctx }) => ctx.commit(loading(false))),
+    ],
+    always: [
+      opus.call(({ ctx, params }) => ctx.dispatch('view/categories/changeCurrentCategory', { currentCategoryCode: params.categoryCode }, { root: true })),
     ],
   })(async function getCategoryArticlesListAction ({ dispatch }, params) {
     const data = await knitService.getCollection(this.$axios, 'articles', { ...settings.defaultQsObject, 'category.code': params.categoryCode })
@@ -114,7 +114,6 @@ export const actions = {
   getMainList: composer.compose({
     name: actionNames.GET_MAINLIST,
     before: [
-      opus.call(({ ctx }) => ctx.commit(changeCurrCategory(settings.mainListName))),
       opus.callOthersWhen(({ ctx }) => _.isEmpty(ctx.getters.mainList)),
       opus.call(({ ctx }) => ctx.commit(loading(true))),
     ],
@@ -122,6 +121,9 @@ export const actions = {
       opus.call(({ ctx, result }) => ctx.commit(codes({ path: 'mainList', codes: result }))),
       opus.call(({ ctx, result }) => ctx.commit(codes({ path: 'all', codes: result }))),
       opus.call(({ ctx }) => ctx.commit(loading(false))),
+    ],
+    always: [
+      opus.call(({ ctx }) => ctx.dispatch('view/categories/changeCurrentCategory', { currentCategoryCode: settings.mainListName }, { root: true })),
     ],
   })(async function getMainlistAction ({ dispatch }) {
     const data = await knitService.getCollection(this.$axios, 'articles', settings.defaultQsObject)
@@ -179,8 +181,5 @@ export const mutations = {
   },
   [types.CHANGE_CURRENT_ARTICLE_CODE] (state, payload) {
     state.currentArticleCode = payload.currentArticleCode
-  },
-  [types.CHANGE_CURRENT_CATEGORY_CODE] (state, payload) {
-    state.currentCategoryCode = payload.currentCategoryCode
   },
 }

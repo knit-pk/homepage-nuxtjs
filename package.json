@@ -7,14 +7,14 @@
     "name": "KNIT Web Team",
     "url": "https://github.com/orgs/knit-pk/teams/knit-web-team/members"
   },
-  "private": true,
+  "license": "MIT",
   "scripts": {
     "postinstall": "cp .env.example .env",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "precommit": "lint && lint:scss",
+    "precommit": "yarn lint && yarn lint:scss",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:scss": "stylelint \"**/*.(vue)\" --syntax scss",
     "test": "jest tests/",

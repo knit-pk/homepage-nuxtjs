@@ -1,0 +1,24 @@
+* Branch naming conventions
+
+- ~feature/kebab-case~
+  
+  Branch for a new feature. It should be pointing either to ~develop~ or another ~feature~ branch.
+  
+  *This branch type must be created either from develop or another feature branch!*
+
+- ~bugfix/kebab-case~
+  
+  Branch for a bugfix that occurrs on development environment (i.e. ~develop~ branch), but does not occurr on pre-production or production environment (i.e. ~master~ branch). It should be pointing only to ~develop~ branch.
+
+  *This branch type must be created from develop branch!*
+
+- ~hotfix/kebab-case~
+  
+  Branch for a bugfix that occurrs on production environment (i.e. ~master~ branch), therefore issue can be present on any environment.
+  It should be represented by Pull Requests:
+  - one pointing ~master~ branch
+  - and one pointing ~develop~ branch (this PR can be omitted in special cases, where cause of issue was previously refactored and fixed, but not yet merged with ~master~ branch)
+
+  *This branch type must be created from develop branch!*
+  
+  The purpose of this is to not release features accidentally, by merging master branch with develop branch, while doing hotfix.
