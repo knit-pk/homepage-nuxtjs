@@ -97,9 +97,9 @@ module.exports = {
     ],
     [
       '@nuxtjs/google-analytics', {
-        id: 'UA-115202685-1'
+        id: 'UA-115202685-1',
       },
-    ]
+    ],
   ],
   router: {
     middleware: ['is-mobile'],
