@@ -1,6 +1,7 @@
 <template>
   <header v-config class="category-banner">
-    <img :src="categoryImage" alt="Obraz kategorii" class="category-banner__image">
+    <h2 class="category-banner__name"> {{ currentCategoryName }} </h2>
+    <img :src="currentCategoryImage" alt="Obraz kategorii" class="category-banner__image">
   </header>
 </template>
 
@@ -10,17 +11,14 @@ import { mapGetters } from 'vuex'
 export default {
   components: {},
   mixins: [],
-  props: {
-    categoryImage: {
-      type: String,
-      required: true,
-    },
-  },
+  props: {},
   data () {
     return {}
   },
   computed: {
     ...mapGetters({
+      currentCategoryImage: 'view/categories/currentCategoryImage',
+      currentCategoryName: 'view/categories/currentCategoryName'
     }),
   },
   methods: {},
@@ -31,13 +29,7 @@ export default {
 @import "assets/scss/_imports";
 
 .category-banner {
-  height: 380px;
   width: 100%;
-
-  @media (max-width: $screen-xl) {
-    height: 300px;
-    margin: 0 10px;
-  }
 
   @media (max-width: $screen-sm) {
     margin: 0 10px;
@@ -45,8 +37,29 @@ export default {
 
   &__image {
     width: 100%;
-    height: 100%;
+    height: 380px;
     object-fit: cover;
+    box-sizing: border-box;
+
+    @media (max-width: $screen-xl) {
+      height: 280px;
+    }
+
+    @media (max-width: $screen-sm) {
+      height: 240px;
+    }
+  }
+
+  &__name {
+    font-size: 2.6rem;
+    color: $gray-50;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    margin-left: 5px;
+
+    @media (max-width: $screen-sm) {
+      font-size: 1.5rem;
+    }
   }
 }
 </style>

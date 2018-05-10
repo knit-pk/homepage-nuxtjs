@@ -1,6 +1,6 @@
 <template>
   <div class="page page--category">
-    <article-category-banner :category-image="articlesList[0].image.url"/>
+    <article-category-banner/>
 
     <!-- Category leftside wrapper -->
     <div class="leftside-wrapper">
