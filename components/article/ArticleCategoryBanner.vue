@@ -18,7 +18,7 @@ export default {
   computed: {
     ...mapGetters({
       currentCategoryImage: 'view/categories/currentCategoryImage',
-      currentCategoryName: 'view/categories/currentCategoryName'
+      currentCategoryName: 'view/categories/currentCategoryName',
     }),
   },
   methods: {},
