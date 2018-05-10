@@ -13,12 +13,14 @@ const actionNames = {
 }
 
 // Mutation types
-const types = {
+export const types = {
+  CHANGE_CURRENT_CATEGORY_CODE: 'CHANGE_CURRENT_CATEGORY_CODE',
   LOAD_CATEGORIES: 'LOAD_CATEGORIES',
   ADD_CODES: 'ADD_CODES',
 }
 
 // Mutation function
+const changeCurrCategory = storeHelper.createMutationFn(types.CHANGE_CURRENT_CATEGORY_CODE, 'currentCategoryCode')
 const loading = storeHelper.createMutationFn(types.LOAD_CATEGORIES, 'loading')
 const codes = storeHelper.createMutationFn(types.ADD_CODES, 'codes')
 
@@ -26,19 +28,31 @@ const codes = storeHelper.createMutationFn(types.ADD_CODES, 'codes')
 const customFns = {
   prepareCategories (data) {
     const categoriesArrSorted = _.orderBy(data['hydra:member'], 'articlesCount', 'desc')
-    return _.keyBy(categoriesArrSorted, '@id')
+    return _.keyBy(categoriesArrSorted, 'code')
   },
 }
 
 // Module getters
 export const getters = {
+  currentCategoryImage: (state, getters, rootGetters) => {
+    return _.get(rootGetters.resources.categories, `${state.currentCategoryCode}.image.url`, getters.mainListImage)
+  },
+  mainListImage: (state, getters, rootGetters) => {
+    const categoriesKeys = _.keys(rootGetters.resources.categories)
+    const randomKey = categoriesKeys[Math.floor(Math.random() * categoriesKeys.length)]
+
+    return _.get(rootGetters.resources.categories, `${randomKey}.image.url`, '')
+  },
+  currentCategoryName: (state, getters, rootGetters) => _.get(rootGetters.resources.categories, `${state.currentCategoryCode}.name`, 'Artykuły'),
+  currentCategoryCode: state => state.currentCategoryCode,
   categoriesCodesList: state => state.all,
 }
 
 // Module state
 export const state = () => ({
-  all: [],
+  currentCategoryCode: '',
   loading: false,
+  all: [],
 })
 
 // Module actions
@@ -62,6 +76,11 @@ export const actions = {
       path: 'categories',
     }, { root: true })
   }),
+
+  changeCurrentCategory ({ commit, state }, params) {
+    knitLogger.debug(() => `Changing current category ${state.currentCategoryCode} to ${params.currentCategoryCode}`)
+    commit(changeCurrCategory(params.currentCategoryCode))
+  },
 }
 
 export const mutations = {
@@ -71,5 +90,8 @@ export const mutations = {
   [types.ADD_CODES] (state, payload) {
     knitLogger.debug(() => `Adding codes to all categories ${JSON.stringify(payload.codes)}`)
     state.all = _.union(state.all, payload.codes)
+  },
+  [types.CHANGE_CURRENT_CATEGORY_CODE] (state, payload) {
+    state.currentCategoryCode = payload.currentCategoryCode
   },
 }
