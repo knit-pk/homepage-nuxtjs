@@ -13,7 +13,8 @@ const actionNames = {
 }
 
 // Mutation types
-const types = {
+export const types = {
+  CHANGE_CURRENT_CATEGORY_CODE: 'CHANGE_CURRENT_CATEGORY_CODE',
   LOAD_CATEGORIES: 'LOAD_CATEGORIES',
   ADD_CODES: 'ADD_CODES',
 }
@@ -32,13 +33,15 @@ const customFns = {
 
 // Module getters
 export const getters = {
+  currentCategoryCode: state => state.currentCategoryCode,
   categoriesCodesList: state => state.all,
 }
 
 // Module state
 export const state = () => ({
-  all: [],
+  currentCategoryCode: '',
   loading: false,
+  all: [],
 })
 
 // Module actions
@@ -71,5 +74,8 @@ export const mutations = {
   [types.ADD_CODES] (state, payload) {
     knitLogger.debug(() => `Adding codes to all categories ${JSON.stringify(payload.codes)}`)
     state.all = _.union(state.all, payload.codes)
+  },
+  [types.CHANGE_CURRENT_CATEGORY_CODE] (state, payload) {
+    state.currentCategoryCode = payload.currentCategoryCode
   },
 }

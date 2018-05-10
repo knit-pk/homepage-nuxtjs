@@ -1,16 +1,28 @@
 <template>
-  <header v-config class="category-banner"/>
+  <header v-config class="category-banner">
+    <img :src="categoryImage" alt="Obraz kategorii" class="category-banner__image">
+  </header>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   components: {},
   mixins: [],
-  props: {},
+  props: {
+    categoryImage: {
+      type: String,
+      required: true,
+    },
+  },
   data () {
     return {}
   },
-  computed: {},
+  computed: {
+    ...mapGetters({
+    }),
+  },
   methods: {},
 }
 </script>
@@ -19,9 +31,8 @@ export default {
 @import "assets/scss/_imports";
 
 .category-banner {
-  height: 400px;
+  height: 380px;
   width: 100%;
-  background-color: red;
 
   @media (max-width: $screen-xl) {
     height: 300px;
@@ -30,6 +41,12 @@ export default {
 
   @media (max-width: $screen-sm) {
     margin: 0 10px;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 </style>
