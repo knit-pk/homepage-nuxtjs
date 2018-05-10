@@ -7,7 +7,7 @@
     "name": "KNIT Web Team",
     "url": "https://github.com/orgs/knit-pk/teams/knit-web-team/members"
   },
-  "private": true,
+  "license": "MIT",
   "scripts": {
     "postinstall": "cp .env.example .env",
     "dev": "nuxt",

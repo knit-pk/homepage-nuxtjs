@@ -1,5 +1,5 @@
 import knitService from '~/services/knitService'
-import settings from '~/store-settings/articles'
+import settings from '~/config/store/articles'
 import commonHelper from '~/helpers/common'
 import storeHelper from '~/helpers/store'
 import knitLogger from '~/config/logger'
@@ -90,15 +90,16 @@ export const actions = {
   getCategoryArticlesList: composer.compose({
     name: actionNames.GET_CATEGORY_ARTICLES_LIST,
     before: [
-      opus.callOthersWhen(({ ctx, params }) => ctx.getters.currentCategoryCode !== params.categoryCode),
-      opus.call(({ ctx, params }) => ctx.commit(changeCurrCategory(params.categoryCode))),
-      opus.callOthersWhen(({ ctx }) => _.isEmpty(ctx.getters.byCategory[ctx.getters.currentCategoryCode])),
+      opus.callOthersWhen(({ ctx, params }) => _.isEmpty(ctx.getters.byCategory[params.categoryCode])),
       opus.call(({ ctx }) => ctx.commit(loading(true))),
     ],
     success: [
       opus.call(({ ctx, params, result }) => ctx.commit(codes({ categoryCode: params.categoryCode, codes: result }))),
       opus.call(({ ctx, result }) => ctx.commit(codes({ path: 'all', codes: result }))),
       opus.call(({ ctx }) => ctx.commit(loading(false))),
+    ],
+    always: [
+      opus.call(({ ctx, params }) => ctx.commit(changeCurrCategory(params.categoryCode))),
     ],
   })(async function getCategoryArticlesListAction ({ dispatch }, params) {
     const data = await knitService.getCollection(this.$axios, 'articles', { ...settings.defaultQsObject, 'category.code': params.categoryCode })
