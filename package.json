@@ -14,13 +14,13 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
+    "precommit": "lint && lint:scss",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:scss": "stylelint \"**/*.(vue)\" --syntax scss",
     "test": "jest tests/",
     "format-on-save": "watch \"npm run lint -- --fix\" -d -p \"/node_modules/\""
   },
   "dependencies": {
-    "@mapbox/stylelint-processor-arbitrary-tags": "^0.2.0",
     "@nuxtjs/axios": "^5.1.1",
     "@nuxtjs/google-analytics": "^2.0.2",
     "bootstrap": "^4.1.1",
@@ -38,6 +38,7 @@
     "vue2-scrollbar": "0.0.3"
   },
   "devDependencies": {
+    "@mapbox/stylelint-processor-arbitrary-tags": "^0.2.0",
     "babel-eslint": "^8.2.2",
     "dotenv": "^5.0.1",
     "eslint": "^4.19.0",
