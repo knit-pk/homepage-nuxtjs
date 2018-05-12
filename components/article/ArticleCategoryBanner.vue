@@ -51,11 +51,11 @@ export default {
   }
 
   &__name {
-    font-size: 2.6rem;
+    font-size: 2.4rem;
     color: $gray-50;
     text-transform: uppercase;
     margin-bottom: 5px;
-    margin-left: 5px;
+    margin-left: 2px;
 
     @media (max-width: $screen-sm) {
       font-size: 1.5rem;

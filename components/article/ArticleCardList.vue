@@ -1,8 +1,5 @@
 <template>
   <section v-config class="article-card-list article-card-list--big-main-post">
-    <h2 class="visualy-hidden"> Artykuły KNIT </h2>
-
-    <!-- Articles list -->
     <article-card
       v-for="(article, index) in articles"
       :key="index"

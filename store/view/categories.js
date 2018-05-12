@@ -9,6 +9,7 @@ const { composer, opus } = storeHelper.opera
 
 // Action names
 const actionNames = {
+  CHANGE_CURRENT_CATEGORY: '#changeCurrentCategory',
   GET_CATEGORIES: '#getCategories',
 }
 
@@ -35,15 +36,11 @@ const customFns = {
 // Module getters
 export const getters = {
   currentCategoryImage: (state, getters, rootGetters) => {
-    return _.get(rootGetters.resources.categories, `${state.currentCategoryCode}.image.url`, getters.mainListImage)
+    return _.get(rootGetters.resources.categories, `${state.currentCategoryCode}.image.url`, '/wszystkie-artykuly.png')
   },
-  mainListImage: (state, getters, rootGetters) => {
-    const categoriesKeys = _.keys(rootGetters.resources.categories)
-    const randomKey = categoriesKeys[Math.floor(Math.random() * categoriesKeys.length)]
-
-    return _.get(rootGetters.resources.categories, `${randomKey}.image.url`, '')
+  currentCategoryName: (state, getters, rootGetters) => {
+    return _.get(rootGetters.resources.categories, `${state.currentCategoryCode}.name`, 'Artykuły')
   },
-  currentCategoryName: (state, getters, rootGetters) => _.get(rootGetters.resources.categories, `${state.currentCategoryCode}.name`, 'Artykuły'),
   currentCategoryCode: state => state.currentCategoryCode,
   categoriesCodesList: state => state.all,
 }
@@ -77,10 +74,15 @@ export const actions = {
     }, { root: true })
   }),
 
-  changeCurrentCategory ({ commit, state }, params) {
+  changeCurrentCategory: composer.compose({
+    name: actionNames.CHANGE_CURRENT_CATEGORY,
+    before: [
+      opus.callOthersWhen(({ params, ctx }) => ctx.state.currentCategoryCode !== params.currentCategoryCode),
+    ],
+  })(async function changeCurrentCategoryAction ({ commit, state }, params) {
     knitLogger.debug(() => `Changing current category ${state.currentCategoryCode} to ${params.currentCategoryCode}`)
     commit(changeCurrCategory(params.currentCategoryCode))
-  },
+  }),
 }
 
 export const mutations = {
@@ -88,7 +90,7 @@ export const mutations = {
     state.loading = payload.loading
   },
   [types.ADD_CODES] (state, payload) {
-    knitLogger.debug(() => `Adding codes to all categories ${JSON.stringify(payload.codes)}`)
+    knitLogger.debug(() => `Adding codes of categories ${JSON.stringify(payload.codes)}`)
     state.all = _.union(state.all, payload.codes)
   },
   [types.CHANGE_CURRENT_CATEGORY_CODE] (state, payload) {

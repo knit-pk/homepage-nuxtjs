@@ -5,9 +5,7 @@
     <!-- Category leftside wrapper -->
     <div class="leftside-wrapper">
       <main class="main-content">
-        <article-card-list
-          :class="[ 'article-card-list--horizontal', !isMobile ? 'article-card-list--big-main-post' : '' ]"
-          :articles="articlesList"/>
+        <article-card-list :class="[ 'article-card-list--horizontal', !isMobile ? 'article-card-list--big-main-post' : '' ]" :articles="articlesList"/>
       </main>
       <aside class="aside-down"/>
     </div>
