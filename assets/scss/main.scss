@@ -24,19 +24,6 @@ a {
   text-decoration: none;
 }
 
-.link {
-  @include link;
-}
-
-.link-no-decoration {
-  color: inherit;
-  text-decoration: none;
-
-  &:hover, &:active, &:visited {
-    text-decoration: none;
-  }
-}
-
 // *** base ***
 .default-badge {
   display: inline-block;
@@ -168,6 +155,29 @@ a {
   @media (max-width: $screen-sm) {
     margin: 0;
   }
+}
+
+.link {
+  @include link;
+}
+
+.link-no-decoration {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover, &:active, &:visited {
+    text-decoration: none;
+  }
+}
+
+.hover-list-item {
+  &:hover,
+    &:focus {
+      color: $gray-50;
+      background-color: $gray-10;
+      text-decoration: underline;
+      cursor: pointer;
+    }
 }
 
 // *** utilities ***

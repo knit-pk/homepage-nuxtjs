@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ path }" class="categories-widget-item link-no-decoration">
+  <router-link :to="{ path }" class="categories-widget-item link-no-decoration hover-list-item">
     <span class="categories-widget-item__name"> {{ name }} </span>
     <b-badge pill variant="info" class="categories-widget-item__articles-count"> {{ articlesCount }} </b-badge>
   </router-link>
