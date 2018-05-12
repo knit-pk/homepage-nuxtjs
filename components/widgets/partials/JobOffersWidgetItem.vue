@@ -98,10 +98,6 @@ export default {
     border-bottom: 1px solid $job-offers-widget-item-border-color;
   }
 
-  &:hover {
-    background-color: $job-offers-widget-item-hover-bg-color;
-  }
-
   &__link {
     position: absolute;
     top: 0;
