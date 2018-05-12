@@ -5,7 +5,7 @@
     <widget-title :title="title" :widget-class="widgetClass" :widget-icon-class="widgetIconClass"/>
 
     <!-- Projects wrapper -->
-    <div v-for="(item, index) of items" :key="index" class="projects-widget__projects-wrapper hover-list-item">
+    <div v-for="(item, index) of items" :key="index" class="projects-widget__projects-wrapper widget-item">
       <projects-widget-item
         :title="item.title"
         :max-team-size="item.maxTeamSize"

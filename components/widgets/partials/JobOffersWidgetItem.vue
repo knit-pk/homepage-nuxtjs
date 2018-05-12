@@ -1,5 +1,5 @@
 <template>
-  <div class="job-offers-widget-item">
+  <div class="job-offers-widget-item widget-item">
 
     <!-- Job offer link -->
     <a href="#" class="job-offers-widget-item__link"/>

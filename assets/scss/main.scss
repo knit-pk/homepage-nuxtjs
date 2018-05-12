@@ -170,14 +170,12 @@ a {
   }
 }
 
-.hover-list-item {
-  &:hover,
-    &:focus {
-      color: $gray-50;
-      background-color: $gray-10;
-      text-decoration: underline;
-      cursor: pointer;
-    }
+.widget-item {
+  &:hover {
+    color: $gray-50;
+    background-color: $gray-10;
+    cursor: pointer;
+  }
 }
 
 // *** utilities ***
