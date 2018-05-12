@@ -1,15 +1,27 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "allowSyntheticDefaultImports": true
+    "baseUrl": "./",
+    "paths": {
+      "~/*" : ["*"]
+    },
+    "target": "es2017",
+    "module": "es6",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
+    "checkJs": false
   },
   "lib": [
-    "es2015",
+    "es2017",
     "dom"
   ],
   "typeAcquisition": {
     "include": [
-      "lodash"
+      "lodash",
+      "jest",
+      "axios",
+      "vue",
+      "qs"
     ]
   }
 }

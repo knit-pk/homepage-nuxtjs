@@ -1,24 +1,24 @@
 <template>
-  <section class="meetup-calendar" v-config>
+  <section v-config class="widget meetup-calendar">
     Meetup calendar
   </section>
 </template>
 
 <script>
 export default {
+  components: {},
+  mixins: {},
+  props: {},
   data () {
     return {}
   },
-  components: {},
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .meetup-calendar {
   background-color: #fff;

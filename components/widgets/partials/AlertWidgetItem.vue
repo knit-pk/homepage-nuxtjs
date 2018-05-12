@@ -1,6 +1,8 @@
 <template>
   <div v-if="show" class="alert-widget-item">
-    <button @click="hideMessage" class="alert-widget-item__close-button"> &times; </button>
+    <button class="alert-widget-item__close-button" @click="hideMessage"> &times; </button>
+
+    <!-- Message box -->
     <h2 class="alert-widget-item__message-box">
       <span class="alert-widget-item__message-decorator"> Uwaga! </span>
       <span class="alert-widget-item__message"> {{ message }} </span>
@@ -10,25 +12,30 @@
 
 <script>
 export default {
+  components: {},
+  mixins: {},
+  props: {
+    message: {
+      type: String,
+      required: true,
+    },
+  },
   data () {
     return {
-      show: true
+      show: true,
     }
   },
-  components: {},
-  props: ['message'],
   computed: {},
   methods: {
-    hideMessage (event) {
+    hideMessage () {
       setTimeout(() => { this.show = false }, 100)
-    }
+    },
   },
-  mixins: {}
 }
 </script>
 
 <style lang="scss">
-@import "assets/scss/imports.scss";
+@import "assets/scss/_imports";
 
 .alert-widget-item {
   position: relative;
@@ -39,8 +46,7 @@ export default {
 
   &__message-box {
     padding: 16px 25px 16px 16px;
-    font-size: .86rem;
-    font-weight: normal;
+    font-size: 0.86rem;
     color: $alert-widget-item-text-color;
     background-color: $alert-widget-item-bg-color;
     font-weight: 300;

@@ -1,34 +1,34 @@
 <template>
   <h2 :class="['widget-title', `${widgetClass}__title`]">
-    <span :class="[widgetIconClass, 'widget-title__title-icon', `${widgetClass}__title-icon`]" aria-hidden="true"></span>
+    <span :class="['widget-title__title-icon', `${widgetClass}__title-icon`, widgetIconClass]" aria-hidden="true"/>
     {{ title }}
-    <slot></slot>
+    <slot/>
   </h2>
 </template>
 
 <script>
 export default {
-  data () {
-    return {}
-  },
   components: {},
+  mixins: {},
   props: {
     title: {
       default: '',
-      type: String
+      type: String,
     },
     widgetClass: {
       default: '',
-      type: String
+      type: String,
     },
     widgetIconClass: {
       default: '',
-      type: String
-    }
+      type: String,
+    },
+  },
+  data () {
+    return {}
   },
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 
@@ -37,10 +37,9 @@ export default {
 
 .widget-title {
   position: relative;
-  font-size: .96rem;
+  font-size: 0.96rem;
   font-size: 15px;
   padding: 15px;
-  font-weight: normal;
   border-bottom: 1px solid $widget-title-border-color;
   display: flex;
   align-items: center;
@@ -49,8 +48,8 @@ export default {
   &__title-icon {
     margin-right: 10px;
 
-    &:before {
-      font-size: 1rem;
+    &::before {
+      font-size: 1.3rem;
     }
   }
 }

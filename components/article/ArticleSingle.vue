@@ -1,5 +1,5 @@
 <template>
-  <article class="article" itemscope itemtype="http://schema.org/Article" v-config>
+  <article v-config class="article" itemtype="http://schema.org/Article" itemscope>
     <!-- article breadcrumbs -->
     <article-breadcrumb :breadcrumbs="breadcrumbs" />
 
@@ -21,7 +21,7 @@
       :comments-count="commentsCount" />
 
     <!-- article comments section -->
-    <article-comments :articleId="id" />
+    <article-comments :article-id="id" />
   </article>
 </template>
 
@@ -30,101 +30,104 @@ import ArticleBreadcrumb from '~/components/article/ArticleBreadcrumb'
 import ArticleComments from '~/components/article/ArticleComments'
 import ArticleContent from '~/components/article/ArticleContent'
 import ArticleFooter from '~/components/article/ArticleFooter'
-import templateHelper from '~/helpers/templateHelper'
-
-const makeArticleBreadcrumbs = (code, title) => [
-  {
-    text: 'Strona główna',
-    path: '/'
-  },
-  {
-    text: 'Artykuły',
-    path: '/articles'
-  },
-  {
-    text: title,
-    path: `/articles/${code}`
-  }
-]
+import templateHelper from '~/helpers/template'
 
 export default {
-  data () {
-    return {}
-  },
   components: {
     ArticleBreadcrumb,
     ArticleComments,
     ArticleContent,
-    ArticleFooter
+    ArticleFooter,
   },
+  mixins: [templateHelper],
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     content: {
       type: String,
-      required: true
+      required: true,
     },
     author: {
       type: Object,
-      required: true
+      required: true,
     },
     thumbnail: {
       type: String,
-      required: true
+      required: true,
     },
     publishedAt: {
       type: String,
-      required: true
+      required: true,
     },
     updatedAt: {
       type: String,
-      required: true
+      required: true,
     },
     id: {
-      type: String
-    },
-    slug: {
       type: String,
-      required: true
+      default: '',
     },
     comments: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     commentsCount: {
       type: Number,
-      default: 0
+      default: 0,
     },
     ratings: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     tags: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     description: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
+    category: {
+      type: Object,
+      required: true,
+    },
+    code: {
+      type: String,
+      required: true,
+    },
+  },
+  data () {
+    return {}
   },
   computed: {
     breadcrumbs () {
-      return makeArticleBreadcrumbs(this.slug, this.title)
+      return [
+        {
+          text: 'Strona Główna',
+          path: '/',
+        },
+        {
+          text: this.category.name,
+          path: `/artykuly/${this.category.code}`,
+        },
+        {
+          text: this.title,
+          path: `/artykuly/${this.code}`,
+        },
+      ]
     },
     likesCount () {
       return this.ratings.length
-    }
+    },
   },
   methods: {
     handleLikeClick () {
       this.isLiked = !this.isLiked
       document.activeElement.blur()
       // @TODO: Send handling request to the server
-    }
+    },
   },
-  mixins: [ templateHelper ]
 }
 </script>

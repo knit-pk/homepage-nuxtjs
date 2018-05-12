@@ -1,5 +1,5 @@
 <template>
-  <h1 class="site-heading" v-config>
+  <h1 v-config class="site-heading">
     <router-link :to="{ path: '/' }" class="site-heading__link">
       <div class="site-heading__logo">
         <knit-logo/>
@@ -15,21 +15,21 @@
 import KnitLogo from '~/components/commons/KnitLogo'
 
 export default {
+  components: {
+    KnitLogo,
+  },
+  mixins: {},
+  props: {},
   data () {
     return {}
   },
-  components: {
-    KnitLogo
-  },
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 
 <style lang="scss">
-@import "assets/scss/imports.scss";
+@import "assets/scss/imports";
 
 .site-heading {
   display: flex;

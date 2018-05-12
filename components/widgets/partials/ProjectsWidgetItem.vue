@@ -1,30 +1,39 @@
 <template>
   <div class="projects-widget-item widget-item">
+
+    <!-- Projects widget item top section -->
     <div class="projects-widget-item__top-section">
-      <img v-if="isUrl(logo)" :src="logo" alt="" class="projects-widget-item__project-logo"/>
-      <div v-else :class="['projects-widget-item__project-logo', 'projects-widget-item__project-logo-star', `projects-widget-item__project-logo${defaultCssPostfix(this.logo, '--green')}`, 'flaticon-star']"/>
+      <img v-if="isUrl(logo)" :src="logo" alt="" class="projects-widget-item__project-logo">
+      <div v-else :class="['projects-widget-item__project-logo', 'projects-widget-item__project-logo-star', `projects-widget-item__project-logo${defaultCssPostfix(logo, '--green')}`, 'fas fa-star']"/>
       <h3 class="projects-widget-item__title"> {{ title }} </h3>
     </div>
+
     <dl class="projects-widget-item__list" aria-label="Informacje o projekcie">
-      <div class="projects-widget-item__list-item" v-if="isNotEmpty(tags)">
+
+      <!-- Tags -->
+      <div v-if="isNotEmpty(tags)" class="projects-widget-item__list-item">
         <dt class="projects-widget-item__list-item-term" title="Technologie">
-          <span class="flaticon-curly-brackets projects-widget-item__list-item-logo" aria-hidden="true"></span>
+          <span class="projects-widget-item__list-item-logo fas fa-code" aria-hidden="true"/>
           <span class="visualy-hidden">Technologie</span>
         </dt>
-        <dd class="projects-widget-item__list-item-definition"> {{ arrayToStringList(tags) }} </dd>
+        <dd class="projects-widget-item__list-item-definition"> {{ join(tags, ', ') }} </dd>
       </div>
-      <div class="projects-widget-item__list-item" v-if="maxTeamSize">
+
+      <!-- Collaborators -->
+      <div v-if="maxTeamSize" class="projects-widget-item__list-item" >
         <dt class="projects-widget-item__list-item-term" title="Liczba kolaboratorów">
-          <span class="flaticon-user projects-widget-item__list-item-logo" aria-hidden="true"></span>
+          <span class="projects-widget-item__list-item-logo fas fa-users" aria-hidden="true"/>
           <span class="visualy-hidden">Liczba kolaboratorów</span>
         </dt>
         <dd class="projects-widget-item__list-item-definition">
-            Max: {{ maxTeamSize }}, Aktualnie: {{ !currentTeamSize ? 0 : currentTeamSize }}
+          Max: {{ maxTeamSize }}, Aktualnie: {{ !currentTeamSize ? 0 : currentTeamSize }}
         </dd>
       </div>
-      <div class="projects-widget-item__list-item" v-if="isNotEmpty(url)">
+
+      <!-- Repo infos -->
+      <div v-if="isNotEmpty(url)" class="projects-widget-item__list-item" >
         <dt class="projects-widget-item__list-item-term" title="Repozytorium">
-          <span class="flaticon-github-logo projects-widget-item__list-item-logo" aria-hidden="true"></span>
+          <span class="projects-widget-item__list-item-logo fas fa-link" aria-hidden="true"/>
           <span class="visualy-hidden">Repozytorium</span>
         </dt>
         <dd class="projects-widget-item__list-item-definition">
@@ -36,47 +45,47 @@
 </template>
 
 <script>
-import templateHelper from '~/helpers/templateHelper'
+import templateHelper from '~/helpers/template'
 
 export default {
-  data () {
-    return {}
-  },
   components: {},
+  mixins: [templateHelper],
   props: {
     tags: {
-      default: [],
-      type: Array
+      required: true,
+      type: Array,
     },
     title: {
-      default: '',
-      type: String
+      required: true,
+      type: String,
     },
     url: {
-      default: '',
-      type: String
+      required: true,
+      type: String,
     },
     maxTeamSize: {
       default: 10,
-      type: Number
+      type: Number,
     },
     currentTeamSize: {
       default: 1,
-      type: Number
+      type: Number,
     },
     logo: {
       default: 'teal',
-      type: String
-    }
+      type: String,
+    },
+  },
+  data () {
+    return {}
   },
   computed: {},
   methods: {},
-  mixins: [ templateHelper ]
 }
 </script>
 
 <style lang="scss">
-@import "assets/scss/imports.scss";
+@import "assets/scss/imports";
 
 .projects-widget-item {
   border-bottom: 1px solid $projects-widget-item-border-color;
@@ -92,7 +101,6 @@ export default {
 
   &__title {
     align-self: center;
-    font-weight: normal;
     margin-left: 15px;
     font-size: 1.1rem;
     font-weight: 300;
@@ -118,12 +126,12 @@ export default {
   }
 
   &__project-logo-star {
-    &:before {
+    &::before {
       color: $projects-widget-item-project-star-color;
       position: absolute;
       font-size: 1.5rem;
       top: 9px;
-      left: 11px;
+      left: 9px;
     }
   }
 
@@ -149,7 +157,7 @@ export default {
   &__list-item-logo {
     padding-right: 10px;
 
-    &:before {
+    &::before {
       font-size: 0.9rem;
     }
   }

@@ -1,134 +1,84 @@
 <template>
-  <section :class="['article-card-list']" v-config>
+  <section v-config class="article-card-list article-card-list--big-main-post">
     <h2 class="visualy-hidden"> Artykuły KNIT </h2>
 
-    <article-card v-for="(article, index) in cardsArticles" :key="index"
-                       :title="article.title"
-                       :author="article.author"
-                       :content="article.content"
-                       :description="article.description"
-                       :thumbnail="article.image.url"
-                       :published-at="article.publishedAt"
-                       :updated-at="article.updatedAt"
-                       :ratings="article.ratings"
-                       :comments="article.comments"
-                       :comments-count="article.commentsCount"
-                       :slug="article.code"/>
-
+    <!-- Articles list -->
+    <article-card
+      v-for="(article, index) in articles"
+      :key="index"
+      :title="article.title"
+      :author="article.author"
+      :content="article.content"
+      :description="article.description"
+      :thumbnail="article.image.url"
+      :published-at="article.publishedAt"
+      :updated-at="article.updatedAt"
+      :tags="article.tags"
+      :ratings="article.ratings"
+      :comments="article.comments"
+      :category="article.category"
+      :comments-count="article.commentsCount"
+      :short-id="article.shortId"
+      :title-code="article.titleCode"
+      :category-code="article.categoryCode"
+      :code="article.code"/>
   </section>
 </template>
 
 <script>
 import ArticleCard from '~/components/article/ArticleCard'
-import { mapGetters } from 'vuex'
-import _ from 'lodash'
-
-const storePath = 'articles/list'
 
 export default {
+  components: {
+    ArticleCard,
+  },
+  mixins: {},
+  props: {
+    articles: {
+      required: true,
+      type: Array,
+    },
+  },
   data () {
     return {}
   },
-  components: {
-    ArticleCard
-  },
-  props: {},
-  computed: {
-    cardsArticles () {
-      return _.slice(this.articles, 0, 5)
-    },
-    ...mapGetters({
-      articles: `${storePath}/articles`,
-      loading: `${storePath}/loading`,
-      status: `${storePath}/status`,
-      limit: `${storePath}/limit`,
-      error: `${storePath}/error`
-    })
-  },
+  computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .article-card-list {
   display: flex;
   flex-wrap: wrap;
 
-  .article-card {
-    margin: 0 $default-gutters-width $default-gutters-width 0;
+  @media (max-width: $screen-sm) {
+    padding: 0 10px;
   }
 
-  &--horizontal {
-    @media (max-width: $screen-xl) {
-      flex-direction: column;
+  .article-card {
+    margin: 0 $default-gutters-width $default-gutters-width 0;
+    flex-basis: calc(33.333% - #{$default-gutters-width});
+    margin-right: $default-gutters-width;
 
-      .article-card {
-        flex-direction: row;
+    @media (min-width: 1060px) and (max-width: $screen-xl) {
+      flex-basis: calc(50% - #{$default-gutters-width});
+    }
 
-        &__header {
-          flex-direction: column;
-          padding: 30px 0 0 20px;
-        }
+    @media (max-width: $screen-md) {
+      flex-basis: calc(50% - #{$default-gutters-width});
+    }
 
-        &__author-link {
-          position: absolute;
-          left: 80px;
-          top: 35px;
-        }
-
-        &__thumbnail-link {
-          flex: 1 0 33%;
-        }
-
-        &__horizontal-wrapper {
-          flex: 1 0 66%;
-        }
-
-        &__footer {
-          justify-content: flex-end;
-          width: 100%;
-        }
-
-        &__author-link {
-          position: absolute;
-          left: 74px;
-          bottom: 14px;
-        }
-
-        &__author-avatar-link {
-          position: absolute;
-          left: 15px;
-          bottom: 18px;
-        }
-      }
+    @media (max-width: $screen-sm) {
+      flex-basis: 100%;
+      margin-right: 0;
     }
   }
 
   &--big-main-post {
-    @media (max-width: $screen-sm) {
-      padding: 0 10px;
-    }
-
     .article-card {
-      flex-basis: calc(33.333% - #{$default-gutters-width});
-      margin-right: $default-gutters-width;
-
-      @media (min-width: 1060px) and (max-width: $screen-xl) {
-        flex-basis: calc(50% - #{$default-gutters-width});
-      }
-
-      @media (max-width: $screen-md) {
-        flex-basis: calc(50% - #{$default-gutters-width});
-      }
-
-      @media (max-width: $screen-sm) {
-        flex-basis: 100%;
-        margin-right: 0;
-      }
-
       &:first-of-type {
         $ac: '.article-card';
 
@@ -136,6 +86,10 @@ export default {
           flex-basis: calc(66.666% - #{$default-gutters-width});
           position: relative;
           justify-content: flex-end;
+
+          #{$ac}__tags-wrapper {
+            color: #fff;
+          }
 
           #{$ac}__thumbnail-link {
             position: absolute;
@@ -145,14 +99,14 @@ export default {
             right: 0;
             z-index: 1;
 
-            &:after {
+            &::after {
               content: '';
               position: absolute;
               top: 0;
               bottom: 0;
               left: 0;
               right: 0;
-              background: linear-gradient(to bottom, rgba(90,45,140,0) 0%, rgba(15,15,15,1) 100%);
+              background: linear-gradient(to bottom, rgba(90, 45, 140, 0) 0%, rgba(15, 15, 15, 1) 100%);
             }
           }
 
@@ -215,5 +169,29 @@ export default {
       }
     }
   }
+
+  /* stylelint-disable */
+  &--horizontal {
+    .article-card {
+      &:nth-of-type(n+3) {
+        flex-basis: 100%;
+      }
+
+      @media (max-width: $screen-xl) {
+        flex-basis: 100%;
+      }
+    }
+    /* stylelint-enable */
+
+    &.article-card-list--big-main-post {
+      .article-card:first-of-type {
+        @media (max-width: 1060px) and (min-width: $screen-sm) {
+          flex-basis: 100%;
+          height: 400px;
+        }
+      }
+    }
+  }
 }
+
 </style>
