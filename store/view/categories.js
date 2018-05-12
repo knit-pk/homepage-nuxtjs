@@ -21,7 +21,7 @@ export const types = {
 }
 
 // Mutation function
-const changeCurrCategory = storeHelper.createMutationFn(types.CHANGE_CURRENT_CATEGORY_CODE, 'currentCategoryCode')
+const currentCategory = storeHelper.createMutationFn(types.CHANGE_CURRENT_CATEGORY_CODE, 'currentCategoryCode')
 const loading = storeHelper.createMutationFn(types.LOAD_CATEGORIES, 'loading')
 const codes = storeHelper.createMutationFn(types.ADD_CODES, 'codes')
 
@@ -81,7 +81,7 @@ export const actions = {
     ],
   })(async function changeCurrentCategoryAction ({ commit, state }, params) {
     knitLogger.debug(() => `Changing current category ${state.currentCategoryCode} to ${params.currentCategoryCode}`)
-    commit(changeCurrCategory(params.currentCategoryCode))
+    commit(currentCategory(params.currentCategoryCode))
   }),
 }
 

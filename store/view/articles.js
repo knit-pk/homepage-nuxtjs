@@ -24,7 +24,7 @@ export const types = {
 }
 
 // Mutation function
-const changeCurrArticle = storeHelper.createMutationFn(types.CHANGE_CURRENT_ARTICLE_CODE, 'currentArticleCode')
+const currentArticle = storeHelper.createMutationFn(types.CHANGE_CURRENT_ARTICLE_CODE, 'currentArticleCode')
 const loading = storeHelper.createMutationFn(types.LOAD_ARTICLES, 'loading')
 const codes = storeHelper.createMutationFn(types.ADD_CODES)
 
@@ -38,16 +38,19 @@ const customFns = {
 
 // Module getters
 export const getters = {
-  loading: state => state.loading,
-  mainPage: state => state.mainPage,
-  mainList: state => state.mainList,
-  all: state => state.all,
-  currentArticleCode: state => state.currentArticleCode,
   categoryArticlesCodeList: (state, getters, rootGetters) => {
     const categoriesGetters = rootGetters.view.categories
-    return categoriesGetters.currentCategoryCode === settings.mainListName ? state.mainList : state.byCategory[categoriesGetters.currentCategoryCode]
+
+    return categoriesGetters.currentCategoryCode === settings.mainListName ?
+      state.mainList :
+      state.byCategory[categoriesGetters.currentCategoryCode]
   },
+  currentArticleCode: state => state.currentArticleCode,
   byCategory: state => state.byCategory,
+  mainPage: state => state.mainPage,
+  mainList: state => state.mainList,
+  loading: state => state.loading,
+  all: state => state.all,
 }
 
 // Module state
@@ -98,10 +101,17 @@ export const actions = {
       opus.call(({ ctx }) => ctx.commit(loading(false))),
     ],
     always: [
-      opus.call(({ ctx, params }) => ctx.dispatch('view/categories/changeCurrentCategory', { currentCategoryCode: params.categoryCode }, { root: true })),
+      opus.call(({ ctx, params }) => {
+        return ctx.dispatch('view/categories/changeCurrentCategory',
+          { currentCategoryCode: params.categoryCode }, { root: true })
+      }),
     ],
   })(async function getCategoryArticlesListAction ({ dispatch }, params) {
-    const data = await knitService.getCollection(this.$axios, 'articles', { ...settings.defaultQsObject, 'category.code': params.categoryCode })
+    const data = await knitService.getCollection(this.$axios, 'articles', {
+      'category.code': params.categoryCode,
+      ...settings.defaultQsObject,
+    })
+
     const articles = customFns.prepareArticles(data)
 
     // Inject articles and return their codes
@@ -123,7 +133,11 @@ export const actions = {
       opus.call(({ ctx }) => ctx.commit(loading(false))),
     ],
     always: [
-      opus.call(({ ctx }) => ctx.dispatch('view/categories/changeCurrentCategory', { currentCategoryCode: settings.mainListName }, { root: true })),
+      opus.call(({ ctx }) => {
+        return ctx.dispatch('view/categories/changeCurrentCategory', {
+          currentCategoryCode: settings.mainListName,
+        }, { root: true })
+      }),
     ],
   })(async function getMainlistAction ({ dispatch }) {
     const data = await knitService.getCollection(this.$axios, 'articles', settings.defaultQsObject)
@@ -147,7 +161,11 @@ export const actions = {
       opus.call(({ ctx }) => ctx.commit(loading(false))),
     ],
     always: [
-      opus.call(({ ctx, params }) => params.code !== ctx.getters['currentArticleCode'] && ctx.commit(changeCurrArticle(params.code))),
+      opus.call(({ ctx, params }) => {
+        if (params.code !== ctx.getters['currentArticleCode']) {
+          ctx.commit(currentArticle(params.code))
+        }
+      }),
     ],
   })(async function getArticleAction ({ dispatch }, params) {
     const data = await knitService.getCollection(this.$axios, 'articles', {
