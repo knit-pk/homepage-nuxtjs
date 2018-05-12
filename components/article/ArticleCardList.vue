@@ -88,6 +88,58 @@ export default {
     .article-card {
       &:nth-of-type(n+3) {
         flex-basis: 100%;
+
+         @media (min-width: 1060px) {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        box-sizing: border-box;
+        min-height: 240px;
+      .article-card__thumbnail-link {
+        width: calc(33.333% - #{$default-gutters-width});
+        float: left;
+        min-height: 200px;
+        position: absolute;
+        object-fit: cover;
+      }
+      .article-card__author-wrapper {
+       position: absolute;
+       bottom: 0;
+       margin-bottom: -2px;
+     }
+     .article-card__horizontal-wrapper {
+        display: flex;
+        flex-direction: column;
+        order: 1;
+        margin-top: auto;
+        width: calc(66.666% - #{$default-gutters-width});
+        align-self: flex-end;
+        position: relative;
+}
+.article-card__header {
+     .article-card__title-link {
+        order: 1;
+      }
+      .article-card__tags-wrapper {
+        order: 2;
+      }
+     }
+      .article-card__description {
+        width: calc(66.666% - #{$default-gutters-width});
+        align-self: flex-end;
+        position: relative;
+        order: 2;
+        margin-top: auto;
+        overflow: hidden;
+      }
+      .article-card__footer {
+        width: 100%;
+        justify-content: flex-end;
+        order: 3;
+     }
+    }
+      }
       }
 
       @media (max-width: $screen-xl) {
