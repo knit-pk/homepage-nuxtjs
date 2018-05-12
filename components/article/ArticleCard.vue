@@ -6,6 +6,20 @@
       <img :src="thumbnail" class="article-card__thumbnail" alt="" itemprop="image">
     </router-link>
 
+    <!-- Wrapper -->
+    <div class="article-card__author-wrapper" itemprop="author" itemscope itemtype="http://schema.org/Person">
+
+      <!-- Name -->
+      <router-link :to="{ path: url }" class="article-card__author-link">
+        <span class="article-card__author-name" itemprop="name"> {{ author.username }} </span>
+      </router-link>
+
+      <!-- Avatar -->
+      <router-link :to="{ path: url }" class="article-card__author-avatar-link">
+        <img :src="authorAvatar" :alt="author.fullname" itemprop="image" class="article-card__author-avatar" >
+      </router-link>
+    </div>
+
     <!-- Horizontal wrapper -->
     <div class="article-card__horizontal-wrapper">
 
@@ -21,20 +35,6 @@
         <ul class="article-card__tags-wrapper">
           <li v-for="(tag, index) in tags" :key="index" class="article-card__single-tag"> {{ tag.name }} </li>
         </ul>
-
-        <!-- Wrapper -->
-        <div class="article-card__author-wrapper" itemprop="author" itemscope itemtype="http://schema.org/Person">
-
-          <!-- Name -->
-          <router-link :to="{ path: url }" class="article-card__author-link">
-            <span class="article-card__author-name" itemprop="name"> {{ author.username }} </span>
-          </router-link>
-
-          <!-- Avatar -->
-          <router-link :to="{ path: url }" class="article-card__author-avatar-link">
-            <img :src="authorAvatar" :alt="author.fullname" itemprop="image" class="article-card__author-avatar" >
-          </router-link>
-        </div>
       </header>
     </div>
 
@@ -251,6 +251,10 @@ export default {
 
   &__author-wrapper {
     display: flex;
+    position: relative;
+    padding: 0 20px;
+    margin-top: -26px;
+    margin-bottom: 6%;
   }
 
   &__author-link {
