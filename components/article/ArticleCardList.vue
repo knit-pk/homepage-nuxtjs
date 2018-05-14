@@ -63,6 +63,10 @@ export default {
     flex-basis: calc(33.333% - #{$default-gutters-width});
     margin-right: $default-gutters-width;
 
+    @media (min-width: $screen-xl + 1) {
+      min-height: 449px;
+    }
+
     @media (min-width: 1060px) and (max-width: $screen-xl) {
       flex-basis: calc(50% - #{$default-gutters-width});
     }
