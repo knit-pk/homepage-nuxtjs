@@ -14,7 +14,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "precommit": "lint && lint:scss",
+    "precommit": "yarn lint && yarn lint:scss",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:scss": "stylelint \"**/*.(vue)\" --syntax scss",
     "test": "jest tests/",

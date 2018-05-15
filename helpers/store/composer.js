@@ -7,6 +7,11 @@ import _ from 'lodash'
 const { CANCEL, ACTION_FAIL } = errorTypes
 
 const hooksCallWithBound = async (fns, that, ctx, params, result) => {
+  if (!fns) {
+    // No functions provided
+    return
+  }
+
   for (const fn of fns) {
     await fn({ that, ctx, params, result })
   }
