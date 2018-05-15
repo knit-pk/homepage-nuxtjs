@@ -161,7 +161,7 @@ export default {
           }
         }
 
-        @media (min-width: 1060px) and (max-width: $screen-xl) {
+        @media (min-width: 1061px) and (max-width: $screen-xl) {
           flex-basis: 100%;
           height: 360px;
         }
