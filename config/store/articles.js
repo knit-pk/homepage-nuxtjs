@@ -1,14 +1,11 @@
-import commonHelper from '~/helpers/commonHelper'
-
-const published = commonHelper.isProd() ? true : undefined
-const orderBy = commonHelper.isProd() ? 'publishedAt' : 'createdAt'
+import commonHelper from '~/helpers/common'
 
 export default {
   defaultQsObject: {
-    published,
+    published: commonHelper.isProd() ? true : undefined,
     group: ['UserReadLess', 'TagRead', 'CategoryRead', 'ImageReadLess'],
     limit: 5,
-    [`order[${orderBy}]`]: 'DESC'
+    [`order[${commonHelper.isProd() ? 'publishedAt' : 'createdAt'}]`]: 'DESC',
   },
   datePicker (item) {
     item.publishedAt = item.publishedAt || item.createdAt
@@ -16,14 +13,15 @@ export default {
     return item
   },
   props: [
+    'commentsCount',
     'publishedAt',
     'description',
     'image.url',
     'published',
     'createdAt',
     'updatedAt',
+    'category',
     'comments',
-    'commentsCount',
     'ratings',
     'content',
     'author',
@@ -32,7 +30,8 @@ export default {
     'code',
     'tags',
     'id',
-    '@id'
+    '@id',
   ],
-  storePath: 'articles'
+  storePath: 'articles',
+  mainListName: 'wszystkie',
 }

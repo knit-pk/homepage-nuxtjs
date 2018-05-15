@@ -1,119 +1,160 @@
 <template>
-<article class="article-card" itemscope itemtype="http://schema.org/Article" v-config>
+  <article v-config class="article-card" itemscope itemtype="http://schema.org/Article">
 
-  <!-- Thumbnail -->
-  <router-link class="article-card__thumbnail-link" :to="{ name: 'articles-slug', params: { slug } }">
-    <img :src="thumbnail" class="article-card__thumbnail" alt="" itemprop="image">
-  </router-link>
+    <!-- Thumbnail -->
+    <router-link :to="{ path: url }" class="article-card__thumbnail-link">
+      <img :src="thumbnail" class="article-card__thumbnail" alt="" itemprop="image">
+    </router-link>
 
-  <div class="article-card__horizontal-wrapper">
-    <!-- Header -->
-    <header class="article-card__header">
-      <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__title-link">
-        <h3 ref="articleTitle" class="article-card__title" itemprop="headline"> {{ trimString(title, 75) }} </h3>
-      </router-link>
-      <div class="article-card__author-wrapper" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__author-link">
-          <span class="article-card__author-name" itemprop="name"> {{ author.username }} </span>
+    <!-- Horizontal wrapper -->
+    <div class="article-card__horizontal-wrapper">
+
+      <!-- Header -->
+      <header class="article-card__header">
+
+        <!-- Title -->
+        <router-link :to="{ path: url }" class="article-card__title-link">
+          <h3 ref="articleTitle" class="article-card__title" itemprop="headline"> {{ ellipsis(title, 75) }} </h3>
         </router-link>
-        <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__author-avatar-link">
-          <img :src="authorAvatar" class="article-card__author-avatar" :alt="author.fullname" itemprop="image">
-        </router-link>
-      </div>
-    </header>
-  </div>
 
-  <!-- Description -->
-  <router-link :to="{ name: 'articles-slug', params: { slug } }" class="article-card__description" itemtype="description"> {{ trimString(description, 170) }} </router-link>
+        <!-- Tags -->
+        <ul class="article-card__tags-wrapper">
+          <li v-for="(tag, index) in tags" :key="index" class="article-card__single-tag"> {{ tag.name }} </li>
+        </ul>
 
-  <!-- Footer -->
-  <footer class="article-card__footer">
-    <time :datetime="publishedAt" itemprop="datePublished"> {{ formatDateToLocalString(publishedAt) }} </time>
-    <meta itemprop="dateModified" :content="updatedAt" />
-    <ul class="article-card__stats" aria-label="Statystyki">
-      <li class="article-card__stats-group">
-        <a @click.prevent.stop="handleLikeClick" :class="{ [ 'article-card__like-button--liked' ]: isLiked }" href="#" role="button" class="article-card__like-button"
-           title="Lubię to!" aria-label="Polub post" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
-          <span class="flaticon-like article-card__stat-icon" aria-hidden="true"></span>
-          <span class="visualy-hidden" itemprop="interactionType" content="http://schema.org/LikeAction">Polubienia</span>
-          <span itemprop="userInteractionCount"> {{ likesCount }} </span>
-        </a>
-      </li>
-      <li class="article-card__stats-group" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
-        <span class="flaticon-chat article-card__stat-icon article-card__comment-icon" title="Komentarze" aria-hidden="true"></span>
-        <span class="visualy-hidden" itemprop="interactionType" content="http://schema.org/CommentAction">Komentarze</span>
-        <span itemprop="userInteractionCount"> {{ commentsCount }} </span>
-      </li>
-    </ul>
-  </footer>
+        <!-- Wrapper -->
+        <div class="article-card__author-wrapper" itemprop="author" itemscope itemtype="http://schema.org/Person">
 
-  <!-- Meta -->
-  <ArticlePublisherMeta />
+          <!-- Name -->
+          <router-link :to="{ path: url }" class="article-card__author-link">
+            <span class="article-card__author-name" itemprop="name"> {{ author.username }} </span>
+          </router-link>
 
-</article>
+          <!-- Avatar -->
+          <router-link :to="{ path: url }" class="article-card__author-avatar-link">
+            <img :src="authorAvatar" :alt="author.fullname" itemprop="image" class="article-card__author-avatar" >
+          </router-link>
+        </div>
+      </header>
+    </div>
+
+    <!-- Description -->
+    <router-link :to="{ path: url }" itemtype="description" class="article-card__description">
+      {{ ellipsis(description, 170) }}
+    </router-link>
+
+    <!-- Footer -->
+    <footer class="article-card__footer">
+      <time :datetime="publishedAt" itemprop="datePublished"> {{ formatDateToLocalString(publishedAt) }} </time>
+      <meta :content="updatedAt" itemprop="dateModified">
+
+      <!-- Stats -->
+      <ul class="article-card__stats" aria-label="Statystyki">
+
+        <!-- Likes -->
+        <li class="article-card__stats-group">
+          <a :class="{ [ 'article-card__like-button--liked' ]: isLiked }"
+             class="article-card__like-button"
+             href="#"
+             role="button"
+             title="Lubię to!"
+             aria-label="Polub post"
+             itemprop="interactionStatistic"
+             itemscope
+             itemtype="http://schema.org/InteractionCounter"
+             @click.prevent.stop="handleLikeClick">
+
+            <!-- Likes content -->
+            <span class="article-card__stat-icon fas fa-thumbs-up" aria-hidden="true"/>
+            <span class="visualy-hidden" itemprop="interactionType" content="http://schema.org/LikeAction"> Polubienia </span>
+            <span itemprop="userInteractionCount"> {{ likesCount }} </span>
+          </a>
+        </li>
+
+        <!-- Comments -->
+        <li class="article-card__stats-group" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+          <span class="article-card__stat-icon article-card__comment-icon fas fa-comment-alt" title="Komentarze" aria-hidden="true"/>
+          <span class="visualy-hidden" itemprop="interactionType" content="http://schema.org/CommentAction"> Komentarze </span>
+          <span itemprop="userInteractionCount"> {{ commentsCount }} </span>
+        </li>
+      </ul>
+    </footer>
+
+    <!-- Meta informations-->
+    <ArticlePublisherMeta />
+  </article>
 </template>
 
 <script>
-import templateHelper from '~/helpers/templateHelper'
+import templateHelper from '~/helpers/template'
 import ArticlePublisherMeta from '~/components/article/ArticlePublisherMeta'
 
-// @TODO: Make elipsis overflow in article card description
 export default {
-  data () {
-    return {
-      isLiked: false
-    }
-  },
   components: {
-    ArticlePublisherMeta
+    ArticlePublisherMeta,
   },
+  mixins: [templateHelper],
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     content: {
       type: String,
-      required: true
+      required: true,
     },
     author: {
       type: Object,
-      required: true
+      required: true,
     },
     thumbnail: {
       type: String,
-      required: true
+      required: true,
     },
     publishedAt: {
       type: String,
-      required: true
+      required: true,
     },
     updatedAt: {
       type: String,
-      required: true
+      required: true,
     },
     id: {
-      type: String
-    },
-    slug: {
       type: String,
-      required: true
+      default: '',
+    },
+    code: {
+      type: String,
+      required: true,
     },
     comments: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     commentsCount: {
       type: Number,
-      default: 0
+      default: 0,
     },
     ratings: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     description: {
       type: String,
-      required: true
+      required: true,
+    },
+    category: {
+      type: Object,
+      required: true,
+    },
+    tags: {
+      type: Array,
+      required: true,
+    },
+  },
+  data () {
+    return {
+      isLiked: false,
     }
   },
   computed: {
@@ -122,21 +163,23 @@ export default {
     },
     authorAvatar () {
       return this.author.avatar.url
-    }
+    },
+    url () {
+      return `/artykuly/${this.code}`
+    },
   },
   methods: {
     handleLikeClick () {
       this.isLiked = !this.isLiked
       document.activeElement.blur()
       // @TODO: Send handling request to the server
-    }
+    },
   },
-  mixins: [ templateHelper ]
 }
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .article-card {
   background-color: #fff;
@@ -150,13 +193,6 @@ export default {
   flex-wrap: wrap;
   flex-direction: column;
   font-size: 14px;
-
-  // NOTE: It fixes mainpage card issue, but it may affect to horizontal card
-  //       in article list, which is not implemented yet.
-
-  // &__thumbnail-link {
-  //   flex: 1 0 33%;
-  // }
 
   &__thumbnail {
     @include img-fluid;
@@ -180,9 +216,9 @@ export default {
 
   &__title-link {
     text-decoration: none;
-    margin: 13px 0;
+    margin: 4px 0;
     color: $gray-50;
-    order: 3;
+    order: 4;
     flex-basis: 100%;
   }
 
@@ -190,6 +226,27 @@ export default {
     min-width: 200px;
     font-weight: 300;
     font-size: 21px;
+  }
+
+  &__tags-wrapper {
+    color: $primary-text-color;
+    margin: 10px 0 0 -2px;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    flex-basis: 100%;
+    order: 3;
+  }
+
+  &__single-tag {
+    margin: 0 7px 7px 0;
+    z-index: 9997;
+    border: 1px solid #bbb9b9;
+    padding: 5px;
+    font-size: 0.8rem;
+    flex-wrap: wrap;
+    white-space: nowrap;
+    border-radius: 7px;
   }
 
   &__author-wrapper {
@@ -225,7 +282,7 @@ export default {
     padding: 0 20px 15px 20px;
     font-weight: 300;
     font-size: 14px;
-    color: #888888;
+    color: #888;
 
     @media (max-width: $screen-sm) {
       padding: 0 15px 15px 15px;
@@ -269,7 +326,7 @@ export default {
       color: $article-card-like-button-liked-color;
 
       &:hover, &:focus {
-         color: $article-card-like-button-liked-hover-color;
+        color: $article-card-like-button-liked-hover-color;
       }
     }
   }
@@ -277,7 +334,7 @@ export default {
   &__stat-icon {
     margin-right: 2px;
 
-    &:before {
+    &::before {
       font-size: 14px;
     }
   }

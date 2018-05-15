@@ -1,18 +1,19 @@
 <template>
-<div id="#nuxt-app">
-  <template v-if="!isMobile">
-    <knit-header/>
-    <knit-navbar class="fixed-top"/>
-  </template>
+  <div id="#nuxt-app">
+    <template v-if="!isMobile">
+      <knit-header/>
+      <knit-navbar class="fixed-top"/>
+    </template>
 
-  <!-- Render menu only for mobile pages -->
-  <knit-menu-mobile @mobileMenuToggle="onMobileMenuToggle" class="fixed-top" v-else/>
+    <!-- Render menu only for mobile pages -->
+    <knit-menu-mobile v-else class="fixed-top" @mobileMenuToggle="onMobileMenuToggle"/>
 
-  <!-- Render content from pages -->
-  <nuxt :class="isMobile ? 'page--mobile' : 'page--desktop'"/>
+    <!-- Render content from pages -->
+    <nuxt :class="isMobile ? 'page--mobile' : 'page--desktop'"/>
 
-  <knit-footer/>
-</div>
+    <!-- Knit footer -->
+    <knit-footer/>
+  </div>
 </template>
 
 <script>
@@ -24,23 +25,23 @@ import FixedTop from '~/components/mixins/FixedTop'
 import { mapGetters } from 'vuex'
 
 export default {
-  data () {
-    return {}
-  },
-  computed: {
-    ...mapGetters({ isMobile: 'general/general/isMobile' })
-  },
-  methods: {
-    onMobileMenuToggle (value) {
-      this.isMobileMenuShown = value
-    }
-  },
   components: {
     KnitMenuMobile,
     KnitHeader,
     KnitNavbar,
-    KnitFooter
+    KnitFooter,
   },
-  mixins: [ FixedTop ]
+  mixins: [FixedTop],
+  data () {
+    return {}
+  },
+  computed: {
+    ...mapGetters({ isMobile: 'general/isMobile' }),
+  },
+  methods: {
+    onMobileMenuToggle (value) {
+      this.isMobileMenuShown = value
+    },
+  },
 }
 </script>

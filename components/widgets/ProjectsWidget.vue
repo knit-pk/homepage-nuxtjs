@@ -1,12 +1,24 @@
-
 <template>
-  <section class="projects-widget" v-config>
-    <widget-title :title="title" :widgetClass="widgetClass" :widgetIconClass="widgetIconClass"/>
-    <div v-for="(item, index) of items" class="projects-widget__projects-wrapper" :key="index">
-      <projects-widget-item :title="item.title" :maxTeamSize="item.maxTeamSize"
-        :currentTeamSize="item.currentTeamSize" :url="item.url" :tags="item.tags" :logo="item.logo"/>
+  <section v-config class="projects-widget">
+
+    <!-- Widget title -->
+    <widget-title :title="title" :widget-class="widgetClass" :widget-icon-class="widgetIconClass"/>
+
+    <!-- Projects wrapper -->
+    <div v-for="(item, index) of items" :key="index" class="projects-widget__projects-wrapper widget-item">
+      <projects-widget-item
+        :title="item.title"
+        :max-team-size="item.maxTeamSize"
+        :current-team-size="item.currentTeamSize"
+        :url="item.url"
+        :tags="item.tags"
+        :logo="item.logo"/>
     </div>
-    <a class="projects-widget__see-more" href="/"> Zobacz więcej </a>
+
+    <!-- See more -->
+    <a class="projects-widget__see-more" href="/">
+      Zobacz więcej
+    </a>
   </section>
 </template>
 
@@ -15,11 +27,17 @@ import ProjectsWidgetItem from '~/components/widgets/partials/ProjectsWidgetItem
 import WidgetTitle from '~/components/widgets/partials/WidgetTitle'
 
 export default {
+  components: {
+    ProjectsWidgetItem,
+    WidgetTitle,
+  },
+  mixins: {},
+  props: {},
   data () {
     return {
       title: 'Projekty do których możesz dołączyć',
       widgetClass: 'projects-widget',
-      widgetIconClass: 'flaticon-code-fork',
+      widgetIconClass: 'fas fa-code-branch',
       items: [
         {
           title: 'homepage-nuxtjs',
@@ -27,14 +45,14 @@ export default {
           currentTeamSize: 3,
           url: 'https://github.com/pk/homepage-nuxtjs',
           tags: ['PHP', 'JavaScript', 'Nuxt.js', 'Vue.js'],
-          logo: 'teal'
+          logo: 'teal',
         },
         {
           title: 'knit-api',
           maxTeamSize: 8,
           currentTeamSize: 5,
           url: 'https://github.com/knit-pk/api-v1-php',
-          tags: ['PHP', 'Docker']
+          tags: ['PHP', 'Docker'],
         },
         {
           title: 'knit-homepage-panel',
@@ -42,24 +60,18 @@ export default {
           currentTeamSize: 3,
           url: 'https://github.com/knit-pk/api-admin-v1-reactjs',
           tags: ['Redux', 'Reactjs'],
-          logo: 'orange'
-        }
-      ]
+          logo: 'orange',
+        },
+      ],
     }
   },
-  components: {
-    ProjectsWidgetItem,
-    WidgetTitle
-  },
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .projects-widget {
   background-color: $projects-widget-bg-color;
@@ -69,15 +81,8 @@ export default {
     text-align: center;
     display: block;
     padding: 15px 0;
-    font-size: .75rem;
+    font-size: 0.75rem;
     color: $projects-widget-text-color;
-
-    &:hover,
-    &:focus {
-      color: $projects-widget-text-color;
-      background-color: $projects-widget-link-more-hover-color;
-      text-decoration: underline;
-    }
   }
 }
 </style>

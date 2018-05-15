@@ -1,41 +1,44 @@
 <template>
-  <button :class="['knit-button', ...buttonClasses]" v-config>
+  <button v-config :class="['knit-button', ...buttonClasses]">
     <span :class="['knit-button__label', ...labelClasses]">
       <slot/>
     </span>
-    <span :class="['knit-button__icon', ...iconClasses]" aria-hidden="true"></span>
+    <span :class="['knit-button__icon', ...iconClasses]" aria-hidden="true"/>
   </button>
 </template>
 
 <script>
 export default {
+  components: {},
+  mixins: {},
+  props: {
+    buttonClasses: {
+      type: Array,
+      default: () => [],
+    },
+    labelClasses: {
+      type: Array,
+      default: () => [],
+    },
+    iconClasses: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data () {
     return {}
   },
-  components: {},
-  props: {
-    buttonClasses: {
-      type: Array
-    },
-    labelClasses: {
-      type: Array
-    },
-    iconClasses: {
-      type: Array
-    }
-  },
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .knit-button {
   min-width: 100px;
-  transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   color: #333;
   background-color: #f8f8f8;
   text-align: center;

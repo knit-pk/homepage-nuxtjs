@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar" v-config>
-    <ul v-for="(link, index) of navigation" class="navbar__list" :key="index">
+  <nav v-config class="navbar">
+    <ul v-for="(link, index) of navigation" :key="index" class="navbar__list">
       <li class="navbar__list-item" @click="collapseMenu">
         <router-link :to="{ path: link.path }" class="navbar__list-link"> {{ link.text }} </router-link>
       </li>
@@ -10,54 +10,54 @@
 
 <script>
 export default {
+  components: {},
+  mixins: {},
+  props: {},
   data () {
     return {
       navigation: [
         {
           text: 'Strona Główna',
-          path: '/'
+          path: '/',
         },
         {
           text: 'O nas',
-          path: '/'
+          path: '/',
         },
         {
           text: 'Sekcje',
-          path: '/'
+          path: '/',
         },
         {
           text: 'Zarząd',
-          path: '/'
+          path: '/',
         },
         {
           text: 'Członkowie',
-          path: '/'
+          path: '/',
         },
         {
           text: 'Kontakt',
-          path: '/'
+          path: '/',
         },
         {
           text: 'Artykuły',
-          path: '/articles'
-        }
-      ]
+          path: '/artykuly/wszystkie',
+        },
+      ],
     }
   },
-  components: {},
-  props: {},
   computed: {},
   methods: {
     collapseMenu () {
       this.$emit('linkClickedEvent')
-    }
+    },
   },
-  mixins: {}
 }
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .navbar {
   $p: &;
@@ -73,7 +73,7 @@ export default {
   flex-wrap: nowrap;
 
   @media (max-width: $screen-md) {
-    padding-right: 0px;
+    padding-right: 0;
     justify-content: center;
   }
 

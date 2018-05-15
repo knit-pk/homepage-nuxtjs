@@ -1,20 +1,30 @@
 <template>
-  <footer class="knit-footer" v-config>
-    <router-link :to="{path: '/'}" class="knit-footer__link">
+  <footer v-config class="knit-footer">
+
+    <!-- Footer logo link -->
+    <router-link :to="{ path: '/' }" class="knit-footer__link">
       <knit-logo/>
     </router-link>
+
+    <!-- Navbar -->
     <knit-navbar class="navbar--footy"/>
+
+    <!-- Footer caption -->
     <span class="knit-footer__caption"> 2018 &copy; Koło Naukowe IT Politechnika Krakowska </span>
     <ul class="knit-footer__socialbox-list">
+
+      <!-- Github link -->
       <li class="knit-footer__socialbox-item">
         <a href="https://github.com/knit-pk" target="_blank" class="knit-footer__socialbox-link">
-          <span class="flaticon-github-logo knit-footer__socialbox-icon" aria-hidden="true"></span>
+          <span class="knit-footer__socialbox-icon fab fa-github" aria-hidden="true"/>
           Github
         </a>
       </li>
+
+      <!-- Facebook link -->
       <li class="knit-footer__socialbox-item">
         <a href="https://www.facebook.com/wieik.knit" target="_blank" class="knit-footer__socialbox-link">
-          <span class="flaticon-facebook-logo knit-footer__socialbox-icon" aria-hidden="true"></span>
+          <span class="knit-footer__socialbox-icon fab fa-facebook" aria-hidden="true"/>
           Facebook
         </a>
       </li>
@@ -27,22 +37,22 @@ import KnitNavbar from '~/components/commons/KnitNavbar'
 import KnitLogo from '~/components/commons/KnitLogo'
 
 export default {
+  components: {
+    KnitNavbar,
+    KnitLogo,
+  },
+  mixins: {},
+  props: {},
   data () {
     return {}
   },
-  components: {
-    KnitNavbar,
-    KnitLogo
-  },
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 
 <style lang='scss'>
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .knit-footer {
   margin-top: $default-gutters-width;
@@ -76,7 +86,6 @@ export default {
     display: flex;
     justify-content: center;
     list-style: none;
-    display: flex;
     align-items: center;
     margin-top: 40px;
     height: 50px;
@@ -95,15 +104,16 @@ export default {
   }
 
   &__socialbox-link {
-    color: #ffffff;
+    color: #fff;
     text-align: center;
-    font-size: 0.80rem;
+    font-size: 0.8rem;
   }
 
   &__socialbox-icon {
     position: relative;
     top: 2px;
     margin-right: 3px;
+    font-size: 1.5rem;
   }
 }
 </style>

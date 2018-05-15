@@ -1,9 +1,11 @@
 <template>
-  <section class="action-links" v-config>
-    <action-links-widget-item v-for="(link, index) in links" :key ="index"
+  <section v-config class="widget action-links">
+    <action-links-widget-item
+      v-for="(link, index) in links"
+      :key ="index"
       :class="['action-links__link-item', link.itemClass]"
       :linktext="link.text"
-      :iconClass="link.icon"/>
+      :icon-class="link.icon"/>
   </section>
 </template>
 
@@ -11,44 +13,44 @@
 import ActionLinksWidgetItem from '~/components/widgets/partials/ActionLinksWidgetItem'
 
 export default {
+  components: {
+    ActionLinksWidgetItem,
+  },
+  mixins: {},
+  props: {},
   data () {
     return {
       links: [
         {
           text: 'Dodaj nową ofertę pracy!',
-          icon: 'flaticon-job-search',
-          itemClass: 'action-link--job-offer'
+          icon: 'fas fa-search',
+          itemClass: 'action-link--job-offer',
         },
         {
           text: 'Dodaj nowy projekt i znajdź fantastyczny zespół',
-          icon: 'flaticon-teamwork',
-          itemClass: 'action-link--project-offer'
+          icon: 'fas fa-users',
+          itemClass: 'action-link--project-offer',
         },
         {
           text: 'Dowiedź się więcej o KNIT PK',
-          icon: 'flaticon-info',
-          itemClass: 'action-link--more-info'
+          icon: 'fas fa-info-circle',
+          itemClass: 'action-link--more-info',
         },
         {
           text: 'Utwórz sekcję i wspólnie poszerzaj swoją wiedzę',
-          icon: 'flaticon-programming',
-          itemClass: 'action-link--new-section'
-        }
-      ]
+          icon: 'fas fa-code',
+          itemClass: 'action-link--new-section',
+        },
+      ],
     }
   },
-  components: {
-    ActionLinksWidgetItem
-  },
-  props: {},
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .action-links {
   display: flex;

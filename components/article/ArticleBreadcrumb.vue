@@ -1,7 +1,7 @@
 <template>
-  <div class= "article-breadcrumb" v-config>
+  <div v-config class="article-breadcrumb">
     <ul class="article-breadcrumb__routes">
-      <li v-for="({path, text}, index) in breadcrumbs" class="article-breadcrumb__item" :key ="index">
+      <li v-for="({ path, text }, index) in breadcrumbs" :key ="index" class="article-breadcrumb__item">
         <router-link :to="{ path }"> {{ text }} </router-link>
       </li>
     </ul>
@@ -10,29 +10,29 @@
 
 <script>
 export default {
-  data () {
-    return {}
-  },
   components: {},
+  mixins: {},
   props: {
     breadcrumbs: {
       type: Array,
       default: () => [
         {
           text: 'Strona główna',
-          path: '/'
-        }
-      ]
-    }
+          path: '/',
+        },
+      ],
+    },
+  },
+  data () {
+    return {}
   },
   computed: {},
   methods: {},
-  mixins: {}
 }
 </script>
 
 <style lang="scss">
-@import "assets/scss/_imports.scss";
+@import "assets/scss/_imports";
 
 .article-breadcrumb {
   &__routes {
@@ -50,7 +50,7 @@ export default {
     display: inline;
   }
 
-  &__routes li+li:before {
+  &__routes li + li::before {
     padding: 6px;
     color: $gray-50;
     content: ">\00a0";
@@ -61,13 +61,13 @@ export default {
     text-decoration: none;
   }
 
-  &__routes li a:hover {
-    text-decoration: underline;
-  }
-
   &__routes li:last-child a {
     font-weight: bold;
     text-decoration: none;
+  }
+
+  &__routes li a:hover {
+    text-decoration: underline;
   }
 }
 </style>
