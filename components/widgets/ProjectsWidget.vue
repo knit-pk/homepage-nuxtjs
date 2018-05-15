@@ -5,7 +5,7 @@
     <widget-title :title="title" :widget-class="widgetClass" :widget-icon-class="widgetIconClass"/>
 
     <!-- Projects wrapper -->
-    <div v-for="(item, index) of items" :key="index" class="projects-widget__projects-wrapper">
+    <div v-for="(item, index) of items" :key="index" class="projects-widget__projects-wrapper widget-item">
       <projects-widget-item
         :title="item.title"
         :max-team-size="item.maxTeamSize"
@@ -83,13 +83,6 @@ export default {
     padding: 15px 0;
     font-size: 0.75rem;
     color: $projects-widget-text-color;
-
-    &:hover,
-    &:focus {
-      color: $projects-widget-text-color;
-      background-color: $projects-widget-link-more-hover-color;
-      text-decoration: underline;
-    }
   }
 }
 </style>
