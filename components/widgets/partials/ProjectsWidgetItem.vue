@@ -91,10 +91,6 @@ export default {
   border-bottom: 1px solid $projects-widget-item-border-color;
   padding: 15px;
 
-  &:hover {
-    background-color: $projects-widget-item-hover-bg-color;
-  }
-
   &__top-section {
     display: flex;
   }
