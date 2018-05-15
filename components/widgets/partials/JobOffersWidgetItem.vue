@@ -1,5 +1,5 @@
 <template>
-  <div class="job-offers-widget-item">
+  <div class="job-offers-widget-item widget-item">
 
     <!-- Job offer link -->
     <a href="#" class="job-offers-widget-item__link"/>
@@ -96,10 +96,6 @@ export default {
 
   &:not(:last-child) {
     border-bottom: 1px solid $job-offers-widget-item-border-color;
-  }
-
-  &:hover {
-    background-color: $job-offers-widget-item-hover-bg-color;
   }
 
   &__link {
