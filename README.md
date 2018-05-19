@@ -1,11 +1,15 @@
-# Homepage-nuxtjs
+<p align="center">
+  <img width="300" height="300" src=https://i.imgur.com/JgstIyZ.png">
+</p>
 
-[![Build Status](https://travis-ci.org/knit-pk/homepage-nuxtjs.svg?branch=develop)](https://travis-ci.org/knit-pk/homepage-nuxtjs)
-[![Maintainability](https://api.codeclimate.com/v1/badges/d820268b393178d9e7eb/maintainability)](https://codeclimate.com/github/knit-pk/homepage-nuxtjs/maintainability)
-[![Greenkeeper badge](https://badges.greenkeeper.io/knit-pk/homepage-nuxtjs.svg)](https://greenkeeper.io/)
-[![Slack Status](https://knitwebdevpk.herokuapp.com/badge.svg)](https://knitwebdevpk.herokuapp.com)
-[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
-[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+<p align="center">
+  <a href="https://travis-ci.org/knit-pk/homepage-nuxtjs"><img src="https://travis-ci.org/knit-pk/homepage-nuxtjs.svg?branch=develop" alt="Build status"></a>
+  <a href="https://codeclimate.com/github/knit-pk/homepage-nuxtjs/maintainability"><img src="https://api.codeclimate.com/v1/badges/d820268b393178d9e7eb/maintainability" alt="Maintainability"></a>
+  <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/knit-pk/homepage-nuxtjs.svg" alt="Greenkeeper badge"></a>
+  <a href="https://knitwebdevpk.herokuapp.com"><img src="https://knitwebdevpk.herokuapp.com/badge.svg" alt="Slack Status"></a>
+  <a href="https://opensource.org/licenses/mit-license.php"><img src="https://badges.frapsoft.com/os/mit/mit.svg?v=103" alt="MIT Licence"></a>
+  <a href="https://github.com/ellerbrock/open-source-badges/"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" alt="Open Source Love"></a>
+</p>
 
 ## Build Setup
 Project can be run for development in two different ways.
