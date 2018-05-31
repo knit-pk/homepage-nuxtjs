@@ -181,7 +181,7 @@ export default {
         display: block;
         min-height: 20px;
         height: 264px;
-        
+
         .article-card__thumbnail-link {
           width: 33.333%;
           float: left;
