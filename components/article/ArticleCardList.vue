@@ -174,16 +174,12 @@ export default {
   /* stylelint-disable */
   &--horizontal {
     .article-card {
-      
-      // height: 360px;
     @media (min-width: 1060px) {
-     
       &:nth-of-type(n+3) {
         flex-basis: 100%;
         display: block;
         min-height: 20px;
         height: 264px;
-        
         .article-card__thumbnail-link {
           width: 33.333%;
           float: left;
