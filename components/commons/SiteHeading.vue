@@ -42,13 +42,6 @@ export default {
     text-decoration: none;
   }
 
-  &__logo {
-    width: 37px;
-    height: 100%;
-    margin-right: 10px;
-    margin-bottom: -5px;
-  }
-
   &__name-wrapper {
     display: flex;
     flex-direction: column;
