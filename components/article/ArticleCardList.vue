@@ -174,9 +174,55 @@ export default {
   /* stylelint-disable */
   &--horizontal {
     .article-card {
+
+      @media (min-width: 1060px) {
       &:nth-of-type(n+3) {
         flex-basis: 100%;
+        display: block;
+        min-height: 20px;
+        height: 264px;
+
+        .article-card__thumbnail-link {
+          width: 33.333%;
+          float: left;
+        }
+
+        .article-card__header {
+          margin-top: 15px;
+        }
+
+        .article-card__title-link {
+          order: 1;
+          margin-left: -10px;
+        }
+
+        .article-card__tags-wrapper {
+           order: 2;
+        }
+
+        .article-card__author-wrapper {
+          position: absolute;
+          left: 15px;
+          bottom: 30px;
+        }
+
+        .article-card__description {
+          float: left;
+          width: 66.666%;
+          margin-top: 10px;
+        }
+
+        .article-card__footer {
+          width: 100%;
+          justify-content: flex-end;
+          height: 64px;
+        }
+
+        .article-card__stats {
+          margin-top: -20px;
+        }
       }
+}
 
       @media (max-width: $screen-xl) {
         flex-basis: 100%;
