@@ -3,7 +3,7 @@
 
     <!-- Footer logo link -->
     <router-link :to="{ path: '/' }" class="knit-footer__link">
-      <knit-logo/>
+      <knit-logo class="knit-footer__logo"/>
     </router-link>
 
     <!-- Navbar -->
@@ -67,10 +67,13 @@ export default {
     }
   }
 
+  &__logo {
+    width: 120px;
+  }
+
   &__link {
     display: block;
     margin-top: 35px;
-    width: 65px;
     height: auto;
   }
 

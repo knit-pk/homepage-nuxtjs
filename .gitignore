@@ -17,3 +17,5 @@ yarn-error.log
 # Nuxt generate
 dist
 
+# Apple
+.DS_store
