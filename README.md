@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="300" height="300" src="https://raw.githubusercontent.com/knit-pk/homepage-nuxtjs/develop/static/favicon.ico">
+  <img width="300" height="300" src="https://secure.gravatar.com/avatar/02af0b4745bcd6c6997955997639cb65.jpg?s=300&r=g&d=mm">
 </p>
 
 <p align="center">
