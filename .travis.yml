@@ -24,7 +24,7 @@ before_script:
 script:
   - yarn run test
   - yarn run lint
-  - yarn run lint:scss
+  - 'yarn run lint:scss'
   - yarn run build
 
 after_script: greenkeeper-lockfile-upload
@@ -33,8 +33,13 @@ addons:
   ssh_known_hosts: s11.mydevil.net
 
 before_deploy:
-  - "export APP_VERSION=$(cat package.json | grep \"\\\"version\\\":\" | sed -E \"s/\\s+\\\"version\\\": \\\"(.*)\\\",/v\\1/\") && echo $APP_VERSION"
-  - openssl aes-256-cbc -K $encrypted_1e282a7349af_key -iv $encrypted_1e282a7349af_iv -in ./deploy/mydevil_rsa.enc -out /tmp/mydevil_rsa -d
+  - >-
+    export APP_VERSION=$(cat package.json | grep "\"version\":" | sed -E
+    "s/\s+\"version\": \"(.*)\",/v\1/") && echo $APP_VERSION
+  - >-
+    openssl aes-256-cbc -K $encrypted_1e282a7349af_key -iv
+    $encrypted_1e282a7349af_iv -in ./deploy/mydevil_rsa.enc -out
+    /tmp/mydevil_rsa -d
   - eval "$(ssh-agent -s)"
   - chmod 600 /tmp/mydevil_rsa
   - ssh-add /tmp/mydevil_rsa
@@ -57,11 +62,10 @@ deploy:
     script: bash ./deploy/github-tag.sh
     on:
       branch: master
-      condition: "$DEPLOY = 1"
+      condition: $DEPLOY = 1
   - provider: script
     skip_cleanup: true
     script: bash ./deploy/docker-app-push.sh
     on:
       tags: true
-      condition: "$DEPLOY = 1"
-
+      condition: $DEPLOY = 1
