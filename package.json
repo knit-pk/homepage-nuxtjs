@@ -41,7 +41,7 @@
     "@mapbox/stylelint-processor-arbitrary-tags": "^0.2.0",
     "babel-eslint": "^8.2.2",
     "dotenv": "^6.0.0",
-    "eslint": "^4.19.0",
+    "eslint": "^5.0.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-import": "^2.9.0",
