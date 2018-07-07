@@ -1,11 +1,15 @@
-version: '3'
+version: '3.6'
 
 volumes:
   yarn_cache:
 
 services:
   homepage:
-    build: .
+    image: knitpk/homepage:latest
+    build:
+      context: .
+      cache_from:
+        - knitpk/homepage:latest
     command: ['/bin/sh', '-c', 'yarn install && yarn dev']
     environment:
       - NODE_ENV=development
