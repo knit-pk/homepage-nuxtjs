@@ -9,7 +9,6 @@
   },
   "license": "MIT",
   "scripts": {
-    "postinstall": "cp .env.example .env",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
