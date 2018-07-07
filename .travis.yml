@@ -3,15 +3,16 @@ language: node_js
 env:
   global:
     - NODE_ENV=development
+    - API_URL=https://knit-test-api.tk
 
 matrix:
   include:
-    - node_js: '8'
     - node_js: '9'
       env:
         - DEPLOY=1
       services:
         - docker
+    - node_js: '10'
 
 cache: yarn
 
