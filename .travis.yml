@@ -43,6 +43,7 @@ before_deploy:
   - eval "$(ssh-agent -s)"
   - chmod 600 /tmp/mydevil_rsa
   - ssh-add /tmp/mydevil_rsa
+  - yarn global add conventional-changelog-cli conventional-github-releaser
 
 deploy:
   - provider: script
