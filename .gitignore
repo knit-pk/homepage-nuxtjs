@@ -3,6 +3,7 @@
 app.js
 .env.mydevil
 package-lock.json
+.DS_Store
 
 # dependencies
 node_modules

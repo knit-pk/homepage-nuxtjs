@@ -1,6 +1,6 @@
 {
   "name": "homepage-nuxtjs",
-  "version": "0.4.0-dev",
+  "version": "0.4.1-dev",
   "description": "KNIT Homepage - SPA, SSR, Nuxtjs",
   "homepage": "http://knit.pk.edu.pl",
   "author": {
@@ -17,7 +17,7 @@
     "precommit": "yarn lint && yarn lint:scss",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:scss": "stylelint \"**/*.(vue)\" --syntax scss",
-    "test": "jest tests/",
+    "test": "jest src/test",
     "format-on-save": "watch \"npm run lint -- --fix\" -d -p \"/node_modules/\""
   },
   "dependencies": {

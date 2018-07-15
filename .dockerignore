@@ -1,17 +1,6 @@
-/.git
-/docs
-/tests
-*Dockerfile*
-*docker-compose*
-node_modules
-npm-debug.log
-yarn-error.log
-.deploy
-.nuxt
-.env*
-.eslintrc.js
-.stylelintrc
-.travis.yml
-.gitignore
-*.md
-jsconfig.json
+* // ignore all
+// except:
+!package.json
+!yarn.lock
+!nuxt.config.js
+!/src

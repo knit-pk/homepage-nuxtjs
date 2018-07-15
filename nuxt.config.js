@@ -1,6 +1,8 @@
-const ssrDirectives = require('./directives/ssr')
+const ssrDirectives = require('./src/directives/ssr')
 
-const env = process.env.NODE_ENV === 'production' ? process.env : Object.assign({}, require('dotenv').config().parsed, process.env)
+const env = process.env.NODE_ENV === 'production' ?
+  process.env :
+  Object.assign({}, require('dotenv').config().parsed, process.env)
 
 if (!env.NODE_ENV) {
   throw new Error('NODE_ENV variable must be defined')
@@ -11,6 +13,7 @@ if (!env.API_URL) {
 }
 
 module.exports = {
+  srcDir: 'src/',
   env,
   head: {
     htmlAttrs: {
@@ -105,7 +108,7 @@ module.exports = {
   },
   css: [
     '~/assets/scss/custom-components/vue-scrollbar.scss',
-    '~/node_modules/normalize.css/normalize.css',
+    '../node_modules/normalize.css/normalize.css',
     '~/assets/bootstrap/custom.scss',
     '~/assets/scss/main.scss',
   ],
