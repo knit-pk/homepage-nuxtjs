@@ -17,6 +17,7 @@ matrix:
 cache: yarn
 
 before_install:
+  - export PATH="$(yarn global bin):$PATH"
   - yarn global add greenkeeper-lockfile@1
 
 before_script:
