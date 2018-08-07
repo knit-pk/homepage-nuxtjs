@@ -53,13 +53,13 @@ deploy:
     script: bash ./deploy/mydevil-deploy.sh
     on:
       branch: develop
-      node: '8'
+      condition: $DEPLOY = 1
   - provider: script
     skip_cleanup: true
     script: ssh k911-main@s11.mydevil.net 'bash -s' < ./deploy/mydevil-post-deploy.sh
     on:
       branch: develop
-      node: '8'
+      condition: $DEPLOY = 1
   - provider: script
     skip_cleanup: true
     script: bash ./deploy/github-tag.sh
