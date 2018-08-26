@@ -7,7 +7,7 @@
       <div class="article-content__header-info">
 
         <!-- Title -->
-        <h2 class="article-content__title" itemprop="headline"> {{ ellipsis(title, 110) }} </h2>
+        <h2 class="article-content__title" itemprop="headline"> {{ ellipsify(title, 110) }} </h2>
         <div class="article-content__pub-info">
 
           <!-- Author avatar -->

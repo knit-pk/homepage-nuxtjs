@@ -53,6 +53,16 @@ export default {
       code: _.values(params).join('/'),
     })
   },
+  head () {
+    return {
+      title: `${this.article.metaTitle}`,
+      meta: [{
+        hid: 'description',
+        name: 'description',
+        content: `${this.article.metaDescription}`,
+      }],
+    }
+  },
 }
 </script>
 

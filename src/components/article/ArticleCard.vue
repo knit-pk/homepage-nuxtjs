@@ -14,7 +14,7 @@
 
         <!-- Title -->
         <router-link :to="{ path: url }" class="article-card__title-link">
-          <h3 ref="articleTitle" class="article-card__title" itemprop="headline"> {{ ellipsis(title, 75) }} </h3>
+          <h3 ref="articleTitle" class="article-card__title" itemprop="headline"> {{ ellipsify(title, 75) }} </h3>
         </router-link>
 
         <!-- Tags -->
@@ -40,7 +40,7 @@
 
     <!-- Description -->
     <router-link :to="{ path: url }" itemtype="description" class="article-card__description">
-      {{ ellipsis(description, 170) }}
+      {{ ellipsify(description, 170) }}
     </router-link>
 
     <!-- Footer -->

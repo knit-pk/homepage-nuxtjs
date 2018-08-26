@@ -1,5 +1,6 @@
 import knitService from '~/services/knitService'
 import settings from '~/config/store/articles'
+import templateHelper from '~/helpers/template'
 import commonHelper from '~/helpers/common'
 import storeHelper from '~/helpers/store'
 import knitLogger from '~/config/logger'
@@ -32,7 +33,19 @@ const codes = storeHelper.createMutationFn(types.ADD_CODES)
 const customFns = {
   prepareArticles (data) {
     const articlesArr = commonHelper.pickItemsProps(data['hydra:member'], settings.props, true, settings.datePicker)
-    return _.keyBy(articlesArr, 'code')
+    const maxEllipsifiedDescriptionLength = 135
+
+    const articlesArrWithMeta = _.map(articlesArr, (article) => {
+      const ellipsifiedDescription = templateHelper.methods.ellipsifyWithoutResidue(article.description, maxEllipsifiedDescriptionLength)
+
+      return {
+        ...article,
+        metaTitle: `${article.title} | KNIT`,
+        metaDescription: `${article.title}. ${ellipsifiedDescription} | ${article.category.name}`,
+      }
+    })
+
+    return _.keyBy(articlesArrWithMeta, 'code')
   },
 }
 

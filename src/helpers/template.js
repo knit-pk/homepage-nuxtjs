@@ -7,8 +7,21 @@ import _ from 'lodash'
  * @param {Number} [length=3]
  * @returns {String}
  */
-function ellipsis (str, length = 3) {
+function ellipsify (str, length = 3) {
   return (length - 3) >= str.length ? str : `${str.slice(0, length - 3)}...`
+}
+
+/**
+ * Returns string with dots if length of a string is too big,
+ * without: words cut in half, trailing punctuations, etc.
+ * @param {String} str
+ * @param {Number} [length=3]
+ * @returns {String}
+ */
+function ellipsifyWithoutResidue (str, length = 3) {
+  const cutResidueRegex = /[\W\u0080-\u00FF\u0100-\u017F]*\s[\S]*$/
+  const slicedStr = str.slice(0, length - 3)
+  return (length - 3) >= str.length ? str : `${slicedStr.replace(cutResidueRegex, '...')}`
 }
 
 /**
@@ -50,7 +63,8 @@ export default {
   methods: {
     formatDateToLocalString,
     defaultCssPostfix,
-    ellipsis,
+    ellipsify,
+    ellipsifyWithoutResidue,
     isUrl,
     capitalize: _.capitalize,
     upper: _.toUpper,
