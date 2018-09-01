@@ -1,6 +1,7 @@
-* // ignore all
-// except:
+*
+# ignore all, except:
 !package.json
 !yarn.lock
 !nuxt.config.js
 !/src
+!/deploy/healthcheck.js
