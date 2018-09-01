@@ -7,12 +7,11 @@ env:
 
 matrix:
   include:
-    - node_js: '9'
+    - node_js: '10'
       env:
         - DEPLOY=1
       services:
         - docker
-    - node_js: '10'
 
 cache: yarn
 
