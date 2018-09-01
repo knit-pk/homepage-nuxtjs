@@ -10,11 +10,11 @@ services:
       context: .
       cache_from:
         - knitpk/homepage:latest
-    command: ['/bin/sh', '-c', 'yarn install && yarn dev']
+      args:
+        - NODE_ENV=development
+    command: ['dev']
     environment:
-      - NODE_ENV=development
-      - API_URL=https://knit-test-api.tk
-      # - API_URL=https://d15e2ckuuchn46.cloudfront.net
+      - API_URL=https://knit-test-api.tk # stage env: https://d15e2ckuuchn46.cloudfront.net
     ports:
       - "3000:3000"
     volumes:
