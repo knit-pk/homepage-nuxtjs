@@ -1,4 +1,4 @@
-FROM node:9-alpine
+FROM node:10-alpine
 
 ARG NODE_ENV=production
 ARG API_URL=http://api.knit.pk.edu.pl
