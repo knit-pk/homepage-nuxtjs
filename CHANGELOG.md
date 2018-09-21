@@ -1,3 +1,8 @@
+<a name="0.5.1-dev"></a>
+## [0.5.1-dev](https://github.com/knit-pk/homepage-nuxtjs/compare/v0.5.0-dev...v0.5.1-dev) (2018-09-21)
+
+
+
 <a name="0.5.0-dev"></a>
 # [0.5.0-dev](https://github.com/knit-pk/homepage-nuxtjs/compare/v0.3.0-dev...v0.5.0-dev) (2018-09-21)
 
