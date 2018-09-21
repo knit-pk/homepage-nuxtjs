@@ -16,7 +16,7 @@ docker push knitpk/homepage:${DOCKER_TAG}
 docker push knitpk/homepage:latest
 
 # Heroku (UAT environment)
-echo "${HEROKU_AUTH_TOKEN}" | docker login -u "_" --password-stdin
+echo "${HEROKU_AUTH_TOKEN}" | docker login -u "_" --password-stdin registry.heroku.com
 
 docker build . \
     --cache-from knitpk/homepage:latest \
