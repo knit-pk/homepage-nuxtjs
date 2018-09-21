@@ -113,7 +113,6 @@ module.exports = {
     '~/assets/scss/main.scss',
   ],
   build: {
-    vendor: ['axios', 'lodash', 'qs', 'vue2-scrollbar'],
     extend (config) {
       const vueLoader = config.module.rules.find(rule => rule.loader === 'vue-loader')
       vueLoader.options = Object.assign({}, vueLoader.options, {

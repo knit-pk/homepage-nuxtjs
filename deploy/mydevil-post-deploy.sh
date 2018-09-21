@@ -7,4 +7,4 @@ yarn install
 devil www restart knit-test-homepage.tk
 mkdir public
 cp -R src/static/* public
-ln -s ../.nuxt/dist/ public/_nuxt
+ln -s ../.nuxt/dist/client public/_nuxt
