@@ -53,7 +53,7 @@
     "eslint-plugin-vue": "^4.7.1",
     "jest": "^23.6.0",
     "stylelint": "^9.5.0",
-    "stylelint-config-standard": "^18.2.0",
+    "stylelint-config-standard": "^19.0.0",
     "stylelint-processor-html": "^1.0.0",
     "stylelint-webpack-plugin": "^0.10.5",
     "watch": "^1.0.2"
