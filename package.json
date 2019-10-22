@@ -29,7 +29,7 @@
     "lodash": "^4.17.11",
     "node-sass": "^4.9.3",
     "normalize.css": "^8.0.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.10.2",
     "qs": "^6.5.2",
     "sass-loader": "^7.1.0",
     "vue-config-manager": "^0.2.2",
